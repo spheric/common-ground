@@ -1,0 +1,23 @@
+# Generated output — rebuilt by CI (node scripts/build.mjs)
+dist/
+
+# Local machine state — never commit
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Node (project is zero-dep; belt and braces)
+node_modules/
+
+# Secrets / env
+.env
+.env.*
+
+# Local scratch: screenshots, browser-test leftovers, logs
+/*.png
+.playwright-mcp/
+*.log

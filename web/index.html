@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Common Ground — Australian party policies, compared</title>
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>">
+<!--__CSS__-->
+</head>
+<body>
+<!--__BODY_START__-->
+<div class="app" id="app">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead" role="banner">
+    <div class="masthead-top">
+      <h1 class="masthead-title">Common Ground</h1>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+        <span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">◐</span>
+        <span id="themeToggleLabel">Auto</span>
+      </button>
+    </div>
+    <div class="masthead-rule" aria-hidden="true"></div>
+    <p class="masthead-subtitle" id="mastheadSubtitle"></p>
+    <p class="masthead-meta" id="mastheadMeta"></p>
+  </header>
+
+  <div class="filter-row" id="filterRow" role="region" aria-label="Filters"></div>
+
+  <nav class="view-tabs" id="viewTabs" role="tablist" aria-label="View">
+    <button type="button" role="tab" id="tabMatrix" aria-selected="true" aria-controls="viewMatrix" class="view-tab">Matrix</button>
+    <button type="button" role="tab" id="tabOverlap" aria-selected="false" aria-controls="viewOverlap" class="view-tab">Overlap</button>
+  </nav>
+
+  <main id="main">
+    <section id="viewMatrix" role="tabpanel" aria-labelledby="tabMatrix" tabindex="-1"></section>
+    <section id="viewOverlap" role="tabpanel" aria-labelledby="tabOverlap" tabindex="-1" hidden></section>
+  </main>
+
+  <footer class="site-footer" id="siteFooter"></footer>
+</div>
+
+<div id="drawerRoot"></div>
+<!--__BODY_END__-->
+<!--__DATA__-->
+<!--__JS__-->
+</body>
+</html>
