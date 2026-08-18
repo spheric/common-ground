@@ -231,15 +231,82 @@
      ------------------------------------------------------------------------ */
 
   function renderHeader(ndis) {
+    var editionEl = document.getElementById('mastheadEdition');
     var subtitleEl = document.getElementById('mastheadSubtitle');
     var metaEl = document.getElementById('mastheadMeta');
     if (!ndis) {
+      if (editionEl) editionEl.textContent = '';
       if (subtitleEl) subtitleEl.textContent = 'No data loaded.';
       if (metaEl) metaEl.textContent = '';
       return;
     }
+    if (editionEl) editionEl.textContent = 'Data edition · as of ' + fmtDateLong(ndis.meta.as_of);
     if (subtitleEl) subtitleEl.textContent = 'Prices, legislation and scheme data for the NDIS — every figure and claim links to an official source.';
     if (metaEl) metaEl.textContent = 'Sources: NDIA, Federal Register of Legislation, Parliament of Australia, ABS · as of ' + ndis.meta.as_of;
+  }
+
+  // Front-page index: only lists sections that actually rendered (no empty
+  // scaffolding), in the fixed page order, as in-page jump links.
+  function renderMastheadIndex(ndis) {
+    var el = document.getElementById('mastheadIndex');
+    if (!el) return;
+    if (!ndis) { setHtml(el, ''); return; }
+    var candidates = [
+      { id: 'sectionPricingHeading', sec: 'sectionPricing', label: 'What changed in pricing' },
+      { id: 'sectionExplorerHeading', sec: 'sectionExplorer', label: 'Price history explorer' },
+      { id: 'sectionLawHeading', sec: 'sectionLaw', label: 'The law' },
+      { id: 'sectionUpdatesHeading', sec: 'sectionUpdates', label: 'Updates' },
+      { id: 'sectionNumbersHeading', sec: 'sectionNumbers', label: 'Scheme in numbers' }
+    ];
+    var visible = candidates.filter(function (c) {
+      var sec = document.getElementById(c.sec);
+      return sec && !sec.hidden;
+    });
+    if (!visible.length) { setHtml(el, ''); return; }
+    var html = visible.map(function (c, i) {
+      var sep = i < visible.length - 1 ? '<span class="masthead-index-sep" aria-hidden="true"> · </span>' : '';
+      return '<a href="#' + c.id + '">' + esc(c.label) + '</a>' + sep;
+    }).join('');
+    setHtml(el, html);
+  }
+
+  // Lead-story pull-stat: one editorial number computed from window.NDIS,
+  // never hardcoded. Counts support items whose price has never differed
+  // across the releases in which they appear (>=2 priced releases).
+  function computeLeadStat(ndis) {
+    if (!ndis || !ndis.items || !ndis.items.length || !ndis.releases || ndis.releases.length < 2) return null;
+    // Caption must state exactly what is counted: among items PRICED IN TWO OR
+    // MORE releases, those whose price is identical in every release they
+    // appear in. The denominator is that eligible set — not all tracked items.
+    var eligible = 0;
+    var unchanged = 0;
+    ndis.items.forEach(function (item) {
+      var vals = (item.history || []).filter(function (v) { return v !== null && v !== undefined; });
+      if (vals.length < 2) return;
+      eligible++;
+      if (vals.every(function (v) { return v === vals[0]; })) unchanged++;
+    });
+    if (eligible === 0) return null;
+    var firstFy = ndis.releases[0].fy;
+    var lastFy = ndis.releases[ndis.releases.length - 1].fy;
+    return {
+      value: unchanged,
+      caption: 'of the ' + eligible.toLocaleString('en-AU') + ' support items priced in two or more catalogue releases (' +
+        firstFy + ' to ' + lastFy + '), ' + unchanged.toLocaleString('en-AU') +
+        ' have kept exactly the same price in every release they appear in.'
+    };
+  }
+
+  function renderLeadStat(ndis) {
+    var el = document.getElementById('leadStat');
+    if (!el) return;
+    var stat = ndis ? computeLeadStat(ndis) : null;
+    if (!stat) { el.hidden = true; setHtml(el, ''); return; }
+    el.hidden = false;
+    setHtml(el,
+      '<div class="lead-stat-figure tnum">' + fmtNum(stat.value) + '</div>' +
+      '<p class="lead-stat-caption">' + esc(stat.caption) + '</p>'
+    );
   }
 
   function renderFooter(ndis) {
@@ -260,19 +327,42 @@
 
   function renderDotStrip(items, maxAbs) {
     if (!items.length) return '<span class="dot-strip-empty">—</span>';
-    var w = 150, h = 28, cx0 = w / 2;
+    var w = 190, h = 28, cx0 = w / 2;
     var dots = items.map(function (it) {
       var bin = rampBin(it.pct, maxAbs);
       var frac = Math.max(-1, Math.min(1, it.pct / (maxAbs || 1)));
-      var cx = cx0 + frac * (cx0 - 10);
+      var cx = cx0 + frac * (cx0 - 14);
       // 2px surface-colour ring keeps overlapping dots (close pct values) legible.
-      return '<circle cx="' + cx.toFixed(1) + '" cy="14" r="4" fill="' + RAMP_HEX[bin] + '" stroke="var(--surface)" stroke-width="2"></circle>';
+      return '<circle cx="' + cx.toFixed(1) + '" cy="12" r="4" fill="' + RAMP_HEX[bin] + '" stroke="var(--surface)" stroke-width="2"></circle>';
     }).join('');
     return (
       '<svg class="dot-strip-svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' +
-        '<line x1="' + cx0 + '" y1="4" x2="' + cx0 + '" y2="' + (h - 4) + '" stroke="var(--hairline)" stroke-width="1"></line>' +
+        '<line x1="' + cx0 + '" y1="2" x2="' + cx0 + '" y2="20" stroke="var(--hairline)" stroke-width="1"></line>' +
         dots +
+        '<text class="dot-strip-axis-label" x="2" y="26" text-anchor="start">−</text>' +
+        '<text class="dot-strip-axis-label" x="' + cx0 + '" y="26" text-anchor="middle">0</text>' +
+        '<text class="dot-strip-axis-label" x="' + (w - 2) + '" y="26" text-anchor="end">+</text>' +
       '</svg>'
+    );
+  }
+
+  // Combined "change" cell: sign chip with an inline magnitude bar (ramp-coloured,
+  // width proportional to |median_pct|), stacked above the item-level dot-strip.
+  // Printed percentage is always present beside the bar — colour never carries
+  // meaning alone.
+  function renderChangeCell(cat, items, maxAbs, maxCategoryAbs) {
+    if (cat.changed <= 0) return '<span class="dot-strip-empty">—</span>';
+    var signCls = cat.median_pct >= 0 ? 'is-increase' : 'is-decrease';
+    var bin = rampBin(cat.median_pct, maxCategoryAbs);
+    var barPct = maxCategoryAbs ? Math.max(6, Math.round((Math.abs(cat.median_pct) / maxCategoryAbs) * 100)) : 6;
+    return (
+      '<div class="change-cell">' +
+        '<div class="mag-bar-row">' +
+          '<span class="mag-bar" style="width:' + barPct + '%;background:' + RAMP_HEX[bin] + '"></span>' +
+          '<span class="sign-chip ' + signCls + '">' + fmtPctSigned(cat.median_pct) + '</span>' +
+        '</div>' +
+        renderDotStrip(items, maxAbs) +
+      '</div>'
     );
   }
 
@@ -306,10 +396,85 @@
           '<span class="item-list-num">' + esc(it.num) + ' · ' + esc(it.category) + '</span></li>'
       );
     }).join('');
+    var cats = {};
+    list.forEach(function (it) { cats[it.category] = true; });
+    var catCount = Object.keys(cats).length;
+    var summaryText = esc(label) + ' — ' + list.length + ' item' + (list.length === 1 ? '' : 's') +
+      ' across ' + catCount + ' categor' + (catCount === 1 ? 'y' : 'ies');
     return (
-      '<details class="item-list-details" id="' + idPrefix + '"><summary>' + esc(label) + ' (' + list.length + ')</summary>' +
+      '<details class="item-list-details" id="' + idPrefix + '"><summary>' + summaryText + '</summary>' +
         '<ul>' + items + '</ul>' +
       '</details>'
+    );
+  }
+
+  // Tiny ink-coloured sparkline (pure SVG, ~60x16) from an item's price
+  // history, normalised to its own min/max. Decorative only — the figures it
+  // accompanies (old -> new, signed %) are always printed in text beside it.
+  function buildSparkline(history) {
+    var pts = [];
+    (history || []).forEach(function (v, i) { if (v !== null && v !== undefined) pts.push(v); });
+    if (pts.length < 2) return '';
+    var w = 60, h = 16, pad = 2;
+    var min = Math.min.apply(null, pts), max = Math.max.apply(null, pts);
+    if (min === max) { min -= 1; max += 1; }
+    var step = (w - 2 * pad) / (pts.length - 1);
+    var coords = pts.map(function (v, i) {
+      var x = pad + i * step;
+      var y = pad + (h - 2 * pad) * (1 - (v - min) / (max - min));
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+    return (
+      '<svg class="mover-spark" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' +
+        '<polyline points="' + coords + '" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></polyline>' +
+      '</svg>'
+    );
+  }
+
+  // "In brief" sidebar: top 3 increases + top 3 decreases from the current
+  // diff. Item name, old -> new, signed %, plus a tiny sparkline of its full
+  // price history. All computed from the diff already loaded — no new data.
+  function renderMovers(current, ndis) {
+    if (!current.changed.length) return '';
+    var itemByNum = {};
+    ndis.items.forEach(function (i) { itemByNum[i.num] = i; });
+    var sorted = current.changed.slice().sort(function (a, b) { return b.pct - a.pct; });
+    var increases = sorted.filter(function (c) { return c.pct > 0; }).slice(0, 3);
+    var decreases = sorted.filter(function (c) { return c.pct < 0; })
+      .sort(function (a, b) { return a.pct - b.pct; }).slice(0, 3);
+
+    function row(c) {
+      var item = itemByNum[c.num];
+      var spark = item ? buildSparkline(item.history) : '';
+      var cls = c.pct >= 0 ? 'is-increase' : 'is-decrease';
+      return (
+        '<li class="mover-item">' +
+          '<div class="mover-head"><span class="mover-name">' + esc(truncate(c.name, 34)) + '</span>' + spark + '</div>' +
+          '<div class="mover-detail"><span class="tnum">' + fmtDollars(c.old) + ' → ' + fmtDollars(c.new) + '</span>' +
+            '<span class="sign-chip ' + cls + '">' + fmtPctSigned(c.pct) + '</span></div>' +
+        '</li>'
+      );
+    }
+
+    var incHtml = increases.length ? '<h4 class="movers-subhead">Biggest increases</h4><ul class="movers-list">' + increases.map(row).join('') + '</ul>' : '';
+    var decHtml = decreases.length ? '<h4 class="movers-subhead">Biggest decreases</h4><ul class="movers-list">' + decreases.map(row).join('') + '</ul>' : '';
+    if (!incHtml && !decHtml) return '';
+    return '<aside class="movers-module" aria-label="Biggest price movers this release"><p class="movers-kicker">In brief</p>' + incHtml + decHtml + '</aside>';
+  }
+
+  // Small colophon: which release this diff lands on, its effective date,
+  // item count and source link — from ndis.releases, graceful if absent.
+  function renderColophon(current, ndis) {
+    var release = (ndis.releases || []).filter(function (r) { return r.release === current.to; })[0];
+    if (!release) return '';
+    return (
+      '<div class="colophon">' +
+        '<p class="colophon-label">This release</p>' +
+        '<p class="colophon-line"><strong class="tnum">' + esc(release.release) + '</strong></p>' +
+        '<p class="colophon-line">Effective ' + esc(fmtDateLong(release.effective)) + '</p>' +
+        '<p class="colophon-line tnum">' + fmtNum(release.item_count) + ' priced items</p>' +
+        '<p class="colophon-line"><a href="' + esc(release.source_url) + '" target="_blank" rel="noopener">Source catalogue ↗</a></p>' +
+      '</div>'
     );
   }
 
@@ -343,40 +508,53 @@
       '</div>'
     );
 
+    var maxCategoryAbs = current.by_category.reduce(function (m, cat) { return Math.max(m, Math.abs(cat.median_pct || 0)); }, 0) || 1;
+
     var categoryRows = current.by_category.map(function (cat) {
       var items = current.changed.filter(function (c) { return c.category === cat.category; }).map(function (c) {
         return { pct: c.pct };
       });
-      var signCls = cat.median_pct >= 0 ? 'is-increase' : 'is-decrease';
-      var medianCell = cat.changed > 0
-        ? '<span class="sign-chip ' + signCls + '">' + fmtPctSigned(cat.median_pct) + '</span>'
-        : '<span class="dot-strip-empty">—</span>';
+      var bin = cat.changed > 0 ? rampBin(cat.median_pct, maxCategoryAbs) : null;
+      var ruleStyle = bin !== null ? ' style="box-shadow:inset 3px 0 0 0 ' + RAMP_HEX[bin] + '"' : '';
       return (
-        '<tr>' +
-          '<td>' + esc(cat.category) + renderCategoryDetails(current, cat.category) + '</td>' +
-          '<td class="tnum">' + cat.changed + '</td>' +
-          '<td class="tnum">' + medianCell + '</td>' +
-          '<td class="tnum">' + cat.added + '</td>' +
-          '<td class="tnum">' + cat.retired + '</td>' +
-          '<td class="dot-strip-cell">' + renderDotStrip(items, maxAbs) + '</td>' +
+        '<tr class="category-row">' +
+          '<td class="category-cell"' + ruleStyle + '>' + esc(cat.category) + renderCategoryDetails(current, cat.category) + '</td>' +
+          '<td class="tnum col-narrow">' + cat.changed + '</td>' +
+          '<td class="tnum col-change">' + renderChangeCell(cat, items, maxAbs, maxCategoryAbs) + '</td>' +
+          '<td class="tnum col-narrow">' + cat.added + '</td>' +
+          '<td class="tnum col-narrow">' + cat.retired + '</td>' +
         '</tr>'
       );
     }).join('');
 
     var addedDetails = renderItemListDetails('addedItemsDetails', 'Added items', current.added, true);
     var retiredDetails = renderItemListDetails('retiredItemsDetails', 'Retired items', current.retired, false);
+    var movers = renderMovers(current, ndis);
+    var colophon = renderColophon(current, ndis);
+    var sidebar = (colophon || movers) ? '<div class="pricing-side">' + colophon + movers + '</div>' : '';
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionPricingHeading">What changed in pricing</h2>' +
+      '<h2 class="section-heading" id="sectionPricingHeading"><span class="section-number" aria-hidden="true">&sect; 1</span> What changed in pricing</h2>' +
       '<p class="section-intro">Item-by-item differences between two consecutive NDIS Support Catalogue releases, diffed by support item number.</p>' +
       '<div class="release-picker-row"><label for="diffPicker">Comparing</label>' +
         '<select id="diffPicker">' + pickerOptions + '</select></div>' +
       statTiles +
-      '<div class="table-scroll"><table class="diff-table">' +
-        '<thead><tr><th>Category</th><th class="tnum">Changed</th><th class="tnum">Median %</th><th class="tnum">Added</th><th class="tnum">Retired</th><th>Distribution of change</th></tr></thead>' +
-        '<tbody>' + categoryRows + '</tbody>' +
-      '</table></div>' +
-      addedDetails + retiredDetails
+      '<div class="pricing-layout">' +
+        '<div class="pricing-main">' +
+          '<div class="table-scroll"><table class="diff-table">' +
+            '<thead><tr>' +
+              '<th>Category</th>' +
+              '<th class="tnum col-narrow" title="Items changed">Chg</th>' +
+              '<th class="tnum col-change" title="Median percentage change, and the item-level distribution of changes">Change</th>' +
+              '<th class="tnum col-narrow" title="Items added">Add</th>' +
+              '<th class="tnum col-narrow" title="Items retired">Ret</th>' +
+            '</tr></thead>' +
+            '<tbody>' + categoryRows + '</tbody>' +
+          '</table></div>' +
+          addedDetails + retiredDetails +
+        '</div>' +
+        sidebar +
+      '</div>'
     );
 
     var picker = document.getElementById('diffPicker');
@@ -466,7 +644,12 @@
   function renderExplorerChart(ndis) {
     var releases = ndis.releases;
     if (!state.pinned.length) {
-      return '<div class="explorer-empty">Search and select up to ' + MAX_PINNED + ' support items above to see their price history.</div>';
+      return (
+        '<div class="explorer-empty">' +
+          '<p class="explorer-empty-lead">Search above to begin.</p>' +
+          '<p class="explorer-empty-sub">Select up to ' + MAX_PINNED + ' support items to trace and compare their price history across every catalogue release.</p>' +
+        '</div>'
+      );
     }
     var itemByNum = {};
     ndis.items.forEach(function (i) { itemByNum[i.num] = i; });
@@ -517,10 +700,12 @@
       return '<text class="explorer-axis-label" x="' + x.toFixed(1) + '" y="' + (M.top + plotH + 18) + '" text-anchor="middle">' + esc(r.fy) + '</text>';
     }).join('');
 
+    var areaSvg = '';
     var bandsSvg = '';
     var linesSvg = '';
     var dotsSvg = '';
     var endLabels = [];
+    var baselineY = M.top + plotH;
 
     pinnedItems.forEach(function (item, idx) {
       var dashCls = DASH_CLASS[idx] || '';
@@ -538,6 +723,11 @@
             d += ' H ' + xScale(releases[run[k].i].effective).toFixed(1) + ' V ' + yScale(run[k].v).toFixed(1);
           }
           linesSvg += '<path class="explorer-line ' + dashCls + '" d="' + d + '"></path>';
+          // Very subtle area fill under the price line (ramp blue wash) — the
+          // step path traced back down to the baseline and closed.
+          var firstX = xScale(releases[run[0].i].effective);
+          var lastX = xScale(releases[run[run.length - 1].i].effective);
+          areaSvg += '<path class="explorer-area" d="' + d + ' L ' + lastX.toFixed(1) + ' ' + baselineY.toFixed(1) + ' L ' + firstX.toFixed(1) + ' ' + baselineY.toFixed(1) + ' Z"></path>';
         }
         run.forEach(function (pt) {
           var x = xScale(releases[pt.i].effective), y = yScale(pt.v);
@@ -605,7 +795,7 @@
 
     var svg = (
       '<svg class="explorer-chart-svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Price history for the selected items">' +
-        gridSvg + xAxisSvg + bandsSvg + linesSvg + dotsSvg + cpiSvg + labelsSvg +
+        gridSvg + xAxisSvg + areaSvg + bandsSvg + linesSvg + dotsSvg + cpiSvg + labelsSvg +
       '</svg>'
     );
 
@@ -646,7 +836,7 @@
       : '';
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionExplorerHeading">Price history explorer</h2>' +
+      '<h2 class="section-heading" id="sectionExplorerHeading"><span class="section-number" aria-hidden="true">&sect; 2</span> Price history explorer</h2>' +
       '<p class="section-intro">Search a support item to trace its national price across every catalogue release. Pin up to ' + MAX_PINNED + ' items to compare.</p>' +
       '<label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span>' +
         '<span class="visually-hidden">Search support items by number, name or category</span>' +
@@ -746,21 +936,44 @@
 
     entries.sort(function (a, b) { return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); });
 
-    var timelineHtml = entries.map(function (e) {
-      var statusText = e.status ? (STATUS_LABEL[e.status] || e.status) : '';
+    // Chronology spine: group entries by year (already newest-first) so a big
+    // muted serif year marker can hang in the left margin once per year,
+    // while the hairline spine + node dots run continuously down the right.
+    var yearGroups = [];
+    var lastYear = null, currentGroup = null;
+    entries.forEach(function (e) {
+      var y = dateParts(e.date).y;
+      if (y !== lastYear) {
+        currentGroup = { year: y, entries: [] };
+        yearGroups.push(currentGroup);
+        lastYear = y;
+      }
+      currentGroup.entries.push(e);
+    });
+
+    var timelineHtml = yearGroups.map(function (g) {
+      var entriesHtml = g.entries.map(function (e) {
+        var statusText = e.status ? (STATUS_LABEL[e.status] || e.status) : '';
+        return (
+          '<div class="timeline-entry">' +
+            '<div class="timeline-date">' + esc(fmtDateLong(e.date)) + '</div>' +
+            '<span class="type-chip">' + esc(LAW_TYPE_LABEL[e.type] || e.type) + '</span>' +
+            '<div class="timeline-name">' + esc(e.name) + '</div>' +
+            '<div class="timeline-meta">' + (statusText ? esc(statusText) + ' · ' : '') +
+              '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">View source ↗</a></div>' +
+          '</div>'
+        );
+      }).join('');
       return (
-        '<div class="timeline-entry">' +
-          '<div class="timeline-date">' + esc(fmtDateLong(e.date)) + '</div>' +
-          '<span class="type-chip">' + esc(LAW_TYPE_LABEL[e.type] || e.type) + '</span>' +
-          '<div class="timeline-name">' + esc(e.name) + '</div>' +
-          '<div class="timeline-meta">' + (statusText ? esc(statusText) + ' · ' : '') +
-            '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">View source ↗</a></div>' +
+        '<div class="timeline-year-group">' +
+          '<div class="timeline-year" aria-hidden="true">' + g.year + '</div>' +
+          '<div class="timeline-entries">' + entriesHtml + '</div>' +
         '</div>'
       );
     }).join('');
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionLawHeading">The law</h2>' +
+      '<h2 class="section-heading" id="sectionLawHeading"><span class="section-number" aria-hidden="true">&sect; 3</span> The law</h2>' +
       '<p class="section-intro">The NDIS Act, its compilations, related legislative instruments registered in the last three years, and bills before parliament.</p>' +
       renderLawCallout(ndis) +
       (entries.length ? '<div class="timeline">' + timelineHtml + '</div>' : '<p class="section-intro">No timeline entries in range.</p>')
@@ -801,7 +1014,11 @@
         var mk = monthKey(it.date);
         if (mk !== currentMonth) {
           currentMonth = mk;
-          itemsHtml += '<h3 class="feed-month-heading">' + esc(monthHeading(it.date)) + '</h3>';
+          itemsHtml += '<h3 class="feed-month-heading">' +
+            '<span class="feed-month-rule" aria-hidden="true"></span>' +
+            '<span class="feed-month-text">' + esc(monthHeading(it.date)) + '</span>' +
+            '<span class="feed-month-rule" aria-hidden="true"></span>' +
+          '</h3>';
         }
         var meta = TYPE_META[it.type] || { emoji: '•', label: it.type };
         var badge = it.verified === 'auto'
@@ -810,7 +1027,7 @@
         itemsHtml += (
           '<div class="feed-item">' +
             '<div class="feed-item-head">' +
-              '<span class="feed-item-date">' + esc(fmtDateLong(it.date)) + '</span>' +
+              '<span class="feed-item-date tnum">' + esc(fmtDateLong(it.date)) + '</span>' +
               '<span class="type-chip"><span aria-hidden="true">' + meta.emoji + '</span> ' + esc(meta.label) + '</span>' +
             '</div>' +
             '<div class="feed-item-title"><a href="' + esc(it.source.url) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a></div>' +
@@ -822,7 +1039,7 @@
     }
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionUpdatesHeading">Updates</h2>' +
+      '<h2 class="section-heading" id="sectionUpdatesHeading"><span class="section-number" aria-hidden="true">&sect; 4</span> Updates</h2>' +
       '<p class="section-intro">Bills, hearings, reports, audits and announcements affecting the scheme, newest first.</p>' +
       '<div class="feed-filter-row" role="group" aria-label="Filter updates by type" id="feedFilterRow">' + filterChips + '</div>' +
       itemsHtml
@@ -911,7 +1128,7 @@
     }
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionNumbersHeading">Scheme in numbers</h2>' +
+      '<h2 class="section-heading" id="sectionNumbersHeading"><span class="section-number" aria-hidden="true">&sect; 5</span> Scheme in numbers</h2>' +
       (tiles.length ? '<div class="stat-tiles">' + tiles.join('') + '</div>' : '') +
       chart +
       nextDataHtml
@@ -924,6 +1141,7 @@
 
   function renderAll() {
     renderHeader(NDIS);
+    renderLeadStat(NDIS);
     var noDataEl = document.getElementById('noDataNote');
     if (!NDIS) {
       setHtml(noDataEl, '<div class="no-data-note"><p><strong>No data.</strong> Run the NDIS data pipeline to generate <code>data/ndis/ndis.json</code>, then rebuild with <code>node scripts/build.mjs</code>.</p></div>');
@@ -932,6 +1150,7 @@
         if (el) el.hidden = true;
       });
       renderFooter(null);
+      renderMastheadIndex(null);
       return;
     }
     setHtml(noDataEl, '');
@@ -941,6 +1160,7 @@
     renderUpdates(NDIS);
     renderNumbers(NDIS);
     renderFooter(NDIS);
+    renderMastheadIndex(NDIS);
   }
 
   function init() {
