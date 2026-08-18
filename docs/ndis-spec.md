@@ -234,7 +234,15 @@ Two further optional context blocks (added for the consolidation widgets):
   "label": "People needing help with core activities by federal electorate, Census 2021",
   "source": { "title": "ABS Data API, C21_G18_CED", "url": "https://data.api.abs.gov.au/rest/data/C21_G18_CED/...", "publisher": "ABS" },
   "national_total": 0,
-  "rows": [ { "name": "Banks", "code": "101", "need": 0 } ]
+  "rows": [ { "name": "Banks", "code": "101", "state": "NSW", "need": 0 } ]
+},
+"payments_by_state": {
+  "as_of_quarter": "2026-06-30",
+  "window": "12 months to report date",
+  "source": { "title": "NDIS payments data, NDIA dataresearch", "url": "https://dataresearch.ndis.gov.au/datasets", "publisher": "NDIA" },
+  "rows": [ { "state": "NSW", "payments": 0 } ],
+  "national_total": 0,
+  "delta_pct": 0.0
 }
 ```
 
@@ -250,7 +258,44 @@ catalogue-joined columns. `electorates.rows`: one row per Commonwealth Electoral
 dimension meaning against the DSD before trusting values — if the national sum of rows differs
 from `census_assistance.value` by more than 1%, omit the whole block rather than publish
 mismatched numbers). `code` is the CED code as returned by the API. No share/percentage fields
-unless a same-source denominator is verified.
+unless a same-source denominator is verified. **Verified denominator:** the same
+`C21_G18_CED` dataflow with `ASSNP=_T` (total persons) gives a same-source per-division
+denominator — when fetched, each row gains `"total": <persons>` and `"share": <need/total,
+4 dp fraction>`; if the totals query fails, rows stay count-only (no share) and the map
+falls back to count colouring with its legend labelled accordingly. `electorates.rows[].state`:
+the state/territory abbreviation, resolved from the `CL_CED_2021` codelist's own `parent`
+annotation (authoritative — not guessed from the code), cross-checked against the documented
+CED-code-numbering convention (`1xx` NSW … `8xx` ACT, `9xx` Other Territories) verified against
+one known division per state before being relied on as a sanity check.
+
+**`payments_by_state`** (optional, powers the W-D map tooltip's dollars line): one row per
+state/territory from the payments CSV's `RsdsInStateCd` (the finest true granularity the NDIA
+publishes — **per-electorate payments are not published and must never be derived or
+estimated**), latest report date only, `SuppCatNm`/`SuppItemNmbr`/`NDISDsbltyGrpNm`/`NDIAAgeBnd`
+all `'ALL'`. Cross-checked the same way as `electorates`: the 8 state rows must sum to within 2%
+of the national `payments_total` for that report date (`delta_pct` records the actual figure) or
+the whole block is omitted and the map tooltip/panel simply carry no dollars line.
+
+### data/ndis/boundaries.json (static, committed; NOT part of the weekly refresh)
+
+Generated once by `scripts/ndis/build-boundaries.mjs` from the **ABS ASGS Edition 3
+"Commonwealth Electoral Divisions — 2021" digital boundary shapefile** (the vintage matching
+`CL_CED_2021` codes — NOT current AEC redistribution boundaries). Zero-dep: parse SHP+DBF
+directly, simplify (Visvalingam or Douglas-Peucker) with a stated tolerance, project via
+Albers or cos-scaled equirectangular, quantise to 1 dp. Shape:
+
+```json
+{
+  "meta": { "source": { "title": "ABS ASGS Ed 3 CED 2021 digital boundaries", "url": "...", "publisher": "ABS" },
+            "licence": "CC BY 4.0", "generated": "YYYY-MM-DD", "simplification": "<method + tolerance>",
+            "projection": "<name + params>", "viewBox": "0 0 W H" },
+  "insets": [ { "id": "syd", "label": "Sydney", "viewBox": "x y w h" } ],
+  "paths": { "<CED code>": "M…Z" }
+}
+```
+
+Validator: every `electorates.rows[].code` has a path and vice versa (169 ↔ 169); paths
+non-empty; viewBoxes well-formed. Size discipline: total file ≤ 300 KB.
 CPI overlay: if `fetch-context` can retrieve quarterly All groups CPI (Australia) from the ABS
 API, add `"cpi": { "series": [ { "quarter": "2026-06-30", "index": 0 } ], "source": {...} }`;
 if the dataflow can't be found/verified, omit — never guess numbers.
@@ -428,6 +473,23 @@ No valence colour (neutral washes + blue ramp only). All maths in `web/ndis.js` 
   divisions as 2px ink ticks on a hairline axis, selected division a labelled dot). Note under
   it: Census "core activity need for assistance" definition caveat + NDIS ≠ census-need. The
   full sorted list is available under a `<details>` table twin.
+- **W-D map** (part of the electorate widget, when `window.NDIS.boundaries` exists): inline-SVG
+  choropleth of Australia from `boundaries.json` paths — national map plus capital-city inset
+  panels (labelled, hairline-boxed, standard electoral-map furniture). Fill: 5 quantile bins of
+  `share` on the blue ramp (fallback: bins of `need` count when share is absent; legend states
+  which, with printed bin ranges — never a vague "least/most need" label anywhere, printed
+  ranges/values only). Hairline division strokes (`--page` colour). Hover/focus a division:
+  tooltip (`<title>`) with name, need, share (1 dp), rank ("14th of 169"), and — when
+  `context.payments_by_state` exists and the division's `state` resolves — a state-level dollars
+  line ("`<STATE>` NDIS payments, 12 months: $X.XB"), explicitly state-labelled so it's never
+  misread as a per-electorate figure (per-electorate payments aren't published). Click selects it
+  in the lookup (syncs both ways — picking in the input highlights the division with a 2px ink
+  stroke). The map is a supplement to the input+strip+table (which remain the accessible path);
+  the lookup panel prints the SAME facts (share, rank, state dollars) as visible text for the
+  selected division — the tooltip is never the only path to a number. Mark the SVG `role="img"`
+  with a summary `aria-label` and keep every value printed elsewhere. Licence line under the map:
+  "Boundaries: ABS CED 2021, CC BY 4.0, simplified." The map must never cause
+  page-level horizontal scroll (scale to container, `max-width: 100%`).
 
 Footer: methodology (how the diff is computed, geography normalisation note, "state price
 spread shown as a band"), disclaimer, source list, link back to the main app, and the same

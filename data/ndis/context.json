@@ -190,6 +190,51 @@
       }
     ]
   },
+  "payments_by_state": {
+    "as_of_quarter": "2026-06-30",
+    "window": "12 months to report date",
+    "source": {
+      "title": "NDIS payments data, NDIA dataresearch",
+      "url": "https://dataresearch.ndis.gov.au/datasets",
+      "publisher": "NDIA"
+    },
+    "rows": [
+      {
+        "state": "NSW",
+        "payments": 15858637000
+      },
+      {
+        "state": "VIC",
+        "payments": 12832024000
+      },
+      {
+        "state": "QLD",
+        "payments": 11046815000
+      },
+      {
+        "state": "SA",
+        "payments": 4342979000
+      },
+      {
+        "state": "WA",
+        "payments": 4655756000
+      },
+      {
+        "state": "TAS",
+        "payments": 1213607000
+      },
+      {
+        "state": "NT",
+        "payments": 749958000
+      },
+      {
+        "state": "ACT",
+        "payments": 734801000
+      }
+    ],
+    "national_total": 51451547000,
+    "delta_pct": 0.033
+  },
   "abs": {
     "census_assistance": {
       "label": "People needing help with core activities, Census 2021",
@@ -223,847 +268,1354 @@
       {
         "name": "Adelaide",
         "code": "401",
-        "need": 11746
+        "need": 11746,
+        "state": "SA",
+        "total": 197621,
+        "share": 0.0594
       },
       {
         "name": "Aston",
         "code": "201",
-        "need": 9170
+        "need": 9170,
+        "state": "VIC",
+        "total": 159103,
+        "share": 0.0576
       },
       {
         "name": "Ballarat",
         "code": "202",
-        "need": 10586
+        "need": 10586,
+        "state": "VIC",
+        "total": 152243,
+        "share": 0.0695
       },
       {
         "name": "Banks",
         "code": "101",
-        "need": 9608
+        "need": 9608,
+        "state": "NSW",
+        "total": 162893,
+        "share": 0.059
       },
       {
         "name": "Barker",
         "code": "402",
-        "need": 11638
+        "need": 11638,
+        "state": "SA",
+        "total": 171687,
+        "share": 0.0678
       },
       {
         "name": "Barton",
         "code": "102",
-        "need": 10179
+        "need": 10179,
+        "state": "NSW",
+        "total": 181643,
+        "share": 0.056
       },
       {
         "name": "Bass",
         "code": "601",
-        "need": 7781
+        "need": 7781,
+        "state": "TAS",
+        "total": 109977,
+        "share": 0.0708
       },
       {
         "name": "Bean",
         "code": "801",
-        "need": 7867
+        "need": 7867,
+        "state": "ACT",
+        "total": 152610,
+        "share": 0.0515
       },
       {
         "name": "Bendigo",
         "code": "203",
-        "need": 10429
+        "need": 10429,
+        "state": "VIC",
+        "total": 152555,
+        "share": 0.0684
       },
       {
         "name": "Bennelong",
         "code": "103",
-        "need": 8571
+        "need": 8571,
+        "state": "NSW",
+        "total": 191219,
+        "share": 0.0448
       },
       {
         "name": "Berowra",
         "code": "104",
-        "need": 6765
+        "need": 6765,
+        "state": "NSW",
+        "total": 152571,
+        "share": 0.0443
       },
       {
         "name": "Blair",
         "code": "301",
-        "need": 13571
+        "need": 13571,
+        "state": "QLD",
+        "total": 189948,
+        "share": 0.0714
       },
       {
         "name": "Blaxland",
         "code": "105",
-        "need": 12542
+        "need": 12542,
+        "state": "NSW",
+        "total": 188607,
+        "share": 0.0665
       },
       {
         "name": "Bonner",
         "code": "302",
-        "need": 8217
+        "need": 8217,
+        "state": "QLD",
+        "total": 162883,
+        "share": 0.0504
       },
       {
         "name": "Boothby",
         "code": "403",
-        "need": 11254
+        "need": 11254,
+        "state": "SA",
+        "total": 175626,
+        "share": 0.0641
       },
       {
         "name": "Bowman",
         "code": "303",
-        "need": 10591
+        "need": 10591,
+        "state": "QLD",
+        "total": 159222,
+        "share": 0.0665
       },
       {
         "name": "Braddon",
         "code": "602",
-        "need": 8559
+        "need": 8559,
+        "state": "TAS",
+        "total": 109556,
+        "share": 0.0781
       },
       {
         "name": "Bradfield",
         "code": "106",
-        "need": 7116
+        "need": 7116,
+        "state": "NSW",
+        "total": 169182,
+        "share": 0.0421
       },
       {
         "name": "Brand",
         "code": "501",
-        "need": 9091
+        "need": 9091,
+        "state": "WA",
+        "total": 181547,
+        "share": 0.0501
       },
       {
         "name": "Brisbane",
         "code": "304",
-        "need": 5876
+        "need": 5876,
+        "state": "QLD",
+        "total": 183255,
+        "share": 0.0321
       },
       {
         "name": "Bruce",
         "code": "204",
-        "need": 12236
+        "need": 12236,
+        "state": "VIC",
+        "total": 179139,
+        "share": 0.0683
       },
       {
         "name": "Burt",
         "code": "502",
-        "need": 8941
+        "need": 8941,
+        "state": "WA",
+        "total": 182330,
+        "share": 0.049
       },
       {
         "name": "Calare",
         "code": "107",
-        "need": 10627
+        "need": 10627,
+        "state": "NSW",
+        "total": 169232,
+        "share": 0.0628
       },
       {
         "name": "Calwell",
         "code": "205",
-        "need": 13012
+        "need": 13012,
+        "state": "VIC",
+        "total": 188482,
+        "share": 0.069
       },
       {
         "name": "Canberra",
         "code": "802",
-        "need": 6345
+        "need": 6345,
+        "state": "ACT",
+        "total": 145507,
+        "share": 0.0436
       },
       {
         "name": "Canning",
         "code": "503",
-        "need": 9109
+        "need": 9109,
+        "state": "WA",
+        "total": 159946,
+        "share": 0.057
       },
       {
         "name": "Capricornia",
         "code": "305",
-        "need": 9027
+        "need": 9027,
+        "state": "QLD",
+        "total": 159792,
+        "share": 0.0565
       },
       {
         "name": "Casey",
         "code": "206",
-        "need": 8493
+        "need": 8493,
+        "state": "VIC",
+        "total": 157444,
+        "share": 0.0539
       },
       {
         "name": "Chifley",
         "code": "108",
-        "need": 12425
+        "need": 12425,
+        "state": "NSW",
+        "total": 202063,
+        "share": 0.0615
       },
       {
         "name": "Chisholm",
         "code": "207",
-        "need": 10492
+        "need": 10492,
+        "state": "VIC",
+        "total": 183655,
+        "share": 0.0571
       },
       {
         "name": "Clark",
         "code": "603",
-        "need": 6603
+        "need": 6603,
+        "state": "TAS",
+        "total": 111750,
+        "share": 0.0591
       },
       {
         "name": "Cook",
         "code": "109",
-        "need": 7336
+        "need": 7336,
+        "state": "NSW",
+        "total": 149450,
+        "share": 0.0491
       },
       {
         "name": "Cooper",
         "code": "208",
-        "need": 10229
+        "need": 10229,
+        "state": "VIC",
+        "total": 156279,
+        "share": 0.0655
       },
       {
         "name": "Corangamite",
         "code": "209",
-        "need": 8449
+        "need": 8449,
+        "state": "VIC",
+        "total": 152752,
+        "share": 0.0553
       },
       {
         "name": "Corio",
         "code": "210",
-        "need": 10867
+        "need": 10867,
+        "state": "VIC",
+        "total": 159242,
+        "share": 0.0682
       },
       {
         "name": "Cowan",
         "code": "504",
-        "need": 9922
+        "need": 9922,
+        "state": "WA",
+        "total": 180177,
+        "share": 0.0551
       },
       {
         "name": "Cowper",
         "code": "110",
-        "need": 14003
+        "need": 14003,
+        "state": "NSW",
+        "total": 170205,
+        "share": 0.0823
       },
       {
         "name": "Cunningham",
         "code": "111",
-        "need": 10261
+        "need": 10261,
+        "state": "NSW",
+        "total": 161676,
+        "share": 0.0635
       },
       {
         "name": "Curtin",
         "code": "505",
-        "need": 6774
+        "need": 6774,
+        "state": "WA",
+        "total": 173040,
+        "share": 0.0391
       },
       {
         "name": "Dawson",
         "code": "306",
-        "need": 8802
+        "need": 8802,
+        "state": "QLD",
+        "total": 162083,
+        "share": 0.0543
       },
       {
         "name": "Deakin",
         "code": "211",
-        "need": 10000
+        "need": 10000,
+        "state": "VIC",
+        "total": 167110,
+        "share": 0.0598
       },
       {
         "name": "Dickson",
         "code": "307",
-        "need": 8651
+        "need": 8651,
+        "state": "QLD",
+        "total": 159571,
+        "share": 0.0542
       },
       {
         "name": "Dobell",
         "code": "112",
-        "need": 12190
+        "need": 12190,
+        "state": "NSW",
+        "total": 162722,
+        "share": 0.0749
       },
       {
         "name": "Dunkley",
         "code": "212",
-        "need": 9809
+        "need": 9809,
+        "state": "VIC",
+        "total": 158012,
+        "share": 0.0621
       },
       {
         "name": "Durack",
         "code": "506",
-        "need": 7360
+        "need": 7360,
+        "state": "WA",
+        "total": 201445,
+        "share": 0.0365
       },
       {
         "name": "Eden-Monaro",
         "code": "113",
-        "need": 8648
+        "need": 8648,
+        "state": "NSW",
+        "total": 161530,
+        "share": 0.0535
       },
       {
         "name": "Fadden",
         "code": "308",
-        "need": 11853
+        "need": 11853,
+        "state": "QLD",
+        "total": 194617,
+        "share": 0.0609
       },
       {
         "name": "Fairfax",
         "code": "309",
-        "need": 10263
+        "need": 10263,
+        "state": "QLD",
+        "total": 169466,
+        "share": 0.0606
       },
       {
         "name": "Farrer",
         "code": "114",
-        "need": 11007
+        "need": 11007,
+        "state": "NSW",
+        "total": 173116,
+        "share": 0.0636
       },
       {
         "name": "Fenner",
         "code": "803",
-        "need": 6658
+        "need": 6658,
+        "state": "ACT",
+        "total": 158267,
+        "share": 0.0421
       },
       {
         "name": "Fisher",
         "code": "310",
-        "need": 10919
+        "need": 10919,
+        "state": "QLD",
+        "total": 172185,
+        "share": 0.0634
       },
       {
         "name": "Flinders",
         "code": "213",
-        "need": 9735
+        "need": 9735,
+        "state": "VIC",
+        "total": 150355,
+        "share": 0.0647
       },
       {
         "name": "Flynn",
         "code": "311",
-        "need": 9417
+        "need": 9417,
+        "state": "QLD",
+        "total": 158677,
+        "share": 0.0593
       },
       {
         "name": "Forde",
         "code": "312",
-        "need": 12674
+        "need": 12674,
+        "state": "QLD",
+        "total": 193345,
+        "share": 0.0656
       },
       {
         "name": "Forrest",
         "code": "507",
-        "need": 8007
+        "need": 8007,
+        "state": "WA",
+        "total": 157999,
+        "share": 0.0507
       },
       {
         "name": "Fowler",
         "code": "115",
-        "need": 14596
+        "need": 14596,
+        "state": "NSW",
+        "total": 173523,
+        "share": 0.0841
       },
       {
         "name": "Franklin",
         "code": "604",
-        "need": 6809
+        "need": 6809,
+        "state": "TAS",
+        "total": 111833,
+        "share": 0.0609
       },
       {
         "name": "Fraser",
         "code": "214",
-        "need": 12097
+        "need": 12097,
+        "state": "VIC",
+        "total": 176388,
+        "share": 0.0686
       },
       {
         "name": "Fremantle",
         "code": "508",
-        "need": 7692
+        "need": 7692,
+        "state": "WA",
+        "total": 166782,
+        "share": 0.0461
       },
       {
         "name": "Gellibrand",
         "code": "215",
-        "need": 8802
+        "need": 8802,
+        "state": "VIC",
+        "total": 189984,
+        "share": 0.0463
       },
       {
         "name": "Gilmore",
         "code": "116",
-        "need": 12432
+        "need": 12432,
+        "state": "NSW",
+        "total": 163743,
+        "share": 0.0759
       },
       {
         "name": "Gippsland",
         "code": "216",
-        "need": 11589
+        "need": 11589,
+        "state": "VIC",
+        "total": 154357,
+        "share": 0.0751
       },
       {
         "name": "Goldstein",
         "code": "217",
-        "need": 7244
+        "need": 7244,
+        "state": "VIC",
+        "total": 154736,
+        "share": 0.0468
       },
       {
         "name": "Gorton",
         "code": "218",
-        "need": 10271
+        "need": 10271,
+        "state": "VIC",
+        "total": 178100,
+        "share": 0.0577
       },
       {
         "name": "Grayndler",
         "code": "117",
-        "need": 6691
+        "need": 6691,
+        "state": "NSW",
+        "total": 150729,
+        "share": 0.0444
       },
       {
         "name": "Greenway",
         "code": "118",
-        "need": 8941
+        "need": 8941,
+        "state": "NSW",
+        "total": 201542,
+        "share": 0.0444
       },
       {
         "name": "Grey",
         "code": "404",
-        "need": 11900
+        "need": 11900,
+        "state": "SA",
+        "total": 171485,
+        "share": 0.0694
       },
       {
         "name": "Griffith",
         "code": "313",
-        "need": 6311
+        "need": 6311,
+        "state": "QLD",
+        "total": 177589,
+        "share": 0.0355
       },
       {
         "name": "Groom",
         "code": "314",
-        "need": 11151
+        "need": 11151,
+        "state": "QLD",
+        "total": 160864,
+        "share": 0.0693
       },
       {
         "name": "Hasluck",
         "code": "509",
-        "need": 7790
+        "need": 7790,
+        "state": "WA",
+        "total": 174739,
+        "share": 0.0446
       },
       {
         "name": "Hawke",
         "code": "219",
-        "need": 10648
+        "need": 10648,
+        "state": "VIC",
+        "total": 165389,
+        "share": 0.0644
       },
       {
         "name": "Herbert",
         "code": "315",
-        "need": 9766
+        "need": 9766,
+        "state": "QLD",
+        "total": 164046,
+        "share": 0.0595
       },
       {
         "name": "Higgins",
         "code": "220",
-        "need": 6285
+        "need": 6285,
+        "state": "VIC",
+        "total": 155062,
+        "share": 0.0405
       },
       {
         "name": "Hindmarsh",
         "code": "405",
-        "need": 12116
+        "need": 12116,
+        "state": "SA",
+        "total": 172532,
+        "share": 0.0702
       },
       {
         "name": "Hinkler",
         "code": "316",
-        "need": 15872
+        "need": 15872,
+        "state": "QLD",
+        "total": 156565,
+        "share": 0.1014
       },
       {
         "name": "Holt",
         "code": "221",
-        "need": 9250
+        "need": 9250,
+        "state": "VIC",
+        "total": 187255,
+        "share": 0.0494
       },
       {
         "name": "Hotham",
         "code": "222",
-        "need": 12739
+        "need": 12739,
+        "state": "VIC",
+        "total": 195590,
+        "share": 0.0651
       },
       {
         "name": "Hughes",
         "code": "119",
-        "need": 6631
+        "need": 6631,
+        "state": "NSW",
+        "total": 150300,
+        "share": 0.0441
       },
       {
         "name": "Hume",
         "code": "120",
-        "need": 9692
+        "need": 9692,
+        "state": "NSW",
+        "total": 172094,
+        "share": 0.0563
       },
       {
         "name": "Hunter",
         "code": "121",
-        "need": 12990
+        "need": 12990,
+        "state": "NSW",
+        "total": 174420,
+        "share": 0.0745
       },
       {
         "name": "Indi",
         "code": "223",
-        "need": 10543
+        "need": 10543,
+        "state": "VIC",
+        "total": 156620,
+        "share": 0.0673
       },
       {
         "name": "Isaacs",
         "code": "224",
-        "need": 8868
+        "need": 8868,
+        "state": "VIC",
+        "total": 160526,
+        "share": 0.0552
       },
       {
         "name": "Jagajaga",
         "code": "225",
-        "need": 8706
+        "need": 8706,
+        "state": "VIC",
+        "total": 158869,
+        "share": 0.0548
       },
       {
         "name": "Kennedy",
         "code": "317",
-        "need": 9549
+        "need": 9549,
+        "state": "QLD",
+        "total": 171402,
+        "share": 0.0557
       },
       {
         "name": "Kingsford Smith",
         "code": "122",
-        "need": 7695
+        "need": 7695,
+        "state": "NSW",
+        "total": 181933,
+        "share": 0.0423
       },
       {
         "name": "Kingston",
         "code": "406",
-        "need": 11369
+        "need": 11369,
+        "state": "SA",
+        "total": 166105,
+        "share": 0.0684
       },
       {
         "name": "Kooyong",
         "code": "226",
-        "need": 7365
+        "need": 7365,
+        "state": "VIC",
+        "total": 163354,
+        "share": 0.0451
       },
       {
         "name": "La Trobe",
         "code": "227",
-        "need": 7500
+        "need": 7500,
+        "state": "VIC",
+        "total": 169469,
+        "share": 0.0443
       },
       {
         "name": "Lalor",
         "code": "228",
-        "need": 9484
+        "need": 9484,
+        "state": "VIC",
+        "total": 201323,
+        "share": 0.0471
       },
       {
         "name": "Leichhardt",
         "code": "318",
-        "need": 8833
+        "need": 8833,
+        "state": "QLD",
+        "total": 175620,
+        "share": 0.0503
       },
       {
         "name": "Lilley",
         "code": "319",
-        "need": 9047
+        "need": 9047,
+        "state": "QLD",
+        "total": 161558,
+        "share": 0.056
       },
       {
         "name": "Lindsay",
         "code": "123",
-        "need": 10483
+        "need": 10483,
+        "state": "NSW",
+        "total": 187851,
+        "share": 0.0558
       },
       {
         "name": "Lingiari",
         "code": "701",
-        "need": 4150
+        "need": 4150,
+        "state": "NT",
+        "total": 121004,
+        "share": 0.0343
       },
       {
         "name": "Longman",
         "code": "320",
-        "need": 15326
+        "need": 15326,
+        "state": "QLD",
+        "total": 186589,
+        "share": 0.0821
       },
       {
         "name": "Lyne",
         "code": "124",
-        "need": 12975
+        "need": 12975,
+        "state": "NSW",
+        "total": 157347,
+        "share": 0.0825
       },
       {
         "name": "Lyons",
         "code": "605",
-        "need": 8185
+        "need": 8185,
+        "state": "TAS",
+        "total": 113067,
+        "share": 0.0724
       },
       {
         "name": "Macarthur",
         "code": "125",
-        "need": 11573
+        "need": 11573,
+        "state": "NSW",
+        "total": 205501,
+        "share": 0.0563
       },
       {
         "name": "Mackellar",
         "code": "126",
-        "need": 6727
+        "need": 6727,
+        "state": "NSW",
+        "total": 155387,
+        "share": 0.0433
       },
       {
         "name": "Macnamara",
         "code": "229",
-        "need": 6091
+        "need": 6091,
+        "state": "VIC",
+        "total": 168080,
+        "share": 0.0362
       },
       {
         "name": "Macquarie",
         "code": "127",
-        "need": 8299
+        "need": 8299,
+        "state": "NSW",
+        "total": 145330,
+        "share": 0.0571
       },
       {
         "name": "Makin",
         "code": "407",
-        "need": 11250
+        "need": 11250,
+        "state": "SA",
+        "total": 173757,
+        "share": 0.0647
       },
       {
         "name": "Mallee",
         "code": "230",
-        "need": 12568
+        "need": 12568,
+        "state": "VIC",
+        "total": 167639,
+        "share": 0.075
       },
       {
         "name": "Maranoa",
         "code": "321",
-        "need": 10669
+        "need": 10669,
+        "state": "QLD",
+        "total": 151422,
+        "share": 0.0705
       },
       {
         "name": "Maribyrnong",
         "code": "231",
-        "need": 9517
+        "need": 9517,
+        "state": "VIC",
+        "total": 153408,
+        "share": 0.062
       },
       {
         "name": "Mayo",
         "code": "408",
-        "need": 10103
+        "need": 10103,
+        "state": "SA",
+        "total": 173735,
+        "share": 0.0582
       },
       {
         "name": "McEwen",
         "code": "232",
-        "need": 7402
+        "need": 7402,
+        "state": "VIC",
+        "total": 159894,
+        "share": 0.0463
       },
       {
         "name": "McMahon",
         "code": "128",
-        "need": 13799
+        "need": 13799,
+        "state": "NSW",
+        "total": 175649,
+        "share": 0.0786
       },
       {
         "name": "McPherson",
         "code": "322",
-        "need": 8579
+        "need": 8579,
+        "state": "QLD",
+        "total": 163608,
+        "share": 0.0524
       },
       {
         "name": "Melbourne",
         "code": "233",
-        "need": 5956
+        "need": 5956,
+        "state": "VIC",
+        "total": 199964,
+        "share": 0.0298
       },
       {
         "name": "Menzies",
         "code": "234",
-        "need": 10197
+        "need": 10197,
+        "state": "VIC",
+        "total": 172855,
+        "share": 0.059
       },
       {
         "name": "Migratory - Offshore - Shipping (ACT)",
         "code": "897",
-        "need": 0
+        "need": 0,
+        "state": "ACT",
+        "total": 0,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (NSW)",
         "code": "197",
-        "need": 0
+        "need": 0,
+        "state": "NSW",
+        "total": 0,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (NT)",
         "code": "797",
-        "need": 6
+        "need": 6,
+        "state": "NT",
+        "total": 99,
+        "share": 0.0606
       },
       {
         "name": "Migratory - Offshore - Shipping (OT)",
         "code": "997",
-        "need": 0
+        "need": 0,
+        "state": "OT",
+        "total": 0,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (Qld)",
         "code": "397",
-        "need": 3
+        "need": 3,
+        "state": "QLD",
+        "total": 183,
+        "share": 0.0164
       },
       {
         "name": "Migratory - Offshore - Shipping (SA)",
         "code": "497",
-        "need": 0
+        "need": 0,
+        "state": "SA",
+        "total": 12,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (Tas.)",
         "code": "697",
-        "need": 0
+        "need": 0,
+        "state": "TAS",
+        "total": 19,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (Vic.)",
         "code": "297",
-        "need": 0
+        "need": 0,
+        "state": "VIC",
+        "total": 38,
+        "share": 0
       },
       {
         "name": "Migratory - Offshore - Shipping (WA)",
         "code": "597",
-        "need": 0
+        "need": 0,
+        "state": "WA",
+        "total": 514,
+        "share": 0
       },
       {
         "name": "Mitchell",
         "code": "129",
-        "need": 7205
+        "need": 7205,
+        "state": "NSW",
+        "total": 188212,
+        "share": 0.0383
       },
       {
         "name": "Monash",
         "code": "235",
-        "need": 10513
+        "need": 10513,
+        "state": "VIC",
+        "total": 146349,
+        "share": 0.0718
       },
       {
         "name": "Moncrieff",
         "code": "323",
-        "need": 9737
+        "need": 9737,
+        "state": "QLD",
+        "total": 182143,
+        "share": 0.0535
       },
       {
         "name": "Moore",
         "code": "510",
-        "need": 6326
+        "need": 6326,
+        "state": "WA",
+        "total": 164113,
+        "share": 0.0385
       },
       {
         "name": "Moreton",
         "code": "324",
-        "need": 8583
+        "need": 8583,
+        "state": "QLD",
+        "total": 168476,
+        "share": 0.0509
       },
       {
         "name": "New England",
         "code": "130",
-        "need": 10336
+        "need": 10336,
+        "state": "NSW",
+        "total": 158649,
+        "share": 0.0652
       },
       {
         "name": "Newcastle",
         "code": "131",
-        "need": 10245
+        "need": 10245,
+        "state": "NSW",
+        "total": 166162,
+        "share": 0.0617
       },
       {
         "name": "Nicholls",
         "code": "236",
-        "need": 11690
+        "need": 11690,
+        "state": "VIC",
+        "total": 159507,
+        "share": 0.0733
       },
       {
         "name": "No usual address (ACT)",
         "code": "894",
-        "need": 26
+        "need": 26,
+        "state": "ACT",
+        "total": 605,
+        "share": 0.043
       },
       {
         "name": "No usual address (NSW)",
         "code": "194",
-        "need": 537
+        "need": 537,
+        "state": "NSW",
+        "total": 11371,
+        "share": 0.0472
       },
       {
         "name": "No usual address (NT)",
         "code": "794",
-        "need": 99
+        "need": 99,
+        "state": "NT",
+        "total": 3500,
+        "share": 0.0283
       },
       {
         "name": "No usual address (OT)",
         "code": "994",
-        "need": 0
+        "need": 0,
+        "state": "OT",
+        "total": 11,
+        "share": 0
       },
       {
         "name": "No usual address (Qld)",
         "code": "394",
-        "need": 793
+        "need": 793,
+        "state": "QLD",
+        "total": 14670,
+        "share": 0.0541
       },
       {
         "name": "No usual address (SA)",
         "code": "494",
-        "need": 205
+        "need": 205,
+        "state": "SA",
+        "total": 3377,
+        "share": 0.0607
       },
       {
         "name": "No usual address (Tas.)",
         "code": "694",
-        "need": 82
+        "need": 82,
+        "state": "TAS",
+        "total": 1377,
+        "share": 0.0595
       },
       {
         "name": "No usual address (Vic.)",
         "code": "294",
-        "need": 536
+        "need": 536,
+        "state": "VIC",
+        "total": 9089,
+        "share": 0.059
       },
       {
         "name": "No usual address (WA)",
         "code": "594",
-        "need": 236
+        "need": 236,
+        "state": "WA",
+        "total": 8055,
+        "share": 0.0293
       },
       {
         "name": "North Sydney",
         "code": "132",
-        "need": 5449
+        "need": 5449,
+        "state": "NSW",
+        "total": 167209,
+        "share": 0.0326
       },
       {
         "name": "O'Connor",
         "code": "511",
-        "need": 8974
+        "need": 8974,
+        "state": "WA",
+        "total": 176071,
+        "share": 0.051
       },
       {
         "name": "Oxley",
         "code": "325",
-        "need": 10286
+        "need": 10286,
+        "state": "QLD",
+        "total": 186519,
+        "share": 0.0551
       },
       {
         "name": "Page",
         "code": "133",
-        "need": 12494
+        "need": 12494,
+        "state": "NSW",
+        "total": 168784,
+        "share": 0.074
       },
       {
         "name": "Parkes",
         "code": "134",
-        "need": 9447
+        "need": 9447,
+        "state": "NSW",
+        "total": 154967,
+        "share": 0.061
       },
       {
         "name": "Parramatta",
         "code": "135",
-        "need": 9806
+        "need": 9806,
+        "state": "NSW",
+        "total": 203278,
+        "share": 0.0482
       },
       {
         "name": "Paterson",
         "code": "136",
-        "need": 12813
+        "need": 12813,
+        "state": "NSW",
+        "total": 175578,
+        "share": 0.073
       },
       {
         "name": "Pearce",
         "code": "512",
-        "need": 7252
+        "need": 7252,
+        "state": "WA",
+        "total": 177513,
+        "share": 0.0409
       },
       {
         "name": "Perth",
         "code": "513",
-        "need": 8475
+        "need": 8475,
+        "state": "WA",
+        "total": 181928,
+        "share": 0.0466
       },
       {
         "name": "Petrie",
         "code": "326",
-        "need": 12921
+        "need": 12921,
+        "state": "QLD",
+        "total": 185285,
+        "share": 0.0697
       },
       {
         "name": "Rankin",
         "code": "327",
-        "need": 11344
+        "need": 11344,
+        "state": "QLD",
+        "total": 186856,
+        "share": 0.0607
       },
       {
         "name": "Reid",
         "code": "137",
-        "need": 7969
+        "need": 7969,
+        "state": "NSW",
+        "total": 201820,
+        "share": 0.0395
       },
       {
         "name": "Richmond",
         "code": "138",
-        "need": 10994
+        "need": 10994,
+        "state": "NSW",
+        "total": 167436,
+        "share": 0.0657
       },
       {
         "name": "Riverina",
         "code": "139",
-        "need": 10666
+        "need": 10666,
+        "state": "NSW",
+        "total": 161349,
+        "share": 0.0661
       },
       {
         "name": "Robertson",
         "code": "140",
-        "need": 9552
+        "need": 9552,
+        "state": "NSW",
+        "total": 151973,
+        "share": 0.0629
       },
       {
         "name": "Ryan",
         "code": "328",
-        "need": 6651
+        "need": 6651,
+        "state": "QLD",
+        "total": 163797,
+        "share": 0.0406
       },
       {
         "name": "Scullin",
         "code": "237",
-        "need": 11875
+        "need": 11875,
+        "state": "VIC",
+        "total": 170399,
+        "share": 0.0697
       },
       {
         "name": "Shortland",
         "code": "141",
-        "need": 10637
+        "need": 10637,
+        "state": "NSW",
+        "total": 151922,
+        "share": 0.07
       },
       {
         "name": "Solomon",
         "code": "702",
-        "need": 4111
+        "need": 4111,
+        "state": "NT",
+        "total": 110288,
+        "share": 0.0373
       },
       {
         "name": "Spence",
         "code": "409",
-        "need": 15748
+        "need": 15748,
+        "state": "SA",
+        "total": 188227,
+        "share": 0.0837
       },
       {
         "name": "Sturt",
         "code": "410",
-        "need": 11301
+        "need": 11301,
+        "state": "SA",
+        "total": 187354,
+        "share": 0.0603
       },
       {
         "name": "Swan",
         "code": "514",
-        "need": 8361
+        "need": 8361,
+        "state": "WA",
+        "total": 189872,
+        "share": 0.044
       },
       {
         "name": "Sydney",
         "code": "142",
-        "need": 5494
+        "need": 5494,
+        "state": "NSW",
+        "total": 204215,
+        "share": 0.0269
       },
       {
         "name": "Tangney",
         "code": "515",
-        "need": 8035
+        "need": 8035,
+        "state": "WA",
+        "total": 183959,
+        "share": 0.0437
       },
       {
         "name": "Wannon",
         "code": "238",
-        "need": 10305
+        "need": 10305,
+        "state": "VIC",
+        "total": 154555,
+        "share": 0.0667
       },
       {
         "name": "Warringah",
         "code": "143",
-        "need": 4747
+        "need": 4747,
+        "state": "NSW",
+        "total": 150819,
+        "share": 0.0315
       },
       {
         "name": "Watson",
         "code": "144",
-        "need": 12421
+        "need": 12421,
+        "state": "NSW",
+        "total": 183154,
+        "share": 0.0678
       },
       {
         "name": "Wentworth",
         "code": "145",
-        "need": 4273
+        "need": 4273,
+        "state": "NSW",
+        "total": 146102,
+        "share": 0.0292
       },
       {
         "name": "Werriwa",
         "code": "146",
-        "need": 12969
+        "need": 12969,
+        "state": "NSW",
+        "total": 199172,
+        "share": 0.0651
       },
       {
         "name": "Whitlam",
         "code": "147",
-        "need": 11845
+        "need": 11845,
+        "state": "NSW",
+        "total": 168545,
+        "share": 0.0703
       },
       {
         "name": "Wide Bay",
         "code": "329",
-        "need": 12927
+        "need": 12927,
+        "state": "QLD",
+        "total": 152236,
+        "share": 0.0849
       },
       {
         "name": "Wills",
         "code": "239",
-        "need": 10504
+        "need": 10504,
+        "state": "VIC",
+        "total": 158319,
+        "share": 0.0663
       },
       {
         "name": "Wright",
         "code": "330",
-        "need": 11170
+        "need": 11170,
+        "state": "QLD",
+        "total": 181665,
+        "share": 0.0615
       }
     ]
   },

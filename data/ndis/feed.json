@@ -14,6 +14,19 @@
       "summary": "The Senate agreed to the second reading and began Committee of the Whole debate on 18 August 2026. The bill's listed status remains \"Before Senate\"."
     },
     {
+      "id": "2026-08-18-securing-ndis-bill-senate-third-reading",
+      "date": "2026-08-18",
+      "type": "bill",
+      "title": "Securing the NDIS for Future Generations Bill passes the Senate third reading",
+      "summary": "The Senate agreed to the third reading on 18 August 2026, after agreeing to 32 government amendments in Committee of the Whole. The amended bill requires House agreement before assent.",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
       "id": "2026-08-17-banning-orders-media-release",
       "date": "2026-08-17",
       "type": "announcement",

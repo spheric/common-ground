@@ -8,7 +8,7 @@
 //   Exits 0 (with a note) if data/ndis/ doesn't exist yet — nothing to
 //   validate before the pipeline has run once.
 
-import { existsSync, readdirSync } from 'node:fs';
+import { existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { isHttpUrl, isIsoDate, readJson } from './util.mjs';
 import { deriveNdis } from './derive.mjs';
@@ -19,6 +19,28 @@ const LAW_PATH = `${NDIS_DIR}/law.json`;
 const FEED_PATH = `${NDIS_DIR}/feed.json`;
 const CONTEXT_PATH = `${NDIS_DIR}/context.json`;
 const NDIS_JSON_PATH = `${NDIS_DIR}/ndis.json`;
+const BOUNDARIES_PATH = `${NDIS_DIR}/boundaries.json`;
+const BOUNDARIES_MAX_BYTES = 300 * 1024;
+
+// The 18 Census-only "No usual address (<state>)" / "Migratory - Offshore -
+// Shipping (<state>)" CED codes (see scripts/ndis/build-boundaries.mjs's
+// header comment for how this was verified against the ABS shapefile): they
+// appear in context.json's electorates.rows (Census attributes a
+// need/total to them) but carry no boundary geometry (null shape in the
+// source shapefile), so boundaries.json legitimately has no path for them.
+const NON_GEOGRAPHIC_CED_CODES = new Set([
+  '194', '197', '294', '297', '394', '397', '494', '497',
+  '594', '597', '694', '697', '794', '797', '894', '897', '994', '997',
+]);
+
+// Every value scripts/ndis/fetch-context.mjs can put in an electorates row's
+// `state` field (8 real states/territories, via the CL_CED_2021 codelist's
+// `parent` annotation, + "OT" for the 2 "Other Territories" Census
+// catch-alls — see fetch-context.mjs's STATE_ID_TO_ABBR comment).
+const KNOWN_ELECTORATE_STATES = new Set(['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT', 'OT']);
+// The subset that ever appears in the payments CSV's RsdsInStateCd (no OT
+// row there) — what payments_by_state.rows is allowed to contain.
+const REAL_STATE_CODES = new Set(['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT']);
 
 const FEED_TYPES = ['pricing', 'law', 'bill', 'hearing', 'report', 'audit', 'announcement', 'data'];
 const FEED_VERIFIED = ['confirmed', 'auto'];
@@ -271,6 +293,35 @@ function validateContext(context, checks) {
     }
   }
 
+  if (context.payments_by_state) {
+    const pbs = context.payments_by_state;
+    if (!isIsoDate(pbs.as_of_quarter)) issues.push('context.json payments_by_state: as_of_quarter is not an ISO date');
+    if (!isHttpUrl(pbs.source?.url)) issues.push('context.json payments_by_state: source.url is not http(s)');
+    if (typeof pbs.national_total !== 'number' || !Number.isFinite(pbs.national_total)) {
+      issues.push('context.json payments_by_state: national_total is not a finite number');
+    }
+    if (typeof pbs.delta_pct !== 'number' || !Number.isFinite(pbs.delta_pct) || pbs.delta_pct < 0) {
+      issues.push('context.json payments_by_state: delta_pct is not a non-negative finite number');
+    } else if (pbs.delta_pct > 2) {
+      issues.push(`context.json payments_by_state: delta_pct ${pbs.delta_pct} exceeds the 2% cross-check budget — should have been omitted`);
+    }
+
+    const stateNames = (pbs.rows ?? []).map((r) => r.state);
+    for (const dup of findDuplicates(stateNames)) issues.push(`context.json payments_by_state: duplicate state "${dup}"`);
+    for (const row of pbs.rows ?? []) {
+      const label = `context.json payments_by_state.rows[${row.state}]`;
+      if (!REAL_STATE_CODES.has(row.state)) issues.push(`${label}: state "${row.state}" is not a recognised state/territory code`);
+      if (typeof row.payments !== 'number' || !Number.isFinite(row.payments)) issues.push(`${label}: payments is not a finite number`);
+    }
+    if (pbs.rows && pbs.rows.length > 0) {
+      const sum = pbs.rows.reduce((acc, r) => acc + (typeof r.payments === 'number' ? r.payments : 0), 0);
+      const actualDeltaPct = pbs.national_total ? (Math.abs(sum - pbs.national_total) / pbs.national_total) * 100 : null;
+      if (actualDeltaPct !== null && Math.round(actualDeltaPct * 1000) / 1000 !== pbs.delta_pct) {
+        issues.push(`context.json payments_by_state: delta_pct ${pbs.delta_pct} doesn't match recomputed Δ ${actualDeltaPct.toFixed(3)}%`);
+      }
+    }
+  }
+
   if (context.electorates) {
     const e = context.electorates;
     if (!e.label) issues.push('context.json electorates: label missing');
@@ -289,10 +340,101 @@ function validateContext(context, checks) {
       if (!row.name) issues.push(`${label}: name missing`);
       if (!row.code) issues.push(`${label}: code missing`);
       if (typeof row.need !== 'number' || !Number.isFinite(row.need)) issues.push(`${label}: need is not a finite number`);
+      if (row.state !== undefined && !KNOWN_ELECTORATE_STATES.has(row.state)) {
+        issues.push(`${label}: state "${row.state}" is not a recognised state/territory code`);
+      }
+      if (row.total !== undefined && (!Number.isInteger(row.total) || row.total < 0)) {
+        issues.push(`${label}: total must be a non-negative integer when present`);
+      }
+      if (row.share !== undefined) {
+        if (typeof row.share !== 'number' || row.share < 0 || row.share > 1) {
+          issues.push(`${label}: share must be a number between 0 and 1 when present`);
+        }
+        if (row.total === undefined) issues.push(`${label}: share present without total`);
+      }
+      if (row.total !== undefined && row.share === undefined) issues.push(`${label}: total present without share`);
     }
   }
 
   check(checks, 'context.json: shape', issues);
+}
+
+// --- boundaries.json (static, generated once by build-boundaries.mjs) ---
+
+const VIEWBOX_RE = /^-?\d+(\.\d+)?\s+-?\d+(\.\d+)?\s+-?\d+(\.\d+)?\s+-?\d+(\.\d+)?$/;
+const PATH_D_RE = /^M-?\d/;
+
+function isWellFormedViewBox(vb) {
+  if (typeof vb !== 'string' || !VIEWBOX_RE.test(vb)) return false;
+  const [, , w, h] = vb.split(/\s+/).map(Number);
+  return w > 0 && h > 0;
+}
+
+function validateBoundaries(boundaries, context, checks) {
+  if (boundaries === null) return;
+  const issues = [];
+
+  const meta = boundaries.meta ?? {};
+  if (!isHttpUrl(meta.source?.url)) issues.push('boundaries.json meta: source.url is not http(s)');
+  if (!meta.source?.title) issues.push('boundaries.json meta: source.title missing');
+  if (!meta.source?.publisher) issues.push('boundaries.json meta: source.publisher missing');
+  if (!meta.licence) issues.push('boundaries.json meta: licence missing');
+  if (!isIsoDate(meta.generated)) issues.push('boundaries.json meta: generated is not an ISO date');
+  if (typeof meta.simplification !== 'string' || !meta.simplification) issues.push('boundaries.json meta: simplification missing');
+  if (typeof meta.projection !== 'string' || !meta.projection) issues.push('boundaries.json meta: projection missing');
+  if (!isWellFormedViewBox(meta.viewBox)) issues.push(`boundaries.json meta: viewBox "${meta.viewBox}" is not well-formed`);
+
+  const insetIds = (boundaries.insets ?? []).map((i) => i.id);
+  for (const dup of findDuplicates(insetIds)) issues.push(`boundaries.json: duplicate inset id "${dup}"`);
+  for (const inset of boundaries.insets ?? []) {
+    const label = `boundaries.json insets[${inset.id}]`;
+    if (!inset.id) issues.push(`${label}: id missing`);
+    if (!inset.label) issues.push(`${label}: label missing`);
+    if (!isWellFormedViewBox(inset.viewBox)) issues.push(`${label}: viewBox "${inset.viewBox}" is not well-formed`);
+  }
+
+  const paths = boundaries.paths ?? {};
+  const pathCodes = Object.keys(paths);
+  if (pathCodes.length === 0) issues.push('boundaries.json: paths is empty');
+  for (const [code, d] of Object.entries(paths)) {
+    if (typeof d !== 'string' || d.length === 0 || !PATH_D_RE.test(d)) {
+      issues.push(`boundaries.json paths["${code}"]: empty or malformed path data`);
+    }
+  }
+
+  // Code coverage against context.json electorates.rows: every path must
+  // match a row (no stray codes), and every row without a path must be one
+  // of the known non-geographic Census catch-alls (see NON_GEOGRAPHIC_CED_CODES) —
+  // not a strict 169-vs-169 bijection, since those 18 codes have no boundary
+  // geometry in the source shapefile (verified, not assumed).
+  if (context?.electorates?.rows) {
+    const electorateCodes = new Set(context.electorates.rows.map((r) => r.code));
+    for (const code of pathCodes) {
+      if (!electorateCodes.has(code)) issues.push(`boundaries.json paths: code "${code}" has no matching context.json electorates row`);
+    }
+    const missingPath = context.electorates.rows.filter((r) => !paths[r.code]);
+    for (const row of missingPath) {
+      if (!NON_GEOGRAPHIC_CED_CODES.has(row.code)) {
+        issues.push(`boundaries.json paths: electorates row "${row.name}" (${row.code}) has no path and isn't a known non-geographic code`);
+      }
+    }
+    const expectedPathCount = context.electorates.rows.length - NON_GEOGRAPHIC_CED_CODES.size;
+    if (pathCodes.length !== expectedPathCount) {
+      issues.push(
+        `boundaries.json paths: ${pathCodes.length} paths, expected ${expectedPathCount} ` +
+          `(${context.electorates.rows.length} electorate rows − ${NON_GEOGRAPHIC_CED_CODES.size} known non-geographic codes)`
+      );
+    }
+  }
+
+  if (existsSync(BOUNDARIES_PATH)) {
+    const bytes = statSync(BOUNDARIES_PATH).size;
+    if (bytes > BOUNDARIES_MAX_BYTES) {
+      issues.push(`boundaries.json: ${bytes} bytes exceeds the ${BOUNDARIES_MAX_BYTES}-byte (300 KB) budget`);
+    }
+  }
+
+  check(checks, 'boundaries.json: shape', issues);
 }
 
 // --- ndis.json (derived) -----------------------------------------------
@@ -378,10 +520,12 @@ function main() {
   const feed = readJson(FEED_PATH, null);
   const context = readJson(CONTEXT_PATH, null);
   const ndis = readJson(NDIS_JSON_PATH, null);
+  const boundaries = readJson(BOUNDARIES_PATH, null);
 
   validateLaw(law, checks);
   validateFeed(feed, checks);
   validateContext(context, checks);
+  validateBoundaries(boundaries, context, checks);
   validateNdis(ndis, snapshots, checks);
 
   console.log(`Validating ${resolve(NDIS_DIR)}\n`);
@@ -407,7 +551,8 @@ function main() {
   console.log(
     `PASS — ${snapshots.length} snapshots, ${law?.titles?.length ?? 0} law titles, ` +
       `${feedItemCount} feed items (${confirmedCount} confirmed), ` +
-      `${ndis?.items?.length ?? 0} tracked items, ${ndis?.diffs?.length ?? 0} diffs`
+      `${ndis?.items?.length ?? 0} tracked items, ${ndis?.diffs?.length ?? 0} diffs, ` +
+      `boundaries: ${boundaries ? `${Object.keys(boundaries.paths ?? {}).length} paths, ${boundaries.insets?.length ?? 0} insets` : 'absent'}`
   );
 }
 

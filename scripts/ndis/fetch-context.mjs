@@ -35,6 +35,41 @@ const ELECTORATES_DATA_URL =
   'https://data.api.abs.gov.au/rest/data/C21_G18_CED/3._T.1..CED.?startPeriod=2021&format=csv';
 const CED_CODELIST_URL = 'https://data.api.abs.gov.au/rest/codelist/ABS/CL_CED_2021';
 
+// State for each electorate row: the AUTHORITATIVE source is the CL_CED_2021
+// codelist's own `parent` annotation on each CED code — a numeric state id
+// (fetched live: e.g. code "101" Banks has parent "1", and the codelist's
+// own state-level entries give id "1" -> "New South Wales"). This table maps
+// that numeric id to the abbreviation used everywhere else in context.json
+// (the payments CSV's RsdsInStateCd values). It is NOT used to derive state
+// from the CED code's numeric prefix (1xx/2xx/... per the documented ASGS
+// convention) — that convention is only used as a cross-check (see
+// fetchElectorates): every row's codelist-derived state is asserted to match
+// its code's leading digit, verified live against one division per state —
+// 101 Banks->1 NSW, 201 Aston->2 VIC, 301 Blair->3 QLD, 401 Adelaide->4 SA,
+// 501 Brand->5 WA, 601 Bass->6 TAS, 701 Lingiari->7 NT, 801 Bean->8 ACT —
+// confirming the prefix convention holds before trusting it as a sanity
+// check on every other row. Id "9" (Other Territories) has no RsdsInStateCd
+// counterpart in the payments CSV; rows with state "OT" simply won't join to
+// payments_by_state, which is fine (they're all non-geographic Census
+// catch-alls with no boundary anyway — see build-boundaries.mjs).
+const STATE_ID_TO_ABBR = { 1: 'NSW', 2: 'VIC', 3: 'QLD', 4: 'SA', 5: 'WA', 6: 'TAS', 7: 'NT', 8: 'ACT', 9: 'OT' };
+
+// Real state/territory codes as they appear in the payments CSV's
+// RsdsInStateCd column (verified against a real download — other values
+// seen there are 'ALL', 'OT', 'Missing', and blank, none of which are a
+// real jurisdiction for this purpose).
+const REAL_STATE_CODES = ['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT'];
+
+// Same C21_G18_CED dataflow/dimension order as ELECTORATES_DATA_URL, but
+// ASSNP=_T ("Total", CL_C21_ASSNP01) instead of ASSNP=1 — total persons per
+// division regardless of assistance-need status, i.e. the same-source
+// per-division denominator docs/ndis-spec.md calls for. Verified against a
+// real fetch: 169 CED rows, national sum ≈25.4M (plausible for 2021 Census
+// total persons). Used only to add `total`/`share` to electorate rows — if
+// this query fails, fetchElectorates() falls back to count-only rows.
+const ELECTORATE_TOTALS_URL =
+  'https://data.api.abs.gov.au/rest/data/C21_G18_CED/3._T._T..CED.?startPeriod=2021&format=csv';
+
 // MEASURE=1 (Index numbers), INDEX=10001 (All groups CPI), TSEST=10 (Original),
 // REGION=50 (Australia), FREQ=Q — verified against the ABS Data API's CPI DSD.
 const CPI_URL = 'https://data.api.abs.gov.au/rest/data/CPI/1.10001.10.50.Q?startPeriod=2015-Q1&format=csv';
@@ -262,6 +297,65 @@ function buildPaymentsByCategory(paymentsRows) {
   };
 }
 
+// State-level rows (RsdsInStateCd = a real state/territory code, one row per
+// state) for the latest report date — the finest granularity the NDIA
+// publishes; per-electorate payments are NOT published anywhere and must
+// never be derived/estimated (this is what powers the map tooltip's dollars
+// line, explicitly labelled by state so it's never misread as an electorate
+// figure). Cross-checked against the national total the same way
+// fetchElectorates() cross-checks against census_assistance — >2% off means
+// something is wrong with the row filters, so the whole block is omitted
+// rather than publishing a shaky number.
+function computeStateTotals(rows, latestRprtDt) {
+  const isStateRow = (r) =>
+    r.RprtDt === latestRprtDt && r.SuppCatNm === 'ALL' && r.SuppItemNmbr === 'ALL' &&
+    r.NDISDsbltyGrpNm === 'ALL' && r.NDIAAgeBnd === 'ALL' && REAL_STATE_CODES.includes(r.RsdsInStateCd);
+
+  const totals = new Map();
+  for (const r of rows) {
+    if (!isStateRow(r)) continue;
+    // A handful of rows in the source CSV carry a non-numeric PmtAmt (e.g.
+    // "n/a", seen for suppressed/non-state buckets like 'Missing'/'OT' —
+    // never for a real state in a real download) — skip rather than throw,
+    // since REAL_STATE_CODES already excludes those buckets and a stray
+    // non-numeric value shouldn't take down the whole block.
+    const raw = String(r.PmtAmt).replace(/,/g, '').trim();
+    const amt = Number(raw);
+    if (!Number.isFinite(amt)) continue;
+    totals.set(r.RsdsInStateCd, (totals.get(r.RsdsInStateCd) ?? 0) + amt);
+  }
+  return totals;
+}
+
+function buildPaymentsByState(paymentsRows) {
+  const { latestQuarter, latestRprtDtRaw, paymentsByQuarter } = findLatestReportDate(paymentsRows);
+  const totals = computeStateTotals(paymentsRows, latestRprtDtRaw);
+
+  const missing = REAL_STATE_CODES.filter((s) => !totals.has(s));
+  if (missing.length > 0) throw new Error(`no payment row found for state(s): ${missing.join(', ')}`);
+
+  const rows = REAL_STATE_CODES.map((state) => ({ state, payments: round2(totals.get(state)) }));
+  const sumStates = rows.reduce((acc, r) => acc + r.payments, 0);
+  const nationalTotal = paymentsByQuarter.get(latestQuarter);
+  const deltaPct = (Math.abs(sumStates - nationalTotal) / nationalTotal) * 100;
+  console.log(
+    `payments_by_state cross-check: sum of ${rows.length} states = ${sumStates}, national payments_total = ` +
+      `${nationalTotal} (Δ ${deltaPct.toFixed(3)}%)`
+  );
+  if (deltaPct > 2) {
+    throw new Error(`state payment totals (${sumStates}) differ from the national total (${nationalTotal}) by ${deltaPct.toFixed(2)}% (>2%)`);
+  }
+
+  return {
+    as_of_quarter: latestQuarter,
+    window: '12 months to report date',
+    source: { title: 'NDIS payments data, NDIA dataresearch', url: QUARTERLY_DATASETS_URL, publisher: 'NDIA' },
+    rows,
+    national_total: round2(nationalTotal),
+    delta_pct: Math.round(deltaPct * 1000) / 1000,
+  };
+}
+
 async function fetchCensusAssistance() {
   const rows = await fetchCsvObjects(CENSUS_ASSISTANCE_URL);
   const row = rows[0];
@@ -271,6 +365,30 @@ async function fetchCensusAssistance() {
     value: parseInt(String(row.OBS_VALUE).replace(/,/g, ''), 10),
     source: { title: 'ABS Data API, C21_G18_SA2 (national total)', url: CENSUS_ASSISTANCE_URL, publisher: 'ABS' },
   };
+}
+
+// Total-persons-per-CED map (code -> total), keyed off the ELECTORATE_TOTALS_URL
+// query (see its comment). Returns null (never throws) so the caller can fall
+// back to count-only rows gracefully per docs/ndis-spec.md's denominator rule.
+async function fetchElectorateTotals() {
+  try {
+    const rows = await fetchCsvObjects(ELECTORATE_TOTALS_URL);
+    if (rows.length === 0) throw new Error('electorate totals query returned no rows');
+    const totalByCode = new Map();
+    for (const r of rows) {
+      const total = parseInt(String(r.OBS_VALUE).replace(/,/g, ''), 10);
+      if (!Number.isFinite(total)) throw new Error(`unparseable total OBS_VALUE "${r.OBS_VALUE}" for CED code "${r.REGION}"`);
+      totalByCode.set(r.REGION, total);
+    }
+    const sum = [...totalByCode.values()].reduce((acc, v) => acc + v, 0);
+    // Sanity print only (spec: "plausibly ~25M") — not a hard gate, since the
+    // 2021 Census total-persons figure isn't independently fetched here.
+    console.log(`electorate totals: ${totalByCode.size} CED rows, national sum = ${sum} (plausibility check: ~25M expected)`);
+    return totalByCode;
+  } catch (err) {
+    console.warn(`warning: electorate totals/share omitted — ${err.message}`);
+    return null;
+  }
 }
 
 // Electorate rows for the C21_G18_CED dataflow (see the ELECTORATES_DATA_URL
@@ -293,6 +411,7 @@ async function fetchElectorates(censusAssistanceValue) {
   const codes = codelistJson?.data?.codelists?.[0]?.codes ?? [];
   if (codes.length === 0) throw new Error('CL_CED_2021 codelist returned no codes');
   const nameByCode = new Map(codes.map((c) => [c.id, c.names?.en ?? c.name]));
+  const parentByCode = new Map(codes.map((c) => [c.id, c.parent]));
 
   const rows = dataRows.map((r) => {
     const code = r.REGION;
@@ -300,7 +419,23 @@ async function fetchElectorates(censusAssistanceValue) {
     if (!name) throw new Error(`no electorate name found for CED code "${code}" in CL_CED_2021`);
     const need = parseInt(String(r.OBS_VALUE).replace(/,/g, ''), 10);
     if (!Number.isFinite(need)) throw new Error(`unparseable OBS_VALUE "${r.OBS_VALUE}" for CED code "${code}" (${name})`);
-    return { name, code, need };
+
+    // state: authoritative source is the codelist's own `parent` (see
+    // STATE_ID_TO_ABBR's comment), cross-checked against the documented
+    // CED-code-prefix convention (1xx NSW ... 8xx ACT, 9xx OT) — any
+    // mismatch is a data-integrity problem worth failing loudly on, not
+    // silently guessing past.
+    const parentId = parentByCode.get(code);
+    const state = STATE_ID_TO_ABBR[parentId];
+    if (!state) throw new Error(`no state resolved for CED code "${code}" (${name}) — codelist parent "${parentId}"`);
+    const expectedByPrefix = STATE_ID_TO_ABBR[code[0]];
+    if (expectedByPrefix && expectedByPrefix !== state) {
+      throw new Error(
+        `CED code "${code}" (${name}): codelist parent state "${state}" doesn't match its numbering-convention prefix "${expectedByPrefix}"`
+      );
+    }
+
+    return { name, code, need, state };
   });
   if (rows.length === 0) throw new Error('electorates query returned no rows');
 
@@ -320,6 +455,28 @@ async function fetchElectorates(censusAssistanceValue) {
       `sum of electorate rows (${sumOfRows}) differs from census_assistance.value (${censusAssistanceValue}) by ` +
         `${deltaPct.toFixed(2)}% (>1%) — refusing to publish mismatched numbers`
     );
+  }
+
+  // Verified denominator (docs/ndis-spec.md electorates block): same-source
+  // total persons per division, via ASSNP=_T on the same dataflow. Only
+  // attached when every row resolves a total — a partial/mismatched code set
+  // would produce a misleading map, so in that case rows stay count-only
+  // (graceful degradation, never a hard failure of the whole block).
+  const totalByCode = await fetchElectorateTotals();
+  if (totalByCode) {
+    const missing = rows.filter((r) => !totalByCode.has(r.code));
+    if (missing.length > 0) {
+      console.warn(
+        `warning: electorate totals/share omitted — ${missing.length} CED code(s) with no matching total ` +
+          `(e.g. "${missing[0].code}" / ${missing[0].name})`
+      );
+    } else {
+      for (const r of rows) {
+        const total = totalByCode.get(r.code);
+        r.total = total;
+        r.share = total > 0 ? Math.round((r.need / total) * 10000) / 10000 : 0;
+      }
+    }
   }
 
   return {
@@ -381,6 +538,12 @@ async function main() {
     } catch (err) {
       console.warn(`warning: payments_by_category omitted — ${err.message}`);
     }
+
+    try {
+      context.payments_by_state = buildPaymentsByState(paymentsRows);
+    } catch (err) {
+      console.warn(`warning: payments_by_state omitted — ${err.message}`);
+    }
   }
 
   const abs = {};
@@ -435,6 +598,7 @@ async function main() {
   console.log(
     `wrote ${OUTPUT_PATH} (quarterly: ${context.quarterly ? 'yes' : 'omitted'}, ` +
       `payments_by_category: ${context.payments_by_category ? `${context.payments_by_category.rows.length} categories` : 'omitted'}, ` +
+      `payments_by_state: ${context.payments_by_state ? `${context.payments_by_state.rows.length} states` : 'omitted'}, ` +
       `abs.census_assistance: ${context.abs?.census_assistance ? 'yes' : 'omitted'}, ` +
       `electorates: ${context.electorates ? `${context.electorates.rows.length} rows` : 'omitted'}, ` +
       `cpi: ${context.cpi ? `${context.cpi.series.length} quarters` : 'omitted'})`

@@ -1479,13 +1479,185 @@
         '<text class="electorate-dot-label" x="' + sx.toFixed(1) + '" y="13" text-anchor="middle">' + esc(selected.name) + '</text>';
     }
 
+    // Axis ends are the actual printed min/max need counts, never a vague
+    // "least/most need" label (docs/ndis-spec.md: printed values only).
     return (
       '<svg class="electorate-strip-svg" width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(ariaLabel) + '">' +
         '<line class="electorate-axis" x1="' + padX + '" y1="34" x2="' + (W - padX) + '" y2="34"></line>' +
-        '<text class="electorate-axis-label" x="' + padX + '" y="60" text-anchor="start">Least need</text>' +
-        '<text class="electorate-axis-label" x="' + (W - padX) + '" y="60" text-anchor="end">Most need</text>' +
+        '<text class="electorate-axis-label" x="' + padX + '" y="60" text-anchor="start">' + fmtNum(minN) + ' need</text>' +
+        '<text class="electorate-axis-label" x="' + (W - padX) + '" y="60" text-anchor="end">' + fmtNum(maxN) + ' need</text>' +
         ticks + selSvg +
       '</svg>'
+    );
+  }
+
+  // W-D map — inline-SVG choropleth (docs/ndis-spec.md "W-D map" bullet).
+  // Bins are 5 quantiles of `share` when every mapped division has one,
+  // else 5 quantiles of `need` (count fallback, legend relabelled).
+  function computeQuantileEdges(values) {
+    var sorted = values.slice().sort(function (a, b) { return a - b; });
+    var n = sorted.length;
+    var edges = [];
+    for (var i = 1; i < 5; i++) {
+      var idx = Math.min(n - 1, Math.floor((i * n) / 5));
+      edges.push(sorted[idx]);
+    }
+    return edges;
+  }
+  function quantileBinIndex(value, edges) {
+    for (var i = 0; i < edges.length; i++) { if (value <= edges[i]) return i; }
+    return edges.length;
+  }
+  function fmtSharePct(n) {
+    if (n === null || n === undefined || isNaN(n)) return '—';
+    return (n * 100).toFixed(1) + '%';
+  }
+  function ordinal(n) {
+    var mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 13) return n + 'th';
+    switch (n % 10) {
+      case 1: return n + 'st';
+      case 2: return n + 'nd';
+      case 3: return n + 'rd';
+      default: return n + 'th';
+    }
+  }
+
+  // State-level NDIS payments text, keyed by state abbreviation — the finest
+  // granularity the NDIA publishes (per-electorate payments are NOT
+  // published and must never be derived/estimated). Leading with the state
+  // abbreviation is deliberate so this can never be misread as an
+  // electorate-level figure when it turns up next to a division's name in
+  // the map tooltip or lookup panel.
+  function buildStateDollarsMap(ndis) {
+    var pbs = ndis.context && ndis.context.payments_by_state;
+    var map = {};
+    if (!pbs || !pbs.rows) return map;
+    pbs.rows.forEach(function (r) {
+      map[r.state] = esc(r.state) + ' NDIS payments, 12 months: ' + fmtCompactCurrency(r.payments);
+    });
+    return map;
+  }
+
+  // The facts shown for one division — shared verbatim between the map's
+  // hover/focus <title> tooltip and the printed lookup-panel text, so the
+  // tooltip is never the only path to a number (docs/ndis-spec.md
+  // accessibility bar). `rank`/`totalDivisions` use the SAME basis as the
+  // panel's existing "Rank X of N divisions" line (all rows, highest need
+  // first) so the two never disagree.
+  function buildDivisionFacts(row, rank, totalDivisions, stateDollarsByState) {
+    var facts = [];
+    var needText = 'Need help with core activities: ' + fmtNum(row.need) + ' people';
+    if (typeof row.share === 'number') needText += ' (' + fmtSharePct(row.share) + ')';
+    facts.push(needText);
+    if (rank) facts.push('Rank: ' + ordinal(rank) + ' of ' + totalDivisions + ' divisions');
+    var stateLine = row.state && stateDollarsByState[row.state];
+    if (stateLine) facts.push(stateLine);
+    return facts;
+  }
+
+  // Builds { metric, binIndexByCode, legendBins:[{min,max,count}] } from the
+  // rows that actually have a boundary path — only those are ever coloured.
+  function buildElectorateMapBins(rowsByCode, pathCodes) {
+    var mapped = pathCodes.map(function (code) { return rowsByCode[code]; }).filter(Boolean);
+    var metric = mapped.every(function (r) { return typeof r.share === 'number'; }) ? 'share' : 'need';
+    var values = mapped.map(function (r) { return r[metric]; });
+    var edges = computeQuantileEdges(values);
+    var binIndexByCode = {};
+    var groups = [[], [], [], [], []];
+    mapped.forEach(function (r) {
+      var bin = quantileBinIndex(r[metric], edges);
+      binIndexByCode[r.code] = bin;
+      groups[bin].push(r[metric]);
+    });
+    var legendBins = groups.map(function (g) {
+      if (!g.length) return null;
+      return { min: Math.min.apply(null, g), max: Math.max.apply(null, g), count: g.length };
+    });
+    return { metric: metric, binIndexByCode: binIndexByCode, legendBins: legendBins };
+  }
+
+  // Shared <path> markup for the national map AND every inset — insets reuse
+  // the exact same projected paths, just cropped/scaled via their own
+  // viewBox (docs/ndis-spec.md's boundaries.json shape: one `paths` object).
+  function renderMapPathElements(boundaries, rowsByCode, mapBins, selectedCode, rankByCode, totalDivisions, stateDollarsByState) {
+    var codes = Object.keys(boundaries.paths);
+    return codes.map(function (code) {
+      var row = rowsByCode[code];
+      var bin = mapBins.binIndexByCode[code];
+      var fill = bin !== undefined ? RAMP_HEX[bin] : RAMP_HEX[0];
+      var isSel = selectedCode && code === selectedCode;
+      var tip = row
+        ? esc(row.name) + '\n' + buildDivisionFacts(row, rankByCode[code], totalDivisions, stateDollarsByState).join('\n')
+        : esc(code);
+      return (
+        '<path class="electorate-map-path' + (isSel ? ' is-selected' : '') + '" data-code="' + esc(code) + '"' +
+          ' d="' + boundaries.paths[code] + '" fill="' + fill + '" fill-rule="evenodd" vector-effect="non-scaling-stroke">' +
+          '<title>' + tip + '</title>' +
+        '</path>'
+      );
+    }).join('');
+  }
+
+  function renderElectorateMapLegend(mapBins) {
+    var fmt = mapBins.metric === 'share' ? fmtSharePct : fmtNum;
+    var swatches = mapBins.legendBins.map(function (b, i) {
+      var range = b ? fmt(b.min) + '–' + fmt(b.max) : '—';
+      return (
+        '<span class="electorate-map-legend-item">' +
+          '<span class="electorate-map-legend-swatch" style="background:' + RAMP_HEX[i] + '"></span>' +
+          '<span class="electorate-map-legend-range tnum">' + range + '</span>' +
+        '</span>'
+      );
+    }).join('');
+    var metricLabel = mapBins.metric === 'share' ? 'share of division population with core-activity need' : 'need count (no verified per-division total this run — count fallback)';
+    return (
+      '<div class="electorate-map-legend">' +
+        '<span class="electorate-map-legend-label">' + esc(metricLabel) + ', 5 quantile bins</span>' +
+        '<span class="electorate-map-legend-swatches">' + swatches + '</span>' +
+      '</div>'
+    );
+  }
+
+  function renderElectorateMap(ndis, rowsByCode, selectedRow, rankByCode, totalDivisions, stateDollarsByState) {
+    var boundaries = ndis.boundaries;
+    if (!boundaries || !boundaries.paths || !Object.keys(boundaries.paths).length) return '';
+    var pathCodes = Object.keys(boundaries.paths);
+    var mapBins = buildElectorateMapBins(rowsByCode, pathCodes);
+    var selectedCode = selectedRow ? selectedRow.code : null;
+
+    var pathsMarkup = renderMapPathElements(boundaries, rowsByCode, mapBins, selectedCode, rankByCode, totalDivisions, stateDollarsByState);
+    var nationalLabel = 'Choropleth map of Australia’s federal electoral divisions, coloured by ' +
+      (mapBins.metric === 'share' ? 'share of the division needing core-activity assistance' : 'count of people needing core-activity assistance') +
+      '. Every value is also printed in the table below.';
+
+    var nationalSvg =
+      '<svg class="electorate-map-national" viewBox="' + esc(boundaries.meta.viewBox) + '" role="img" aria-label="' + esc(nationalLabel) + '">' +
+        pathsMarkup +
+      '</svg>';
+
+    var insetsMarkup = (boundaries.insets || []).map(function (inset) {
+      // Inline aspect-ratio from the inset's own viewBox (w/h) so each panel
+      // keeps its true shape instead of being squashed into a fixed box.
+      var vbParts = String(inset.viewBox).trim().split(/\s+/);
+      var arStyle = vbParts.length === 4 ? ' style="aspect-ratio:' + vbParts[2] + '/' + vbParts[3] + '"' : '';
+      return (
+        '<figure class="electorate-map-inset">' +
+          '<svg viewBox="' + esc(inset.viewBox) + '"' + arStyle + ' role="img" aria-label="' + esc(inset.label) + ' metropolitan divisions">' +
+            pathsMarkup +
+          '</svg>' +
+          '<figcaption class="electorate-map-inset-label">' + esc(inset.label) + '</figcaption>' +
+        '</figure>'
+      );
+    }).join('');
+
+    return (
+      '<figure class="electorate-map-figure">' +
+        '<div class="electorate-map-national-wrap" id="electorateMapNational">' + nationalSvg + '</div>' +
+        '<div class="electorate-map-insets" id="electorateMapInsets">' + insetsMarkup + '</div>' +
+        renderElectorateMapLegend(mapBins) +
+        '<figcaption class="electorate-map-attribution">Boundaries: ABS CED 2021, ' + esc(boundaries.meta.licence) + ', simplified.</figcaption>' +
+      '</figure>'
     );
   }
 
@@ -1504,13 +1676,36 @@
       }
     }
 
+    var rowsByCode = {};
+    sorted.forEach(function (r) { rowsByCode[r.code] = r; });
+
+    // Rank for EVERY division (not just the selected one) — powers the map
+    // tooltip's "14th of 169" fact on hover/focus, same basis (all rows,
+    // highest need first) as the panel's own rank line below.
+    var rankByCode = {};
+    sorted.forEach(function (r, i) { rankByCode[r.code] = i + 1; });
+    var stateDollarsByState = buildStateDollarsMap(ndis);
+
     var options = sorted.map(function (r) { return '<option value="' + esc(r.name) + '">'; }).join('');
+
+    // The lookup panel prints the SAME facts the map tooltip carries (share,
+    // state payments) as visible text — the tooltip must never be the only
+    // path to a number (docs/ndis-spec.md accessibility bar).
+    var shareLine = selectedRow && typeof selectedRow.share === 'number'
+      ? '<p class="electorate-result-share">' + fmtSharePct(selectedRow.share) + ' of the division’s population needs help with core activities</p>'
+      : '';
+    var stateMoneyText = selectedRow && selectedRow.state && stateDollarsByState[selectedRow.state];
+    var moneyLine = stateMoneyText
+      ? '<p class="electorate-result-money">' + stateMoneyText + ' <span class="electorate-result-money-note">(state-level — the NDIA doesn’t publish a per-electorate figure)</span></p>'
+      : '';
 
     var resultHtml = selectedRow
       ? (
           '<div class="electorate-result">' +
             '<p class="electorate-result-figure"><span class="tnum">' + fmtNum(selectedRow.need) + '</span> people need help with core activities in <strong>' + esc(selectedRow.name) + '</strong></p>' +
-            '<p class="electorate-result-rank">Rank <span class="tnum">' + rank + '</span> of <span class="tnum">' + n + '</span> divisions (highest need first)</p>' +
+            '<p class="electorate-result-rank">Rank <span class="tnum">' + ordinal(rank) + '</span> of <span class="tnum">' + n + '</span> divisions (highest need first)</p>' +
+            shareLine +
+            moneyLine +
           '</div>'
         )
       : '<p class="electorate-result-empty">Type a division name, or choose one from the list, to see its need count and rank.</p>';
@@ -1529,6 +1724,7 @@
       '</div>' +
       '<div id="electorateResult" aria-live="polite">' + resultHtml + '</div>' +
       '<div class="electorate-strip-wrap">' + renderElectorateStrip(sorted, selectedRow) + '</div>' +
+      renderElectorateMap(ndis, rowsByCode, selectedRow, rankByCode, n, stateDollarsByState) +
       '<p class="electorate-caveat">“' + esc(electorates.label) + '” counts a Census, self-reported need for everyday assistance — it is not an NDIS eligibility test, a participant count, or a funding measure, and NDIS caseloads are not distributed the same way across divisions.</p>' +
       '<details class="electorate-table-details"><summary>All ' + n + ' divisions, ranked by need</summary>' +
         '<table class="electorate-table"><thead><tr><th class="tnum">Rank</th><th>Division</th><th class="tnum">Need</th></tr></thead>' +
@@ -1602,6 +1798,25 @@
         if (v) { v.focus(); v.setSelectionRange(v.value.length, v.value.length); }
       });
     }
+
+    // W-D map: click a division (national map or any inset) -> selects it in
+    // the input, same two-way sync as typing (docs/ndis-spec.md "syncs both
+    // ways"). Delegated so both SVGs are covered with one listener each.
+    var electorates = ndis.context && ndis.context.electorates;
+    var rowsByCode = {};
+    if (electorates && electorates.rows) electorates.rows.forEach(function (r) { rowsByCode[r.code] = r; });
+    var mapClick = function (ev) {
+      var el = ev.target;
+      while (el && el !== ev.currentTarget && !(el.getAttribute && el.getAttribute('data-code'))) el = el.parentNode;
+      var code = el && el.getAttribute && el.getAttribute('data-code');
+      if (!code || !rowsByCode[code]) return;
+      state.electorate = rowsByCode[code].name;
+      renderNumbers(NDIS);
+    };
+    var mapNational = document.getElementById('electorateMapNational');
+    if (mapNational) mapNational.addEventListener('click', mapClick);
+    var mapInsets = document.getElementById('electorateMapInsets');
+    if (mapInsets) mapInsets.addEventListener('click', mapClick);
   }
 
   /* ------------------------------------------------------------------------

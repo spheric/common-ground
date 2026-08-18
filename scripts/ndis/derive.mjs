@@ -13,6 +13,7 @@ const SNAPSHOTS_DIR = 'data/ndis/snapshots';
 const LAW_PATH = 'data/ndis/law.json';
 const FEED_PATH = 'data/ndis/feed.json';
 const CONTEXT_PATH = 'data/ndis/context.json';
+const BOUNDARIES_PATH = 'data/ndis/boundaries.json';
 const DEFAULT_OUTPUT_PATH = 'data/ndis/ndis.json';
 
 const TITLE = 'Common Ground — NDIS Tracker';
@@ -172,12 +173,13 @@ export function deriveNdis() {
   const law = readJson(LAW_PATH, null);
   const feedJson = readJson(FEED_PATH, { items: [] });
   const context = readJson(CONTEXT_PATH, null);
+  const boundaries = readJson(BOUNDARIES_PATH, null);
 
   const releases = buildReleases(snapshots);
   const items = buildItems(snapshots);
   const diffs = buildDiffs(snapshots);
 
-  return {
+  const ndis = {
     meta: {
       title: TITLE,
       as_of: computeAsOf(snapshots, law, context),
@@ -192,6 +194,11 @@ export function deriveNdis() {
     feed: buildFeed(feedJson),
     context: context ?? {},
   };
+  // boundaries.json is static/hand-generated (docs/ndis-spec.md: "NOT part of
+  // the weekly refresh") — passed through verbatim, same as context, only
+  // when present (the page renders the map widget only when it exists).
+  if (boundaries) ndis.boundaries = boundaries;
+  return ndis;
 }
 
 function main() {
@@ -200,7 +207,7 @@ function main() {
   writeJson(outputPath, ndis);
   console.log(
     `wrote ${outputPath} (${ndis.releases.length} releases, ${ndis.items.length} items, ${ndis.diffs.length} diffs, ` +
-      `${ndis.feed.items.length} feed items)`
+      `${ndis.feed.items.length} feed items, boundaries: ${ndis.boundaries ? `${Object.keys(ndis.boundaries.paths).length} paths` : 'absent'})`
   );
 }
 
