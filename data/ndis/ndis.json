@@ -35295,6 +35295,129 @@
         }
       ]
     },
+    "payments_by_category": {
+      "as_of_quarter": "2026-06-30",
+      "window": "12 months to report date",
+      "source": {
+        "title": "NDIS payments data, NDIA dataresearch",
+        "url": "https://dataresearch.ndis.gov.au/datasets",
+        "publisher": "NDIA"
+      },
+      "rows": [
+        {
+          "category": "Daily Activities",
+          "catalogue_category": null,
+          "payments": 26821927000,
+          "participants": 427439,
+          "avg_per_participant": 62750
+        },
+        {
+          "category": "Social Community and Civic Participation",
+          "catalogue_category": null,
+          "payments": 12209359000,
+          "participants": 376353,
+          "avg_per_participant": 32441
+        },
+        {
+          "category": "CB Daily Activity",
+          "catalogue_category": null,
+          "payments": 5964337000,
+          "participants": 708593,
+          "avg_per_participant": 8417
+        },
+        {
+          "category": "Support Coordination",
+          "catalogue_category": "Support Coordination",
+          "payments": 1237917000,
+          "participants": 351190,
+          "avg_per_participant": 3525
+        },
+        {
+          "category": "CB Relationships",
+          "catalogue_category": "Improved Relationships",
+          "payments": 1068279000,
+          "participants": 100225,
+          "avg_per_participant": 10659
+        },
+        {
+          "category": "Transport",
+          "catalogue_category": "Transport",
+          "payments": 875112000,
+          "participants": 278240,
+          "avg_per_participant": 3145
+        },
+        {
+          "category": "Assistive Technology",
+          "catalogue_category": "Assistive Technology",
+          "payments": 820473000,
+          "participants": 77934,
+          "avg_per_participant": 10528
+        },
+        {
+          "category": "Home Modifications",
+          "catalogue_category": "Home Modifications and Specialised Disability Accommodation (SDA)",
+          "payments": 697311000,
+          "participants": 24009,
+          "avg_per_participant": 29044
+        },
+        {
+          "category": "CB Choice and Control",
+          "catalogue_category": null,
+          "payments": 646053000,
+          "participants": 562153,
+          "avg_per_participant": 1149
+        },
+        {
+          "category": "Consumables",
+          "catalogue_category": "Consumables",
+          "payments": 626987000,
+          "participants": 280285,
+          "avg_per_participant": 2237
+        },
+        {
+          "category": "CB Social Community and Civic Participation",
+          "catalogue_category": null,
+          "payments": 261460000,
+          "participants": 55537,
+          "avg_per_participant": 4708
+        },
+        {
+          "category": "CB Employment",
+          "catalogue_category": null,
+          "payments": 195607000,
+          "participants": 27071,
+          "avg_per_participant": 7226
+        },
+        {
+          "category": "CB Health and Wellbeing",
+          "catalogue_category": "Improved Health and Wellbeing",
+          "payments": 24826000,
+          "participants": 14318,
+          "avg_per_participant": 1734
+        },
+        {
+          "category": "CB Home Living",
+          "catalogue_category": null,
+          "payments": 1526000,
+          "participants": 774,
+          "avg_per_participant": 1972
+        },
+        {
+          "category": "CB Lifelong Learning",
+          "catalogue_category": "Improved Learning",
+          "payments": 378000,
+          "participants": 122,
+          "avg_per_participant": 3098
+        },
+        {
+          "category": "Missing",
+          "catalogue_category": null,
+          "payments": -3000,
+          "participants": 281332,
+          "avg_per_participant": 0
+        }
+      ]
+    },
     "abs": {
       "census_assistance": {
         "label": "People needing help with core activities, Census 2021",
@@ -35315,6 +35438,862 @@
           "publisher": "ABS"
         }
       }
+    },
+    "electorates": {
+      "label": "People needing help with core activities by federal electorate, Census 2021",
+      "source": {
+        "title": "ABS Data API, C21_G18_CED",
+        "url": "https://data.api.abs.gov.au/rest/data/C21_G18_CED/3._T.1..CED.?startPeriod=2021&format=csv",
+        "publisher": "ABS"
+      },
+      "national_total": 1464415,
+      "rows": [
+        {
+          "name": "Adelaide",
+          "code": "401",
+          "need": 11746
+        },
+        {
+          "name": "Aston",
+          "code": "201",
+          "need": 9170
+        },
+        {
+          "name": "Ballarat",
+          "code": "202",
+          "need": 10586
+        },
+        {
+          "name": "Banks",
+          "code": "101",
+          "need": 9608
+        },
+        {
+          "name": "Barker",
+          "code": "402",
+          "need": 11638
+        },
+        {
+          "name": "Barton",
+          "code": "102",
+          "need": 10179
+        },
+        {
+          "name": "Bass",
+          "code": "601",
+          "need": 7781
+        },
+        {
+          "name": "Bean",
+          "code": "801",
+          "need": 7867
+        },
+        {
+          "name": "Bendigo",
+          "code": "203",
+          "need": 10429
+        },
+        {
+          "name": "Bennelong",
+          "code": "103",
+          "need": 8571
+        },
+        {
+          "name": "Berowra",
+          "code": "104",
+          "need": 6765
+        },
+        {
+          "name": "Blair",
+          "code": "301",
+          "need": 13571
+        },
+        {
+          "name": "Blaxland",
+          "code": "105",
+          "need": 12542
+        },
+        {
+          "name": "Bonner",
+          "code": "302",
+          "need": 8217
+        },
+        {
+          "name": "Boothby",
+          "code": "403",
+          "need": 11254
+        },
+        {
+          "name": "Bowman",
+          "code": "303",
+          "need": 10591
+        },
+        {
+          "name": "Braddon",
+          "code": "602",
+          "need": 8559
+        },
+        {
+          "name": "Bradfield",
+          "code": "106",
+          "need": 7116
+        },
+        {
+          "name": "Brand",
+          "code": "501",
+          "need": 9091
+        },
+        {
+          "name": "Brisbane",
+          "code": "304",
+          "need": 5876
+        },
+        {
+          "name": "Bruce",
+          "code": "204",
+          "need": 12236
+        },
+        {
+          "name": "Burt",
+          "code": "502",
+          "need": 8941
+        },
+        {
+          "name": "Calare",
+          "code": "107",
+          "need": 10627
+        },
+        {
+          "name": "Calwell",
+          "code": "205",
+          "need": 13012
+        },
+        {
+          "name": "Canberra",
+          "code": "802",
+          "need": 6345
+        },
+        {
+          "name": "Canning",
+          "code": "503",
+          "need": 9109
+        },
+        {
+          "name": "Capricornia",
+          "code": "305",
+          "need": 9027
+        },
+        {
+          "name": "Casey",
+          "code": "206",
+          "need": 8493
+        },
+        {
+          "name": "Chifley",
+          "code": "108",
+          "need": 12425
+        },
+        {
+          "name": "Chisholm",
+          "code": "207",
+          "need": 10492
+        },
+        {
+          "name": "Clark",
+          "code": "603",
+          "need": 6603
+        },
+        {
+          "name": "Cook",
+          "code": "109",
+          "need": 7336
+        },
+        {
+          "name": "Cooper",
+          "code": "208",
+          "need": 10229
+        },
+        {
+          "name": "Corangamite",
+          "code": "209",
+          "need": 8449
+        },
+        {
+          "name": "Corio",
+          "code": "210",
+          "need": 10867
+        },
+        {
+          "name": "Cowan",
+          "code": "504",
+          "need": 9922
+        },
+        {
+          "name": "Cowper",
+          "code": "110",
+          "need": 14003
+        },
+        {
+          "name": "Cunningham",
+          "code": "111",
+          "need": 10261
+        },
+        {
+          "name": "Curtin",
+          "code": "505",
+          "need": 6774
+        },
+        {
+          "name": "Dawson",
+          "code": "306",
+          "need": 8802
+        },
+        {
+          "name": "Deakin",
+          "code": "211",
+          "need": 10000
+        },
+        {
+          "name": "Dickson",
+          "code": "307",
+          "need": 8651
+        },
+        {
+          "name": "Dobell",
+          "code": "112",
+          "need": 12190
+        },
+        {
+          "name": "Dunkley",
+          "code": "212",
+          "need": 9809
+        },
+        {
+          "name": "Durack",
+          "code": "506",
+          "need": 7360
+        },
+        {
+          "name": "Eden-Monaro",
+          "code": "113",
+          "need": 8648
+        },
+        {
+          "name": "Fadden",
+          "code": "308",
+          "need": 11853
+        },
+        {
+          "name": "Fairfax",
+          "code": "309",
+          "need": 10263
+        },
+        {
+          "name": "Farrer",
+          "code": "114",
+          "need": 11007
+        },
+        {
+          "name": "Fenner",
+          "code": "803",
+          "need": 6658
+        },
+        {
+          "name": "Fisher",
+          "code": "310",
+          "need": 10919
+        },
+        {
+          "name": "Flinders",
+          "code": "213",
+          "need": 9735
+        },
+        {
+          "name": "Flynn",
+          "code": "311",
+          "need": 9417
+        },
+        {
+          "name": "Forde",
+          "code": "312",
+          "need": 12674
+        },
+        {
+          "name": "Forrest",
+          "code": "507",
+          "need": 8007
+        },
+        {
+          "name": "Fowler",
+          "code": "115",
+          "need": 14596
+        },
+        {
+          "name": "Franklin",
+          "code": "604",
+          "need": 6809
+        },
+        {
+          "name": "Fraser",
+          "code": "214",
+          "need": 12097
+        },
+        {
+          "name": "Fremantle",
+          "code": "508",
+          "need": 7692
+        },
+        {
+          "name": "Gellibrand",
+          "code": "215",
+          "need": 8802
+        },
+        {
+          "name": "Gilmore",
+          "code": "116",
+          "need": 12432
+        },
+        {
+          "name": "Gippsland",
+          "code": "216",
+          "need": 11589
+        },
+        {
+          "name": "Goldstein",
+          "code": "217",
+          "need": 7244
+        },
+        {
+          "name": "Gorton",
+          "code": "218",
+          "need": 10271
+        },
+        {
+          "name": "Grayndler",
+          "code": "117",
+          "need": 6691
+        },
+        {
+          "name": "Greenway",
+          "code": "118",
+          "need": 8941
+        },
+        {
+          "name": "Grey",
+          "code": "404",
+          "need": 11900
+        },
+        {
+          "name": "Griffith",
+          "code": "313",
+          "need": 6311
+        },
+        {
+          "name": "Groom",
+          "code": "314",
+          "need": 11151
+        },
+        {
+          "name": "Hasluck",
+          "code": "509",
+          "need": 7790
+        },
+        {
+          "name": "Hawke",
+          "code": "219",
+          "need": 10648
+        },
+        {
+          "name": "Herbert",
+          "code": "315",
+          "need": 9766
+        },
+        {
+          "name": "Higgins",
+          "code": "220",
+          "need": 6285
+        },
+        {
+          "name": "Hindmarsh",
+          "code": "405",
+          "need": 12116
+        },
+        {
+          "name": "Hinkler",
+          "code": "316",
+          "need": 15872
+        },
+        {
+          "name": "Holt",
+          "code": "221",
+          "need": 9250
+        },
+        {
+          "name": "Hotham",
+          "code": "222",
+          "need": 12739
+        },
+        {
+          "name": "Hughes",
+          "code": "119",
+          "need": 6631
+        },
+        {
+          "name": "Hume",
+          "code": "120",
+          "need": 9692
+        },
+        {
+          "name": "Hunter",
+          "code": "121",
+          "need": 12990
+        },
+        {
+          "name": "Indi",
+          "code": "223",
+          "need": 10543
+        },
+        {
+          "name": "Isaacs",
+          "code": "224",
+          "need": 8868
+        },
+        {
+          "name": "Jagajaga",
+          "code": "225",
+          "need": 8706
+        },
+        {
+          "name": "Kennedy",
+          "code": "317",
+          "need": 9549
+        },
+        {
+          "name": "Kingsford Smith",
+          "code": "122",
+          "need": 7695
+        },
+        {
+          "name": "Kingston",
+          "code": "406",
+          "need": 11369
+        },
+        {
+          "name": "Kooyong",
+          "code": "226",
+          "need": 7365
+        },
+        {
+          "name": "La Trobe",
+          "code": "227",
+          "need": 7500
+        },
+        {
+          "name": "Lalor",
+          "code": "228",
+          "need": 9484
+        },
+        {
+          "name": "Leichhardt",
+          "code": "318",
+          "need": 8833
+        },
+        {
+          "name": "Lilley",
+          "code": "319",
+          "need": 9047
+        },
+        {
+          "name": "Lindsay",
+          "code": "123",
+          "need": 10483
+        },
+        {
+          "name": "Lingiari",
+          "code": "701",
+          "need": 4150
+        },
+        {
+          "name": "Longman",
+          "code": "320",
+          "need": 15326
+        },
+        {
+          "name": "Lyne",
+          "code": "124",
+          "need": 12975
+        },
+        {
+          "name": "Lyons",
+          "code": "605",
+          "need": 8185
+        },
+        {
+          "name": "Macarthur",
+          "code": "125",
+          "need": 11573
+        },
+        {
+          "name": "Mackellar",
+          "code": "126",
+          "need": 6727
+        },
+        {
+          "name": "Macnamara",
+          "code": "229",
+          "need": 6091
+        },
+        {
+          "name": "Macquarie",
+          "code": "127",
+          "need": 8299
+        },
+        {
+          "name": "Makin",
+          "code": "407",
+          "need": 11250
+        },
+        {
+          "name": "Mallee",
+          "code": "230",
+          "need": 12568
+        },
+        {
+          "name": "Maranoa",
+          "code": "321",
+          "need": 10669
+        },
+        {
+          "name": "Maribyrnong",
+          "code": "231",
+          "need": 9517
+        },
+        {
+          "name": "Mayo",
+          "code": "408",
+          "need": 10103
+        },
+        {
+          "name": "McEwen",
+          "code": "232",
+          "need": 7402
+        },
+        {
+          "name": "McMahon",
+          "code": "128",
+          "need": 13799
+        },
+        {
+          "name": "McPherson",
+          "code": "322",
+          "need": 8579
+        },
+        {
+          "name": "Melbourne",
+          "code": "233",
+          "need": 5956
+        },
+        {
+          "name": "Menzies",
+          "code": "234",
+          "need": 10197
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (ACT)",
+          "code": "897",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (NSW)",
+          "code": "197",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (NT)",
+          "code": "797",
+          "need": 6
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (OT)",
+          "code": "997",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (Qld)",
+          "code": "397",
+          "need": 3
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (SA)",
+          "code": "497",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (Tas.)",
+          "code": "697",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (Vic.)",
+          "code": "297",
+          "need": 0
+        },
+        {
+          "name": "Migratory - Offshore - Shipping (WA)",
+          "code": "597",
+          "need": 0
+        },
+        {
+          "name": "Mitchell",
+          "code": "129",
+          "need": 7205
+        },
+        {
+          "name": "Monash",
+          "code": "235",
+          "need": 10513
+        },
+        {
+          "name": "Moncrieff",
+          "code": "323",
+          "need": 9737
+        },
+        {
+          "name": "Moore",
+          "code": "510",
+          "need": 6326
+        },
+        {
+          "name": "Moreton",
+          "code": "324",
+          "need": 8583
+        },
+        {
+          "name": "New England",
+          "code": "130",
+          "need": 10336
+        },
+        {
+          "name": "Newcastle",
+          "code": "131",
+          "need": 10245
+        },
+        {
+          "name": "Nicholls",
+          "code": "236",
+          "need": 11690
+        },
+        {
+          "name": "No usual address (ACT)",
+          "code": "894",
+          "need": 26
+        },
+        {
+          "name": "No usual address (NSW)",
+          "code": "194",
+          "need": 537
+        },
+        {
+          "name": "No usual address (NT)",
+          "code": "794",
+          "need": 99
+        },
+        {
+          "name": "No usual address (OT)",
+          "code": "994",
+          "need": 0
+        },
+        {
+          "name": "No usual address (Qld)",
+          "code": "394",
+          "need": 793
+        },
+        {
+          "name": "No usual address (SA)",
+          "code": "494",
+          "need": 205
+        },
+        {
+          "name": "No usual address (Tas.)",
+          "code": "694",
+          "need": 82
+        },
+        {
+          "name": "No usual address (Vic.)",
+          "code": "294",
+          "need": 536
+        },
+        {
+          "name": "No usual address (WA)",
+          "code": "594",
+          "need": 236
+        },
+        {
+          "name": "North Sydney",
+          "code": "132",
+          "need": 5449
+        },
+        {
+          "name": "O'Connor",
+          "code": "511",
+          "need": 8974
+        },
+        {
+          "name": "Oxley",
+          "code": "325",
+          "need": 10286
+        },
+        {
+          "name": "Page",
+          "code": "133",
+          "need": 12494
+        },
+        {
+          "name": "Parkes",
+          "code": "134",
+          "need": 9447
+        },
+        {
+          "name": "Parramatta",
+          "code": "135",
+          "need": 9806
+        },
+        {
+          "name": "Paterson",
+          "code": "136",
+          "need": 12813
+        },
+        {
+          "name": "Pearce",
+          "code": "512",
+          "need": 7252
+        },
+        {
+          "name": "Perth",
+          "code": "513",
+          "need": 8475
+        },
+        {
+          "name": "Petrie",
+          "code": "326",
+          "need": 12921
+        },
+        {
+          "name": "Rankin",
+          "code": "327",
+          "need": 11344
+        },
+        {
+          "name": "Reid",
+          "code": "137",
+          "need": 7969
+        },
+        {
+          "name": "Richmond",
+          "code": "138",
+          "need": 10994
+        },
+        {
+          "name": "Riverina",
+          "code": "139",
+          "need": 10666
+        },
+        {
+          "name": "Robertson",
+          "code": "140",
+          "need": 9552
+        },
+        {
+          "name": "Ryan",
+          "code": "328",
+          "need": 6651
+        },
+        {
+          "name": "Scullin",
+          "code": "237",
+          "need": 11875
+        },
+        {
+          "name": "Shortland",
+          "code": "141",
+          "need": 10637
+        },
+        {
+          "name": "Solomon",
+          "code": "702",
+          "need": 4111
+        },
+        {
+          "name": "Spence",
+          "code": "409",
+          "need": 15748
+        },
+        {
+          "name": "Sturt",
+          "code": "410",
+          "need": 11301
+        },
+        {
+          "name": "Swan",
+          "code": "514",
+          "need": 8361
+        },
+        {
+          "name": "Sydney",
+          "code": "142",
+          "need": 5494
+        },
+        {
+          "name": "Tangney",
+          "code": "515",
+          "need": 8035
+        },
+        {
+          "name": "Wannon",
+          "code": "238",
+          "need": 10305
+        },
+        {
+          "name": "Warringah",
+          "code": "143",
+          "need": 4747
+        },
+        {
+          "name": "Watson",
+          "code": "144",
+          "need": 12421
+        },
+        {
+          "name": "Wentworth",
+          "code": "145",
+          "need": 4273
+        },
+        {
+          "name": "Werriwa",
+          "code": "146",
+          "need": 12969
+        },
+        {
+          "name": "Whitlam",
+          "code": "147",
+          "need": 11845
+        },
+        {
+          "name": "Wide Bay",
+          "code": "329",
+          "need": 12927
+        },
+        {
+          "name": "Wills",
+          "code": "239",
+          "need": 10504
+        },
+        {
+          "name": "Wright",
+          "code": "330",
+          "need": 11170
+        }
+      ]
     },
     "cpi": {
       "series": [

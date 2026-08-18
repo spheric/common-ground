@@ -7,13 +7,20 @@
      3  Constants
      4  App state
      5  Theme (shared storage key with the main app)
-     6  Header / footer rendering
-     7  Section 1 — What changed in pricing
-     8  Section 2 — Price history explorer
-     9  Section 3 — The law
-     10 Section 4 — Updates
-     11 Section 5 — Scheme in numbers
-     12 Top-level render orchestration + init
+     6  Header / footer / nav rendering
+     7  Section 1 — What changed in pricing (incl. W-A "The real price of care")
+     8  Section 2 — Price history explorer (incl. W-C "Your supports, repriced")
+     9  Section 3 — Where the money goes (W-B)
+     10 Section 4 — The law
+     11 Section 5 — Updates
+     12 Section 6 — Scheme in numbers (incl. W-D "Your electorate")
+     13 Overview view (front page)
+     14 View routing (hash-based) + top-level render orchestration + init
+   Views are hash-routed (#/pricing etc, see VIEW_META below) — only the
+   active view's section is rendered each pass; every other section is
+   emptied and hidden. Per-view UI state (pinned items, search, filters,
+   diff picker, cpi overlay, electorate) lives in the single `state` object
+   below, so switching views and back preserves it untouched.
    No globals beyond window.NDIS — everything else lives inside the IIFE.
    Every dynamic data string is passed through esc() before insertion — one
    choke point (setHtml) parses the assembled, pre-escaped markup into the DOM.
@@ -75,18 +82,22 @@
 
   function fmtDollars(n) {
     if (n === null || n === undefined || isNaN(n)) return '—';
-    return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    var sign = n < 0 ? '-' : '';
+    return sign + '$' + Math.abs(n).toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
   function fmtNum(n) {
     if (n === null || n === undefined || isNaN(n)) return '—';
     return Math.round(n).toLocaleString('en-AU');
   }
+  // Sign printed before the "$" ("-$3,000", not "$-3,000") — matters for the
+  // rare negative figure (e.g. a source-data reconciliation row in W-B).
   function fmtCompactCurrency(n) {
     if (n === null || n === undefined || isNaN(n)) return '—';
+    var sign = n < 0 ? '-' : '';
     var abs = Math.abs(n);
-    if (abs >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
-    if (abs >= 1e6) return '$' + (n / 1e6).toFixed(1) + 'M';
-    if (abs >= 1e3) return '$' + Math.round(n).toLocaleString('en-AU');
+    if (abs >= 1e9) return sign + '$' + (abs / 1e9).toFixed(2) + 'B';
+    if (abs >= 1e6) return sign + '$' + (abs / 1e6).toFixed(1) + 'M';
+    if (abs >= 1e3) return sign + '$' + Math.round(abs).toLocaleString('en-AU');
     return fmtDollars(n);
   }
   function fmtPctSigned(n) {
@@ -142,6 +153,149 @@
     return best;
   }
 
+  var MIN_QUALIFYING_ITEMS = 5;
+
+  // W-A "The real price of care" — one row per support category present in >=2
+  // releases (docs/ndis-spec.md "Consolidation widgets"). For each category:
+  // find the earliest/latest release index at which ANY item in the category
+  // is priced (the category's own span, not the page-wide span); among items
+  // priced at BOTH endpoints, take each item's price ratio (last/first) —
+  // category nominal change = median ratio - 1. CPI change over the same
+  // date span = cpi(last effective)/cpi(first effective) - 1 (nearest
+  // quarter). Real-terms change = (1+nominal)/(1+cpiChange) - 1. Categories
+  // with fewer than MIN_QUALIFYING_ITEMS qualifying items are skipped (but
+  // counted, for the footnote). Requires a CPI series — without one there is
+  // no real-terms figure to show, so the whole widget is data-absent.
+  function computeRealPriceGrid(ndis) {
+    var releases = ndis.releases;
+    var cpi = ndis.context && ndis.context.cpi;
+    if (!releases || releases.length < 2 || !cpi || !cpi.series || !cpi.series.length) return null;
+    if (!ndis.items || !ndis.items.length) return null;
+
+    var byCategory = {};
+    var order = [];
+    ndis.items.forEach(function (item) {
+      if (!byCategory[item.category]) { byCategory[item.category] = []; order.push(item.category); }
+      byCategory[item.category].push(item);
+    });
+    order.sort();
+
+    var cells = [];
+    var skipped = [];
+    var eligibleCategoryCount = 0;
+
+    order.forEach(function (category) {
+      var items = byCategory[category];
+      var minIdx = -1, maxIdx = -1;
+      items.forEach(function (item) {
+        (item.history || []).forEach(function (v, i) {
+          if (v === null || v === undefined) return;
+          if (minIdx === -1 || i < minIdx) minIdx = i;
+          if (maxIdx === -1 || i > maxIdx) maxIdx = i;
+        });
+      });
+      if (minIdx === -1 || minIdx === maxIdx) return; // not present in >=2 releases
+
+      eligibleCategoryCount++;
+      var ratios = [];
+      var qualifying = [];
+      items.forEach(function (item) {
+        var a = item.history[minIdx], b = item.history[maxIdx];
+        if (a !== null && a !== undefined && b !== null && b !== undefined && a > 0) {
+          ratios.push(b / a);
+          qualifying.push(item);
+        }
+      });
+      if (ratios.length < MIN_QUALIFYING_ITEMS) { skipped.push({ category: category, n: ratios.length }); return; }
+
+      var nominal = medianOf(ratios) - 1;
+      var cpiFirst = nearestSeriesValue(cpi.series, 'quarter', 'index', releases[minIdx].effective);
+      var cpiLast = nearestSeriesValue(cpi.series, 'quarter', 'index', releases[maxIdx].effective);
+      if (!cpiFirst || !cpiLast) { skipped.push({ category: category, n: ratios.length }); return; }
+      var cpiChange = (cpiLast / cpiFirst) - 1;
+      var real = (1 + nominal) / (1 + cpiChange) - 1;
+
+      var itemTrend = [], cpiTrend = [];
+      for (var i = minIdx; i <= maxIdx; i++) {
+        var vals = [];
+        qualifying.forEach(function (item) { var v = item.history[i]; if (v !== null && v !== undefined) vals.push(v); });
+        itemTrend.push(vals.length ? medianOf(vals) : null);
+        cpiTrend.push(nearestSeriesValue(cpi.series, 'quarter', 'index', releases[i].effective));
+      }
+      // Index both series to 100 at the category's earliest release so the
+      // mini chart reads as "item median vs CPI", not raw dollars vs an index.
+      var base = itemTrend[0], cpiBase = cpiTrend[0];
+      var itemIndex = itemTrend.map(function (v) { return (v === null || !base) ? null : (v / base) * 100; });
+      var cpiIndex = cpiTrend.map(function (v) { return (v === null || !cpiBase) ? null : (v / cpiBase) * 100; });
+
+      cells.push({
+        category: category,
+        n: ratios.length,
+        nominal: nominal,
+        real: real,
+        itemIndex: itemIndex,
+        cpiIndex: cpiIndex,
+        fromFy: releases[minIdx].fy,
+        toFy: releases[maxIdx].fy
+      });
+    });
+
+    cells.sort(function (a, b) { return a.real - b.real; });
+    return { cells: cells, skipped: skipped, eligibleCategoryCount: eligibleCategoryCount };
+  }
+
+  // W-C "Your supports, repriced" — driven by the explorer's pinned items
+  // (state.pinned). For each pinned item priced in >=2 releases: % change
+  // from the first to the last release it is priced in (the item's own
+  // span), and the matching CPI change over that same span. Basket figure =
+  // equal-weighted mean across pinned items; CPI comparator = equal-weighted
+  // mean of each item's own-span CPI change (averaged only over items where
+  // CPI is resolvable).
+  function computeRepriced(ndis) {
+    if (!state.pinned.length) return null;
+    var itemByNum = {};
+    ndis.items.forEach(function (i) { itemByNum[i.num] = i; });
+    var cpi = ndis.context && ndis.context.cpi;
+    var releases = ndis.releases;
+
+    var rows = [];
+    state.pinned.forEach(function (num) {
+      var item = itemByNum[num];
+      if (!item) return;
+      var firstIdx = -1, lastIdx = -1;
+      (item.history || []).forEach(function (v, i) {
+        if (v === null || v === undefined) return;
+        if (firstIdx === -1) firstIdx = i;
+        lastIdx = i;
+      });
+      if (firstIdx === -1 || firstIdx === lastIdx) return; // needs >=2 priced releases
+
+      var first = item.history[firstIdx], last = item.history[lastIdx];
+      var pct = ((last - first) / first) * 100;
+      var cpiPct = null;
+      if (cpi && cpi.series && cpi.series.length) {
+        var cpiFirst = nearestSeriesValue(cpi.series, 'quarter', 'index', releases[firstIdx].effective);
+        var cpiLast = nearestSeriesValue(cpi.series, 'quarter', 'index', releases[lastIdx].effective);
+        if (cpiFirst && cpiLast) cpiPct = ((cpiLast - cpiFirst) / cpiFirst) * 100;
+      }
+      rows.push({
+        num: num,
+        name: item.name,
+        fromFy: releases[firstIdx].fy,
+        toFy: releases[lastIdx].fy,
+        pct: pct,
+        cpiPct: cpiPct
+      });
+    });
+    if (!rows.length) return null;
+
+    var basket = rows.reduce(function (s, r) { return s + r.pct; }, 0) / rows.length;
+    var cpiRows = rows.filter(function (r) { return r.cpiPct !== null; });
+    var cpiBasket = cpiRows.length ? cpiRows.reduce(function (s, r) { return s + r.cpiPct; }, 0) / cpiRows.length : null;
+
+    return { rows: rows, basket: basket, cpiBasket: cpiBasket, cpiCoverage: cpiRows.length };
+  }
+
   /* ------------------------------------------------------------------------
      3. Constants
      ------------------------------------------------------------------------ */
@@ -182,13 +336,15 @@
 
   var state = {
     theme: 'auto',
+    view: 'overview',
     diffRelease: null,
     search: '',
     pinned: [],
     feedTypes: new Set(),
     cpiOverlay: false,
     pinHint: '',
-    feedHint: ''
+    feedHint: '',
+    electorate: ''
   };
 
   var NDIS = null;
@@ -245,27 +401,27 @@
     if (metaEl) metaEl.textContent = 'Sources: NDIA, Federal Register of Legislation, Parliament of Australia, ABS · as of ' + ndis.meta.as_of;
   }
 
-  // Front-page index: only lists sections that actually rendered (no empty
-  // scaffolding), in the fixed page order, as in-page jump links.
-  function renderMastheadIndex(ndis) {
+  // The masthead index row IS the view nav (docs/ndis-spec.md "Views &
+  // routing"): one real <a href="#/..."> per view, in fixed page order,
+  // always all seven — a view with no data yet stays in the row but muted
+  // with a "no data yet" title rather than disappearing. The active view is
+  // in ink with an underline and aria-current="page"; others are muted.
+  // VIEW_META is defined below (§14); this only needs it to exist by the
+  // time renderNav actually runs (after init()), not at parse time.
+  function renderNav(ndis) {
     var el = document.getElementById('mastheadIndex');
     if (!el) return;
     if (!ndis) { setHtml(el, ''); return; }
-    var candidates = [
-      { id: 'sectionPricingHeading', sec: 'sectionPricing', label: 'What changed in pricing' },
-      { id: 'sectionExplorerHeading', sec: 'sectionExplorer', label: 'Price history explorer' },
-      { id: 'sectionLawHeading', sec: 'sectionLaw', label: 'The law' },
-      { id: 'sectionUpdatesHeading', sec: 'sectionUpdates', label: 'Updates' },
-      { id: 'sectionNumbersHeading', sec: 'sectionNumbers', label: 'Scheme in numbers' }
-    ];
-    var visible = candidates.filter(function (c) {
-      var sec = document.getElementById(c.sec);
-      return sec && !sec.hidden;
-    });
-    if (!visible.length) { setHtml(el, ''); return; }
-    var html = visible.map(function (c, i) {
-      var sep = i < visible.length - 1 ? '<span class="masthead-index-sep" aria-hidden="true"> · </span>' : '';
-      return '<a href="#' + c.id + '">' + esc(c.label) + '</a>' + sep;
+    var html = VIEW_META.map(function (v, i) {
+      var hasData = v.key === 'overview' ? true : v.hasData(ndis);
+      var isActive = v.key === state.view;
+      var cls = 'masthead-index-link' + (hasData ? '' : ' is-muted');
+      var attrs = ' href="' + esc(v.hash) + '" class="' + cls + '"';
+      if (isActive) attrs += ' aria-current="page"';
+      if (!hasData) attrs += ' title="No data yet"';
+      var numberBit = v.number ? '<span class="masthead-index-num" aria-hidden="true">&sect; ' + v.number + '</span> ' : '';
+      var sep = i < VIEW_META.length - 1 ? '<span class="masthead-index-sep" aria-hidden="true"> · </span>' : '';
+      return '<a' + attrs + '>' + numberBit + esc(v.navLabel) + '</a>' + sep;
     }).join('');
     setHtml(el, html);
   }
@@ -478,6 +634,85 @@
     );
   }
 
+  // Two-line mini index chart for a W-A cell: item-median index (solid ink)
+  // vs CPI index (dashed, muted ink), both based at 100 = the category's
+  // earliest qualifying release. Decorative (aria-hidden) — the accompanying
+  // nominal/real figures are the printed twin required by the accessibility
+  // bar. Positions are spaced by release ordinal, not by date (same
+  // simplification as buildSparkline elsewhere on this page).
+  function buildIndexMiniChart(itemIndex, cpiIndex) {
+    var w = 148, h = 46, padX = 5, padY = 6;
+    var all = [];
+    itemIndex.forEach(function (v) { if (v !== null && v !== undefined) all.push(v); });
+    cpiIndex.forEach(function (v) { if (v !== null && v !== undefined) all.push(v); });
+    if (all.length < 2) return '';
+    var min = Math.min.apply(null, all), max = Math.max.apply(null, all);
+    if (min === max) { min -= 1; max += 1; }
+    var n = itemIndex.length;
+    var step = n > 1 ? (w - 2 * padX) / (n - 1) : 0;
+    function xAt(i) { return padX + i * step; }
+    function yAt(v) { return padY + (h - 2 * padY) * (1 - (v - min) / (max - min)); }
+    function pathFor(vals, cls) {
+      var svg = '';
+      buildRuns(vals).forEach(function (run) {
+        if (run.length < 2) return;
+        var pts = run.map(function (pt) { return xAt(pt.i).toFixed(1) + ',' + yAt(pt.v).toFixed(1); }).join(' ');
+        svg += '<polyline class="' + cls + '" points="' + pts + '"></polyline>';
+      });
+      return svg;
+    }
+    var baselineSvg = (min <= 100 && 100 <= max)
+      ? '<line class="rpc-chart-baseline" x1="' + padX + '" y1="' + yAt(100).toFixed(1) + '" x2="' + (w - padX) + '" y2="' + yAt(100).toFixed(1) + '"></line>'
+      : '';
+    return (
+      '<svg class="rpc-chart-svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' +
+        baselineSvg + pathFor(cpiIndex, 'rpc-chart-cpi') + pathFor(itemIndex, 'rpc-chart-item') +
+      '</svg>'
+    );
+  }
+
+  // W-A "The real price of care" — small-multiples grid, one cell per
+  // category (see computeRealPriceGrid for the method). Rendered inside
+  // section 1, after the diff table; entirely optional (returns '' when CPI
+  // or fewer than 2 releases means there is nothing to compute).
+  function renderRealPriceGrid(ndis) {
+    var grid = computeRealPriceGrid(ndis);
+    if (!grid || !grid.cells.length) return '';
+
+    var cellsHtml = grid.cells.map(function (cell) {
+      var nominalCls = cell.nominal >= 0 ? 'is-increase' : 'is-decrease';
+      var realCls = cell.real >= 0 ? 'is-increase' : 'is-decrease';
+      return (
+        '<div class="rpc-cell">' +
+          '<p class="rpc-cell-category">' + esc(cell.category) + '</p>' +
+          '<div class="rpc-cell-chart">' + buildIndexMiniChart(cell.itemIndex, cell.cpiIndex) + '</div>' +
+          '<div class="rpc-cell-figures">' +
+            '<span class="rpc-figure"><span class="rpc-figure-label">Nominal</span><span class="sign-chip ' + nominalCls + '">' + fmtPctSigned(cell.nominal * 100) + '</span></span>' +
+            '<span class="rpc-figure"><span class="rpc-figure-label">Real</span><span class="sign-chip ' + realCls + '">' + fmtPctSigned(cell.real * 100) + '</span></span>' +
+          '</div>' +
+          '<p class="rpc-cell-meta tnum">' + cell.n + ' items · ' + esc(cell.fromFy) + ' → ' + esc(cell.toFy) + '</p>' +
+        '</div>'
+      );
+    }).join('');
+
+    var skippedNames = grid.skipped.map(function (s) { return esc(s.category); }).join(', ');
+    var skippedNote = grid.skipped.length
+      ? ' ' + grid.skipped.length + ' categor' + (grid.skipped.length === 1 ? 'y was' : 'ies were') +
+        ' excluded for fewer than ' + MIN_QUALIFYING_ITEMS + ' qualifying items (' + skippedNames + ').'
+      : '';
+
+    return (
+      '<h3 class="subsection-heading">The real price of care</h3>' +
+      '<p class="section-intro">What each category actually costs to buy, after inflation — sorted worst real-terms change first.</p>' +
+      '<div class="rpc-legend"><span class="rpc-legend-item"><span class="dash-swatch dash-1" aria-hidden="true"></span> Item median (indexed)</span>' +
+        '<span class="rpc-legend-item"><span class="dash-swatch dash-2" aria-hidden="true"></span> CPI, All groups (indexed)</span></div>' +
+      '<div class="rpc-grid">' + cellsHtml + '</div>' +
+      '<p class="widget-footnote">Method: for each category priced in two or more catalogue releases, the nominal change is the median of (latest price ÷ earliest price) across items priced in both the category’s earliest and latest release (' +
+        grid.eligibleCategoryCount + ' categories qualified; ' + grid.cells.length + ' shown).' +
+        ' The CPI change is the ABS All-groups CPI over that same release span (nearest quarter); the real change deflates the nominal change by the CPI change.' + skippedNote + '</p>'
+    );
+  }
+
   function renderPricing(ndis) {
     var section = document.getElementById('sectionPricing');
     if (!ndis || !ndis.diffs || !ndis.diffs.length) { if (section) section.hidden = true; return; }
@@ -532,9 +767,10 @@
     var movers = renderMovers(current, ndis);
     var colophon = renderColophon(current, ndis);
     var sidebar = (colophon || movers) ? '<div class="pricing-side">' + colophon + movers + '</div>' : '';
+    var realPriceGrid = renderRealPriceGrid(ndis);
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionPricingHeading"><span class="section-number" aria-hidden="true">&sect; 1</span> What changed in pricing</h2>' +
+      '<h2 class="section-heading" id="sectionPricingHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 1</span> What changed in pricing</h2>' +
       '<p class="section-intro">Item-by-item differences between two consecutive NDIS Support Catalogue releases, diffed by support item number.</p>' +
       '<div class="release-picker-row"><label for="diffPicker">Comparing</label>' +
         '<select id="diffPicker">' + pickerOptions + '</select></div>' +
@@ -554,7 +790,8 @@
           addedDetails + retiredDetails +
         '</div>' +
         sidebar +
-      '</div>'
+      '</div>' +
+      realPriceGrid
     );
 
     var picker = document.getElementById('diffPicker');
@@ -822,6 +1059,47 @@
     return '<div class="explorer-chart-wrap">' + svg + '</div>' + tables;
   }
 
+  // W-C "Your supports, repriced" — driven by the SAME state.pinned as the
+  // explorer above it (see computeRepriced for the method). Rendered under
+  // the explorer chart; empty when nothing is pinned.
+  function renderRepriced(ndis) {
+    var data = computeRepriced(ndis);
+    if (!data) return '';
+
+    var maxAbs = data.rows.reduce(function (m, r) { return Math.max(m, Math.abs(r.pct)); }, 0) || 1;
+    var rowsHtml = data.rows.map(function (r) {
+      var cls = r.pct >= 0 ? 'is-increase' : 'is-decrease';
+      var barPct = Math.max(4, Math.round((Math.abs(r.pct) / maxAbs) * 100));
+      var bin = rampBin(r.pct, maxAbs);
+      return (
+        '<div class="repriced-row">' +
+          '<div class="repriced-row-head">' +
+            '<span class="repriced-row-name">' + esc(truncate(r.name, 44)) + '</span>' +
+            '<span class="sign-chip ' + cls + '">' + fmtPctSigned(r.pct) + '</span>' +
+          '</div>' +
+          '<div class="repriced-row-bar-wrap"><span class="repriced-row-bar" style="width:' + barPct + '%;background:' + RAMP_HEX[bin] + '"></span></div>' +
+          '<div class="repriced-row-meta">' + esc(r.fromFy) + ' → ' + esc(r.toFy) +
+            (r.cpiPct !== null ? ' · CPI over this span ' + fmtPctSigned(r.cpiPct) : ' · CPI unavailable for this span') +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    var cpiHeadline = data.cpiBasket !== null
+      ? ' <span class="repriced-headline-sep" aria-hidden="true">·</span> <span class="repriced-headline-label">CPI over the same spans</span> <span class="repriced-headline-value tnum">' + fmtPctSigned(data.cpiBasket) + '</span>'
+      : '';
+    var cpiFootnoteBit = data.cpiBasket === null
+      ? ' A CPI comparison is not available for these items’ spans.'
+      : (data.cpiCoverage < data.rows.length ? ' CPI is resolved for ' + data.cpiCoverage + ' of ' + data.rows.length + ' pinned items.' : '');
+
+    return (
+      '<h3 class="subsection-heading">Your supports, repriced</h3>' +
+      '<p class="repriced-headline"><span class="repriced-headline-label">Your items</span> <span class="repriced-headline-value tnum">' + fmtPctSigned(data.basket) + '</span>' + cpiHeadline + '</p>' +
+      '<div class="repriced-rows">' + rowsHtml + '</div>' +
+      '<p class="widget-footnote">Method: equal-weighted mean of each pinned item’s own percentage change, from its first priced release to its last priced release; CPI is compared over each item’s own span and averaged the same way.' + cpiFootnoteBit + '</p>'
+    );
+  }
+
   function renderExplorer(ndis) {
     var section = document.getElementById('sectionExplorer');
     if (!ndis || !ndis.items || !ndis.items.length || !ndis.releases || !ndis.releases.length) {
@@ -836,7 +1114,7 @@
       : '';
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionExplorerHeading"><span class="section-number" aria-hidden="true">&sect; 2</span> Price history explorer</h2>' +
+      '<h2 class="section-heading" id="sectionExplorerHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 2</span> Price history explorer</h2>' +
       '<p class="section-intro">Search a support item to trace its national price across every catalogue release. Pin up to ' + MAX_PINNED + ' items to compare.</p>' +
       '<label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span>' +
         '<span class="visually-hidden">Search support items by number, name or category</span>' +
@@ -845,7 +1123,8 @@
       renderPinnedRow(ndis) +
       '<p class="pinned-hint" id="pinnedHint" aria-live="polite">' + esc(state.pinHint) + '</p>' +
       cpiRow +
-      renderExplorerChart(ndis)
+      renderExplorerChart(ndis) +
+      renderRepriced(ndis)
     );
 
     var searchInput = document.getElementById('explorerSearch');
@@ -888,7 +1167,82 @@
   }
 
   /* ------------------------------------------------------------------------
-     9. Section 3 — The law
+     9. Section 3 — Where the money goes (W-B)
+     ------------------------------------------------------------------------ */
+
+  // W-B "Where the money goes" — an editorial board built from
+  // context.payments_by_category, one row per category, sorted by payments
+  // descending. Each row joins to the latest catalogue diff's per-category
+  // median % change via catalogue_category (an explicit hand-checked mapping
+  // upstream, in the data pipeline — never fuzzy-matched here). A row prints
+  // "—" for the joined column when catalogue_category is null (no mapping
+  // exists) or the mapped category has no changed items in the latest diff
+  // (nothing to report a median over).
+  function renderMoney(ndis) {
+    var section = document.getElementById('sectionMoney');
+    var pbc = ndis && ndis.context && ndis.context.payments_by_category;
+    if (!pbc || !pbc.rows || !pbc.rows.length) { if (section) section.hidden = true; return; }
+    section.hidden = false;
+
+    var latestDiff = ndis.diffs && ndis.diffs.length ? ndis.diffs[ndis.diffs.length - 1] : null;
+    var catMedian = {};
+    if (latestDiff) {
+      (latestDiff.by_category || []).forEach(function (c) {
+        if (c.changed > 0) catMedian[c.category] = c.median_pct;
+      });
+    }
+
+    var rows = pbc.rows.slice().sort(function (a, b) { return b.payments - a.payments; });
+    // Max over positive payments only — a stray negative row (a source-data
+    // reconciliation bucket) must never shrink or invert the scale.
+    var maxPayments = rows.reduce(function (m, r) { return r.payments > 0 ? Math.max(m, r.payments) : m; }, 0) || 1;
+
+    var bodyRows = rows.map(function (r) {
+      // Bars are a magnitude encoding — a negative payments figure (seen in
+      // source reconciliation rows) gets a zero-width bar, never a negative
+      // or NaN width; the actual signed value is still printed beside it.
+      var barPct = r.payments > 0 ? Math.max(1, Math.round((r.payments / maxPayments) * 100)) : 0;
+      var bin = r.payments > 0 ? rampBin(r.payments, maxPayments) : 0;
+      var hasMedian = r.catalogue_category !== null && r.catalogue_category !== undefined &&
+        Object.prototype.hasOwnProperty.call(catMedian, r.catalogue_category);
+      var medianCls = hasMedian ? (catMedian[r.catalogue_category] >= 0 ? 'is-increase' : 'is-decrease') : '';
+      var negativeNote = r.payments < 0 ? ' <span class="money-row-note">(reported as negative in the source data)</span>' : '';
+      return (
+        '<tr>' +
+          '<td>' + esc(r.category) + negativeNote + '</td>' +
+          '<td class="tnum col-money">' +
+            '<div class="money-bar-row"><span class="money-bar-track"><span class="money-bar" style="width:' + barPct + '%;background:' + RAMP_HEX[bin] + '"></span></span>' +
+              '<span class="money-bar-value">' + fmtCompactCurrency(r.payments) + '</span></div>' +
+          '</td>' +
+          '<td class="tnum">' + (r.participants !== undefined && r.participants !== null ? fmtNum(r.participants) : '—') + '</td>' +
+          '<td class="tnum">' + (r.avg_per_participant !== undefined && r.avg_per_participant !== null ? fmtDollars(r.avg_per_participant) : '—') + '</td>' +
+          '<td class="tnum">' + (hasMedian ? '<span class="sign-chip ' + medianCls + '">' + fmtPctSigned(catMedian[r.catalogue_category]) + '</span>' : '<span class="dot-strip-empty">—</span>') + '</td>' +
+        '</tr>'
+      );
+    }).join('');
+
+    var windowText = pbc.window ? esc(pbc.window) : '12 months';
+    var asOfText = pbc.as_of_quarter ? ' — report date ' + esc(fmtDateLong(pbc.as_of_quarter)) : '';
+
+    setHtml(section,
+      '<h2 class="section-heading" id="sectionMoneyHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 3</span> Where the money goes</h2>' +
+      '<p class="section-intro">Total NDIS payments to providers by support category — ' + windowText + asOfText + '.</p>' +
+      '<div class="table-scroll"><table class="diff-table money-table">' +
+        '<thead><tr>' +
+          '<th>Category</th>' +
+          '<th class="tnum col-money">Payments</th>' +
+          '<th class="tnum">Participants</th>' +
+          '<th class="tnum">Avg / participant</th>' +
+          '<th class="tnum" title="Median price change, latest catalogue release">Catalogue Δ</th>' +
+        '</tr></thead>' +
+        '<tbody>' + bodyRows + '</tbody>' +
+      '</table></div>' +
+      '<p class="widget-footnote">Payments, participants and averages are the latest report date in the NDIA payments dataset (' + esc(pbc.source ? pbc.source.title : 'NDIS payments data') + '). "Catalogue Δ" joins each row to the current Support Catalogue diff by category, via an explicit mapping maintained in the data pipeline — rows show “—” where no mapping exists or the mapped category has no priced changes this release.</p>'
+    );
+  }
+
+  /* ------------------------------------------------------------------------
+     10. Section 4 — The law
      ------------------------------------------------------------------------ */
 
   function renderLawCallout(ndis) {
@@ -973,7 +1327,7 @@
     }).join('');
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionLawHeading"><span class="section-number" aria-hidden="true">&sect; 3</span> The law</h2>' +
+      '<h2 class="section-heading" id="sectionLawHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 4</span> The law</h2>' +
       '<p class="section-intro">The NDIS Act, its compilations, related legislative instruments registered in the last three years, and bills before parliament.</p>' +
       renderLawCallout(ndis) +
       (entries.length ? '<div class="timeline">' + timelineHtml + '</div>' : '<p class="section-intro">No timeline entries in range.</p>')
@@ -981,8 +1335,30 @@
   }
 
   /* ------------------------------------------------------------------------
-     10. Section 4 — Updates
+     11. Section 5 — Updates
      ------------------------------------------------------------------------ */
+
+  // Single feed brief — shared verbatim between the full Updates view (§5)
+  // and the Overview's "five most recent" teaser, so type chips/badges never
+  // drift between the two (docs/ndis-spec.md Overview bullet: "reuse type
+  // chips/badges").
+  function renderFeedItem(it) {
+    var meta = TYPE_META[it.type] || { emoji: '•', label: it.type };
+    var badge = it.verified === 'auto'
+      ? '<span class="badge-auto">via official feed</span>'
+      : '<span class="badge-verified">✓ source-checked</span>';
+    return (
+      '<div class="feed-item">' +
+        '<div class="feed-item-head">' +
+          '<span class="feed-item-date tnum">' + esc(fmtDateLong(it.date)) + '</span>' +
+          '<span class="type-chip"><span aria-hidden="true">' + meta.emoji + '</span> ' + esc(meta.label) + '</span>' +
+        '</div>' +
+        '<div class="feed-item-title"><a href="' + esc(it.source.url) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a></div>' +
+        (it.summary ? '<p class="feed-item-summary">' + esc(it.summary) + '</p>' : '') +
+        '<div class="feed-item-meta"><span>' + esc(it.source.publisher) + '</span>' + badge + '</div>' +
+      '</div>'
+    );
+  }
 
   function renderUpdates(ndis) {
     var section = document.getElementById('sectionUpdates');
@@ -1020,26 +1396,12 @@
             '<span class="feed-month-rule" aria-hidden="true"></span>' +
           '</h3>';
         }
-        var meta = TYPE_META[it.type] || { emoji: '•', label: it.type };
-        var badge = it.verified === 'auto'
-          ? '<span class="badge-auto">via official feed</span>'
-          : '<span class="badge-verified">✓ source-checked</span>';
-        itemsHtml += (
-          '<div class="feed-item">' +
-            '<div class="feed-item-head">' +
-              '<span class="feed-item-date tnum">' + esc(fmtDateLong(it.date)) + '</span>' +
-              '<span class="type-chip"><span aria-hidden="true">' + meta.emoji + '</span> ' + esc(meta.label) + '</span>' +
-            '</div>' +
-            '<div class="feed-item-title"><a href="' + esc(it.source.url) + '" target="_blank" rel="noopener">' + esc(it.title) + '</a></div>' +
-            (it.summary ? '<p class="feed-item-summary">' + esc(it.summary) + '</p>' : '') +
-            '<div class="feed-item-meta"><span>' + esc(it.source.publisher) + '</span>' + badge + '</div>' +
-          '</div>'
-        );
+        itemsHtml += renderFeedItem(it);
       });
     }
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionUpdatesHeading"><span class="section-number" aria-hidden="true">&sect; 4</span> Updates</h2>' +
+      '<h2 class="section-heading" id="sectionUpdatesHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 5</span> Updates</h2>' +
       '<p class="section-intro">Bills, hearings, reports, audits and announcements affecting the scheme, newest first.</p>' +
       '<div class="feed-filter-row" role="group" aria-label="Filter updates by type" id="feedFilterRow">' + filterChips + '</div>' +
       itemsHtml
@@ -1057,7 +1419,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     11. Section 5 — Scheme in numbers
+     12. Section 6 — Scheme in numbers
      ------------------------------------------------------------------------ */
 
   function renderNumbersChart(byQuarter) {
@@ -1091,12 +1453,96 @@
     );
   }
 
-  function renderNumbers(ndis) {
-    var section = document.getElementById('sectionNumbers');
-    if (!ndis || !ndis.context) { if (section) section.hidden = true; return; }
-    section.hidden = false;
-    var ctx = ndis.context;
+  // W-D "Your electorate" — a distribution strip (2px ink ticks on a
+  // hairline axis, one tick per division) with the selected division marked
+  // by a labelled dot. `selected` may be null (no selection yet).
+  function renderElectorateStrip(sortedRows, selected) {
+    var W = 640, H = 64, padX = 16;
+    var needs = sortedRows.map(function (r) { return r.need; });
+    var minN = Math.min.apply(null, needs), maxN = Math.max.apply(null, needs);
+    var span = (maxN - minN) || 1;
+    function x(v) { return padX + ((v - minN) / span) * (W - 2 * padX); }
 
+    var ticks = sortedRows.map(function (r) {
+      if (selected && r.name === selected.name) return '';
+      return '<line class="electorate-tick" x1="' + x(r.need).toFixed(1) + '" x2="' + x(r.need).toFixed(1) + '" y1="26" y2="42"></line>';
+    }).join('');
+
+    var selSvg = '';
+    var ariaLabel = 'Distribution of core-activity need across all ' + sortedRows.length + ' federal electoral divisions';
+    if (selected) {
+      var sx = x(selected.need);
+      ariaLabel += ', with ' + selected.name + ' highlighted';
+      selSvg =
+        '<line class="electorate-tick is-selected" x1="' + sx.toFixed(1) + '" x2="' + sx.toFixed(1) + '" y1="18" y2="50"></line>' +
+        '<circle class="electorate-dot" cx="' + sx.toFixed(1) + '" cy="34" r="4.5"></circle>' +
+        '<text class="electorate-dot-label" x="' + sx.toFixed(1) + '" y="13" text-anchor="middle">' + esc(selected.name) + '</text>';
+    }
+
+    return (
+      '<svg class="electorate-strip-svg" width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(ariaLabel) + '">' +
+        '<line class="electorate-axis" x1="' + padX + '" y1="34" x2="' + (W - padX) + '" y2="34"></line>' +
+        '<text class="electorate-axis-label" x="' + padX + '" y="60" text-anchor="start">Least need</text>' +
+        '<text class="electorate-axis-label" x="' + (W - padX) + '" y="60" text-anchor="end">Most need</text>' +
+        ticks + selSvg +
+      '</svg>'
+    );
+  }
+
+  function renderElectorateWidget(ndis) {
+    var electorates = ndis.context && ndis.context.electorates;
+    if (!electorates || !electorates.rows || !electorates.rows.length) return '';
+
+    var sorted = electorates.rows.slice().sort(function (a, b) { return b.need - a.need; });
+    var n = sorted.length;
+
+    var selectedRow = null, rank = null;
+    if (state.electorate) {
+      var q = state.electorate.trim().toLowerCase();
+      for (var i = 0; i < sorted.length; i++) {
+        if (sorted[i].name.toLowerCase() === q) { selectedRow = sorted[i]; rank = i + 1; break; }
+      }
+    }
+
+    var options = sorted.map(function (r) { return '<option value="' + esc(r.name) + '">'; }).join('');
+
+    var resultHtml = selectedRow
+      ? (
+          '<div class="electorate-result">' +
+            '<p class="electorate-result-figure"><span class="tnum">' + fmtNum(selectedRow.need) + '</span> people need help with core activities in <strong>' + esc(selectedRow.name) + '</strong></p>' +
+            '<p class="electorate-result-rank">Rank <span class="tnum">' + rank + '</span> of <span class="tnum">' + n + '</span> divisions (highest need first)</p>' +
+          '</div>'
+        )
+      : '<p class="electorate-result-empty">Type a division name, or choose one from the list, to see its need count and rank.</p>';
+
+    var tableRows = sorted.map(function (r, i) {
+      var isSel = selectedRow && r.name === selectedRow.name;
+      return '<tr' + (isSel ? ' class="is-selected-row"' : '') + '><td class="tnum">' + (i + 1) + '</td><td>' + esc(r.name) + '</td><td class="tnum">' + fmtNum(r.need) + '</td></tr>';
+    }).join('');
+
+    return (
+      '<h3 class="subsection-heading">Your electorate</h3>' +
+      '<div class="electorate-field-row">' +
+        '<label for="electorateInput">Federal electoral division</label>' +
+        '<input type="text" id="electorateInput" list="electorateList" placeholder="Start typing a division…" autocomplete="off" value="' + esc(state.electorate) + '">' +
+        '<datalist id="electorateList">' + options + '</datalist>' +
+      '</div>' +
+      '<div id="electorateResult" aria-live="polite">' + resultHtml + '</div>' +
+      '<div class="electorate-strip-wrap">' + renderElectorateStrip(sorted, selectedRow) + '</div>' +
+      '<p class="electorate-caveat">“' + esc(electorates.label) + '” counts a Census, self-reported need for everyday assistance — it is not an NDIS eligibility test, a participant count, or a funding measure, and NDIS caseloads are not distributed the same way across divisions.</p>' +
+      '<details class="electorate-table-details"><summary>All ' + n + ' divisions, ranked by need</summary>' +
+        '<table class="electorate-table"><thead><tr><th class="tnum">Rank</th><th>Division</th><th class="tnum">Need</th></tr></thead>' +
+          '<tbody>' + tableRows + '</tbody>' +
+        '</table>' +
+      '</details>'
+    );
+  }
+
+  // "At a glance" stat tiles — payments (12-mo), participants, census
+  // core-activity need, SDAC prevalence. Shared verbatim between §6 "Scheme
+  // in numbers" and the Overview folio strip (docs/ndis-spec.md: "reuse the
+  // existing tile markup/labels EXACTLY, including the 12-month labelling").
+  function buildContextTiles(ctx) {
     var tiles = [];
     if (ctx.quarterly && ctx.quarterly.by_quarter && ctx.quarterly.by_quarter.length) {
       var latest = ctx.quarterly.by_quarter[ctx.quarterly.by_quarter.length - 1];
@@ -1113,61 +1559,279 @@
       var sd = ctx.abs.sdac;
       tiles.push('<div class="stat-tile"><div class="stat-tile-label">' + esc(sd.label) + '</div><div class="stat-tile-value tnum">' + sd.value_pct + '%</div><div class="stat-tile-sub">Released ' + esc(fmtDateLong(sd.released)) + '</div></div>');
     }
+    return tiles;
+  }
 
+  // "Next data" list — shared verbatim between §6 and the Overview.
+  function buildNextDataList(nextData) {
+    if (!nextData || !nextData.length) return '';
+    var items = nextData.map(function (nd) {
+      return (
+        '<li class="next-data-item"><span>' + esc(nd.label) + (nd.note ? '<span class="next-data-note">' + esc(nd.note) + '</span>' : '') + '</span>' +
+          '<span class="next-data-due tnum">' + esc(nd.due) + '</span></li>'
+      );
+    }).join('');
+    return '<h3 class="subsection-heading">Next data</h3><ul class="next-data-list">' + items + '</ul>';
+  }
+
+  function renderNumbers(ndis) {
+    var section = document.getElementById('sectionNumbers');
+    if (!ndis || !ndis.context) { if (section) section.hidden = true; return; }
+    section.hidden = false;
+    var ctx = ndis.context;
+
+    var tiles = buildContextTiles(ctx);
     var chart = ctx.quarterly ? renderNumbersChart(ctx.quarterly.by_quarter) : '';
-
-    var nextDataHtml = '';
-    if (ctx.next_data && ctx.next_data.length) {
-      var items = ctx.next_data.map(function (nd) {
-        return (
-          '<li class="next-data-item"><span>' + esc(nd.label) + (nd.note ? '<span class="next-data-note">' + esc(nd.note) + '</span>' : '') + '</span>' +
-            '<span class="next-data-due tnum">' + esc(nd.due) + '</span></li>'
-        );
-      }).join('');
-      nextDataHtml = '<h3 class="subsection-heading">Next data</h3><ul class="next-data-list">' + items + '</ul>';
-    }
+    var nextDataHtml = buildNextDataList(ctx.next_data);
+    var electorateWidget = renderElectorateWidget(ndis);
 
     setHtml(section,
-      '<h2 class="section-heading" id="sectionNumbersHeading"><span class="section-number" aria-hidden="true">&sect; 5</span> Scheme in numbers</h2>' +
+      '<h2 class="section-heading" id="sectionNumbersHeading" tabindex="-1"><span class="section-number" aria-hidden="true">&sect; 6</span> Scheme in numbers</h2>' +
       (tiles.length ? '<div class="stat-tiles">' + tiles.join('') + '</div>' : '') +
       chart +
+      electorateWidget +
       nextDataHtml
+    );
+
+    var electInput = document.getElementById('electorateInput');
+    if (electInput) {
+      electInput.addEventListener('input', function () {
+        state.electorate = electInput.value;
+        renderNumbers(NDIS);
+        var v = document.getElementById('electorateInput');
+        if (v) { v.focus(); v.setSelectionRange(v.value.length, v.value.length); }
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     13. Overview view (front page)
+     ------------------------------------------------------------------------ */
+
+  // One-line, data-derived description for each other view's "Inside" row —
+  // every number comes from window.NDIS at render time, nothing hardcoded.
+  function describeView(key, ndis) {
+    if (key === 'pricing') {
+      if (!ndis.diffs || !ndis.diffs.length) return null;
+      var d = ndis.diffs[ndis.diffs.length - 1];
+      var rel = (ndis.releases || []).filter(function (r) { return r.release === d.to; })[0];
+      var fy = rel ? rel.fy : d.to;
+      return d.changed.length.toLocaleString('en-AU') + ' items changed in the ' + fy + ' release';
+    }
+    if (key === 'explorer') {
+      if (!ndis.items || !ndis.items.length || !ndis.releases || !ndis.releases.length) return null;
+      return ndis.items.length.toLocaleString('en-AU') + ' priced support items across ' + ndis.releases.length + ' catalogue releases';
+    }
+    if (key === 'money') {
+      var pbc = ndis.context && ndis.context.payments_by_category;
+      if (!pbc || !pbc.rows || !pbc.rows.length) return null;
+      var total = pbc.rows.reduce(function (s, r) { return s + (r.payments > 0 ? r.payments : 0); }, 0);
+      return fmtCompactCurrency(total) + ' in provider payments across ' + pbc.rows.length + ' categories';
+    }
+    if (key === 'law') {
+      if (!ndis.law || !ndis.law.titles) return null;
+      return ndis.law.titles.length.toLocaleString('en-AU') + ' NDIS titles on the register';
+    }
+    if (key === 'updates') {
+      if (!ndis.feed || !ndis.feed.items || !ndis.feed.items.length) return null;
+      return ndis.feed.items.length.toLocaleString('en-AU') + ' updates tracked, latest ' + fmtDateLong(ndis.feed.items[0].date);
+    }
+    if (key === 'numbers') {
+      var ctx = ndis.context;
+      if (!ctx) return null;
+      var bits = [];
+      if (ctx.abs && ctx.abs.census_assistance) bits.push(fmtNum(ctx.abs.census_assistance.value) + ' need core-activity help (Census 2021)');
+      if (ctx.abs && ctx.abs.sdac) bits.push(ctx.abs.sdac.value_pct + '% SDAC prevalence');
+      if (!bits.length) return null;
+      return bits.join(' · ');
+    }
+    return null;
+  }
+
+  // Front page: lead stat (rendered separately, outside this section — see
+  // renderAll), "at a glance" folio strip, "In brief" movers, five most
+  // recent updates, next-data list, and the "Inside" index of other views.
+  // Every module reuses the exact renderer/helper its home view uses.
+  function renderOverview(ndis) {
+    var section = document.getElementById('viewOverview');
+    if (!section) return;
+    section.hidden = false;
+
+    var tiles = ndis.context ? buildContextTiles(ndis.context) : [];
+    var atGlance = tiles.length ? '<div class="stat-tiles">' + tiles.join('') + '</div>' : '';
+
+    var latestDiff = ndis.diffs && ndis.diffs.length ? ndis.diffs[ndis.diffs.length - 1] : null;
+    var moversInner = latestDiff ? renderMovers(latestDiff, ndis) : '';
+    var moversHtml = moversInner ? '<div class="overview-movers">' + moversInner + '</div>' : '';
+
+    var feedItems = (ndis.feed && ndis.feed.items) ? ndis.feed.items.slice(0, 5) : [];
+    var feedHtml = feedItems.length
+      ? '<div class="overview-feed"><h3 class="subsection-heading">Latest updates</h3>' +
+          feedItems.map(renderFeedItem).join('') +
+          '<p class="overview-feed-more"><a href="#/updates">All updates →</a></p>' +
+        '</div>'
+      : '';
+
+    var nextDataHtml = ndis.context ? buildNextDataList(ndis.context.next_data) : '';
+
+    var insideRows = VIEW_META.filter(function (v) { return v.key !== 'overview'; }).map(function (v) {
+      var hasData = v.hasData(ndis);
+      var desc = hasData ? describeView(v.key, ndis) : null;
+      var muted = (!hasData || !desc) ? ' is-muted' : '';
+      var numberBit = v.number ? '<span class="masthead-index-num" aria-hidden="true">&sect; ' + v.number + '</span> ' : '';
+      return (
+        '<li class="inside-index-item">' +
+          '<a class="inside-index-link' + muted + '" href="' + esc(v.hash) + '">' + numberBit + esc(v.navLabel) + '</a>' +
+          '<span class="inside-index-sep" aria-hidden="true"> — </span>' +
+          '<span class="inside-index-desc">' + esc(desc || 'No data yet.') + '</span>' +
+        '</li>'
+      );
+    }).join('');
+    var insideHtml = '<div class="overview-inside"><h3 class="subsection-heading">Inside</h3><ul class="inside-index-list">' + insideRows + '</ul></div>';
+
+    setHtml(section,
+      '<h2 class="section-heading" id="viewOverviewHeading" tabindex="-1">Overview</h2>' +
+      atGlance +
+      moversHtml +
+      feedHtml +
+      nextDataHtml +
+      insideHtml
     );
   }
 
   /* ------------------------------------------------------------------------
-     12. Top-level render orchestration + init
+     14. View routing (hash-based) + top-level render orchestration + init
      ------------------------------------------------------------------------ */
 
+  // docs/ndis-spec.md "Views & routing" table. `render`/`hasData` are only
+  // set for the six data-backed views — Overview is handled separately
+  // (renderOverview always runs; it degrades module-by-module on its own).
+  var VIEW_META = [
+    { key: 'overview', hash: '#/', navLabel: 'Overview', heading: 'Overview', number: null,
+      sectionId: 'viewOverview', headingId: 'viewOverviewHeading' },
+    { key: 'pricing', hash: '#/pricing', navLabel: 'Pricing', heading: 'What changed in pricing', number: 1,
+      sectionId: 'sectionPricing', headingId: 'sectionPricingHeading',
+      hasData: function (ndis) { return !!(ndis.diffs && ndis.diffs.length); },
+      render: renderPricing, noDataHint: 'a catalogue diff between two releases' },
+    { key: 'explorer', hash: '#/explorer', navLabel: 'Explorer', heading: 'Price history explorer', number: 2,
+      sectionId: 'sectionExplorer', headingId: 'sectionExplorerHeading',
+      hasData: function (ndis) { return !!(ndis.items && ndis.items.length && ndis.releases && ndis.releases.length); },
+      render: renderExplorer, noDataHint: 'priced items and catalogue releases' },
+    { key: 'money', hash: '#/money', navLabel: 'Money', heading: 'Where the money goes', number: 3,
+      sectionId: 'sectionMoney', headingId: 'sectionMoneyHeading',
+      hasData: function (ndis) { return !!(ndis.context && ndis.context.payments_by_category && ndis.context.payments_by_category.rows && ndis.context.payments_by_category.rows.length); },
+      render: renderMoney, noDataHint: 'payments-by-category data' },
+    { key: 'law', hash: '#/law', navLabel: 'Law', heading: 'The law', number: 4,
+      sectionId: 'sectionLaw', headingId: 'sectionLawHeading',
+      hasData: function (ndis) { return !!ndis.law; },
+      render: renderLaw, noDataHint: 'law timeline data' },
+    { key: 'updates', hash: '#/updates', navLabel: 'Updates', heading: 'Updates', number: 5,
+      sectionId: 'sectionUpdates', headingId: 'sectionUpdatesHeading',
+      hasData: function (ndis) { return !!(ndis.feed && ndis.feed.items && ndis.feed.items.length); },
+      render: renderUpdates, noDataHint: 'the curated updates feed' },
+    { key: 'numbers', hash: '#/numbers', navLabel: 'Numbers', heading: 'Scheme in numbers', number: 6,
+      sectionId: 'sectionNumbers', headingId: 'sectionNumbersHeading',
+      hasData: function (ndis) { return !!ndis.context; },
+      render: renderNumbers, noDataHint: 'scheme context data' }
+  ];
+
+  function viewMetaByKey(key) {
+    for (var i = 0; i < VIEW_META.length; i++) { if (VIEW_META[i].key === key) return VIEW_META[i]; }
+    return null;
+  }
+
+  // Empty state for a view whose data block is absent (docs/ndis-spec.md:
+  // "a view with no data shows the styled empty-state note instead of blank
+  // scaffolding"). Still renders the heading (with tabindex) so focus has a
+  // target after a view switch even when there is nothing else to show.
+  function renderViewEmptyState(view) {
+    var section = document.getElementById(view.sectionId);
+    if (!section) return;
+    section.hidden = false;
+    var numberBit = view.number ? '<span class="section-number" aria-hidden="true">&sect; ' + view.number + '</span> ' : '';
+    setHtml(section,
+      '<h2 class="section-heading" id="' + view.headingId + '" tabindex="-1">' + numberBit + esc(view.heading) + '</h2>' +
+      '<div class="no-data-note"><p><strong>No data yet.</strong> This view needs ' + esc(view.noDataHint) +
+        ', which hasn’t been ingested yet.</p></div>'
+    );
+  }
+
+  // Hash → view key. Empty, "#/", or anything not in VIEW_META falls back
+  // to Overview (docs/ndis-spec.md: "empty/unknown → 'overview'").
+  function parseHash() {
+    var h = window.location.hash || '';
+    for (var i = 0; i < VIEW_META.length; i++) { if (VIEW_META[i].hash === h) return VIEW_META[i].key; }
+    return 'overview';
+  }
+
+  function applyDocumentTitle() {
+    var meta = viewMetaByKey(state.view) || VIEW_META[0];
+    document.title = NDIS ? ('Common Ground — NDIS Tracker · ' + meta.navLabel) : 'Common Ground — NDIS Tracker';
+  }
+
+  // renderAll renders ONLY the active view's section (plus masthead/lead
+  // stat/footer); every other section is emptied and hidden so switching
+  // views never leaves stale markup or duplicate ids behind.
   function renderAll() {
     renderHeader(NDIS);
-    renderLeadStat(NDIS);
     var noDataEl = document.getElementById('noDataNote');
+
     if (!NDIS) {
+      renderLeadStat(null);
       setHtml(noDataEl, '<div class="no-data-note"><p><strong>No data.</strong> Run the NDIS data pipeline to generate <code>data/ndis/ndis.json</code>, then rebuild with <code>node scripts/build.mjs</code>.</p></div>');
-      ['sectionPricing', 'sectionExplorer', 'sectionLaw', 'sectionUpdates', 'sectionNumbers'].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el) el.hidden = true;
+      VIEW_META.forEach(function (v) {
+        var el = document.getElementById(v.sectionId);
+        if (el) { el.hidden = true; setHtml(el, ''); }
       });
       renderFooter(null);
-      renderMastheadIndex(null);
+      renderNav(null);
       return;
     }
+
     setHtml(noDataEl, '');
-    renderPricing(NDIS);
-    renderExplorer(NDIS);
-    renderLaw(NDIS);
-    renderUpdates(NDIS);
-    renderNumbers(NDIS);
+    renderLeadStat(state.view === 'overview' ? NDIS : null);
+
+    VIEW_META.forEach(function (v) {
+      var section = document.getElementById(v.sectionId);
+      if (!section) return;
+      if (v.key !== state.view) {
+        section.hidden = true;
+        setHtml(section, '');
+        return;
+      }
+      if (v.key === 'overview') {
+        renderOverview(NDIS);
+      } else if (v.hasData(NDIS)) {
+        v.render(NDIS);
+      } else {
+        renderViewEmptyState(v);
+      }
+    });
+
     renderFooter(NDIS);
-    renderMastheadIndex(NDIS);
+    renderNav(NDIS);
+  }
+
+  // hashchange (and the equivalent for real <a href="#/...">  nav clicks,
+  // browser back/forward, and manual URL edits) all funnel through here.
+  function onHashChange() {
+    state.view = parseHash();
+    renderAll();
+    applyDocumentTitle();
+    window.scrollTo(0, 0);
+    var meta = viewMetaByKey(state.view);
+    var heading = meta ? document.getElementById(meta.headingId) : null;
+    if (heading && heading.focus) heading.focus({ preventScroll: true });
   }
 
   function init() {
     NDIS = window.NDIS || null;
     state.diffRelease = (NDIS && NDIS.diffs && NDIS.diffs.length) ? NDIS.diffs[NDIS.diffs.length - 1].to : null;
+    state.view = parseHash();
     initTheme();
     renderAll();
+    applyDocumentTitle();
+    window.addEventListener('hashchange', onHashChange);
   }
 
   if (document.readyState === 'loading') {

@@ -3,8 +3,11 @@
    Self-contained: tokens copied verbatim from web/style.css so this page has
    no build-time dependency on the main stylesheet.
    Section map: 1 reset  2 tokens/theme  3 type  4 layout shell  5 masthead
-   6 section heading  7 stat tiles  8 pricing/diff  9 explorer  10 law timeline
-   11 updates feed  12 scheme numbers  13 footer  14 motion  15 responsive
+   (incl. view nav / #mastheadIndex)  6 section heading  7 stat tiles
+   8 pricing/diff  9 explorer  10 law timeline  11 updates feed
+   12 scheme numbers  13 footer  14 motion
+   15 consolidation widgets (W-A/W-B/W-C/W-D)  16 overview view (front page)
+   17 responsive
    ========================================================================== */
 
 /* 1. Reset ---------------------------------------------------------------- */
@@ -274,6 +277,19 @@ body {
   border-bottom-color: var(--ink-muted);
 }
 .masthead-index-sep { color: var(--ink-muted); }
+.masthead-index-num { color: var(--ink-muted); }
+
+/* View nav: the active view is in ink with an underline + aria-current, a
+   view with no data yet is muted with a title="No data yet" (still a real,
+   clickable link — the destination view carries its own empty state). */
+.masthead-index a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--ink);
+}
+.masthead-index a.is-muted { color: var(--ink-muted); }
+.masthead-index a.is-muted:hover,
+.masthead-index a.is-muted:focus-visible { color: var(--ink-secondary); }
 
 /* Lead-story band — one editorial pull-stat computed from window.NDIS. */
 .lead-stat {
@@ -286,7 +302,9 @@ body {
   border-left: 3px solid var(--ink);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .lead-stat { animation: row-rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) 650ms both; }
+  /* Replays whenever .lead-stat is unhidden — on first load, and again each
+     time the Overview view is entered (it's the only view that shows it). */
+  .lead-stat { animation: row-rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both; }
 }
 .lead-stat-figure {
   font-family: var(--font-serif);
@@ -322,14 +340,13 @@ body {
   margin-bottom: 3rem;
 }
 @media (prefers-reduced-motion: no-preference) {
+  /* Only one .ndis-section (the active view) is ever unhidden at a time —
+     toggling the `hidden` attribute resets the animation, so this same
+     short rise/fade plays on first load AND on every subsequent view
+     switch, not just a staggered one-off page-load sequence. */
   .ndis-section {
-    animation: row-rise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: row-rise 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
-  .ndis-section:nth-of-type(1) { animation-delay: 760ms; }
-  .ndis-section:nth-of-type(2) { animation-delay: 820ms; }
-  .ndis-section:nth-of-type(3) { animation-delay: 880ms; }
-  .ndis-section:nth-of-type(4) { animation-delay: 940ms; }
-  .ndis-section:nth-of-type(5) { animation-delay: 1000ms; }
 }
 @keyframes row-rise {
   from { opacity: 0; transform: translateY(6px); }
@@ -1134,7 +1151,236 @@ body {
   text-underline-offset: 4px;
 }
 
-/* 15. Responsive ------------------------------------------------------------------------- */
+/* 15. Consolidation widgets (W-A/W-B/W-C/W-D) ------------------------------------------- */
+/* Shared: the small muted method note every widget ends with. */
+.widget-footnote {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 46rem;
+}
+
+/* --- W-A "The real price of care" (inside §1) --------------------------- */
+.rpc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0 0 1rem;
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+}
+.rpc-legend-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.rpc-legend-item .dash-swatch { width: 1.4rem; height: 0; border-top-width: 2px; border-top-color: var(--ink); }
+.rpc-legend-item .dash-swatch.dash-2 { border-top-style: dashed; border-top-color: var(--ink-muted); }
+
+.rpc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.rpc-cell {
+  background: var(--surface);
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.rpc-cell-category {
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.rpc-cell-chart { line-height: 0; }
+.rpc-chart-svg { display: block; width: 100%; height: auto; }
+.rpc-chart-item { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.rpc-chart-cpi { fill: none; stroke: var(--ink-muted); stroke-width: 1.75; stroke-dasharray: 4 3; }
+.rpc-chart-baseline { stroke: var(--hairline); stroke-width: 1; stroke-dasharray: 2 2; }
+.rpc-cell-figures { display: flex; gap: 1.1rem; }
+.rpc-figure { display: flex; flex-direction: column; gap: 0.3rem; }
+.rpc-figure-label {
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-muted);
+}
+.rpc-cell-meta { font-size: 0.74rem; color: var(--ink-muted); }
+
+/* --- W-C "Your supports, repriced" (inside §2) --------------------------- */
+.repriced-headline {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  margin: 0 0 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.repriced-headline-label { color: var(--ink-secondary); font-style: italic; }
+.repriced-headline-value { font-weight: 700; }
+.repriced-headline-sep { color: var(--ink-muted); margin: 0 0.15rem; }
+.repriced-rows { display: flex; flex-direction: column; gap: 0.9rem; }
+.repriced-row { padding-bottom: 0.9rem; border-bottom: 1px solid var(--hairline); }
+.repriced-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.repriced-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+.repriced-row-name { font-size: 0.86rem; font-weight: 600; }
+.repriced-row-bar-wrap {
+  height: 4px;
+  background: var(--hairline);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+.repriced-row-bar { display: block; height: 100%; border-radius: 2px; }
+.repriced-row-meta { font-size: 0.76rem; color: var(--ink-muted); }
+
+/* --- W-B "Where the money goes" (§3) -------------------------------------- */
+.col-money { min-width: 13rem; }
+.money-bar-row { display: flex; align-items: center; gap: 0.6rem; }
+/* Fixed-width track so the fill's inline % width is relative to a constant
+   (never the flex row itself) — a 100%-payments row must not crowd out the
+   printed value beside it. Same idea as .mag-bar's rem-capped width above. */
+.money-bar-track {
+  display: block;
+  width: 6rem;
+  flex: 0 0 auto;
+  height: 8px;
+  background: var(--hairline);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.money-bar-track .money-bar { display: block; height: 100%; }
+.money-bar-value { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: left; }
+.money-row-note { color: var(--ink-muted); font-size: 0.76rem; font-style: italic; }
+
+/* --- W-D "Your electorate" (inside §6) ------------------------------------ */
+.electorate-field-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.electorate-field-row label { font-size: 0.85rem; color: var(--ink-secondary); }
+.electorate-field-row input {
+  flex: 1 1 16rem;
+  max-width: 22rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: 0.9rem;
+}
+.electorate-field-row input:focus-visible { border-color: var(--ink-muted); box-shadow: 0 0 0 3px var(--ring); }
+.electorate-result { min-height: 3.4rem; margin-bottom: 0.5rem; }
+.electorate-result-figure { font-size: 1rem; margin-bottom: 0.15rem; }
+.electorate-result-rank { font-size: 0.85rem; color: var(--ink-secondary); }
+.electorate-result-empty { font-size: 0.85rem; color: var(--ink-muted); }
+.electorate-strip-wrap {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 0.9rem;
+}
+.electorate-strip-svg { display: block; min-width: 26rem; }
+.electorate-axis { stroke: var(--hairline); stroke-width: 1; }
+.electorate-axis-label { font-family: var(--font-sans); font-size: 10px; fill: var(--ink-muted); }
+.electorate-tick { stroke: var(--ink-muted); stroke-width: 2; opacity: 0.55; }
+.electorate-tick.is-selected { stroke: var(--ink); stroke-width: 2; opacity: 1; }
+.electorate-dot { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }
+.electorate-dot-label { font-family: var(--font-sans); font-size: 10px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
+.electorate-caveat {
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+  max-width: 46rem;
+  margin-bottom: 1rem;
+}
+.electorate-table-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  list-style: none;
+}
+.electorate-table-details summary::-webkit-details-marker { display: none; }
+.electorate-table-details summary::before { content: "▸ "; color: var(--ink-muted); }
+.electorate-table-details[open] summary::before { content: "▾ "; }
+.electorate-table {
+  width: 100%;
+  max-width: 30rem;
+  border-collapse: collapse;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+}
+.electorate-table th {
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--ink);
+  text-align: left;
+}
+.electorate-table th.tnum, .electorate-table td.tnum { text-align: right; }
+.electorate-table th, .electorate-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--hairline); }
+.electorate-table tbody tr.is-selected-row { background: var(--surface); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) {
+  .electorate-table tbody tr { transition: background-color 150ms ease; }
+}
+.electorate-table tbody tr:hover { background: var(--surface); }
+
+/* 16. Overview view (front page) -------------------------------------------------------- */
+.view-overview .section-heading { margin-bottom: 1.25rem; }
+.overview-movers { margin: 0.25rem 0 2rem; max-width: 26rem; }
+.overview-feed { margin: 0 0 2rem; }
+.overview-feed-more {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+.overview-feed-more a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.overview-inside { margin-top: 2rem; }
+.inside-index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.5rem;
+}
+.inside-index-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.inside-index-item:last-child { border-bottom: 0; }
+.inside-index-link {
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.inside-index-link.is-muted { color: var(--ink-muted); font-weight: 400; }
+.inside-index-sep { color: var(--ink-muted); }
+.inside-index-desc { color: var(--ink-secondary); font-size: 0.9rem; }
+
+/* 17. Responsive ------------------------------------------------------------------------- */
 @media (max-width: 800px) {
   .stat-tiles { row-gap: 1rem; }
   .stat-tile { flex-basis: 45%; border-left: 0; padding-left: 0; }
@@ -1146,4 +1392,9 @@ body {
   .timeline-year-group { grid-template-columns: 2.75rem 1fr; column-gap: 0.65rem; }
   .timeline-year { font-size: 1.3rem; }
   .lead-stat-figure { font-size: clamp(3rem, 16vw, 4rem); }
+  .rpc-grid { grid-template-columns: 1fr; }
+  .electorate-field-row input { max-width: none; flex-basis: 100%; }
+  .overview-movers { max-width: none; }
+  .inside-index-item { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+  .inside-index-sep { display: none; }
 }

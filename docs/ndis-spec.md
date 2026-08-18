@@ -217,6 +217,40 @@ paraphrases the source only. `id` = `<date>-<slug>`, unique.
 `quarterly.by_quarter`: `RprtDt` groups from the payments CSV (sum `PmtAmt`; participants from
 the participant-numbers CSV national row). Every block is **optional** — if a fetch is blocked
 or a shape changes, omit the block; the page must render without any given block (see §page).
+
+Two further optional context blocks (added for the consolidation widgets):
+
+```json
+"payments_by_category": {
+  "as_of_quarter": "2026-06-30",
+  "window": "12 months to report date",
+  "source": { "title": "NDIS payments data, NDIA dataresearch", "url": "https://dataresearch.ndis.gov.au/datasets", "publisher": "NDIA" },
+  "rows": [
+    { "category": "Assistance with Daily Life", "catalogue_category": "Assistance with Daily Life (Includes SIL)",
+      "payments": 0, "participants": 0, "avg_per_participant": 0 }
+  ]
+},
+"electorates": {
+  "label": "People needing help with core activities by federal electorate, Census 2021",
+  "source": { "title": "ABS Data API, C21_G18_CED", "url": "https://data.api.abs.gov.au/rest/data/C21_G18_CED/...", "publisher": "ABS" },
+  "national_total": 0,
+  "rows": [ { "name": "Banks", "code": "101", "need": 0 } ]
+}
+```
+
+`payments_by_category.rows`: one row per `SuppCatNm` in the latest report date of the payments
+CSV (ALL categories, not top-10): `payments` = sum of `PmtAmt`, `participants` = the
+`CountofParticipants` on the category-level `SuppItemNmbr === 'ALL'` row if the CSV provides
+one (else omit the field), `avg_per_participant` = payments/participants rounded to 0 dp (omit
+when participants absent). `catalogue_category` maps the payments dataset's category name to the
+Support Catalogue's category label via an EXPLICIT hand-checked mapping table in the script —
+no fuzzy matching; unmapped rows carry `"catalogue_category": null` and the page prints "—" for
+catalogue-joined columns. `electorates.rows`: one row per Commonwealth Electoral Division from
+`C21_G18_CED` (the same measure/filters as the national census_assistance query; verify the
+dimension meaning against the DSD before trusting values — if the national sum of rows differs
+from `census_assistance.value` by more than 1%, omit the whole block rather than publish
+mismatched numbers). `code` is the CED code as returned by the API. No share/percentage fields
+unless a same-source denominator is verified.
 CPI overlay: if `fetch-context` can retrieve quarterly All groups CPI (Australia) from the ABS
 API, add `"cpi": { "series": [ { "quarter": "2026-06-30", "index": 0 } ], "source": {...} }`;
 if the dataflow can't be found/verified, omit — never guess numbers.
@@ -301,8 +335,36 @@ Masthead: "Common Ground" small overline linking to `./index.html`, then serif m
 "NDIS Tracker", subtitle, "Sources: NDIA, Federal Register of Legislation, Parliament of
 Australia, ABS · as of {meta.as_of}", theme toggle (same behaviour/storage key as main app).
 
-Sections, in order (each a serif-headed section with hairline rules; each renders only if its
-data block exists — no empty scaffolding):
+### Views & routing (the page is NOT one long scroll)
+
+Client-side views inside the single self-contained file, routed on `location.hash`:
+
+| hash | view | content |
+|---|---|---|
+| `#/` (or empty/unknown) | **Overview** | front page: lead stat band, "at a glance" folio strip (payments/participants/census/SDAC), the "In brief" movers module, the five most recent updates with an "All updates →" link, next-data list, and an "Inside" index of the other views with one-line descriptions |
+| `#/pricing` | Pricing | the diff section + W-A real-price grid + release colophon |
+| `#/explorer` | Explorer | price history explorer + W-C basket module |
+| `#/money` | Money | W-B where-the-money-goes board |
+| `#/law` | Law | law timeline + callout |
+| `#/updates` | Updates | full feed with type filters |
+| `#/numbers` | Numbers | scheme in numbers + W-D electorate lookup |
+
+Rules: the masthead contents row IS the view nav (same newspaper-index styling; active view
+in ink with underline + `aria-current="page"`, others muted; wraps on narrow screens). Routing
+via `hashchange` + initial load; unknown hash → Overview; on view change scroll to top, set
+`document.title = "Common Ground — NDIS Tracker · {View}"`, move focus to the view's `<h2>`
+(`tabindex="-1"`) without a visible ring unless keyboard-focused. Only the active view is
+rendered (others stay empty); per-view render state (pinned items, filters, picker) lives in
+the existing `state` object so switching views and returning preserves it. Overview modules
+reuse the same render helpers as their home views (front-page teasers duplicating inside
+content is correct newspaper behaviour). The lead stat band appears ONLY on Overview. Browser
+back/forward must work (hash history). Deep links land on the right view. The old
+`#section...` anchor ids may be dropped; the masthead index replaces in-page jumping.
+
+Views render only when their data exists — a view with no data shows the styled empty-state
+note instead of blank scaffolding; its nav entry stays visible but muted with "no data yet".
+
+Sections/views (each serif-headed with hairline rules):
 
 1. **What changed in pricing** — latest diff (last entry of `diffs`): four stat tiles (items
    changed / added / retired / median change %), then a per-category table (category, n changed,
@@ -332,6 +394,40 @@ data block exists — no empty scaffolding):
    participants; ABS census-assistance count; SDAC prevalence — labelled exactly per
    context.json, never conflated), a small bar/line for `by_quarter` payments, and a
    "Next data" list from `next_data` (label + due date).
+
+### Consolidation widgets (all data-driven, all optional, methods printed)
+
+Every widget: renders only when its data exists; broadsheet styling (hairline modules, serif
+figures, no dashboard cards); charts get printed values + a table twin or printed list;
+each widget ends with a small muted **method footnote** stating exactly what was computed.
+No valence colour (neutral washes + blue ramp only). All maths in `web/ndis.js` from
+`window.NDIS` — never precomputed prose, never hardcoded numbers.
+
+- **W-A "The real price of care"** (inside §1, after the diff table): small-multiples grid,
+  one cell per support category present in ≥2 releases. Per category: for items priced in both
+  the category's earliest and latest release, take each item's price ratio (last/first);
+  category nominal change = median ratio − 1. CPI change over the same date span =
+  cpi(last effective)/cpi(first effective) − 1 (nearest quarter). Real-terms change =
+  (1+nominal)/(1+cpi) − 1. Cell: category name, a two-line mini index chart (item median vs
+  CPI, dash-distinguished, ink-coloured), printed nominal and real figures. Sort by real
+  change ascending (worst first). Footnote states the median-ratio method and item counts.
+  Skip categories with <5 qualifying items (footnote says so).
+- **W-C "Your supports, repriced"** (inside §2, under the explorer chart): uses the SAME
+  pinned items as the explorer. For each pinned item, % change from the first to the last
+  release it is priced in; basket figure = equal-weighted mean of those changes, with the
+  matching CPI change over each item's own span averaged the same way. Output: one serif
+  figure pair ("Your items: +2.1% · CPI over the same spans: +11.2%") + per-item contribution
+  rows (name, span, item %, thin magnitude bar). Footnote: equal-weighted, per-item spans.
+- **W-B "Where the money goes"** (new §, after §2): editorial board from
+  `context.payments_by_category`: one row per category sorted by payments desc — payments
+  (compact $), participants, avg per participant, and (joined via `catalogue_category`) the
+  latest diff's `median_pct` for that category ("—" when unmapped). Proportional payments bar
+  per row (ramp blue, printed value). Header states the 12-month window explicitly.
+- **W-D "Your electorate"** (inside §5): `<input>` with `<datalist>` of electorate names →
+  selected: printed need count, rank among all divisions, and a distribution strip (all ~150
+  divisions as 2px ink ticks on a hairline axis, selected division a labelled dot). Note under
+  it: Census "core activity need for assistance" definition caveat + NDIS ≠ census-need. The
+  full sorted list is available under a `<details>` table twin.
 
 Footer: methodology (how the diff is computed, geography normalisation note, "state price
 spread shown as a band"), disclaimer, source list, link back to the main app, and the same

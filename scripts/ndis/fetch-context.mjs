@@ -15,11 +15,59 @@ const PAYMENTS_CSV_URL = 'https://dataresearch.ndis.gov.au/media/4577/download?a
 const PARTICIPANTS_CSV_URL = 'https://dataresearch.ndis.gov.au/media/4573/download?attachment';
 const QUARTERLY_DATASETS_URL = 'https://dataresearch.ndis.gov.au/datasets';
 
+// C21_G18 dimension order (confirmed against the dataflow's DSD,
+// /rest/datastructure/ABS/C21_G18_SA2 and .../C21_G18_CED, which both expose
+// the same six key positions): SEXP.AGEP.ASSNP.REGION.REGION_TYPE.STATE.
+// SEXP=3 -> "Persons" (CL_C21_SEXP01), AGEP=_T -> "Total" (all ages,
+// CL_C21_AGEP01), ASSNP=1 -> "Has need for assistance" (CL_C21_ASSNP01) — this
+// is the "persons needing assistance" measure. REGION_TYPE=AUS + REGION blank
+// (wildcard) selects the single national total row (CL_REGION_TYPE).
 const CENSUS_ASSISTANCE_URL =
   'https://data.api.abs.gov.au/rest/data/C21_G18_SA2/3._T.1..AUS.?startPeriod=2021&format=csv';
+
+// Same dataflow shape as above but REGION_TYPE=CED + REGION blank returns one
+// row per Commonwealth Electoral Division (same SEXP=3/AGEP=_T/ASSNP=1 -
+// "persons with need for assistance" - measure as the national query, so the
+// two are directly comparable/cross-checkable). REGION carries only the CED
+// *code* (e.g. "101") — names are resolved via the CL_CED_2021 codelist below,
+// never guessed.
+const ELECTORATES_DATA_URL =
+  'https://data.api.abs.gov.au/rest/data/C21_G18_CED/3._T.1..CED.?startPeriod=2021&format=csv';
+const CED_CODELIST_URL = 'https://data.api.abs.gov.au/rest/codelist/ABS/CL_CED_2021';
+
 // MEASURE=1 (Index numbers), INDEX=10001 (All groups CPI), TSEST=10 (Original),
 // REGION=50 (Australia), FREQ=Q — verified against the ABS Data API's CPI DSD.
 const CPI_URL = 'https://data.api.abs.gov.au/rest/data/CPI/1.10001.10.50.Q?startPeriod=2015-Q1&format=csv';
+
+// Explicit, hand-checked mapping from the payments CSV's SuppCatNm to the
+// Support Catalogue's category label (checked against
+// data/ndis/snapshots/2026-27-v1.1.json's 15 category names). Only pairs with
+// a unique, unambiguous textual correspondence (an exact match, or a
+// distinctive phrase/word that appears in exactly one catalogue category) are
+// mapped; docs/ndis-spec.md forbids fuzzy matching, so anything with zero or
+// multiple plausible catalogue candidates is left unmapped (null) rather than
+// guessed. Left unmapped, and why:
+//   - "CB Choice and Control" / "Daily Activities" / "CB Daily Activity" /
+//     "CB Home Living" / "CB Employment": no catalogue category shares a
+//     distinctive phrase with these (or the closest candidate isn't a unique
+//     textual match — e.g. "Daily" appears in both "Assistance with Daily
+//     Life" and "Improved Daily Living Skills").
+//   - "CB Social Community and Civic Participation" / "Social Community and
+//     Civic Participation": two catalogue categories ("Assistance with
+//     Social, Economic and Community Participation" and "Increased Social
+//     and Community Participation") are both textually plausible.
+//   - "Missing": a data-quality bucket in the source CSV, not a support
+//     category.
+const SUPP_CAT_TO_CATALOGUE_CATEGORY = {
+  'Assistive Technology': 'Assistive Technology',
+  'CB Health and Wellbeing': 'Improved Health and Wellbeing',
+  'CB Lifelong Learning': 'Improved Learning',
+  'CB Relationships': 'Improved Relationships',
+  Consumables: 'Consumables',
+  'Home Modifications': 'Home Modifications and Specialised Disability Accommodation (SDA)',
+  'Support Coordination': 'Support Coordination',
+  Transport: 'Transport',
+};
 
 // Hardcoded per docs/ndis-spec.md §Verified source facts — SDAC is a static
 // file-only release (no API), last published 2024-07-04 for the 2022
@@ -97,27 +145,71 @@ function computePaymentsByQuarter(rows) {
   return totalsByQuarter;
 }
 
-function computeTopCategories(rows, latestRprtDt, quarterTotal) {
+// Category-level rows: SuppItemNmbr/RsdsInStateCd/NDISDsbltyGrpNm/NDIAAgeBnd
+// all 'ALL' but SuppCatNm not 'ALL' — one row per SuppCatNm in the current
+// data (occasionally more than one if a category ever spans >1 SuppClass;
+// payments are summed either way, participants only kept when exactly one
+// row supplies a usable count, matching the spec's "the category-level ...
+// row" singular).
+function collectCategoryTotals(rows, latestRprtDt) {
   const isCategoryRow = (r) =>
     r.RprtDt === latestRprtDt && r.SuppItemNmbr === 'ALL' && r.RsdsInStateCd === 'ALL' &&
     r.NDISDsbltyGrpNm === 'ALL' && r.NDIAAgeBnd === 'ALL' && r.SuppCatNm && r.SuppCatNm !== 'ALL';
 
-  const totalsByCategory = new Map();
+  const totals = new Map();
   for (const r of rows) {
     if (!isCategoryRow(r)) continue;
-    const amt = parseMoney(r.PmtAmt);
-    totalsByCategory.set(r.SuppCatNm, (totalsByCategory.get(r.SuppCatNm) ?? 0) + amt);
+    const entry = totals.get(r.SuppCatNm) ?? { payments: 0, participantValues: [] };
+    entry.payments += parseMoney(r.PmtAmt);
+    const p = String(r.CountofParticipants ?? '').replace(/,/g, '').trim();
+    if (/^-?\d+$/.test(p)) entry.participantValues.push(parseInt(p, 10));
+    totals.set(r.SuppCatNm, entry);
   }
+  return totals;
+}
 
-  return [...totalsByCategory.entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+function computeTopCategories(rows, latestRprtDt, quarterTotal) {
+  const totals = collectCategoryTotals(rows, latestRprtDt);
+  return [...totals.entries()]
+    .sort((a, b) => b[1].payments - a[1].payments || a[0].localeCompare(b[0]))
     .slice(0, 10)
-    .map(([category, payments]) => ({
+    .map(([category, entry]) => ({
       category,
-      payments: round2(payments),
+      payments: round2(entry.payments),
       // fraction 0-1 (not a percentage — Builder B multiplies by 100 to display)
-      share: quarterTotal > 0 ? Math.round((payments / quarterTotal) * 10000) / 10000 : 0,
+      share: quarterTotal > 0 ? Math.round((entry.payments / quarterTotal) * 10000) / 10000 : 0,
     }));
+}
+
+// ALL SuppCatNm values (not just top-10), with catalogue_category joined via
+// the explicit mapping table and participants/avg_per_participant when the
+// CSV supplies a usable participant count for that category.
+function computePaymentsByCategory(rows, latestRprtDt) {
+  const totals = collectCategoryTotals(rows, latestRprtDt);
+  return [...totals.entries()]
+    .sort((a, b) => b[1].payments - a[1].payments || a[0].localeCompare(b[0]))
+    .map(([category, entry]) => {
+      const row = {
+        category,
+        catalogue_category: SUPP_CAT_TO_CATALOGUE_CATEGORY[category] ?? null,
+        payments: round2(entry.payments),
+      };
+      if (entry.participantValues.length === 1) {
+        const [participants] = entry.participantValues;
+        row.participants = participants;
+        if (participants > 0) row.avg_per_participant = Math.round(entry.payments / participants);
+      }
+      return row;
+    });
+}
+
+function findLatestReportDate(paymentsRows) {
+  const paymentsByQuarter = computePaymentsByQuarter(paymentsRows);
+  const quarters = [...paymentsByQuarter.keys()].sort();
+  if (quarters.length === 0) throw new Error('no quarters found in payments CSV — check row filters');
+  const latestQuarter = quarters[quarters.length - 1];
+  const latestRprtDtRaw = paymentsRows.find((r) => parseNdisReportDate(r.RprtDt) === latestQuarter).RprtDt;
+  return { latestQuarter, latestRprtDtRaw, paymentsByQuarter, quarters };
 }
 
 function computeParticipantsByQuarter(rows) {
@@ -130,17 +222,12 @@ function computeParticipantsByQuarter(rows) {
   return byQuarter;
 }
 
-async function fetchQuarterly() {
-  const [paymentsRows, participantsRows] = await Promise.all([
-    fetchCsvObjects(PAYMENTS_CSV_URL),
-    fetchCsvObjects(PARTICIPANTS_CSV_URL),
-  ]);
-
-  const paymentsByQuarter = computePaymentsByQuarter(paymentsRows);
+// Builds the quarterly block from already-fetched CSV rows (the payments CSV
+// is fetched once in main() and reused here and by buildPaymentsByCategory —
+// see §fetch rules / spec note on not re-downloading the ~14 MB file).
+function buildQuarterly(paymentsRows, participantsRows) {
+  const { latestQuarter, latestRprtDtRaw, paymentsByQuarter, quarters } = findLatestReportDate(paymentsRows);
   const participantsByQuarter = computeParticipantsByQuarter(participantsRows);
-
-  const quarters = [...paymentsByQuarter.keys()].sort();
-  if (quarters.length === 0) throw new Error('no quarters found in payments CSV — check row filters');
 
   const by_quarter = quarters.map((quarter) => ({
     quarter,
@@ -148,8 +235,6 @@ async function fetchQuarterly() {
     participants: participantsByQuarter.get(quarter) ?? null,
   }));
 
-  const latestQuarter = quarters[quarters.length - 1];
-  const latestRprtDtRaw = paymentsRows.find((r) => parseNdisReportDate(r.RprtDt) === latestQuarter).RprtDt;
   const top_categories_latest = computeTopCategories(paymentsRows, latestRprtDtRaw, paymentsByQuarter.get(latestQuarter));
 
   return {
@@ -164,6 +249,19 @@ async function fetchQuarterly() {
   };
 }
 
+// ALL SuppCatNm categories (not just top-10) for the latest report date,
+// reusing the same paymentsRows buildQuarterly already has in memory.
+function buildPaymentsByCategory(paymentsRows) {
+  const { latestQuarter, latestRprtDtRaw } = findLatestReportDate(paymentsRows);
+  const rows = computePaymentsByCategory(paymentsRows, latestRprtDtRaw);
+  return {
+    as_of_quarter: latestQuarter,
+    window: '12 months to report date',
+    source: { title: 'NDIS payments data, NDIA dataresearch', url: QUARTERLY_DATASETS_URL, publisher: 'NDIA' },
+    rows,
+  };
+}
+
 async function fetchCensusAssistance() {
   const rows = await fetchCsvObjects(CENSUS_ASSISTANCE_URL);
   const row = rows[0];
@@ -172,6 +270,63 @@ async function fetchCensusAssistance() {
     label: 'People needing help with core activities, Census 2021',
     value: parseInt(String(row.OBS_VALUE).replace(/,/g, ''), 10),
     source: { title: 'ABS Data API, C21_G18_SA2 (national total)', url: CENSUS_ASSISTANCE_URL, publisher: 'ABS' },
+  };
+}
+
+// Electorate rows for the C21_G18_CED dataflow (see the ELECTORATES_DATA_URL
+// comment for the confirmed dimension meanings). Electorate names are
+// resolved from the CL_CED_2021 codelist (data only carries the numeric CED
+// code) — never guessed from the code. Enforces the spec's cross-check: the
+// sum of all electorate rows must be within 1% of the already-fetched
+// national census_assistance.value, or the whole block is omitted.
+async function fetchElectorates(censusAssistanceValue) {
+  if (typeof censusAssistanceValue !== 'number' || !Number.isFinite(censusAssistanceValue)) {
+    throw new Error('census_assistance.value unavailable this run — cannot cross-check');
+  }
+
+  const [dataRows, codelistRes] = await Promise.all([
+    fetchCsvObjects(ELECTORATES_DATA_URL),
+    politeFetch(CED_CODELIST_URL, { headers: { Accept: 'application/vnd.sdmx.structure+json' } }),
+  ]);
+  if (!codelistRes.ok) throw new Error(`${CED_CODELIST_URL} responded ${codelistRes.status} ${codelistRes.statusText}`);
+  const codelistJson = await codelistRes.json();
+  const codes = codelistJson?.data?.codelists?.[0]?.codes ?? [];
+  if (codes.length === 0) throw new Error('CL_CED_2021 codelist returned no codes');
+  const nameByCode = new Map(codes.map((c) => [c.id, c.names?.en ?? c.name]));
+
+  const rows = dataRows.map((r) => {
+    const code = r.REGION;
+    const name = nameByCode.get(code);
+    if (!name) throw new Error(`no electorate name found for CED code "${code}" in CL_CED_2021`);
+    const need = parseInt(String(r.OBS_VALUE).replace(/,/g, ''), 10);
+    if (!Number.isFinite(need)) throw new Error(`unparseable OBS_VALUE "${r.OBS_VALUE}" for CED code "${code}" (${name})`);
+    return { name, code, need };
+  });
+  if (rows.length === 0) throw new Error('electorates query returned no rows');
+
+  const dupNames = [...new Set(rows.map((r) => r.name).filter((n, i, arr) => arr.indexOf(n) !== i))];
+  if (dupNames.length > 0) throw new Error(`duplicate electorate names resolved from codelist: ${dupNames.join(', ')}`);
+
+  rows.sort((a, b) => a.name.localeCompare(b.name));
+
+  const sumOfRows = rows.reduce((acc, r) => acc + r.need, 0);
+  const deltaPct = (Math.abs(sumOfRows - censusAssistanceValue) / censusAssistanceValue) * 100;
+  console.log(
+    `electorates cross-check: sum of ${rows.length} CED rows = ${sumOfRows}, national census_assistance.value = ` +
+      `${censusAssistanceValue} (Δ ${deltaPct.toFixed(3)}%)`
+  );
+  if (deltaPct > 1) {
+    throw new Error(
+      `sum of electorate rows (${sumOfRows}) differs from census_assistance.value (${censusAssistanceValue}) by ` +
+        `${deltaPct.toFixed(2)}% (>1%) — refusing to publish mismatched numbers`
+    );
+  }
+
+  return {
+    label: 'People needing help with core activities by federal electorate, Census 2021',
+    source: { title: 'ABS Data API, C21_G18_CED', url: ELECTORATES_DATA_URL, publisher: 'ABS' },
+    national_total: censusAssistanceValue,
+    rows,
   };
 }
 
@@ -197,17 +352,35 @@ async function fetchCpi() {
 async function main() {
   const context = { generated: todayIso() };
 
+  // Fetch the ~14 MB payments CSV once and reuse it for both the quarterly
+  // aggregation and the all-categories breakdown — never fetch it twice.
+  let paymentsRows = null;
   try {
-    context.quarterly = await fetchQuarterly();
-    // The payments CSV is a rolling window that only carries recent report
-    // dates — keep quarters recorded by earlier runs so the series accumulates
-    // across scheduled refreshes (fresh data wins on a collision).
-    const prior = readJson(OUTPUT_PATH, null)?.quarterly?.by_quarter ?? [];
-    const merged = new Map(prior.map((q) => [q.quarter, q]));
-    for (const q of context.quarterly.by_quarter) merged.set(q.quarter, q);
-    context.quarterly.by_quarter = [...merged.values()].sort((a, b) => a.quarter.localeCompare(b.quarter));
+    paymentsRows = await fetchCsvObjects(PAYMENTS_CSV_URL);
   } catch (err) {
-    console.warn(`warning: quarterly block omitted — ${err.message}`);
+    console.warn(`warning: quarterly + payments_by_category omitted — payments CSV fetch failed: ${err.message}`);
+  }
+
+  if (paymentsRows) {
+    try {
+      const participantsRows = await fetchCsvObjects(PARTICIPANTS_CSV_URL);
+      context.quarterly = buildQuarterly(paymentsRows, participantsRows);
+      // The payments CSV is a rolling window that only carries recent report
+      // dates — keep quarters recorded by earlier runs so the series accumulates
+      // across scheduled refreshes (fresh data wins on a collision).
+      const prior = readJson(OUTPUT_PATH, null)?.quarterly?.by_quarter ?? [];
+      const merged = new Map(prior.map((q) => [q.quarter, q]));
+      for (const q of context.quarterly.by_quarter) merged.set(q.quarter, q);
+      context.quarterly.by_quarter = [...merged.values()].sort((a, b) => a.quarter.localeCompare(b.quarter));
+    } catch (err) {
+      console.warn(`warning: quarterly block omitted — ${err.message}`);
+    }
+
+    try {
+      context.payments_by_category = buildPaymentsByCategory(paymentsRows);
+    } catch (err) {
+      console.warn(`warning: payments_by_category omitted — ${err.message}`);
+    }
   }
 
   const abs = {};
@@ -218,6 +391,16 @@ async function main() {
   }
   abs.sdac = SDAC;
   if (Object.keys(abs).length > 0) context.abs = abs;
+
+  try {
+    if (context.abs?.census_assistance) {
+      context.electorates = await fetchElectorates(context.abs.census_assistance.value);
+    } else {
+      console.warn('warning: electorates omitted — abs.census_assistance unavailable this run to cross-check against');
+    }
+  } catch (err) {
+    console.warn(`warning: electorates omitted — ${err.message}`);
+  }
 
   try {
     context.cpi = await fetchCpi();
@@ -251,7 +434,9 @@ async function main() {
   writeJson(OUTPUT_PATH, context);
   console.log(
     `wrote ${OUTPUT_PATH} (quarterly: ${context.quarterly ? 'yes' : 'omitted'}, ` +
+      `payments_by_category: ${context.payments_by_category ? `${context.payments_by_category.rows.length} categories` : 'omitted'}, ` +
       `abs.census_assistance: ${context.abs?.census_assistance ? 'yes' : 'omitted'}, ` +
+      `electorates: ${context.electorates ? `${context.electorates.rows.length} rows` : 'omitted'}, ` +
       `cpi: ${context.cpi ? `${context.cpi.series.length} quarters` : 'omitted'})`
   );
 }

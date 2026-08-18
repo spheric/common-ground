@@ -240,6 +240,58 @@ function validateContext(context, checks) {
     }
   }
 
+  if (context.payments_by_category) {
+    const pbc = context.payments_by_category;
+    if (!isIsoDate(pbc.as_of_quarter)) issues.push('context.json payments_by_category: as_of_quarter is not an ISO date');
+    if (!isHttpUrl(pbc.source?.url)) issues.push('context.json payments_by_category: source.url is not http(s)');
+
+    const categoryNames = (pbc.rows ?? []).map((r) => r.category);
+    for (const dup of findDuplicates(categoryNames)) {
+      issues.push(`context.json payments_by_category: duplicate category "${dup}"`);
+    }
+
+    for (const row of pbc.rows ?? []) {
+      const label = `context.json payments_by_category.rows[${row.category}]`;
+      if (!row.category) issues.push(`${label}: category missing`);
+      if (row.catalogue_category !== null && typeof row.catalogue_category !== 'string') {
+        issues.push(`${label}: catalogue_category must be a string or null`);
+      }
+      if (typeof row.payments !== 'number' || !Number.isFinite(row.payments)) {
+        issues.push(`${label}: payments is not a finite number`);
+      }
+      if (row.participants !== undefined && !Number.isInteger(row.participants)) {
+        issues.push(`${label}: participants must be an integer when present`);
+      }
+      if (
+        row.avg_per_participant !== undefined &&
+        (typeof row.avg_per_participant !== 'number' || !Number.isFinite(row.avg_per_participant))
+      ) {
+        issues.push(`${label}: avg_per_participant must be a finite number when present`);
+      }
+    }
+  }
+
+  if (context.electorates) {
+    const e = context.electorates;
+    if (!e.label) issues.push('context.json electorates: label missing');
+    if (!isHttpUrl(e.source?.url)) issues.push('context.json electorates: source.url is not http(s)');
+    if (typeof e.national_total !== 'number' || !Number.isFinite(e.national_total)) {
+      issues.push('context.json electorates: national_total missing or not a finite number');
+    }
+
+    const electorateNames = (e.rows ?? []).map((r) => r.name);
+    for (const dup of findDuplicates(electorateNames)) {
+      issues.push(`context.json electorates: duplicate electorate name "${dup}"`);
+    }
+
+    for (const row of e.rows ?? []) {
+      const label = `context.json electorates.rows[${row.name}]`;
+      if (!row.name) issues.push(`${label}: name missing`);
+      if (!row.code) issues.push(`${label}: code missing`);
+      if (typeof row.need !== 'number' || !Number.isFinite(row.need)) issues.push(`${label}: need is not a finite number`);
+    }
+  }
+
   check(checks, 'context.json: shape', issues);
 }
 

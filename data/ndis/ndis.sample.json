@@ -7,9 +7,27 @@
     "current_release": "2026-27-v1.1"
   },
   "releases": [
-    { "release": "2024-25-v1.0", "fy": "2024-25", "effective": "2024-07-01", "source_url": "https://www.ndis.gov.au/media/7512/download?attachment", "item_count": 8 },
-    { "release": "2025-26-v1.0", "fy": "2025-26", "effective": "2025-07-01", "source_url": "https://www.ndis.gov.au/media/7803/download?attachment", "item_count": 9 },
-    { "release": "2026-27-v1.1", "fy": "2026-27", "effective": "2026-07-01", "source_url": "https://www.ndis.gov.au/media/8038/download?attachment", "item_count": 9 }
+    {
+      "release": "2024-25-v1.0",
+      "fy": "2024-25",
+      "effective": "2024-07-01",
+      "source_url": "https://www.ndis.gov.au/media/7512/download?attachment",
+      "item_count": 18
+    },
+    {
+      "release": "2025-26-v1.0",
+      "fy": "2025-26",
+      "effective": "2025-07-01",
+      "source_url": "https://www.ndis.gov.au/media/7803/download?attachment",
+      "item_count": 19
+    },
+    {
+      "release": "2026-27-v1.1",
+      "fy": "2026-27",
+      "effective": "2026-07-01",
+      "source_url": "https://www.ndis.gov.au/media/8038/download?attachment",
+      "item_count": 19
+    }
   ],
   "items": [
     {
@@ -17,8 +35,16 @@
       "name": "Assistance With Self-Care Activities - Standard - Weekday Daytime",
       "category": "Assistance with Daily Life",
       "unit": "H",
-      "history": [65.09, 67.03, 70.23],
-      "spread": [null, null, null],
+      "history": [
+        65.09,
+        67.03,
+        70.23
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -26,8 +52,19 @@
       "name": "Assistance With Self-Care Activities - Standard - Public Holiday",
       "category": "Assistance with Daily Life",
       "unit": "H",
-      "history": [90.82, 93.99, null],
-      "spread": [null, [92.50, 96.10], null],
+      "history": [
+        90.82,
+        93.99,
+        null
+      ],
+      "spread": [
+        null,
+        [
+          92.5,
+          96.1
+        ],
+        null
+      ],
       "active": false
     },
     {
@@ -35,8 +72,19 @@
       "name": "Assistance With Self-Care Activities - Standard - Saturday",
       "category": "Assistance with Daily Life",
       "unit": "H",
-      "history": [95.09, 97.62, 102.83],
-      "spread": [[93.00, 97.50], null, null],
+      "history": [
+        95.09,
+        97.62,
+        102.83
+      ],
+      "spread": [
+        [
+          93.0,
+          97.5
+        ],
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -44,8 +92,22 @@
       "name": "Assistance With Self-Care Activities - High Intensity - Weekday Daytime",
       "category": "Assistance with Daily Life",
       "unit": "H",
-      "history": [74.29, 76.51, 80.62],
-      "spread": [[72.00, 77.00], [75.00, 78.50], null],
+      "history": [
+        74.29,
+        76.51,
+        80.62
+      ],
+      "spread": [
+        [
+          72.0,
+          77.0
+        ],
+        [
+          75.0,
+          78.5
+        ],
+        null
+      ],
       "active": true
     },
     {
@@ -53,8 +115,16 @@
       "name": "Transport - Provider Travel - Level 2",
       "category": "Transport",
       "unit": "Km",
-      "history": [1.00, 1.03, 1.09],
-      "spread": [null, null, null],
+      "history": [
+        1.0,
+        1.03,
+        1.09
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -62,8 +132,16 @@
       "name": "Continence Products",
       "category": "Consumables",
       "unit": "Each",
-      "history": [15.20, 15.65, 16.10],
-      "spread": [null, null, null],
+      "history": [
+        15.2,
+        15.65,
+        16.1
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -71,8 +149,22 @@
       "name": "Household Tasks",
       "category": "Assistance with Daily Life",
       "unit": "H",
-      "history": [59.81, 61.06, 64.31],
-      "spread": [[58.50, 61.20], [60.10, 62.80], null],
+      "history": [
+        59.81,
+        61.06,
+        64.31
+      ],
+      "spread": [
+        [
+          58.5,
+          61.2
+        ],
+        [
+          60.1,
+          62.8
+        ],
+        null
+      ],
       "active": true
     },
     {
@@ -80,8 +172,16 @@
       "name": "Wheelchair - Manual - Standard",
       "category": "Assistive Technology",
       "unit": "Each",
-      "history": [null, null, 2450.00],
-      "spread": [null, null, null],
+      "history": [
+        null,
+        null,
+        2450.0
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -89,8 +189,16 @@
       "name": "Physiotherapy",
       "category": "Improved Daily Living Skills",
       "unit": "H",
-      "history": [193.99, 199.13, 209.02],
-      "spread": [null, null, null],
+      "history": [
+        193.99,
+        199.13,
+        209.02
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     },
     {
@@ -98,8 +206,186 @@
       "name": "Exercise Physiology",
       "category": "Improved Daily Living Skills",
       "unit": "H",
-      "history": [null, 153.10, 160.86],
-      "spread": [null, null, null],
+      "history": [
+        null,
+        153.1,
+        160.86
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "01_014_0107_1_1",
+      "name": "Assistance With Self-Care Activities - Standard - Weeknight",
+      "category": "Assistance with Daily Life",
+      "unit": "H",
+      "history": [
+        70.03,
+        72.15,
+        76.02
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "01_015_0107_1_1",
+      "name": "Assistance With Self-Care Activities - Standard - Sunday",
+      "category": "Assistance with Daily Life",
+      "unit": "H",
+      "history": [
+        100.14,
+        103.14,
+        108.71
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "02_004_0128_1_1",
+      "name": "Transport - Provider Travel - Level 1",
+      "category": "Transport",
+      "unit": "Km",
+      "history": [
+        0.85,
+        0.88,
+        0.93
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "02_005_0128_1_1",
+      "name": "Transport - Provider Travel - Level 3",
+      "category": "Transport",
+      "unit": "Km",
+      "history": [
+        1.2,
+        1.24,
+        1.31
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "02_006_0128_1_1",
+      "name": "Transport - Provider Travel - Level 4",
+      "category": "Transport",
+      "unit": "Km",
+      "history": [
+        2.1,
+        2.16,
+        2.28
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "02_007_0128_1_1",
+      "name": "Transport - Non-Labour Costs",
+      "category": "Transport",
+      "unit": "Km",
+      "history": [
+        0.55,
+        0.57,
+        0.6
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "03_023_0117_1_1",
+      "name": "Nutritional Supplements",
+      "category": "Consumables",
+      "unit": "Each",
+      "history": [
+        8.4,
+        8.7,
+        8.95
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "03_024_0117_1_1",
+      "name": "Wound Care Products",
+      "category": "Consumables",
+      "unit": "Each",
+      "history": [
+        22.5,
+        23.1,
+        23.75
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "03_025_0117_1_1",
+      "name": "Skin Care Products",
+      "category": "Consumables",
+      "unit": "Each",
+      "history": [
+        5.6,
+        5.75,
+        5.9
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
+      "active": true
+    },
+    {
+      "num": "03_026_0117_1_1",
+      "name": "Continence Aids - Bulk",
+      "category": "Consumables",
+      "unit": "Each",
+      "history": [
+        12.3,
+        12.65,
+        12.95
+      ],
+      "spread": [
+        null,
+        null,
+        null
+      ],
       "active": true
     }
   ],
@@ -108,66 +394,453 @@
       "from": "2024-25-v1.0",
       "to": "2025-26-v1.0",
       "added": [
-        { "num": "15_056_0117_1_1", "name": "Exercise Physiology", "category": "Improved Daily Living Skills", "price": 153.10 }
+        {
+          "num": "15_056_0117_1_1",
+          "name": "Exercise Physiology",
+          "category": "Improved Daily Living Skills",
+          "price": 153.1
+        }
       ],
       "retired": [],
       "changed": [
-        { "num": "01_011_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Weekday Daytime", "category": "Assistance with Daily Life", "old": 65.09, "new": 67.03, "pct": 3.0 },
-        { "num": "01_012_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Public Holiday", "category": "Assistance with Daily Life", "old": 90.82, "new": 93.99, "pct": 3.5 },
-        { "num": "01_013_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Saturday", "category": "Assistance with Daily Life", "old": 95.09, "new": 97.62, "pct": 2.7 },
-        { "num": "01_800_0115_1_1", "name": "Assistance With Self-Care Activities - High Intensity - Weekday Daytime", "category": "Assistance with Daily Life", "old": 74.29, "new": 76.51, "pct": 3.0 },
-        { "num": "02_003_0128_1_1", "name": "Transport - Provider Travel - Level 2", "category": "Transport", "old": 1.00, "new": 1.03, "pct": 3.0 },
-        { "num": "03_022_0117_1_1", "name": "Continence Products", "category": "Consumables", "old": 15.20, "new": 15.65, "pct": 3.0 },
-        { "num": "04_104_0125_6_1", "name": "Household Tasks", "category": "Assistance with Daily Life", "old": 59.81, "new": 61.06, "pct": 2.1 },
-        { "num": "15_045_0117_1_1", "name": "Physiotherapy", "category": "Improved Daily Living Skills", "old": 193.99, "new": 199.13, "pct": 2.6 }
+        {
+          "num": "01_011_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Weekday Daytime",
+          "category": "Assistance with Daily Life",
+          "old": 65.09,
+          "new": 67.03,
+          "pct": 3.0
+        },
+        {
+          "num": "01_012_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Public Holiday",
+          "category": "Assistance with Daily Life",
+          "old": 90.82,
+          "new": 93.99,
+          "pct": 3.5
+        },
+        {
+          "num": "01_013_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Saturday",
+          "category": "Assistance with Daily Life",
+          "old": 95.09,
+          "new": 97.62,
+          "pct": 2.7
+        },
+        {
+          "num": "01_800_0115_1_1",
+          "name": "Assistance With Self-Care Activities - High Intensity - Weekday Daytime",
+          "category": "Assistance with Daily Life",
+          "old": 74.29,
+          "new": 76.51,
+          "pct": 3.0
+        },
+        {
+          "num": "02_003_0128_1_1",
+          "name": "Transport - Provider Travel - Level 2",
+          "category": "Transport",
+          "old": 1.0,
+          "new": 1.03,
+          "pct": 3.0
+        },
+        {
+          "num": "03_022_0117_1_1",
+          "name": "Continence Products",
+          "category": "Consumables",
+          "old": 15.2,
+          "new": 15.65,
+          "pct": 3.0
+        },
+        {
+          "num": "04_104_0125_6_1",
+          "name": "Household Tasks",
+          "category": "Assistance with Daily Life",
+          "old": 59.81,
+          "new": 61.06,
+          "pct": 2.1
+        },
+        {
+          "num": "15_045_0117_1_1",
+          "name": "Physiotherapy",
+          "category": "Improved Daily Living Skills",
+          "old": 193.99,
+          "new": 199.13,
+          "pct": 2.6
+        },
+        {
+          "num": "01_014_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Weeknight",
+          "category": "Assistance with Daily Life",
+          "old": 70.03,
+          "new": 72.15,
+          "pct": 3.0
+        },
+        {
+          "num": "01_015_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Sunday",
+          "category": "Assistance with Daily Life",
+          "old": 100.14,
+          "new": 103.14,
+          "pct": 3.0
+        },
+        {
+          "num": "02_004_0128_1_1",
+          "name": "Transport - Provider Travel - Level 1",
+          "category": "Transport",
+          "old": 0.85,
+          "new": 0.88,
+          "pct": 3.5
+        },
+        {
+          "num": "02_005_0128_1_1",
+          "name": "Transport - Provider Travel - Level 3",
+          "category": "Transport",
+          "old": 1.2,
+          "new": 1.24,
+          "pct": 3.3
+        },
+        {
+          "num": "02_006_0128_1_1",
+          "name": "Transport - Provider Travel - Level 4",
+          "category": "Transport",
+          "old": 2.1,
+          "new": 2.16,
+          "pct": 2.9
+        },
+        {
+          "num": "02_007_0128_1_1",
+          "name": "Transport - Non-Labour Costs",
+          "category": "Transport",
+          "old": 0.55,
+          "new": 0.57,
+          "pct": 3.6
+        },
+        {
+          "num": "03_023_0117_1_1",
+          "name": "Nutritional Supplements",
+          "category": "Consumables",
+          "old": 8.4,
+          "new": 8.7,
+          "pct": 3.6
+        },
+        {
+          "num": "03_024_0117_1_1",
+          "name": "Wound Care Products",
+          "category": "Consumables",
+          "old": 22.5,
+          "new": 23.1,
+          "pct": 2.7
+        },
+        {
+          "num": "03_025_0117_1_1",
+          "name": "Skin Care Products",
+          "category": "Consumables",
+          "old": 5.6,
+          "new": 5.75,
+          "pct": 2.7
+        },
+        {
+          "num": "03_026_0117_1_1",
+          "name": "Continence Aids - Bulk",
+          "category": "Consumables",
+          "old": 12.3,
+          "new": 12.65,
+          "pct": 2.8
+        }
       ],
       "by_category": [
-        { "category": "Assistance with Daily Life", "changed": 5, "added": 0, "retired": 0, "median_pct": 3.0 },
-        { "category": "Transport", "changed": 1, "added": 0, "retired": 0, "median_pct": 3.0 },
-        { "category": "Consumables", "changed": 1, "added": 0, "retired": 0, "median_pct": 3.0 },
-        { "category": "Improved Daily Living Skills", "changed": 1, "added": 1, "retired": 0, "median_pct": 2.6 }
+        {
+          "category": "Assistance with Daily Life",
+          "changed": 7,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 3.0
+        },
+        {
+          "category": "Transport",
+          "changed": 5,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 3.3
+        },
+        {
+          "category": "Consumables",
+          "changed": 5,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 2.8
+        },
+        {
+          "category": "Improved Daily Living Skills",
+          "changed": 1,
+          "added": 1,
+          "retired": 0,
+          "median_pct": 2.6
+        }
       ]
     },
     {
       "from": "2025-26-v1.0",
       "to": "2026-27-v1.1",
       "added": [
-        { "num": "05_310054501_115_1_3", "name": "Wheelchair - Manual - Standard", "category": "Assistive Technology", "price": 2450.00 }
+        {
+          "num": "05_310054501_115_1_3",
+          "name": "Wheelchair - Manual - Standard",
+          "category": "Assistive Technology",
+          "price": 2450.0
+        }
       ],
       "retired": [
-        { "num": "01_012_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Public Holiday", "category": "Assistance with Daily Life" }
+        {
+          "num": "01_012_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Public Holiday",
+          "category": "Assistance with Daily Life"
+        }
       ],
       "changed": [
-        { "num": "01_011_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Weekday Daytime", "category": "Assistance with Daily Life", "old": 67.03, "new": 70.23, "pct": 4.8 },
-        { "num": "01_013_0107_1_1", "name": "Assistance With Self-Care Activities - Standard - Saturday", "category": "Assistance with Daily Life", "old": 97.62, "new": 102.83, "pct": 5.3 },
-        { "num": "01_800_0115_1_1", "name": "Assistance With Self-Care Activities - High Intensity - Weekday Daytime", "category": "Assistance with Daily Life", "old": 76.51, "new": 80.62, "pct": 5.4 },
-        { "num": "02_003_0128_1_1", "name": "Transport - Provider Travel - Level 2", "category": "Transport", "old": 1.03, "new": 1.09, "pct": 5.8 },
-        { "num": "03_022_0117_1_1", "name": "Continence Products", "category": "Consumables", "old": 15.65, "new": 16.10, "pct": 2.9 },
-        { "num": "04_104_0125_6_1", "name": "Household Tasks", "category": "Assistance with Daily Life", "old": 61.06, "new": 64.31, "pct": 5.3 },
-        { "num": "15_045_0117_1_1", "name": "Physiotherapy", "category": "Improved Daily Living Skills", "old": 199.13, "new": 209.02, "pct": 5.0 },
-        { "num": "15_056_0117_1_1", "name": "Exercise Physiology", "category": "Improved Daily Living Skills", "old": 153.10, "new": 160.86, "pct": 5.1 }
+        {
+          "num": "01_011_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Weekday Daytime",
+          "category": "Assistance with Daily Life",
+          "old": 67.03,
+          "new": 70.23,
+          "pct": 4.8
+        },
+        {
+          "num": "01_013_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Saturday",
+          "category": "Assistance with Daily Life",
+          "old": 97.62,
+          "new": 102.83,
+          "pct": 5.3
+        },
+        {
+          "num": "01_800_0115_1_1",
+          "name": "Assistance With Self-Care Activities - High Intensity - Weekday Daytime",
+          "category": "Assistance with Daily Life",
+          "old": 76.51,
+          "new": 80.62,
+          "pct": 5.4
+        },
+        {
+          "num": "02_003_0128_1_1",
+          "name": "Transport - Provider Travel - Level 2",
+          "category": "Transport",
+          "old": 1.03,
+          "new": 1.09,
+          "pct": 5.8
+        },
+        {
+          "num": "03_022_0117_1_1",
+          "name": "Continence Products",
+          "category": "Consumables",
+          "old": 15.65,
+          "new": 16.1,
+          "pct": 2.9
+        },
+        {
+          "num": "04_104_0125_6_1",
+          "name": "Household Tasks",
+          "category": "Assistance with Daily Life",
+          "old": 61.06,
+          "new": 64.31,
+          "pct": 5.3
+        },
+        {
+          "num": "15_045_0117_1_1",
+          "name": "Physiotherapy",
+          "category": "Improved Daily Living Skills",
+          "old": 199.13,
+          "new": 209.02,
+          "pct": 5.0
+        },
+        {
+          "num": "15_056_0117_1_1",
+          "name": "Exercise Physiology",
+          "category": "Improved Daily Living Skills",
+          "old": 153.1,
+          "new": 160.86,
+          "pct": 5.1
+        },
+        {
+          "num": "01_014_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Weeknight",
+          "category": "Assistance with Daily Life",
+          "old": 72.15,
+          "new": 76.02,
+          "pct": 5.4
+        },
+        {
+          "num": "01_015_0107_1_1",
+          "name": "Assistance With Self-Care Activities - Standard - Sunday",
+          "category": "Assistance with Daily Life",
+          "old": 103.14,
+          "new": 108.71,
+          "pct": 5.4
+        },
+        {
+          "num": "02_004_0128_1_1",
+          "name": "Transport - Provider Travel - Level 1",
+          "category": "Transport",
+          "old": 0.88,
+          "new": 0.93,
+          "pct": 5.7
+        },
+        {
+          "num": "02_005_0128_1_1",
+          "name": "Transport - Provider Travel - Level 3",
+          "category": "Transport",
+          "old": 1.24,
+          "new": 1.31,
+          "pct": 5.6
+        },
+        {
+          "num": "02_006_0128_1_1",
+          "name": "Transport - Provider Travel - Level 4",
+          "category": "Transport",
+          "old": 2.16,
+          "new": 2.28,
+          "pct": 5.6
+        },
+        {
+          "num": "02_007_0128_1_1",
+          "name": "Transport - Non-Labour Costs",
+          "category": "Transport",
+          "old": 0.57,
+          "new": 0.6,
+          "pct": 5.3
+        },
+        {
+          "num": "03_023_0117_1_1",
+          "name": "Nutritional Supplements",
+          "category": "Consumables",
+          "old": 8.7,
+          "new": 8.95,
+          "pct": 2.9
+        },
+        {
+          "num": "03_024_0117_1_1",
+          "name": "Wound Care Products",
+          "category": "Consumables",
+          "old": 23.1,
+          "new": 23.75,
+          "pct": 2.8
+        },
+        {
+          "num": "03_025_0117_1_1",
+          "name": "Skin Care Products",
+          "category": "Consumables",
+          "old": 5.75,
+          "new": 5.9,
+          "pct": 2.6
+        },
+        {
+          "num": "03_026_0117_1_1",
+          "name": "Continence Aids - Bulk",
+          "category": "Consumables",
+          "old": 12.65,
+          "new": 12.95,
+          "pct": 2.4
+        }
       ],
       "by_category": [
-        { "category": "Assistance with Daily Life", "changed": 4, "added": 0, "retired": 1, "median_pct": 5.3 },
-        { "category": "Transport", "changed": 1, "added": 0, "retired": 0, "median_pct": 5.8 },
-        { "category": "Consumables", "changed": 1, "added": 0, "retired": 0, "median_pct": 2.9 },
-        { "category": "Improved Daily Living Skills", "changed": 2, "added": 0, "retired": 0, "median_pct": 5.1 },
-        { "category": "Assistive Technology", "changed": 0, "added": 1, "retired": 0, "median_pct": 0.0 }
+        {
+          "category": "Assistance with Daily Life",
+          "changed": 6,
+          "added": 0,
+          "retired": 1,
+          "median_pct": 5.3
+        },
+        {
+          "category": "Transport",
+          "changed": 5,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 5.6
+        },
+        {
+          "category": "Consumables",
+          "changed": 5,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 2.8
+        },
+        {
+          "category": "Improved Daily Living Skills",
+          "changed": 2,
+          "added": 0,
+          "retired": 0,
+          "median_pct": 5.0
+        },
+        {
+          "category": "Assistive Technology",
+          "changed": 0,
+          "added": 1,
+          "retired": 0,
+          "median_pct": 0.0
+        }
       ]
     }
   ],
   "law": {
     "generated": "2026-08-18",
     "act_versions": [
-      { "compilation": 25, "register_id": "C2026C00181", "start": "2026-05-06", "url": "https://www.legislation.gov.au/C2013A00020/2026-05-06" },
-      { "compilation": 24, "register_id": "C2025C00092", "start": "2025-03-14", "url": "https://www.legislation.gov.au/C2013A00020/2025-03-14" },
-      { "compilation": 23, "register_id": "C2024C00077", "start": "2024-04-01", "url": "https://www.legislation.gov.au/C2013A00020/2024-04-01" }
+      {
+        "compilation": 25,
+        "register_id": "C2026C00181",
+        "start": "2026-05-06",
+        "url": "https://www.legislation.gov.au/C2013A00020/2026-05-06"
+      },
+      {
+        "compilation": 24,
+        "register_id": "C2025C00092",
+        "start": "2025-03-14",
+        "url": "https://www.legislation.gov.au/C2013A00020/2025-03-14"
+      },
+      {
+        "compilation": 23,
+        "register_id": "C2024C00077",
+        "start": "2024-04-01",
+        "url": "https://www.legislation.gov.au/C2013A00020/2024-04-01"
+      }
     ],
     "titles": [
-      { "register_id": "C2026A00041", "name": "National Disability Insurance Scheme Amendment (Integrity and Safeguarding) Act 2026", "collection": "Act", "status": "InForce", "made": "2026-04-10", "registered": "2026-04-10", "url": "https://www.legislation.gov.au/C2026A00041" },
-      { "register_id": "F2026L00512", "name": "National Disability Insurance Scheme (Pricing) Rules 2026", "collection": "LegislativeInstrument", "status": "InForce", "made": "2026-06-20", "registered": "2026-06-24", "url": "https://www.legislation.gov.au/F2026L00512" },
-      { "register_id": "F2025L00877", "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (Worker Screening) Rules 2025", "collection": "LegislativeInstrument", "status": "InForce", "made": "2025-08-01", "registered": "2025-08-05", "url": "https://www.legislation.gov.au/F2025L00877" },
-      { "register_id": "C2013A00020", "name": "National Disability Insurance Scheme Act 2013", "collection": "Act", "status": "InForce", "made": "2013-03-28", "registered": "2013-03-28", "url": "https://www.legislation.gov.au/C2013A00020" }
+      {
+        "register_id": "C2026A00041",
+        "name": "National Disability Insurance Scheme Amendment (Integrity and Safeguarding) Act 2026",
+        "collection": "Act",
+        "status": "InForce",
+        "made": "2026-04-10",
+        "registered": "2026-04-10",
+        "url": "https://www.legislation.gov.au/C2026A00041"
+      },
+      {
+        "register_id": "F2026L00512",
+        "name": "National Disability Insurance Scheme (Pricing) Rules 2026",
+        "collection": "LegislativeInstrument",
+        "status": "InForce",
+        "made": "2026-06-20",
+        "registered": "2026-06-24",
+        "url": "https://www.legislation.gov.au/F2026L00512"
+      },
+      {
+        "register_id": "F2025L00877",
+        "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (Worker Screening) Rules 2025",
+        "collection": "LegislativeInstrument",
+        "status": "InForce",
+        "made": "2025-08-01",
+        "registered": "2025-08-05",
+        "url": "https://www.legislation.gov.au/F2025L00877"
+      },
+      {
+        "register_id": "C2013A00020",
+        "name": "National Disability Insurance Scheme Act 2013",
+        "collection": "Act",
+        "status": "InForce",
+        "made": "2013-03-28",
+        "registered": "2013-03-28",
+        "url": "https://www.legislation.gov.au/C2013A00020"
+      }
     ]
   },
   "feed": {
@@ -177,7 +850,11 @@
         "date": "2026-07-30",
         "type": "data",
         "title": "NDIS quarterly payments and participant datasets updated for June 2026 quarter",
-        "source": { "title": "NDIS quarterly payments and participant datasets updated for June 2026 quarter", "url": "https://dataresearch.ndis.gov.au/datasets", "publisher": "NDIA" },
+        "source": {
+          "title": "NDIS quarterly payments and participant datasets updated for June 2026 quarter",
+          "url": "https://dataresearch.ndis.gov.au/datasets",
+          "publisher": "NDIA"
+        },
         "verified": "auto"
       },
       {
@@ -186,7 +863,11 @@
         "type": "pricing",
         "title": "NDIS Support Catalogue 2026-27 v1.1 registered",
         "summary": "Restructures the former Pricing Arrangements and Price Limits into three documents: Annual Pricing Review, Pricing Schedule and Support Catalogue.",
-        "source": { "title": "What's in the Support Catalogue", "url": "https://www.ndis.gov.au/providers/pricing-and-payments/pricing/what-support-catalogue", "publisher": "NDIA" },
+        "source": {
+          "title": "What's in the Support Catalogue",
+          "url": "https://www.ndis.gov.au/providers/pricing-and-payments/pricing/what-support-catalogue",
+          "publisher": "NDIA"
+        },
         "verified": "confirmed"
       },
       {
@@ -195,7 +876,11 @@
         "type": "bill",
         "title": "NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026 introduced",
         "summary": "Would give the Minister for the NDIS the power to make a pricing determination. Before the Senate.",
-        "source": { "title": "Bill homepage", "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487", "publisher": "Parliament of Australia" },
+        "source": {
+          "title": "Bill homepage",
+          "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+          "publisher": "Parliament of Australia"
+        },
         "verified": "confirmed"
       },
       {
@@ -204,7 +889,11 @@
         "type": "law",
         "title": "National Disability Insurance Scheme Amendment (Integrity and Safeguarding) Act 2026 receives royal assent",
         "summary": "Establishes new worker screening and provider banning powers for the NDIS Quality and Safeguards Commission.",
-        "source": { "title": "Act text", "url": "https://www.legislation.gov.au/C2026A00041", "publisher": "Federal Register of Legislation" },
+        "source": {
+          "title": "Act text",
+          "url": "https://www.legislation.gov.au/C2026A00041",
+          "publisher": "Federal Register of Legislation"
+        },
         "verified": "confirmed"
       },
       {
@@ -213,7 +902,11 @@
         "type": "hearing",
         "title": "Joint Standing Committee on the NDIS hears evidence on pricing reform",
         "summary": "Provider peak bodies gave evidence on the impact of the 2026-27 catalogue restructure on Supported Independent Living pricing.",
-        "source": { "title": "Committee Hansard", "url": "https://parlinfo.aph.gov.au/parlInfo/search/display/display.w3p;query=Id:committees/commjnt/12345", "publisher": "Parliament of Australia" },
+        "source": {
+          "title": "Committee Hansard",
+          "url": "https://parlinfo.aph.gov.au/parlInfo/search/display/display.w3p;query=Id:committees/commjnt/12345",
+          "publisher": "Parliament of Australia"
+        },
         "verified": "confirmed"
       },
       {
@@ -222,7 +915,11 @@
         "type": "report",
         "title": "NDIA quarterly report, December 2025 quarter, released",
         "summary": "Reports 679,000 active participants and $11.48 billion in payments for the quarter.",
-        "source": { "title": "NDIS quarterly report December 2025", "url": "https://www.ndis.gov.au/about-us/publications/quarterly-reports", "publisher": "NDIA" },
+        "source": {
+          "title": "NDIS quarterly report December 2025",
+          "url": "https://www.ndis.gov.au/about-us/publications/quarterly-reports",
+          "publisher": "NDIA"
+        },
         "verified": "confirmed"
       },
       {
@@ -231,7 +928,11 @@
         "type": "audit",
         "title": "ANAO audit finds gaps in NDIA fraud control framework",
         "summary": "The Auditor-General found the NDIA's fraud and corruption controls were only partly effective and recommended stronger provider vetting.",
-        "source": { "title": "Fraud Control Arrangements at the National Disability Insurance Agency", "url": "https://www.anao.gov.au/work/performance-audit/fraud-control-arrangements-national-disability-insurance-agency", "publisher": "Australian National Audit Office" },
+        "source": {
+          "title": "Fraud Control Arrangements at the National Disability Insurance Agency",
+          "url": "https://www.anao.gov.au/work/performance-audit/fraud-control-arrangements-national-disability-insurance-agency",
+          "publisher": "Australian National Audit Office"
+        },
         "verified": "confirmed"
       },
       {
@@ -240,7 +941,11 @@
         "type": "announcement",
         "title": "Minister Butler announces annual pricing review timetable",
         "summary": "Sets out the schedule for the 2026-27 Annual Pricing Review, including provider consultation dates.",
-        "source": { "title": "Media release: NDIS pricing review", "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/annual-pricing-review-timetable", "publisher": "Department of Health, Disability and Ageing" },
+        "source": {
+          "title": "Media release: NDIS pricing review",
+          "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/annual-pricing-review-timetable",
+          "publisher": "Department of Health, Disability and Ageing"
+        },
         "verified": "confirmed"
       }
     ]
@@ -249,41 +954,363 @@
     "generated": "2026-08-18",
     "quarterly": {
       "as_of_quarter": "2026-06-30",
-      "source": { "title": "NDIS quarterly datasets", "url": "https://dataresearch.ndis.gov.au/datasets", "publisher": "NDIA" },
+      "source": {
+        "title": "NDIS quarterly datasets",
+        "url": "https://dataresearch.ndis.gov.au/datasets",
+        "publisher": "NDIA"
+      },
       "by_quarter": [
-        { "quarter": "2025-09-30", "payments_total": 10850000000, "participants": 661000 },
-        { "quarter": "2025-12-31", "payments_total": 11200000000, "participants": 672000 },
-        { "quarter": "2026-03-31", "payments_total": 11480000000, "participants": 679000 },
-        { "quarter": "2026-06-30", "payments_total": 11760000000, "participants": 686000 }
+        {
+          "quarter": "2025-09-30",
+          "payments_total": 10850000000,
+          "participants": 661000
+        },
+        {
+          "quarter": "2025-12-31",
+          "payments_total": 11200000000,
+          "participants": 672000
+        },
+        {
+          "quarter": "2026-03-31",
+          "payments_total": 11480000000,
+          "participants": 679000
+        },
+        {
+          "quarter": "2026-06-30",
+          "payments_total": 11760000000,
+          "participants": 686000
+        }
       ],
       "top_categories_latest": [
-        { "category": "Assistance with Daily Life", "payments": 6320000000, "share": 0.5374 },
-        { "category": "Improved Daily Living Skills", "payments": 1450000000, "share": 0.1233 },
-        { "category": "Assistive Technology", "payments": 980000000, "share": 0.0833 },
-        { "category": "Transport", "payments": 210000000, "share": 0.0179 }
+        {
+          "category": "Assistance with Daily Life",
+          "payments": 6320000000,
+          "share": 0.5374
+        },
+        {
+          "category": "Improved Daily Living Skills",
+          "payments": 1450000000,
+          "share": 0.1233
+        },
+        {
+          "category": "Assistive Technology",
+          "payments": 980000000,
+          "share": 0.0833
+        },
+        {
+          "category": "Transport",
+          "payments": 210000000,
+          "share": 0.0179
+        }
       ]
     },
     "abs": {
-      "census_assistance": { "label": "People needing help with core activities, Census 2021", "value": 1191200, "source": { "title": "ABS Data API C21_G18", "url": "https://data.api.abs.gov.au/rest/data/C21_G18_AUS/3._T.1..AUS.?startPeriod=2021&format=csv", "publisher": "ABS" } },
-      "sdac": { "label": "Disability prevalence, SDAC 2022", "value_pct": 21.4, "released": "2024-07-04", "source": { "title": "SDAC 2022 summary findings", "url": "https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/2022", "publisher": "ABS" } }
+      "census_assistance": {
+        "label": "People needing help with core activities, Census 2021",
+        "value": 1191200,
+        "source": {
+          "title": "ABS Data API C21_G18",
+          "url": "https://data.api.abs.gov.au/rest/data/C21_G18_AUS/3._T.1..AUS.?startPeriod=2021&format=csv",
+          "publisher": "ABS"
+        }
+      },
+      "sdac": {
+        "label": "Disability prevalence, SDAC 2022",
+        "value_pct": 21.4,
+        "released": "2024-07-04",
+        "source": {
+          "title": "SDAC 2022 summary findings",
+          "url": "https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/2022",
+          "publisher": "ABS"
+        }
+      }
     },
     "next_data": [
-      { "label": "NDIA quarterly report (Sep quarter)", "due": "2026-11-11", "note": "published within 42 days of quarter end" },
-      { "label": "2026 Census first release (includes disability)", "due": "2027-06-30" }
+      {
+        "label": "NDIA quarterly report (Sep quarter)",
+        "due": "2026-11-11",
+        "note": "published within 42 days of quarter end"
+      },
+      {
+        "label": "2026 Census first release (includes disability)",
+        "due": "2027-06-30"
+      }
     ],
     "cpi": {
       "series": [
-        { "quarter": "2024-06-30", "index": 136.1 },
-        { "quarter": "2024-09-30", "index": 136.6 },
-        { "quarter": "2024-12-31", "index": 137.4 },
-        { "quarter": "2025-03-31", "index": 138.2 },
-        { "quarter": "2025-06-30", "index": 138.9 },
-        { "quarter": "2025-09-30", "index": 139.6 },
-        { "quarter": "2025-12-31", "index": 140.3 },
-        { "quarter": "2026-03-31", "index": 141.1 },
-        { "quarter": "2026-06-30", "index": 141.9 }
+        {
+          "quarter": "2024-06-30",
+          "index": 136.1
+        },
+        {
+          "quarter": "2024-09-30",
+          "index": 136.6
+        },
+        {
+          "quarter": "2024-12-31",
+          "index": 137.4
+        },
+        {
+          "quarter": "2025-03-31",
+          "index": 138.2
+        },
+        {
+          "quarter": "2025-06-30",
+          "index": 138.9
+        },
+        {
+          "quarter": "2025-09-30",
+          "index": 139.6
+        },
+        {
+          "quarter": "2025-12-31",
+          "index": 140.3
+        },
+        {
+          "quarter": "2026-03-31",
+          "index": 141.1
+        },
+        {
+          "quarter": "2026-06-30",
+          "index": 141.9
+        }
       ],
-      "source": { "title": "Consumer Price Index, Australia — All groups CPI, index numbers", "url": "https://data.api.abs.gov.au/rest/data/CPI/1.10001.10.50.Q", "publisher": "ABS" }
+      "source": {
+        "title": "Consumer Price Index, Australia — All groups CPI, index numbers",
+        "url": "https://data.api.abs.gov.au/rest/data/CPI/1.10001.10.50.Q",
+        "publisher": "ABS"
+      }
+    },
+    "payments_by_category": {
+      "as_of_quarter": "2026-06-30",
+      "window": "12 months to report date",
+      "source": {
+        "title": "NDIS payments data, NDIA dataresearch",
+        "url": "https://dataresearch.ndis.gov.au/datasets",
+        "publisher": "NDIA"
+      },
+      "rows": [
+        {
+          "category": "Assistance with Daily Life",
+          "catalogue_category": "Assistance with Daily Life",
+          "payments": 6320000000,
+          "participants": 480000,
+          "avg_per_participant": 13167
+        },
+        {
+          "category": "Improved Daily Living Skills",
+          "catalogue_category": "Improved Daily Living Skills",
+          "payments": 1450000000,
+          "participants": 210000,
+          "avg_per_participant": 6905
+        },
+        {
+          "category": "Assistive Technology",
+          "catalogue_category": "Assistive Technology",
+          "payments": 980000000,
+          "participants": 165000,
+          "avg_per_participant": 5939
+        },
+        {
+          "category": "Consumables",
+          "catalogue_category": "Consumables",
+          "payments": 640000000,
+          "participants": 350000,
+          "avg_per_participant": 1829
+        },
+        {
+          "category": "Support Coordination",
+          "catalogue_category": null,
+          "payments": 410000000,
+          "participants": 140000,
+          "avg_per_participant": 2929
+        },
+        {
+          "category": "Transport",
+          "catalogue_category": "Transport",
+          "payments": 210000000,
+          "participants": 300000,
+          "avg_per_participant": 700
+        },
+        {
+          "category": "Home Modifications",
+          "catalogue_category": "Home and Vehicle Modifications",
+          "payments": 165000000,
+          "participants": 18000,
+          "avg_per_participant": 9167
+        }
+      ]
+    },
+    "electorates": {
+      "label": "People needing help with core activities by federal electoral division, Census 2021",
+      "source": {
+        "title": "ABS Data API, C21_G18_CED",
+        "url": "https://data.api.abs.gov.au/rest/data/C21_G18_CED/3._T.1..CED.?startPeriod=2021&format=csv",
+        "publisher": "ABS"
+      },
+      "national_total": 210600,
+      "rows": [
+        {
+          "name": "Banks",
+          "code": "101",
+          "need": 6800
+        },
+        {
+          "name": "Barton",
+          "code": "102",
+          "need": 7200
+        },
+        {
+          "name": "Bennelong",
+          "code": "103",
+          "need": 5400
+        },
+        {
+          "name": "Berowra",
+          "code": "104",
+          "need": 4900
+        },
+        {
+          "name": "Blaxland",
+          "code": "105",
+          "need": 8100
+        },
+        {
+          "name": "Bradfield",
+          "code": "106",
+          "need": 3900
+        },
+        {
+          "name": "Calwell",
+          "code": "202",
+          "need": 9600
+        },
+        {
+          "name": "Chisholm",
+          "code": "204",
+          "need": 5100
+        },
+        {
+          "name": "Cook",
+          "code": "108",
+          "need": 4300
+        },
+        {
+          "name": "Cowper",
+          "code": "110",
+          "need": 8800
+        },
+        {
+          "name": "Dobell",
+          "code": "112",
+          "need": 8300
+        },
+        {
+          "name": "Fenner",
+          "code": "801",
+          "need": 5600
+        },
+        {
+          "name": "Fowler",
+          "code": "115",
+          "need": 8700
+        },
+        {
+          "name": "Gellibrand",
+          "code": "206",
+          "need": 6100
+        },
+        {
+          "name": "Grayndler",
+          "code": "117",
+          "need": 5300
+        },
+        {
+          "name": "Greenway",
+          "code": "118",
+          "need": 7900
+        },
+        {
+          "name": "Hindmarsh",
+          "code": "402",
+          "need": 6700
+        },
+        {
+          "name": "Holt",
+          "code": "210",
+          "need": 8900
+        },
+        {
+          "name": "Hume",
+          "code": "121",
+          "need": 4100
+        },
+        {
+          "name": "Indi",
+          "code": "222",
+          "need": 5900
+        },
+        {
+          "name": "Kingsford Smith",
+          "code": "123",
+          "need": 5000
+        },
+        {
+          "name": "Lalor",
+          "code": "215",
+          "need": 9100
+        },
+        {
+          "name": "Lingiari",
+          "code": "701",
+          "need": 10200
+        },
+        {
+          "name": "Lyons",
+          "code": "501",
+          "need": 9400
+        },
+        {
+          "name": "Mallee",
+          "code": "226",
+          "need": 6300
+        },
+        {
+          "name": "McMahon",
+          "code": "126",
+          "need": 7600
+        },
+        {
+          "name": "Melbourne",
+          "code": "217",
+          "need": 3400
+        },
+        {
+          "name": "Menzies",
+          "code": "218",
+          "need": 4000
+        },
+        {
+          "name": "Newcastle",
+          "code": "129",
+          "need": 8500
+        },
+        {
+          "name": "Parramatta",
+          "code": "131",
+          "need": 6900
+        },
+        {
+          "name": "Wentworth",
+          "code": "148",
+          "need": 2900
+        },
+        {
+          "name": "Wills",
+          "code": "236",
+          "need": 5700
+        }
+      ]
     }
   }
 }
