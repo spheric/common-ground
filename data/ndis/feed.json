@@ -1,0 +1,537 @@
+{
+  "items": [
+    {
+      "id": "2026-08-18-securing-ndis-bill-senate-second-reading",
+      "date": "2026-08-18",
+      "type": "bill",
+      "title": "Senate agrees to second reading of the Securing the NDIS for Future Generations Bill",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed",
+      "summary": "The Senate agreed to the second reading and began Committee of the Whole debate on 18 August 2026. The bill's listed status remains \"Before Senate\"."
+    },
+    {
+      "id": "2026-08-17-banning-orders-media-release",
+      "date": "2026-08-17",
+      "type": "announcement",
+      "title": "NDIS banning orders ramp up as record number of shonks kicked off scheme",
+      "summary": "The media release states the NDIS Quality and Safeguards Commission issued 111 banning orders to individuals, registered providers and unregistered providers between April and June 2026.",
+      "source": {
+        "title": "Media release, Minister for the NDIS",
+        "url": "https://www.health.gov.au/ministers/senator-the-hon-jenny-mcallister/media/ndis-banning-orders-ramp-up-as-record-number-of-shonks-kicked-off-scheme",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-08-14-community-affairs-final-report-securing-bill",
+      "date": "2026-08-14",
+      "type": "report",
+      "title": "Senate Community Affairs Legislation Committee final report on the Securing the NDIS for Future Generations Bill",
+      "summary": "The committee's final report, tabled 14 August 2026, recommends that the bill be passed.",
+      "source": {
+        "title": "Report — NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026 inquiry",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/NDISFutureGenBill/Report",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-08-13-june-2026-quarter-datasets",
+      "date": "2026-08-13",
+      "type": "data",
+      "title": "NDIA publishes June 2026 quarter payments, participant and utilisation datasets",
+      "summary": "Quarterly CSV datasets covering payments, participant numbers and plan budgets, and plan budget utilisation were published. The payments page states data current as at 30 June 2026.",
+      "source": {
+        "title": "Payments datasets",
+        "url": "https://dataresearch.ndis.gov.au/datasets/payments-datasets",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-08-12-quarterly-report-2025-26-q4",
+      "date": "2026-08-12",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q4 2025-26, supplement published",
+      "summary": "The supplement to the quarterly report to disability ministers for the fourth quarter of 2025-26 was published, together with state, territory and topic appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-08-06-community-affairs-hearing-perth",
+      "date": "2026-08-06",
+      "type": "hearing",
+      "title": "Senate Community Affairs public hearing in Perth on the Securing the NDIS for Future Generations Bill",
+      "summary": "The Community Affairs Legislation Committee held a public hearing in Perth as part of its inquiry into the bill, following hearings in Melbourne and Canberra in June and July 2026.",
+      "source": {
+        "title": "Public hearings — Securing the NDIS for Future Generations Bill inquiry",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/NDISFutureGenBill/Public_Hearings",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-07-09-technical-advisory-group",
+      "date": "2026-07-09",
+      "type": "announcement",
+      "title": "Technical experts to guide fairer, more consistent NDIS access",
+      "summary": "A Technical Advisory Group met for the first time to provide independent advice on assessing substantially reduced functional capacity, which guides access to the NDIS.",
+      "source": {
+        "title": "Media release, Minister for Disability and the NDIS",
+        "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/technical-experts-to-guide-fairer-more-consistent-ndis-access",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-07-03-support-catalogue-2026-27-v1-1",
+      "date": "2026-07-03",
+      "type": "pricing",
+      "title": "NDIS Support Catalogue 2026-27 v1.1 published",
+      "summary": "The 2026-27 Support Catalogue (976 current support items, current as of 3 July 2026) replaces the eight state and territory price-limit columns with a single national price column.",
+      "source": {
+        "title": "NDIS Support Catalogue 2026-27 v1.1 (XLSX)",
+        "url": "https://www.ndis.gov.au/media/8038/download?attachment",
+        "publisher": "NDIA"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-07-02-securing-ndis-bill-passes-house",
+      "date": "2026-07-02",
+      "type": "bill",
+      "title": "Securing the NDIS for Future Generations Bill passes the House of Representatives",
+      "summary": "The House agreed to the third reading on 2 July 2026, following consideration in detail on 1 July at which 12 crossbench and 18 government amendments were agreed to.",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-30-old-framework-plans-pricing-documents-determination",
+      "date": "2026-06-30",
+      "type": "pricing",
+      "title": "Old Framework Plans (Pricing Documents) Determination 2026 registered",
+      "summary": "The determination replaces references to \"Pricing Arrangements and Price Limits\" with \"Pricing Schedule\" and substitutes \"priced\" for \"price-limited\". It commences on the later of 1 July 2026 and the day after registration.",
+      "source": {
+        "title": "F2026L00906 — NDIS Amendment (Old Framework Plans) (Pricing Documents) Determination 2026",
+        "url": "https://www.legislation.gov.au/F2026L00906",
+        "publisher": "Federal Register of Legislation"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-30-sales-of-ndis-businesses-rules",
+      "date": "2026-06-30",
+      "type": "announcement",
+      "title": "Crackdown on sales of NDIS businesses as mandatory registration set to expand from 1 July",
+      "summary": "Amended NDIS rules require providers to notify as soon as they become aware a sale will occur, and require new audits where there are significant changes to governance or operations.",
+      "source": {
+        "title": "Media release, Minister for the NDIS",
+        "url": "https://www.health.gov.au/ministers/senator-the-hon-jenny-mcallister/media/crackdown-on-sales-of-ndis-businesses-as-mandatory-registration-set-to-expand-from-1-july",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-24-mandatory-registration-rules-2026",
+      "date": "2026-06-24",
+      "type": "law",
+      "title": "Provider Registration and Practice Standards Amendment (Mandatory Registration and Other Matters) Rules 2026 registered",
+      "summary": "Rules made under the National Disability Insurance Scheme Act 2013, administered by the Department of Health, Disability and Ageing, were registered on 24 June 2026.",
+      "source": {
+        "title": "F2026L00802 — NDIS (Provider Registration and Practice Standards) Amendment (Mandatory Registration and Other Matters) Rules 2026",
+        "url": "https://www.legislation.gov.au/F2026L00802",
+        "publisher": "Federal Register of Legislation"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-23-community-affairs-interim-report-securing-bill",
+      "date": "2026-06-23",
+      "type": "report",
+      "title": "Senate Community Affairs Legislation Committee interim report on the Securing the NDIS for Future Generations Bill",
+      "summary": "The interim report recommends the Department of Health, Disability and Ageing table a roadmap setting out timelines and consultation requirements, and that the explanatory memorandum add further clarification.",
+      "source": {
+        "title": "Interim Report — Securing the NDIS for Future Generations Bill inquiry",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/NDISFutureGenBill/Interim_Report",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-16-quarterly-report-2025-26-q3",
+      "date": "2026-06-16",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q3 2025-26, supplement published",
+      "summary": "The supplement for the third quarter of 2025-26 was published with the state and territory comparison, national and specialist disability accommodation appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-06-02-budget-estimates-2026-27",
+      "date": "2026-06-02",
+      "type": "hearing",
+      "title": "Senate Community Affairs 2026-27 Budget estimates hearings",
+      "summary": "Budget estimates hearings ran from 2 to 5 June 2026. The Community Affairs committees cover the Health, Disability and Ageing and Social Services portfolios.",
+      "source": {
+        "title": "Senate estimates — Community Affairs",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Senate_estimates/ca",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-05-14-march-2026-quarter-payments-dataset",
+      "date": "2026-05-14",
+      "type": "data",
+      "title": "NDIA publishes March 2026 quarter payments dataset",
+      "summary": "The quarterly payments CSV covering the March 2026 quarter was published on the NDIS data and research site.",
+      "source": {
+        "title": "Payments datasets",
+        "url": "https://dataresearch.ndis.gov.au/datasets/payments-datasets",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-05-14-securing-ndis-bill-introduced",
+      "date": "2026-05-14",
+      "type": "bill",
+      "title": "Securing the NDIS for Future Generations Bill introduced and referred to committee",
+      "summary": "Introduced in the House of Representatives on 14 May 2026 and referred the same day to the Senate Community Affairs Legislation Committee. Portfolio: Health, Disability and Ageing.",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-04-22-securing-the-future-of-the-ndis",
+      "date": "2026-04-22",
+      "type": "announcement",
+      "title": "Securing the future of the NDIS for future generations",
+      "summary": "The government announced next steps to restore the NDIS to its original intent of supporting people with permanent and significant disability, ahead of introducing amending legislation.",
+      "source": {
+        "title": "Media release, Minister for Disability and the NDIS",
+        "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/securing-the-future-of-the-ndis-for-future-generations",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-04-10-integrity-and-safeguarding-act-registered",
+      "date": "2026-04-10",
+      "type": "law",
+      "title": "NDIS Amendment (Integrity and Safeguarding) Act 2026 registered",
+      "summary": "Act No. 41 of 2026 was registered on the Federal Register of Legislation on 10 April 2026, following Royal Assent on 8 April 2026. Administered by Health, Disability and Ageing.",
+      "source": {
+        "title": "C2026A00041 — NDIS Amendment (Integrity and Safeguarding) Act 2026",
+        "url": "https://www.legislation.gov.au/C2026A00041",
+        "publisher": "Federal Register of Legislation"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-04-03-regulator-welcomes-new-powers",
+      "date": "2026-04-03",
+      "type": "announcement",
+      "title": "Regulator welcomes new powers to strengthen NDIS integrity and safeguards",
+      "summary": "The NDIS Quality and Safeguards Commission said the passed reforms deliver tougher penalties for serious misconduct and unsafe practices and stronger powers for the regulator.",
+      "source": {
+        "title": "Media release, NDIS Quality and Safeguards Commission",
+        "url": "https://www.ndiscommission.gov.au/media-centre/regulator-welcomes-new-powers-strengthen-ndis-integrity-and-safeguards",
+        "publisher": "NDIS Quality and Safeguards Commission"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-04-01-integrity-and-safeguarding-bill-passes",
+      "date": "2026-04-01",
+      "type": "bill",
+      "title": "NDIS Amendment (Integrity and Safeguarding) Bill passes both houses",
+      "summary": "The House of Representatives agreed to the third reading on 1 April 2026, after the Senate passed the bill on 31 March 2026. The bill finally passed both houses that day.",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Integrity and Safeguarding) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=s1478",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-03-20-community-affairs-report-integrity-bill",
+      "date": "2026-03-20",
+      "type": "report",
+      "title": "Senate Community Affairs Legislation Committee reports on the Integrity and Safeguarding Bill",
+      "summary": "The committee reported on 20 March 2026 on the bill referred to it on 27 November 2025, having held a public hearing in Canberra on 24 February 2026.",
+      "source": {
+        "title": "NDIS Amendment (Integrity and Safeguarding) Bill 2025 inquiry",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/NDISAmendment",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-03-13-quarterly-report-2025-26-q2",
+      "date": "2026-03-13",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q2 2025-26, supplement published",
+      "summary": "The supplement to the quarterly report to disability ministers for the second quarter of 2025-26 was published, together with state, territory and topic appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-03-12-therapy-pilot-pricing-reforms",
+      "date": "2026-03-12",
+      "type": "pricing",
+      "title": "Therapy pilot to inform pricing reforms",
+      "summary": "A $20 million, 12-month NDIS Quality Supports Program Therapy Pilot will collect data from 27 registered providers on service delivery, workforce skills and participant outcomes to inform how therapies are priced.",
+      "source": {
+        "title": "Media release, Minister for the NDIS",
+        "url": "https://www.health.gov.au/ministers/senator-the-hon-jenny-mcallister/media/therapy-pilot-to-inform-pricing-reforms",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-03-11-jsc-annual-report-no-2-referred",
+      "date": "2026-03-11",
+      "type": "report",
+      "title": "Joint Standing Committee on the NDIS begins Annual Report No. 2 inquiry",
+      "summary": "The inquiry for Annual Report No. 2 of the 48th Parliament was referred on 11 March 2026. It includes examination of the annual reports of the NDIA and the NDIS Quality and Safeguards Commission.",
+      "source": {
+        "title": "Joint Standing Committee on the National Disability Insurance Scheme",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Joint/National_Disability_Insurance_Scheme",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-02-11-additional-estimates-2025-26",
+      "date": "2026-02-11",
+      "type": "hearing",
+      "title": "Senate Community Affairs 2025-26 Additional estimates hearings",
+      "summary": "Additional estimates hearings were held on 11 and 12 February 2026. The Community Affairs committees cover the Health, Disability and Ageing and Social Services portfolios.",
+      "source": {
+        "title": "Senate estimates — Community Affairs",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Senate_estimates/ca",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2026-02-03-thriving-kids-advisory-group-report",
+      "date": "2026-02-03",
+      "type": "announcement",
+      "title": "Advice on national model for Thriving Kids",
+      "summary": "The government released the Thriving Kids Advisory Group's report, which recommends supporting children aged under nine with developmental delay or autism and low to moderate support needs outside the NDIS.",
+      "source": {
+        "title": "Media release, Minister for Disability and the NDIS",
+        "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/advice-on-national-model-for-thriving-kids",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-12-18-mandatory-registration-sil-platform",
+      "date": "2025-12-18",
+      "type": "announcement",
+      "title": "Mandatory registration for Supported Independent Living and platform providers to start from next year",
+      "summary": "The government announced that mandatory registration with the NDIS Quality and Safeguards Commission for Supported Independent Living providers and platform providers will begin from 1 July 2026.",
+      "source": {
+        "title": "Media release, NDIS Quality and Safeguards Commission",
+        "url": "https://www.ndiscommission.gov.au/media-centre/mandatory-registration-supported-independent-living",
+        "publisher": "NDIS Quality and Safeguards Commission"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-12-16-quarterly-report-2025-26-q1",
+      "date": "2025-12-16",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q1 2025-26, supplement published",
+      "summary": "The supplement to the quarterly report to disability ministers for the first quarter of 2025-26 was published, together with state, territory and topic appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-11-26-integrity-and-safeguarding-bill-introduced",
+      "date": "2025-11-26",
+      "type": "bill",
+      "title": "NDIS Amendment (Integrity and Safeguarding) Bill introduced in the Senate",
+      "summary": "Introduced and read a first time in the Senate on 26 November 2025, and referred the next day to the Senate Community Affairs Legislation Committee.",
+      "source": {
+        "title": "Bill homepage: NDIS Amendment (Integrity and Safeguarding) Bill 2026",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=s1478",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-11-14-record-penalty-lifestyle-solutions",
+      "date": "2025-11-14",
+      "type": "announcement",
+      "title": "Record $2.5 million penalty imposed on NDIS provider for failing to keep participants safe",
+      "summary": "The Federal Court imposed a $2.5 million penalty on Lifestyle Solutions (Aust) Pty Ltd, described as the highest penalty imposed in proceedings brought by the NDIS Quality and Safeguards Commission.",
+      "source": {
+        "title": "Media release, NDIS Quality and Safeguards Commission",
+        "url": "https://www.ndiscommission.gov.au/media-centre/record-25-million-penalty-imposed-ndis-provider-failing-keep-participants-safe",
+        "publisher": "NDIS Quality and Safeguards Commission"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-10-09-supplementary-estimates-2025-26",
+      "date": "2025-10-09",
+      "type": "hearing",
+      "title": "Senate Community Affairs 2025-26 Supplementary estimates hearings",
+      "summary": "Supplementary estimates hearings were held on 9 and 10 October and 3 and 4 December 2025. The Community Affairs committees cover the Health, Disability and Ageing portfolio.",
+      "source": {
+        "title": "Senate estimates — Community Affairs",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Senate_estimates/ca",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-10-03-quarterly-report-2024-25-q4",
+      "date": "2025-10-03",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q4 2024-25, supplement published",
+      "summary": "The supplement to the quarterly report to disability ministers for the fourth quarter of 2024-25 was published, together with state, territory and topic appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-09-03-anao-report-2-2025-26",
+      "date": "2025-09-03",
+      "type": "audit",
+      "title": "ANAO Report No. 2 of 2025-26: Effectiveness of the NDIS Quality and Safeguards Commission's Regulatory Functions",
+      "summary": "The audit concluded the NDIS Commission is partly effective in exercising its regulatory functions. It made 10 recommendations; the Commission agreed to nine and agreed in principle to one.",
+      "source": {
+        "title": "Auditor-General Report No. 2 of 2025-26",
+        "url": "https://www.anao.gov.au/work/performance-audit/effectiveness-the-ndis-quality-and-safeguards-commissions-regulatory-functions-2025",
+        "publisher": "Australian National Audit Office"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-08-25-thriving-kids-announced",
+      "date": "2025-08-25",
+      "type": "announcement",
+      "title": "Thriving Kids — a new program to support children with developmental delay and autism, and their families",
+      "summary": "The government announced a commitment of $2 billion over five years from 1 July 2026 for a national system of supports for children aged eight and under with mild to moderate developmental delay and autism.",
+      "source": {
+        "title": "News item, Department of Health, Disability and Ageing",
+        "url": "https://www.health.gov.au/news/thriving-kids-a-new-program-to-support-children-with-developmental-delay-and-autism-and-their-families",
+        "publisher": "Department of Health, Disability and Ageing"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-07-07-quarterly-report-2024-25-q3",
+      "date": "2025-07-07",
+      "type": "report",
+      "title": "Quarterly Report to Disability Ministers, Q3 2024-25, supplement published",
+      "summary": "The supplement to the quarterly report to disability ministers for the third quarter of 2024-25 was published, together with state, territory and topic appendices.",
+      "source": {
+        "title": "Quarterly report supplements",
+        "url": "https://dataresearch.ndis.gov.au/reports-and-analyses/quarterly-report-supplements",
+        "publisher": "National Disability Insurance Agency"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-06-25-anao-report-48-2024-25",
+      "date": "2025-06-25",
+      "type": "audit",
+      "title": "ANAO Report No. 48 of 2024-25: NDIA's Management of Claimant Compliance with NDIS Claim Requirements",
+      "summary": "The audit found the NDIA's management of NDIS claim compliance is partly effective. Four recommendations were made and the NDIA agreed to all four.",
+      "source": {
+        "title": "Auditor-General Report No. 48 of 2024-25",
+        "url": "https://www.anao.gov.au/work/performance-audit/ndia-management-of-claimant-compliance-with-ndis-claim-requirements",
+        "publisher": "Australian National Audit Office"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-06-10-anao-report-41-2024-25",
+      "date": "2025-06-10",
+      "type": "audit",
+      "title": "ANAO Report No. 41 of 2024-25: Effectiveness of the Board of the National Disability Insurance Agency",
+      "summary": "The audit found the governance of the NDIA Board was largely effective, with partly fit-for-purpose arrangements to oversee operations. Three recommendations were made and the NDIA agreed to all three.",
+      "source": {
+        "title": "Auditor-General Report No. 41 of 2024-25",
+        "url": "https://www.anao.gov.au/work/performance-audit/effectiveness-of-the-board-of-the-national-disability-insurance-agency",
+        "publisher": "Australian National Audit Office"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-05-13-aao-ndis-moves-to-health",
+      "date": "2025-05-13",
+      "type": "law",
+      "title": "Administrative Arrangements Order moves the NDIS into the Health, Disability and Ageing portfolio",
+      "summary": "The Order of 13 May 2025 lists services and policy for the NDIS, and the National Disability Insurance Scheme Act 2013, under the Department of Health, Disability and Ageing.",
+      "source": {
+        "title": "C2025Q00003 — Administrative Arrangements Order, 13 May 2025",
+        "url": "https://www.legislation.gov.au/C2025Q00003",
+        "publisher": "Federal Register of Legislation"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-03-28-budget-estimates-2025-26",
+      "date": "2025-03-28",
+      "type": "hearing",
+      "title": "Senate Community Affairs 2025-26 Budget estimates hearings",
+      "summary": "Budget estimates hearings were held on 28 March and on 2 and 3 April 2025. The Community Affairs committees cover the Health, Disability and Ageing and Social Services portfolios.",
+      "source": {
+        "title": "Senate estimates — Community Affairs",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Senate_estimates/ca",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    },
+    {
+      "id": "2025-02-26-additional-estimates-2024-25",
+      "date": "2025-02-26",
+      "type": "hearing",
+      "title": "Senate Community Affairs 2024-25 Additional estimates hearings",
+      "summary": "Additional estimates hearings were held on 26 and 27 February 2025. The Community Affairs committees cover the Health, Disability and Ageing and Social Services portfolios.",
+      "source": {
+        "title": "Senate estimates — Community Affairs",
+        "url": "https://www.aph.gov.au/Parliamentary_Business/Senate_estimates/ca",
+        "publisher": "Parliament of Australia"
+      },
+      "verified": "confirmed"
+    }
+  ]
+}

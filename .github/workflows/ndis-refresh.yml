@@ -1,0 +1,68 @@
+name: NDIS data refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Mon 22:00 UTC ≈ Tue 08:00 AEST
+    - cron: '0 22 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ndis-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Each fetch-*.mjs soft-fails (prints + exits 0) on a Cloudflare
+      # block from *.ndis.gov.au per docs/ndis-spec.md §fetch rules — a
+      # non-zero exit here is a real failure, so continue-on-error stays
+      # false and a bad fetch stops the job before anything is committed.
+      - name: Fetch law (Federal Register of Legislation)
+        run: node scripts/ndis/fetch-law.mjs
+        continue-on-error: false
+
+      - name: Fetch context (NDIA quarterly datasets + ABS)
+        run: node scripts/ndis/fetch-context.mjs
+        continue-on-error: false
+
+      - name: Fetch feeds (ParlInfo + health.gov.au)
+        run: node scripts/ndis/fetch-feeds.mjs
+        continue-on-error: false
+
+      - name: Fetch catalogue (current Support Catalogue release)
+        run: node scripts/ndis/fetch-catalogue.mjs
+        continue-on-error: false
+
+      - name: Derive ndis.json
+        run: node scripts/ndis/derive.mjs
+        continue-on-error: false
+
+      - name: Validate NDIS data
+        run: node scripts/ndis/validate.mjs
+        continue-on-error: false
+
+      # Only reached if validation passed — a failed validate step above
+      # stops the job here, so this never commits invalid data.
+      - name: Commit and push if data/ndis/ changed
+        run: |
+          if [ -n "$(git status --porcelain data/ndis/)" ]; then
+            git config user.name "spheric"
+            git config user.email "2698271+spheric@users.noreply.github.com"
+            git add data/ndis/
+            git commit -m "ndis: scheduled data refresh"
+            git push
+          else
+            echo "no changes in data/ndis/ — nothing to commit"
+          fi

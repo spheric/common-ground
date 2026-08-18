@@ -1,0 +1,1378 @@
+{
+  "generated": "2026-08-18",
+  "act_versions": [
+    {
+      "compilation": 0,
+      "register_id": "C2013A00020",
+      "start": "2013-03-28",
+      "url": "https://www.legislation.gov.au/C2013A00020/2013-03-28"
+    },
+    {
+      "compilation": 1,
+      "register_id": "C2013C00240",
+      "start": "2013-05-29",
+      "url": "https://www.legislation.gov.au/C2013C00240/2013-05-29"
+    },
+    {
+      "compilation": 2,
+      "register_id": "C2013C00315",
+      "start": "2013-07-01",
+      "url": "https://www.legislation.gov.au/C2013C00315/2013-07-01"
+    },
+    {
+      "compilation": 3,
+      "register_id": "C2013C00388",
+      "start": "2013-08-01",
+      "url": "https://www.legislation.gov.au/C2013C00388/2013-08-01"
+    },
+    {
+      "compilation": 4,
+      "register_id": "C2014C00149",
+      "start": "2014-04-01",
+      "url": "https://www.legislation.gov.au/C2014C00149/2014-04-01"
+    },
+    {
+      "compilation": 5,
+      "register_id": "C2014C00386",
+      "start": "2014-07-01",
+      "url": "https://www.legislation.gov.au/C2014C00386/2014-07-01"
+    },
+    {
+      "compilation": 6,
+      "register_id": "C2016C00213",
+      "start": "2016-03-05",
+      "url": "https://www.legislation.gov.au/C2016C00213/2016-03-05"
+    },
+    {
+      "compilation": 7,
+      "register_id": "C2016C00894",
+      "start": "2016-07-01",
+      "url": "https://www.legislation.gov.au/C2016C00894/2016-07-01"
+    },
+    {
+      "compilation": 8,
+      "register_id": "C2016C00934",
+      "start": "2016-10-21",
+      "url": "https://www.legislation.gov.au/C2016C00934/2016-10-21"
+    },
+    {
+      "compilation": 9,
+      "register_id": "C2018C00276",
+      "start": "2018-07-01",
+      "url": "https://www.legislation.gov.au/C2018C00276/2018-07-01"
+    },
+    {
+      "compilation": 10,
+      "register_id": "C2019C00313",
+      "start": "2019-10-03",
+      "url": "https://www.legislation.gov.au/C2019C00313/2019-10-03"
+    },
+    {
+      "compilation": 11,
+      "register_id": "C2019C00332",
+      "start": "2019-12-10",
+      "url": "https://www.legislation.gov.au/C2019C00332/2019-12-10"
+    },
+    {
+      "compilation": 12,
+      "register_id": "C2020C00378",
+      "start": "2020-11-21",
+      "url": "https://www.legislation.gov.au/C2020C00378/2020-11-21"
+    },
+    {
+      "compilation": 13,
+      "register_id": "C2020C00392",
+      "start": "2020-11-27",
+      "url": "https://www.legislation.gov.au/C2020C00392/2020-11-27"
+    },
+    {
+      "compilation": 14,
+      "register_id": "C2021C00471",
+      "start": "2021-09-01",
+      "url": "https://www.legislation.gov.au/C2021C00471/2021-09-01"
+    },
+    {
+      "compilation": 15,
+      "register_id": "C2021C00540",
+      "start": "2021-10-29",
+      "url": "https://www.legislation.gov.au/C2021C00540/2021-10-29"
+    },
+    {
+      "compilation": 16,
+      "register_id": "C2022C00157",
+      "start": "2022-04-08",
+      "url": "https://www.legislation.gov.au/C2022C00157/2022-04-08"
+    },
+    {
+      "compilation": 17,
+      "register_id": "C2022C00206",
+      "start": "2022-07-01",
+      "url": "https://www.legislation.gov.au/C2022C00206/2022-07-01"
+    },
+    {
+      "compilation": 18,
+      "register_id": "C2023C00345",
+      "start": "2023-10-18",
+      "url": "https://www.legislation.gov.au/C2023C00345/2023-10-18"
+    },
+    {
+      "compilation": 19,
+      "register_id": "C2024C00312",
+      "start": "2024-07-06",
+      "url": "https://www.legislation.gov.au/C2024C00312/2024-07-06"
+    },
+    {
+      "compilation": 20,
+      "register_id": "C2024C00398",
+      "start": "2024-10-03",
+      "url": "https://www.legislation.gov.au/C2024C00398/2024-10-03"
+    },
+    {
+      "compilation": 21,
+      "register_id": "C2024C00476",
+      "start": "2024-10-14",
+      "url": "https://www.legislation.gov.au/C2024C00476/2024-10-14"
+    },
+    {
+      "compilation": 22,
+      "register_id": "C2025C00129",
+      "start": "2025-02-21",
+      "url": "https://www.legislation.gov.au/C2025C00129/2025-02-21"
+    },
+    {
+      "compilation": 23,
+      "register_id": "C2025C00607",
+      "start": "2025-11-01",
+      "url": "https://www.legislation.gov.au/C2025C00607/2025-11-01"
+    },
+    {
+      "compilation": 24,
+      "register_id": "C2026C00153",
+      "start": "2026-04-09",
+      "url": "https://www.legislation.gov.au/C2026C00153/2026-04-09"
+    },
+    {
+      "compilation": 25,
+      "register_id": "C2026C00181",
+      "start": "2026-05-06",
+      "url": "https://www.legislation.gov.au/C2026C00181/2026-05-06"
+    }
+  ],
+  "titles": [
+    {
+      "register_id": "F2026L00906",
+      "name": "National Disability Insurance Scheme Amendment (Old Framework Plans) (Pricing Documents) Determination 2026",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2026-06-30",
+      "registered": "2026-06-30",
+      "url": "https://www.legislation.gov.au/F2026L00906"
+    },
+    {
+      "register_id": "F2026L00793",
+      "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (Consequential Amendment) Rules 2026",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2026-06-23",
+      "registered": "2026-06-25",
+      "url": "https://www.legislation.gov.au/F2026L00793"
+    },
+    {
+      "register_id": "F2026L00802",
+      "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (Mandatory Registration and Other Matters) Rules 2026",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2026-06-23",
+      "registered": "2026-06-24",
+      "url": "https://www.legislation.gov.au/F2026L00802"
+    },
+    {
+      "register_id": "F2026N00443",
+      "name": "National Disability Insurance Scheme (Quality Indicators for NDIS Practice Standards) Amendment (Supported Independent Living) Guidelines 2026",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2026-06-23",
+      "registered": "2026-06-24",
+      "url": "https://www.legislation.gov.au/F2026N00443"
+    },
+    {
+      "register_id": "C2026A00041",
+      "name": "National Disability Insurance Scheme Amendment (Integrity and Safeguarding) Act 2026",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2026-04-08",
+      "registered": "2026-04-10",
+      "url": "https://www.legislation.gov.au/C2026A00041"
+    },
+    {
+      "register_id": "F2026L00044",
+      "name": "National Disability Insurance Scheme (Complaints Management and Resolution) Amendment (Dealing with Complaints) Rules 2026",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2026-01-22",
+      "registered": "2026-01-27",
+      "url": "https://www.legislation.gov.au/F2026L00044"
+    },
+    {
+      "register_id": "F2026N00063",
+      "name": "National Disability Insurance Scheme (Procedural Fairness) Amendment (Consequential Amendments) Guidelines 2026",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2026-01-22",
+      "registered": "2026-01-27",
+      "url": "https://www.legislation.gov.au/F2026N00063"
+    },
+    {
+      "register_id": "F2025L01539",
+      "name": "National Disability Insurance Scheme (Direction to the NDIS Quality and Safeguards Commissioner) Repeal Instrument 2025",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2025-12-10",
+      "registered": "2025-12-11",
+      "url": "https://www.legislation.gov.au/F2025L01539"
+    },
+    {
+      "register_id": "F2025L01383",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors) Rules 2025",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2025-11-13",
+      "registered": "2025-11-14",
+      "url": "https://www.legislation.gov.au/F2025L01383"
+    },
+    {
+      "register_id": "F2025N00909",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors Scheme) Amendment (Consequential Amendments) Guidelines 2025",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2025-11-13",
+      "registered": "2025-11-14",
+      "url": "https://www.legislation.gov.au/F2025N00909"
+    },
+    {
+      "register_id": "F2025L01223",
+      "name": "National Disability Insurance Scheme(Getting the NDIS Back on Track No. 1) (Miscellaneous Provisions) Transitional Amendment Rules 2025",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2025-10-02",
+      "registered": "2025-10-02",
+      "url": "https://www.legislation.gov.au/F2025L01223"
+    },
+    {
+      "register_id": "F2025L00347",
+      "name": "A New Tax System (Goods and Services Tax) (GST‑free Supply—National Disability Insurance Scheme Supports) Amendment (Application Period) Determination 2025",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2025-03-11",
+      "registered": "2025-03-12",
+      "url": "https://www.legislation.gov.au/F2025L00347"
+    },
+    {
+      "register_id": "F2025L00279",
+      "name": "National Disability Insurance Scheme Amendment (Management of Funding and Plan Management) Rules 2025",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2025-02-27",
+      "registered": "2025-03-03",
+      "url": "https://www.legislation.gov.au/F2025L00279"
+    },
+    {
+      "register_id": "F2025L00280",
+      "name": "National Disability Insurance Scheme (Variation and Reassessment of Participants’ Plans) Rules 2025",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2025-02-27",
+      "registered": "2025-03-03",
+      "url": "https://www.legislation.gov.au/F2025L00280"
+    },
+    {
+      "register_id": "F2024L01685",
+      "name": "National Disability Insurance Scheme (Management of Funding) Rules 2024",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2024-12-13",
+      "registered": "2024-12-16",
+      "url": "https://www.legislation.gov.au/F2024L01685"
+    },
+    {
+      "register_id": "F2024L01273",
+      "name": "National Disability Insurance Scheme (Old Framework Plans) Determination 2024",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2024-10-07",
+      "registered": "2024-10-08",
+      "url": "https://www.legislation.gov.au/F2024L01273"
+    },
+    {
+      "register_id": "F2024L01255",
+      "name": "National Disability Insurance Scheme (Getting the NDIS Back on Track No. 1) (Miscellaneous Provisions) Transitional Rules 2024",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2024-09-30",
+      "registered": "2024-10-01",
+      "url": "https://www.legislation.gov.au/F2024L01255"
+    },
+    {
+      "register_id": "F2024L01257",
+      "name": "National Disability Insurance Scheme (Getting the NDIS Back on Track No. 1) (NDIS Supports) Transitional Rules 2024",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2024-09-30",
+      "registered": "2024-10-01",
+      "url": "https://www.legislation.gov.au/F2024L01257"
+    },
+    {
+      "register_id": "C2024A00081",
+      "name": "National Disability Insurance Scheme Amendment (Getting the NDIS Back on Track No. 1) Act 2024",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2024-09-05",
+      "registered": "2024-09-09",
+      "url": "https://www.legislation.gov.au/C2024A00081"
+    },
+    {
+      "register_id": "F2024L00867",
+      "name": "National Disability Insurance Scheme (NDIS Worker Screening Law) Amendment Determination 2024",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2024-07-02",
+      "registered": "2024-07-08",
+      "url": "https://www.legislation.gov.au/F2024L00867"
+    },
+    {
+      "register_id": "F2024N00601",
+      "name": "National Disability Insurance Scheme (Quality Indicators for NDIS Practice Standards) Amendment Guidelines 2024",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2024-07-02",
+      "registered": "2024-07-04",
+      "url": "https://www.legislation.gov.au/F2024N00601"
+    },
+    {
+      "register_id": "F2023L01703",
+      "name": "National Disability Insurance Scheme (Code of Conduct) Amendment (2023 Measures No. 1) Rules 2023",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2023-12-15",
+      "registered": "2023-12-18",
+      "url": "https://www.legislation.gov.au/F2023L01703"
+    },
+    {
+      "register_id": "F2023L01383",
+      "name": "Direction to the NDIS Quality and Safeguards Commissioner under section 181K of the National Disability Insurance Scheme Act 2013 –No. 1/2023",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2023-10-13",
+      "registered": "2023-10-16",
+      "url": "https://www.legislation.gov.au/F2023L01383"
+    },
+    {
+      "register_id": "F2023L01302",
+      "name": "Legislation (Deferral of Sunsetting—National Disability Insurance Scheme Instruments) Certificate (No. 2) 2023",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2023-09-22",
+      "registered": "2023-09-26",
+      "url": "https://www.legislation.gov.au/F2023L01302"
+    },
+    {
+      "register_id": "F2023L00965",
+      "name": "Legislation (Deferral of Sunsetting—National Disability Insurance Scheme Instruments) Certificate (No. 1) 2023",
+      "collection": "LegislativeInstrument",
+      "status": "Ceased",
+      "made": "2023-07-03",
+      "registered": "2023-07-05",
+      "url": "https://www.legislation.gov.au/F2023L00965"
+    },
+    {
+      "register_id": "F2023N00081",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors Scheme) Amendment (Residential Aged Care Provider Audits) Guidelines 2023",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2023-04-04",
+      "registered": "2023-04-19",
+      "url": "https://www.legislation.gov.au/F2023N00081"
+    },
+    {
+      "register_id": "F2023N00003",
+      "name": "National Disability Insurance Scheme (NDIS Behaviour Support Practitioner Application) Amendment (Publication of Suitability) Guidelines 2022",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2022-12-21",
+      "registered": "2023-01-09",
+      "url": "https://www.legislation.gov.au/F2023N00003"
+    },
+    {
+      "register_id": "C2022A00027",
+      "name": "National Disability Insurance Scheme Amendment (Participant Service Guarantee and Other Measures) Act 2022",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2022-04-01",
+      "registered": "2022-04-05",
+      "url": "https://www.legislation.gov.au/C2022A00027"
+    },
+    {
+      "register_id": "F2022L00442",
+      "name": "National Disability Insurance Scheme (NDIS Provider Definition) Amendment (Information, Linkages and Capacity Building Program) Rule 2022",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2022-03-27",
+      "registered": "2022-03-31",
+      "url": "https://www.legislation.gov.au/F2022L00442"
+    },
+    {
+      "register_id": "C2021A00116",
+      "name": "National Disability Insurance Scheme Amendment (Improving Supports for At Risk Participants) Act 2021",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2021-10-28",
+      "registered": "2021-11-03",
+      "url": "https://www.legislation.gov.au/C2021A00116"
+    },
+    {
+      "register_id": "F2021L01480",
+      "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (2021 Measures No. 1) Rules 2021",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2021-10-28",
+      "registered": "2021-10-29",
+      "url": "https://www.legislation.gov.au/F2021L01480"
+    },
+    {
+      "register_id": "F2021N00274",
+      "name": "National Disability Insurance Scheme Legislation Amendment (Quality Indicators) Guidelines 2021",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2021-10-29",
+      "registered": "2021-10-29",
+      "url": "https://www.legislation.gov.au/F2021N00274"
+    },
+    {
+      "register_id": "F2021L01050",
+      "name": "National Disability Insurance Scheme (Practice Standards—Worker Screening) Amendment (Transitional and Special Arrangements—Victoria) Rules 2021",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2021-07-28",
+      "registered": "2021-07-30",
+      "url": "https://www.legislation.gov.au/F2021L01050"
+    },
+    {
+      "register_id": "F2021L00902",
+      "name": "National Disability Insurance Scheme (NDIS Provider Definition) Amendment Rules 2021",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2021-06-29",
+      "registered": "2021-06-30",
+      "url": "https://www.legislation.gov.au/F2021L00902"
+    },
+    {
+      "register_id": "F2021L00846",
+      "name": "A New Tax System (Goods and Services Tax) (GST-free Supply—National Disability Insurance Scheme Supports) Determination 2021",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2021-06-24",
+      "registered": "2021-06-25",
+      "url": "https://www.legislation.gov.au/F2021L00846"
+    },
+    {
+      "register_id": "F2021N00121",
+      "name": "National Disability Insurance Scheme (Practice Standards – Worker Screening – Western Australia) Notice 2021",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2021-06-16",
+      "registered": "2021-06-17",
+      "url": "https://www.legislation.gov.au/F2021N00121"
+    },
+    {
+      "register_id": "F2021L00417",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information—Commissioner) Amendment Rules 2021",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2021-03-31",
+      "registered": "2021-04-06",
+      "url": "https://www.legislation.gov.au/F2021L00417"
+    },
+    {
+      "register_id": "F2021L00046",
+      "name": "National Disability Insurance Scheme (NDIS Worker Screening Law Amendment No. 1 Determination) 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-12-22",
+      "registered": "2021-01-14",
+      "url": "https://www.legislation.gov.au/F2021L00046"
+    },
+    {
+      "register_id": "F2020L01507",
+      "name": "National Disability Insurance Scheme Amendment (Participating Jurisdiction) Specification 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-11-26",
+      "registered": "2020-11-30",
+      "url": "https://www.legislation.gov.au/F2020L01507"
+    },
+    {
+      "register_id": "F2020L01508",
+      "name": "National Disability Insurance Scheme (Practice Standards—Worker Screening) Amendment (Miscellaneous Measures) Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-11-27",
+      "registered": "2020-11-30",
+      "url": "https://www.legislation.gov.au/F2020L01508"
+    },
+    {
+      "register_id": "F2020L01512",
+      "name": "National Disability Insurance Scheme Legislation Amendment (Transitioning Aged Care Providers) Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-11-30",
+      "registered": "2020-11-30",
+      "url": "https://www.legislation.gov.au/F2020L01512"
+    },
+    {
+      "register_id": "C2020A00103",
+      "name": "National Disability Insurance Scheme Amendment (Strengthening Banning Orders) Act 2020",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2020-11-20",
+      "registered": "2020-11-26",
+      "url": "https://www.legislation.gov.au/C2020A00103"
+    },
+    {
+      "register_id": "F2020N00087",
+      "name": "National Disability Insurance Scheme (NDIS Behaviour Support Practitioner Application) Guidelines 2020",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2020-07-30",
+      "registered": "2020-08-06",
+      "url": "https://www.legislation.gov.au/F2020N00087"
+    },
+    {
+      "register_id": "F2020L00839",
+      "name": "National Disability Insurance Scheme (Practice Standards—Worker Screening) Amendment Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-06-29",
+      "registered": "2020-06-29",
+      "url": "https://www.legislation.gov.au/F2020L00839"
+    },
+    {
+      "register_id": "F2020L00790",
+      "name": "National Disability Insurance Scheme Amendment (Provider Registration – Extension of Exemption) Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-06-25",
+      "registered": "2020-06-26",
+      "url": "https://www.legislation.gov.au/F2020L00790"
+    },
+    {
+      "register_id": "F2020L00769",
+      "name": "National Disability Insurance Scheme (Specialist Disability Accommodation) Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2020-06-17",
+      "registered": "2020-06-22",
+      "url": "https://www.legislation.gov.au/F2020L00769"
+    },
+    {
+      "register_id": "F2020L00770",
+      "name": "National Disability Insurance Scheme (Specialist Disability Accommodation Conditions) Amendment Rules 2020",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2020-06-17",
+      "registered": "2020-06-22",
+      "url": "https://www.legislation.gov.au/F2020L00770"
+    },
+    {
+      "register_id": "F2020L00137",
+      "name": "National Disability Insurance Scheme (NDIS Worker Screening Law) Determination 2020",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2020-02-11",
+      "registered": "2020-02-18",
+      "url": "https://www.legislation.gov.au/F2020L00137"
+    },
+    {
+      "register_id": "F2019N00116",
+      "name": "National Disability Insurance Scheme (Registered NDIS Provider Notice of Changes and Events) Guidelines 2019",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2019-12-23",
+      "registered": "2019-12-24",
+      "url": "https://www.legislation.gov.au/F2019N00116"
+    },
+    {
+      "register_id": "F2019N00111",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors Scheme) Amendment Guidelines No. 2 2019",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2019-12-18",
+      "registered": "2019-12-19",
+      "url": "https://www.legislation.gov.au/F2019N00111"
+    },
+    {
+      "register_id": "C2019A00113",
+      "name": "National Disability Insurance Scheme Amendment (Streamlined Governance) Act 2019",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2019-12-09",
+      "registered": "2019-12-12",
+      "url": "https://www.legislation.gov.au/C2019A00113"
+    },
+    {
+      "register_id": "F2019L01565",
+      "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Amendment (2019 Measures No. 1) Rules 2019",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2019-12-02",
+      "registered": "2019-12-04",
+      "url": "https://www.legislation.gov.au/F2019L01565"
+    },
+    {
+      "register_id": "F2019L01397",
+      "name": "Crimes Amendment (National Disability Insurance Scheme—Worker Screening) Regulations 2019",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2019-10-17",
+      "registered": "2019-10-31",
+      "url": "https://www.legislation.gov.au/F2019L01397"
+    },
+    {
+      "register_id": "C2019A00082",
+      "name": "National Disability Insurance Scheme Amendment (Worker Screening Database) Act 2019",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2019-10-02",
+      "registered": "2019-10-03",
+      "url": "https://www.legislation.gov.au/C2019A00082"
+    },
+    {
+      "register_id": "F2019L00937",
+      "name": "National Disability Insurance Scheme (Practice Standards—Worker Screening) Amendment Rules 2019",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2019-06-28",
+      "registered": "2019-06-28",
+      "url": "https://www.legislation.gov.au/F2019L00937"
+    },
+    {
+      "register_id": "F2019N00038",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors Scheme) Amendment Guidelines 2019",
+      "collection": "NotifiableInstrument",
+      "status": "Repealed",
+      "made": "2019-04-08",
+      "registered": "2019-04-09",
+      "url": "https://www.legislation.gov.au/F2019N00038"
+    },
+    {
+      "register_id": "F2019L00514",
+      "name": "National Disability Insurance Scheme Amendment (Participating Jurisdiction) Specification 2019",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2019-03-29",
+      "registered": "2019-04-02",
+      "url": "https://www.legislation.gov.au/F2019L00514"
+    },
+    {
+      "register_id": "F2019L00406",
+      "name": "National Disability Insurance Scheme Amendment (Specialist Disability Accommodation) Rules 2019",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2019-03-25",
+      "registered": "2019-03-26",
+      "url": "https://www.legislation.gov.au/F2019L00406"
+    },
+    {
+      "register_id": "F2018N00155",
+      "name": "National Disability Insurance Scheme (Procedural Fairness) Guidelines 2018",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2018-09-27",
+      "registered": "2018-09-28",
+      "url": "https://www.legislation.gov.au/F2018N00155"
+    },
+    {
+      "register_id": "F2018N00114",
+      "name": "National Disability Insurance Scheme (Approved Quality Auditors Scheme) Guidelines 2018",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2018-07-09",
+      "registered": "2018-07-12",
+      "url": "https://www.legislation.gov.au/F2018N00114"
+    },
+    {
+      "register_id": "F2018L00887",
+      "name": "National Disability Insurance Scheme (Practice Standards—Worker Screening) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-06-26",
+      "registered": "2018-06-26",
+      "url": "https://www.legislation.gov.au/F2018L00887"
+    },
+    {
+      "register_id": "C2018A00033",
+      "name": "Crimes Amendment (National Disability Insurance Scheme—Worker Screening) Act 2018",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2018-05-22",
+      "registered": "2018-05-23",
+      "url": "https://www.legislation.gov.au/C2018A00033"
+    },
+    {
+      "register_id": "F2018L00626",
+      "name": "National Disability Insurance Scheme Amendment (Specialist Disability Accommodation - Participating Jurisdictions) Rule 2018",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2018-05-16",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00626"
+    },
+    {
+      "register_id": "F2018L00627",
+      "name": "National Disability Insurance Scheme (Specialist Disability Accommodation Conditions) Rule 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00627"
+    },
+    {
+      "register_id": "F2018L00628",
+      "name": "National Disability Insurance Scheme (NDIS Provider Definition) Rule 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00628"
+    },
+    {
+      "register_id": "F2018L00629",
+      "name": "National Disability Insurance Scheme (Code of Conduct) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00629"
+    },
+    {
+      "register_id": "F2018L00630",
+      "name": "National Disability Insurance Scheme (Quality and Safeguards Commission and Other Measures) Transitional Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-16",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00630"
+    },
+    {
+      "register_id": "F2018L00631",
+      "name": "National Disability Insurance Scheme (Provider Registration and Practice Standards) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00631"
+    },
+    {
+      "register_id": "F2018L00632",
+      "name": "National Disability Insurance Scheme (Restrictive Practices and Behaviour Support) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-18",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00632"
+    },
+    {
+      "register_id": "F2018L00633",
+      "name": "National Disability Insurance Scheme (Incident Management and Reportable Incidents) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00633"
+    },
+    {
+      "register_id": "F2018L00634",
+      "name": "National Disability Insurance Scheme (Complaints Management and Resolution) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00634"
+    },
+    {
+      "register_id": "F2018L00635",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information—Commissioner) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-18",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018L00635"
+    },
+    {
+      "register_id": "F2018N00041",
+      "name": "National Disability Insurance Scheme (Quality Indicators for NDIS Practice Standards) Guidelines 2018",
+      "collection": "NotifiableInstrument",
+      "status": "InForce",
+      "made": "2018-05-17",
+      "registered": "2018-05-18",
+      "url": "https://www.legislation.gov.au/F2018N00041"
+    },
+    {
+      "register_id": "F2018L00602",
+      "name": "National Disability Insurance Scheme (Prescribed Program—Western Australia) Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-05-10",
+      "registered": "2018-05-11",
+      "url": "https://www.legislation.gov.au/F2018L00602"
+    },
+    {
+      "register_id": "F2018L00506",
+      "name": "National Disability Insurance Scheme (Participating Jurisdiction) Specification 2018",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2018-04-17",
+      "registered": "2018-04-23",
+      "url": "https://www.legislation.gov.au/F2018L00506"
+    },
+    {
+      "register_id": "F2018L00148",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2018-02-20",
+      "registered": "2018-02-26",
+      "url": "https://www.legislation.gov.au/F2018L00148"
+    },
+    {
+      "register_id": "F2018L00144",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants’ Plans—Western Australia) Amendment Rules 2018",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2018-02-20",
+      "registered": "2018-02-23",
+      "url": "https://www.legislation.gov.au/F2018L00144"
+    },
+    {
+      "register_id": "F2017L01651",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants’ Plans—Tasmania) Amendment Rules 2017",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-12-10",
+      "registered": "2017-12-18",
+      "url": "https://www.legislation.gov.au/F2017L01651"
+    },
+    {
+      "register_id": "C2017A00131",
+      "name": "National Disability Insurance Scheme Amendment (Quality and Safeguards Commission and Other Measures) Act 2017",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2017-12-13",
+      "registered": "2017-12-14",
+      "url": "https://www.legislation.gov.au/C2017A00131"
+    },
+    {
+      "register_id": "F2017L01127",
+      "name": "GST-free Supply (National Disability Insurance Scheme Supports) Amendment Determination 2017 (No. 2)",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-08-29",
+      "registered": "2017-09-04",
+      "url": "https://www.legislation.gov.au/F2017L01127"
+    },
+    {
+      "register_id": "F2017L00722",
+      "name": "GST—free Supply (National Disability Insurance Scheme Supports) Amendment Determination 2017",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2017-06-19",
+      "registered": "2017-06-22",
+      "url": "https://www.legislation.gov.au/F2017L00722"
+    },
+    {
+      "register_id": "F2017L00734",
+      "name": "GST-free Supply (National Disability Insurance Scheme Supports) Determination 2017",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-06-19",
+      "registered": "2017-06-22",
+      "url": "https://www.legislation.gov.au/F2017L00734"
+    },
+    {
+      "register_id": "F2017L00530",
+      "name": "Social and Community Services Pay Equity Special Account (Transition to National Disability Insurance Scheme) Specification 2017",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-05-10",
+      "registered": "2017-05-16",
+      "url": "https://www.legislation.gov.au/F2017L00530"
+    },
+    {
+      "register_id": "F2017L00209",
+      "name": "National Disability Insurance Scheme (Specialist Disability Accommodation) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-03-02",
+      "registered": "2017-03-14",
+      "url": "https://www.legislation.gov.au/F2017L00209"
+    },
+    {
+      "register_id": "F2017L00088",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2017",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-01-24",
+      "registered": "2017-02-01",
+      "url": "https://www.legislation.gov.au/F2017L00088"
+    },
+    {
+      "register_id": "F2017L00073",
+      "name": "National Disability Insurance Scheme (Plan Management) Amendment Rules 2017",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2017-01-12",
+      "registered": "2017-01-25",
+      "url": "https://www.legislation.gov.au/F2017L00073"
+    },
+    {
+      "register_id": "F2016L01972",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2016 (No. 3)",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-12-14",
+      "registered": "2016-12-16",
+      "url": "https://www.legislation.gov.au/F2016L01972"
+    },
+    {
+      "register_id": "F2016L01966",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants’ Plans—Northern Territory) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-12-14",
+      "registered": "2016-12-15",
+      "url": "https://www.legislation.gov.au/F2016L01966"
+    },
+    {
+      "register_id": "F2016L01733",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information) Amendment Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-11-07",
+      "registered": "2016-11-10",
+      "url": "https://www.legislation.gov.au/F2016L01733"
+    },
+    {
+      "register_id": "F2016L01119",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants’ Plans—Queensland) Amendment Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-06-29",
+      "registered": "2016-06-30",
+      "url": "https://www.legislation.gov.au/F2016L01119"
+    },
+    {
+      "register_id": "F2016L01122",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2016 (No. 2)",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-06-29",
+      "registered": "2016-06-30",
+      "url": "https://www.legislation.gov.au/F2016L01122"
+    },
+    {
+      "register_id": "F2016L00791",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—New South Wales) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-05-05",
+      "registered": "2016-05-13",
+      "url": "https://www.legislation.gov.au/F2016L00791"
+    },
+    {
+      "register_id": "F2016L00792",
+      "name": "National Disability Insurance Scheme (Prescribed Programs—New South Wales) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-05-05",
+      "registered": "2016-05-13",
+      "url": "https://www.legislation.gov.au/F2016L00792"
+    },
+    {
+      "register_id": "F2016L00794",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Victoria) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-05-05",
+      "registered": "2016-05-13",
+      "url": "https://www.legislation.gov.au/F2016L00794"
+    },
+    {
+      "register_id": "F2016L00795",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Tasmania) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-05-05",
+      "registered": "2016-05-13",
+      "url": "https://www.legislation.gov.au/F2016L00795"
+    },
+    {
+      "register_id": "F2016L00796",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—South Australia) Amendment Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-05-05",
+      "registered": "2016-05-13",
+      "url": "https://www.legislation.gov.au/F2016L00796"
+    },
+    {
+      "register_id": "C2016A00051",
+      "name": "National Disability Insurance Scheme Amendment Act 2016",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2016-05-05",
+      "registered": "2016-05-06",
+      "url": "https://www.legislation.gov.au/C2016A00051"
+    },
+    {
+      "register_id": "F2016L00618",
+      "name": "GST—free Supply (National Disability Insurance Scheme Supports) Amendment Determination 2016 (No. 1)",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-04-27",
+      "registered": "2016-05-02",
+      "url": "https://www.legislation.gov.au/F2016L00618"
+    },
+    {
+      "register_id": "F2016L00544",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-04-19",
+      "registered": "2016-04-19",
+      "url": "https://www.legislation.gov.au/F2016L00544"
+    },
+    {
+      "register_id": "F2016L00545",
+      "name": "National Disability Insurance Scheme (Timeframes for Decision Making) Amendment Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-04-19",
+      "registered": "2016-04-19",
+      "url": "https://www.legislation.gov.au/F2016L00545"
+    },
+    {
+      "register_id": "F2016L00342",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Queensland) Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-03-15",
+      "registered": "2016-03-16",
+      "url": "https://www.legislation.gov.au/F2016L00342"
+    },
+    {
+      "register_id": "F2016L00345",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2016",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2016-03-15",
+      "registered": "2016-03-16",
+      "url": "https://www.legislation.gov.au/F2016L00345"
+    },
+    {
+      "register_id": "F2016L00226",
+      "name": "National Disability Insurance Scheme (Host Jurisdiction) Specification 2016",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2016-02-16",
+      "registered": "2016-03-02",
+      "url": "https://www.legislation.gov.au/F2016L00226"
+    },
+    {
+      "register_id": "F2015L01240",
+      "name": "National Disability Insurance Scheme (Timeframes for Decision Making) Amendment Rules 2015",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2015-07-28",
+      "registered": "2015-08-10",
+      "url": "https://www.legislation.gov.au/F2015L01240"
+    },
+    {
+      "register_id": "F2015L01001",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2015",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2015-06-29",
+      "registered": "2015-06-30",
+      "url": "https://www.legislation.gov.au/F2015L01001"
+    },
+    {
+      "register_id": "F2015L01002",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—New South Wales) Amendment Rules 2015",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2015-06-29",
+      "registered": "2015-06-30",
+      "url": "https://www.legislation.gov.au/F2015L01002"
+    },
+    {
+      "register_id": "F2015L00112",
+      "name": "GST-free Supply (National Disability Insurance Scheme Supports) Amendment Determination 2015",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2015-01-23",
+      "registered": "2015-02-04",
+      "url": "https://www.legislation.gov.au/F2015L00112"
+    },
+    {
+      "register_id": "F2015L00017",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information) Amendment (No. 2) Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-12-18",
+      "registered": "2015-01-07",
+      "url": "https://www.legislation.gov.au/F2015L00017"
+    },
+    {
+      "register_id": "F2014L00901",
+      "name": "National Disability Insurance Scheme (Timeframes for Decision Making) Amendment Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00901"
+    },
+    {
+      "register_id": "F2014L00902",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Amendment Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00902"
+    },
+    {
+      "register_id": "F2014L00903",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information) Amendment Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00903"
+    },
+    {
+      "register_id": "F2014L00909",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Australian Capital Territory) Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00909"
+    },
+    {
+      "register_id": "F2014L00914",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—South Australia) Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00914"
+    },
+    {
+      "register_id": "F2014L00915",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Western Australia) Rules 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-30",
+      "registered": "2014-06-30",
+      "url": "https://www.legislation.gov.au/F2014L00915"
+    },
+    {
+      "register_id": "F2014L00807",
+      "name": "National Disability Insurance Scheme (Host Jurisdiction) Amendment Specification 2014",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2014-06-23",
+      "registered": "2014-06-25",
+      "url": "https://www.legislation.gov.au/F2014L00807"
+    },
+    {
+      "register_id": "F2013L01414",
+      "name": "National Disability Insurance Scheme (Supports for Participants—Accounting for Compensation) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-07-22",
+      "registered": "2013-07-22",
+      "url": "https://www.legislation.gov.au/F2013L01414"
+    },
+    {
+      "register_id": "F2013L01325",
+      "name": "GST-free Supply (National Disability Insurance Scheme Supports) Determination 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-07-03",
+      "registered": "2013-07-05",
+      "url": "https://www.legislation.gov.au/F2013L01325"
+    },
+    {
+      "register_id": "F2013L01183",
+      "name": "National Disability Insurance Scheme—Risk Management Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-25",
+      "registered": "2013-06-27",
+      "url": "https://www.legislation.gov.au/F2013L01183"
+    },
+    {
+      "register_id": "F2013L01184",
+      "name": "National Disability Insurance Scheme—Rules for the Scheme Actuary 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-25",
+      "registered": "2013-06-27",
+      "url": "https://www.legislation.gov.au/F2013L01184"
+    },
+    {
+      "register_id": "F2013L01152",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Tasmania) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-24",
+      "registered": "2013-06-25",
+      "url": "https://www.legislation.gov.au/F2013L01152"
+    },
+    {
+      "register_id": "F2013L01153",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—New South Wales) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-24",
+      "registered": "2013-06-25",
+      "url": "https://www.legislation.gov.au/F2013L01153"
+    },
+    {
+      "register_id": "F2013L01154",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants' Plans—Victoria) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-24",
+      "registered": "2013-06-25",
+      "url": "https://www.legislation.gov.au/F2013L01154"
+    },
+    {
+      "register_id": "F2013L01155",
+      "name": "National Disability Insurance Scheme (Facilitating the Preparation of Participants’ Plans—South Australia) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-24",
+      "registered": "2013-06-25",
+      "url": "https://www.legislation.gov.au/F2013L01155"
+    },
+    {
+      "register_id": "F2013L01062",
+      "name": "National Disability Insurance Scheme (Nominees) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01062"
+    },
+    {
+      "register_id": "F2013L01063",
+      "name": "National Disability Insurance Scheme (Supports for Participants) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01063"
+    },
+    {
+      "register_id": "F2013L01064",
+      "name": "National Disability Insurance Scheme (Plan Administration) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01064"
+    },
+    {
+      "register_id": "F2013L01066",
+      "name": "National Disability Insurance Scheme (Becoming a Participant) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01066"
+    },
+    {
+      "register_id": "F2013L01067",
+      "name": "National Disability Insurance Scheme (Timeframes for Decision Making) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01067"
+    },
+    {
+      "register_id": "F2013L01070",
+      "name": "National Disability Insurance Scheme (Children) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-18",
+      "registered": "2013-06-19",
+      "url": "https://www.legislation.gov.au/F2013L01070"
+    },
+    {
+      "register_id": "F2013L00994",
+      "name": "National Disability Insurance Scheme Commencement Proclamation 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-13",
+      "registered": "2013-06-14",
+      "url": "https://www.legislation.gov.au/F2013L00994"
+    },
+    {
+      "register_id": "F2013L01008",
+      "name": "National Disability Insurance Scheme (Protection and Disclosure of Information) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "InForce",
+      "made": "2013-06-14",
+      "registered": "2013-06-14",
+      "url": "https://www.legislation.gov.au/F2013L01008"
+    },
+    {
+      "register_id": "F2013L01009",
+      "name": "National Disability Insurance Scheme (Registered Providers of Supports) Rules 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-06-14",
+      "registered": "2013-06-14",
+      "url": "https://www.legislation.gov.au/F2013L01009"
+    },
+    {
+      "register_id": "C2013A00044",
+      "name": "National Disability Insurance Scheme Legislation Amendment Act 2013",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2013-05-28",
+      "registered": "2013-05-30",
+      "url": "https://www.legislation.gov.au/C2013A00044"
+    },
+    {
+      "register_id": "F2013L00803",
+      "name": "National Disability Insurance Scheme (Host Jurisdiction) Specification 2013",
+      "collection": "LegislativeInstrument",
+      "status": "Repealed",
+      "made": "2013-05-17",
+      "registered": "2013-05-20",
+      "url": "https://www.legislation.gov.au/F2013L00803"
+    },
+    {
+      "register_id": "C2013A00020",
+      "name": "National Disability Insurance Scheme Act 2013",
+      "collection": "Act",
+      "status": "InForce",
+      "made": "2013-03-28",
+      "registered": "2013-04-04",
+      "url": "https://www.legislation.gov.au/C2013A00020"
+    }
+  ]
+}

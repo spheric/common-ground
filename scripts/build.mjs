@@ -134,6 +134,62 @@ function byteSize(str) {
   return Buffer.byteLength(str, 'utf8');
 }
 
+// --- NDIS tracker page (docs/ndis-spec.md §build.mjs extension) -----------
+// Same token scheme as the main app, but no artifact variant. Both web/ndis.html
+// and data/ndis/ndis.json are optional (Builder B's page and Builder A's data
+// pipeline may land independently) — either being missing just skips this step
+// with a warning, the main build is unaffected.
+
+const NDIS_WEB_DIR = 'web';
+const NDIS_DATASET_PATH = 'data/ndis/ndis.json';
+const NDIS_REQUIRED_WEB_FILES = ['ndis.html', 'ndis.css', 'ndis.js'];
+
+function buildNdisPage() {
+  if (!existsSync(`${NDIS_WEB_DIR}/ndis.html`)) {
+    console.warn(`warning: ${NDIS_WEB_DIR}/ndis.html not found — skipping the NDIS tracker page`);
+    return;
+  }
+  const missing = NDIS_REQUIRED_WEB_FILES.filter((name) => !existsSync(`${NDIS_WEB_DIR}/${name}`));
+  if (missing.length > 0) {
+    console.warn(`warning: missing ${missing.map((n) => `${NDIS_WEB_DIR}/${n}`).join(', ')} — skipping the NDIS tracker page`);
+    return;
+  }
+  if (!existsSync(NDIS_DATASET_PATH)) {
+    console.warn(`warning: ${NDIS_DATASET_PATH} not found — skipping the NDIS tracker page`);
+    return;
+  }
+
+  const html = readFileSync(`${NDIS_WEB_DIR}/ndis.html`, 'utf8');
+  const css = readFileSync(`${NDIS_WEB_DIR}/ndis.css`, 'utf8');
+  const js = readFileSync(`${NDIS_WEB_DIR}/ndis.js`, 'utf8');
+
+  if (js.includes('</script')) {
+    console.error(`error: ${NDIS_WEB_DIR}/ndis.js must not contain the literal substring "</script"`);
+    process.exit(1);
+  }
+
+  const dataJson = loadDataset(NDIS_DATASET_PATH);
+
+  assertToken(html, CSS_TOKEN);
+  assertToken(html, DATA_TOKEN);
+  assertToken(html, JS_TOKEN);
+
+  const cssBlock = `<style>${css}</style>`;
+  const dataBlock = `<script>window.NDIS = ${escapeForInlineScript(dataJson)};</script>`;
+  const jsBlock = `<script>${js}</script>`;
+
+  // function replacements: see buildFullDocument — avoids $-pattern corruption
+  const ndisDocument = html
+    .replace(CSS_TOKEN, () => cssBlock)
+    .replace(DATA_TOKEN, () => dataBlock)
+    .replace(JS_TOKEN, () => jsBlock);
+
+  mkdirSync(DIST_DIR, { recursive: true });
+  const ndisPath = `${DIST_DIR}/ndis.html`;
+  writeFileSync(ndisPath, ndisDocument, 'utf8');
+  console.log(`wrote ${resolve(ndisPath)} (${byteSize(ndisDocument)} bytes)`);
+}
+
 function main() {
   requireWebFiles();
   const { html, css, js } = readWebFiles();
@@ -162,6 +218,8 @@ function main() {
 
   console.log(`wrote ${resolve(indexPath)} (${byteSize(fullDocument)} bytes)`);
   console.log(`wrote ${resolve(artifactPath)} (${byteSize(artifactDocument)} bytes)`);
+
+  buildNdisPage();
 }
 
 main();

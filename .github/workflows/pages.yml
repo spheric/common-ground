@@ -27,10 +27,15 @@ jobs:
           node-version: 22
       - name: Validate dataset
         run: node scripts/validate.mjs
+      - name: Validate NDIS data
+        run: node scripts/ndis/validate.mjs
       - name: Build single-file app
         run: node scripts/build.mjs
-      - name: Stage site (index only — artifact.html is not published)
-        run: mkdir -p _site && cp dist/index.html _site/index.html
+      - name: Stage site (index + NDIS tracker; artifact.html is not published)
+        run: |
+          mkdir -p _site
+          cp dist/index.html _site/index.html
+          if [ -f dist/ndis.html ]; then cp dist/ndis.html _site/ndis.html; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

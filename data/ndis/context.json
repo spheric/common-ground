@@ -1,0 +1,295 @@
+{
+  "generated": "2026-08-18",
+  "quarterly": {
+    "as_of_quarter": "2026-06-30",
+    "source": {
+      "title": "NDIS payments data — 12 months to report date (not a single-quarter total); NDIA dataresearch",
+      "url": "https://dataresearch.ndis.gov.au/datasets",
+      "publisher": "NDIA"
+    },
+    "by_quarter": [
+      {
+        "quarter": "2026-06-30",
+        "payments_total": 51451547000,
+        "participants": 782013
+      }
+    ],
+    "top_categories_latest": [
+      {
+        "category": "Daily Activities",
+        "payments": 26821927000,
+        "share": 0.5213
+      },
+      {
+        "category": "Social Community and Civic Participation",
+        "payments": 12209359000,
+        "share": 0.2373
+      },
+      {
+        "category": "CB Daily Activity",
+        "payments": 5964337000,
+        "share": 0.1159
+      },
+      {
+        "category": "Support Coordination",
+        "payments": 1237917000,
+        "share": 0.0241
+      },
+      {
+        "category": "CB Relationships",
+        "payments": 1068279000,
+        "share": 0.0208
+      },
+      {
+        "category": "Transport",
+        "payments": 875112000,
+        "share": 0.017
+      },
+      {
+        "category": "Assistive Technology",
+        "payments": 820473000,
+        "share": 0.0159
+      },
+      {
+        "category": "Home Modifications",
+        "payments": 697311000,
+        "share": 0.0136
+      },
+      {
+        "category": "CB Choice and Control",
+        "payments": 646053000,
+        "share": 0.0126
+      },
+      {
+        "category": "Consumables",
+        "payments": 626987000,
+        "share": 0.0122
+      }
+    ]
+  },
+  "abs": {
+    "census_assistance": {
+      "label": "People needing help with core activities, Census 2021",
+      "value": 1464415,
+      "source": {
+        "title": "ABS Data API, C21_G18_SA2 (national total)",
+        "url": "https://data.api.abs.gov.au/rest/data/C21_G18_SA2/3._T.1..AUS.?startPeriod=2021&format=csv",
+        "publisher": "ABS"
+      }
+    },
+    "sdac": {
+      "label": "Disability prevalence, SDAC 2022",
+      "value_pct": 21.4,
+      "released": "2024-07-04",
+      "source": {
+        "title": "SDAC 2022 summary findings",
+        "url": "https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/2022",
+        "publisher": "ABS"
+      }
+    }
+  },
+  "cpi": {
+    "series": [
+      {
+        "quarter": "2015-03-31",
+        "index": 74.16
+      },
+      {
+        "quarter": "2015-06-30",
+        "index": 74.69
+      },
+      {
+        "quarter": "2015-09-30",
+        "index": 74.98
+      },
+      {
+        "quarter": "2015-12-31",
+        "index": 75.27
+      },
+      {
+        "quarter": "2016-03-31",
+        "index": 75.12
+      },
+      {
+        "quarter": "2016-06-30",
+        "index": 75.45
+      },
+      {
+        "quarter": "2016-09-30",
+        "index": 75.98
+      },
+      {
+        "quarter": "2016-12-31",
+        "index": 76.38
+      },
+      {
+        "quarter": "2017-03-31",
+        "index": 76.73
+      },
+      {
+        "quarter": "2017-06-30",
+        "index": 76.88
+      },
+      {
+        "quarter": "2017-09-30",
+        "index": 77.35
+      },
+      {
+        "quarter": "2017-12-31",
+        "index": 77.87
+      },
+      {
+        "quarter": "2018-03-31",
+        "index": 78.21
+      },
+      {
+        "quarter": "2018-06-30",
+        "index": 78.49
+      },
+      {
+        "quarter": "2018-09-30",
+        "index": 78.83
+      },
+      {
+        "quarter": "2018-12-31",
+        "index": 79.24
+      },
+      {
+        "quarter": "2019-03-31",
+        "index": 79.23
+      },
+      {
+        "quarter": "2019-06-30",
+        "index": 79.7
+      },
+      {
+        "quarter": "2019-09-30",
+        "index": 80.15
+      },
+      {
+        "quarter": "2019-12-31",
+        "index": 80.7
+      },
+      {
+        "quarter": "2020-03-31",
+        "index": 81
+      },
+      {
+        "quarter": "2020-06-30",
+        "index": 79.44
+      },
+      {
+        "quarter": "2020-09-30",
+        "index": 80.67
+      },
+      {
+        "quarter": "2020-12-31",
+        "index": 81.4
+      },
+      {
+        "quarter": "2021-03-31",
+        "index": 81.87
+      },
+      {
+        "quarter": "2021-06-30",
+        "index": 82.47
+      },
+      {
+        "quarter": "2021-09-30",
+        "index": 83.17
+      },
+      {
+        "quarter": "2021-12-31",
+        "index": 84.23
+      },
+      {
+        "quarter": "2022-03-31",
+        "index": 86.05
+      },
+      {
+        "quarter": "2022-06-30",
+        "index": 87.59
+      },
+      {
+        "quarter": "2022-09-30",
+        "index": 89.2
+      },
+      {
+        "quarter": "2022-12-31",
+        "index": 90.85
+      },
+      {
+        "quarter": "2023-03-31",
+        "index": 92.08
+      },
+      {
+        "quarter": "2023-06-30",
+        "index": 92.87
+      },
+      {
+        "quarter": "2023-09-30",
+        "index": 93.94
+      },
+      {
+        "quarter": "2023-12-31",
+        "index": 94.53
+      },
+      {
+        "quarter": "2024-03-31",
+        "index": 95.41
+      },
+      {
+        "quarter": "2024-06-30",
+        "index": 96.41
+      },
+      {
+        "quarter": "2024-09-30",
+        "index": 96.62
+      },
+      {
+        "quarter": "2024-12-31",
+        "index": 96.81
+      },
+      {
+        "quarter": "2025-03-31",
+        "index": 97.7
+      },
+      {
+        "quarter": "2025-06-30",
+        "index": 98.43
+      },
+      {
+        "quarter": "2025-09-30",
+        "index": 99.73
+      },
+      {
+        "quarter": "2025-12-31",
+        "index": 100.32
+      },
+      {
+        "quarter": "2026-03-31",
+        "index": 101.7
+      },
+      {
+        "quarter": "2026-06-30",
+        "index": 102.31
+      }
+    ],
+    "source": {
+      "title": "ABS Data API, CPI (All groups, Index numbers, Australia, Quarterly)",
+      "url": "https://data.api.abs.gov.au/rest/data/CPI/1.10001.10.50.Q?startPeriod=2015-Q1&format=csv",
+      "publisher": "ABS"
+    }
+  },
+  "next_data": [
+    {
+      "label": "NDIA quarterly report (Sep quarter)",
+      "due": "2026-11-11",
+      "note": "published within 42 days of quarter end"
+    },
+    {
+      "label": "2026 Census first release (includes disability)",
+      "due": "2027-06-30"
+    }
+  ]
+}
