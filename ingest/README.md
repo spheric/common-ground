@@ -65,3 +65,42 @@ node scripts/build.mjs data/dataset.json
 
 Both default to `data/dataset.json` and fall back to `data/dataset.sample.json` if it doesn't
 exist yet, so the app always has something to render during development.
+
+## Parliamentary voting records (They Vote For You)
+
+Issues can additionally carry a `voting` block: how current federal MPs and senators actually
+voted in parliamentary divisions, sourced from **They Vote For You**
+(theyvoteforyou.org.au, OpenAustralia Foundation; data under the Open Data Commons ODbL, reused
+with attribution as their licencing page requests). This is the "say vs do" layer: stated
+positions come from the ingestion pipeline above, voting records come from this one.
+
+Three files drive it:
+
+| File | Role |
+|---|---|
+| `data/tvfy/mapping.json` | **Hand-verified** issue → TVFY policy mapping. Never generated. |
+| `data/tvfy/records.json` | Generated party-level aggregates (`scripts/tvfy/fetch.mjs` output) |
+| `scripts/tvfy/` | `fetch.mjs` (API → records), `apply.mjs` (records + mapping → dataset), `util.mjs` |
+
+Refresh flow (needs `TVFY_API_KEY` in the environment or a repo-root `.env`):
+
+```
+node scripts/tvfy/fetch.mjs      # re-fetch mapped policies + current members, rebuild records.json
+node scripts/tvfy/apply.mjs      # write voting blocks into data/dataset.json
+node scripts/validate.mjs        # voting blocks are validated like everything else
+node scripts/build.mjs
+```
+
+Mapping ground rules (same accuracy-first bar as positions):
+
+- A mapping is only added after checking the TVFY proposition text against the issue question,
+  the polarity (does agreeing with the proposition mean YES or NO to our question?), division
+  recency, and the party numbers themselves. `strength: "direct"` means essentially the same
+  proposition; `"related"` means clearly relevant but not identical — the UI labels these.
+- **No misleading proxies.** A generic proposition whose votes could contradict a party's stated
+  stance on the specific question (e.g. broad "housing affordability" votes under a first-home
+  buyer question) is rejected. An issue with no honest match simply has no voting block —
+  24 of 63 issues are in that state, which is correct, not a gap to fill.
+- Policies with no divisions, or where no current member has enough voting data, are never mapped.
+- TVFY "provisional" (draft) policies are mapped only when they are the exact proposition with
+  real division data, and the UI badges them as draft.

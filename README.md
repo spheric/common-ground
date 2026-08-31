@@ -43,6 +43,13 @@ by fetching it, merges the result into `data/dataset.json`, validates, and rebui
 for where to look per party, and the skill itself at
 [`.claude/skills/ingest-policy-source/SKILL.md`](.claude/skills/ingest-policy-source/SKILL.md).
 
+Stated positions are one half of the picture; the other half is **parliamentary voting
+records** from [They Vote For You](https://theyvoteforyou.org.au) (OpenAustralia Foundation,
+Open Data Commons ODbL). A hand-verified mapping in `data/tvfy/mapping.json` links 39 of the 63
+issues to TVFY policy propositions, and `scripts/tvfy/` aggregates how current MPs and senators
+actually voted, per party — shown beside each party's stated position in the app. See the
+"Parliamentary voting records" section of [`ingest/README.md`](ingest/README.md).
+
 To check the current dataset without changing anything:
 
 ```

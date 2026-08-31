@@ -13,7 +13,8 @@
      9  Matrix view rendering
      10 Detail drawer
      11 Overlap view rendering (party picker, venn, region list, heatmap)
-     12 Top-level render orchestration + init
+     12 Votes view rendering (parliamentary voting records)
+     13 Top-level render orchestration + init
    No globals beyond window.DATASET — everything else lives inside the IIFE.
    All dynamic dataset strings are passed through esc() before insertion —
    sources/titles/publishers ultimately come from the web, so they are
@@ -199,6 +200,37 @@
     return Math.min(4, Math.max(0, Math.floor(pct / 20)));
   }
 
+  // Voting-record helpers. `stats` is one entry of a voting record's
+  // `parties` map: { members, voted, for, against, mixed, median_agreement }.
+  // A party with voted:0 has nothing meaningful to bar-chart or summarise —
+  // callers must check voted > 0 before rendering a bar.
+  function votingBarSegments(stats) {
+    if (!stats || !stats.voted) return null;
+    var total = stats.voted;
+    return {
+      forPct: (stats['for'] / total) * 100,
+      mixedPct: (stats.mixed / total) * 100,
+      againstPct: (stats.against / total) * 100
+    };
+  }
+
+  // Full sentence used in the drawer's "In Parliament" section.
+  function votingPartyCountsText(stats) {
+    if (!stats || !stats.voted) return 'not enough voting data';
+    var text = stats.voted + ' of ' + stats.members + ' members voted: ' +
+      stats['for'] + ' for · ' + stats.against + ' against · ' + stats.mixed + ' mixed';
+    if (typeof stats.median_agreement === 'number') {
+      text += ' · median agreement ' + Math.round(stats.median_agreement) + '%';
+    }
+    return text;
+  }
+
+  // Compact F/A/M form used in the Votes view's per-party grid cells.
+  function votingCompactText(stats) {
+    if (!stats || !stats.voted) return 'not enough data';
+    return stats['for'] + 'F · ' + stats.against + 'A · ' + stats.mixed + 'M of ' + stats.voted + ' voted';
+  }
+
   /* ------------------------------------------------------------------------
      2. PURE DATA FUNCTIONS (copy-paste block end)
      ------------------------------------------------------------------------ */
@@ -365,14 +397,22 @@
     var el = document.getElementById('siteFooter');
     if (!dataset) { setHtml(el, ''); return; }
     var sourceCount = 0;
+    var votingRecordCount = 0;
     flatIssues.forEach(function (issue) {
       (issue.positions || []).forEach(function (p) { sourceCount += (p.sources || []).length; });
+      if (issue.voting) votingRecordCount += (issue.voting.records || []).length;
     });
+    var votingParagraph = votingRecordCount > 0
+      ? '<p><strong class="tnum">' + votingRecordCount + '</strong> parliamentary voting records from ' +
+          '<a href="https://theyvoteforyou.org.au" target="_blank" rel="noopener">They Vote For You</a> ' +
+          '(OpenAustralia Foundation), used under the Open Data Commons Open Database Licence.</p>'
+      : '';
     setHtml(el,
       '<p>' + esc(dataset.meta.methodology) + '</p>' +
       '<p>' + esc(dataset.meta.disclaimer) + '</p>' +
       '<p><strong class="tnum">' + sourceCount + '</strong> cited sources across ' +
-        flatIssues.length + ' issues. Summaries paraphrase cited sources — always check the link.</p>'
+        flatIssues.length + ' issues. Summaries paraphrase cited sources — always check the link.</p>' +
+      votingParagraph
     );
   }
 
@@ -490,37 +530,37 @@
      8. View tabs
      ------------------------------------------------------------------------ */
 
+  var VIEW_IDS = ['matrix', 'overlap', 'votes'];
+  var VIEW_TAB_IDS = ['tabMatrix', 'tabOverlap', 'tabVotes'];
+  var VIEW_PANEL_IDS = ['viewMatrix', 'viewOverlap', 'viewVotes'];
+
   function initTabs() {
-    var tabMatrix = document.getElementById('tabMatrix');
-    var tabOverlap = document.getElementById('tabOverlap');
-    var panelMatrix = document.getElementById('viewMatrix');
-    var panelOverlap = document.getElementById('viewOverlap');
-    var tabs = [tabMatrix, tabOverlap];
-    tabMatrix.tabIndex = 0;
-    tabOverlap.tabIndex = -1;
+    var tabs = VIEW_TAB_IDS.map(function (id) { return document.getElementById(id); });
+    var panels = VIEW_PANEL_IDS.map(function (id) { return document.getElementById(id); });
+
+    tabs.forEach(function (tab, idx) { tab.tabIndex = idx === 0 ? 0 : -1; });
 
     function selectView(view) {
       state.view = view;
-      var isMatrix = view === 'matrix';
-      tabMatrix.setAttribute('aria-selected', String(isMatrix));
-      tabOverlap.setAttribute('aria-selected', String(!isMatrix));
-      tabMatrix.tabIndex = isMatrix ? 0 : -1;
-      tabOverlap.tabIndex = isMatrix ? -1 : 0;
-      panelMatrix.hidden = !isMatrix;
-      panelOverlap.hidden = isMatrix;
+      var activeIdx = VIEW_IDS.indexOf(view);
+      tabs.forEach(function (tab, idx) {
+        var isActive = idx === activeIdx;
+        tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+      });
+      panels.forEach(function (panel, idx) { panel.hidden = idx !== activeIdx; });
       renderActiveView();
     }
 
-    tabMatrix.addEventListener('click', function () { selectView('matrix'); });
-    tabOverlap.addEventListener('click', function () { selectView('overlap'); });
-
     tabs.forEach(function (tab, idx) {
+      tab.addEventListener('click', function () { selectView(VIEW_IDS[idx]); });
       tab.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
           e.preventDefault();
-          var other = tabs[(idx + 1) % tabs.length];
-          other.focus();
-          other.click();
+          var dir = e.key === 'ArrowRight' ? 1 : -1;
+          var otherIdx = (idx + dir + tabs.length) % tabs.length;
+          tabs[otherIdx].focus();
+          tabs[otherIdx].click();
         }
       });
     });
@@ -567,9 +607,15 @@
   function renderMatrixRow(dataset, issue, parties) {
     var impactIds = Array.from(issueImpactUnion(issue));
     var impactTags = impactIds.map(function (id) { return tagLookup(dataset, id); }).filter(Boolean);
-    var impactsHtml = impactTags.length
-      ? '<span class="issue-impacts" title="' + esc(impactTags.map(function (t) { return t.label; }).join(', ')) + '">' +
-          impactTags.map(function (t) { return esc(t.emoji); }).join(' ') +
+    var votingIndicatorHtml = issue.voting
+      ? '<span class="voting-indicator" role="img" title="Parliamentary voting record available — open any cell" aria-label="Parliamentary voting record available — open any cell">🗳</span>'
+      : '';
+
+    var impactsHtml = (impactTags.length || votingIndicatorHtml)
+      ? '<span class="issue-impacts"' +
+          (impactTags.length ? ' title="' + esc(impactTags.map(function (t) { return t.label; }).join(', ')) + '"' : '') +
+          '>' +
+          impactTags.map(function (t) { return esc(t.emoji); }).join(' ') + votingIndicatorHtml +
         '</span>'
       : '';
 
@@ -734,6 +780,110 @@
     );
   }
 
+  // Shared between the drawer's full voting section and the compact Votes
+  // view: the "related vote" / "draft policy" tags for one voting record.
+  function votingRecordTagsHtml(record) {
+    var tags = '';
+    if (record.strength === 'related') {
+      tags += '<span class="voting-tag" title="A closely related proposition — not exactly the question above">related vote</span>';
+    }
+    if (record.provisional) {
+      tags += '<span class="voting-tag" title="They Vote For You lists this policy as provisional/draft">draft policy</span>';
+    }
+    return tags;
+  }
+
+  function votingRecordPolarityNoteHtml(record) {
+    return record.polarity === -1
+      ? '<p class="voting-polarity-note">Agreeing with this proposition is the reverse of answering yes to the question above.</p>'
+      : '';
+  }
+
+  // Decorative bar — all numbers are printed as text alongside it, so it is
+  // aria-hidden. Never called for voted:0; callers print "not enough voting
+  // data" / "not enough data" instead of an empty bar.
+  function renderVotingBar(stats) {
+    var segs = votingBarSegments(stats);
+    if (!segs) return '';
+    var html = '<div class="voting-bar" aria-hidden="true">';
+    if (segs.forPct > 0) html += '<span class="voting-bar-seg voting-bar-for" style="width:' + segs.forPct.toFixed(1) + '%"></span>';
+    if (segs.mixedPct > 0) html += '<span class="voting-bar-seg voting-bar-mixed" style="width:' + segs.mixedPct.toFixed(1) + '%"></span>';
+    if (segs.againstPct > 0) html += '<span class="voting-bar-seg voting-bar-against" style="width:' + segs.againstPct.toFixed(1) + '%"></span>';
+    html += '</div>';
+    return html;
+  }
+
+  function renderVotingPartyNameHtml(party) {
+    return (
+      '<span class="voting-party-name" style="--party-color:var(--party-' + esc(party.id) + ')">' +
+        '<span class="voting-party-accent" aria-hidden="true"></span>' + esc(party.short) +
+      '</span>'
+    );
+  }
+
+  function renderVotingPartyRowFull(party, stats) {
+    var nameHtml = renderVotingPartyNameHtml(party);
+    if (!stats || !stats.voted) {
+      return (
+        '<div class="voting-party-row voting-party-row-empty">' +
+          '<div class="voting-party-row-top">' + nameHtml + '<span class="voting-no-data">not enough voting data</span></div>' +
+        '</div>'
+      );
+    }
+    return (
+      '<div class="voting-party-row">' +
+        '<div class="voting-party-row-top">' + nameHtml + renderVotingBar(stats) + '</div>' +
+        '<span class="voting-party-counts tnum">' + esc(votingPartyCountsText(stats)) + '</span>' +
+      '</div>'
+    );
+  }
+
+  function renderVotingRecordFull(dataset, record) {
+    var parties = orderedParties(dataset);
+    var tagsHtml = votingRecordTagsHtml(record);
+    var rowsHtml = parties.map(function (party) {
+      return renderVotingPartyRowFull(party, record.parties[party.id]);
+    }).join('');
+    var metaBits = [
+      esc(record.divisions_total) + ' division' + (record.divisions_total === 1 ? '' : 's'),
+      'Reps ' + esc(record.houses.representatives) + ' / Senate ' + esc(record.houses.senate),
+      esc(record.first_division_date) + ' → ' + esc(record.last_division_date)
+    ];
+    return (
+      '<div class="voting-record">' +
+        '<p class="voting-proposition">On the proposition: <em>“' + esc(record.description) + '”</em></p>' +
+        (tagsHtml ? '<div class="voting-tags">' + tagsHtml + '</div>' : '') +
+        votingRecordPolarityNoteHtml(record) +
+        (record.note ? '<p class="voting-record-note">' + esc(record.note) + '</p>' : '') +
+        '<div class="voting-party-rows">' + rowsHtml + '</div>' +
+        '<p class="voting-record-meta tnum">' + metaBits.join(' · ') +
+          ' · <a href="' + esc(record.url) + '" target="_blank" rel="noopener">They Vote For You →</a></p>' +
+      '</div>'
+    );
+  }
+
+  function votingAttributionHtml(asOf) {
+    return (
+      '<p class="voting-footer">Party figures aggregate They Vote For You per-member policy agreement for ' +
+        'current MPs and senators only; members without enough relevant votes are excluded. Data: They Vote ' +
+        'For You (OpenAustralia Foundation), Open Data Commons ODbL. As of ' + esc(asOf) + '.</p>'
+    );
+  }
+
+  function renderVotingSection(dataset, issue) {
+    if (!issue.voting) return '';
+    var recordsHtml = issue.voting.records.map(function (record) {
+      return renderVotingRecordFull(dataset, record);
+    }).join('');
+    return (
+      '<div class="voting-section">' +
+        '<h3 class="voting-heading">In Parliament — how they voted</h3>' +
+        recordsHtml +
+        votingAttributionHtml(issue.voting.as_of) +
+      '</div>'
+    );
+  }
+
   function renderDrawer(dataset, issue) {
     var root = document.getElementById('drawerRoot');
     var parties = orderedParties(dataset);
@@ -741,6 +891,7 @@
       var pos = issue.positions.filter(function (p) { return p.party === party.id; })[0];
       return pos ? renderPartyCard(dataset, party, pos) : '';
     }).join('');
+    var votingSectionHtml = renderVotingSection(dataset, issue);
 
     setHtml(root,
       '<div class="drawer-backdrop" id="drawerBackdrop"></div>' +
@@ -751,7 +902,7 @@
           '</h2>' +
           '<button type="button" class="drawer-close" id="drawerCloseBtn" aria-label="Close">✕</button>' +
         '</div>' +
-        '<div class="drawer-body">' + cardsHtml + '</div>' +
+        '<div class="drawer-body">' + cardsHtml + votingSectionHtml + '</div>' +
       '</div>'
     );
 
@@ -1072,12 +1223,126 @@
   }
 
   /* ------------------------------------------------------------------------
-     12. Top-level render orchestration + init
+     12. Votes view rendering
+     ------------------------------------------------------------------------ */
+
+  function renderVoteIssueHeaderHtml(issue) {
+    return (
+      '<button type="button" class="vote-issue-header" data-issue="' + esc(issue.id) + '">' +
+        '<span class="vote-issue-label">' + esc(issue.label) + '</span>' +
+        '<span class="vote-issue-question">' + esc(issue.question) + '</span>' +
+      '</button>'
+    );
+  }
+
+  function renderVotePartyCell(dataset, issue, party, record) {
+    var pos = issue.positions.filter(function (p) { return p.party === party.id; })[0];
+    var stats = record.parties[party.id];
+    var votedHtml = (stats && stats.voted)
+      ? renderVotingBar(stats) + '<span class="vote-party-counts tnum">' + esc(votingCompactText(stats)) + '</span>'
+      : '<span class="voting-no-data">not enough data</span>';
+    return (
+      '<div class="vote-party-cell">' +
+        renderVotingPartyNameHtml(party) +
+        '<span class="vote-cell-label">Say</span>' +
+        (pos ? renderStanceChip(dataset, pos.stance, pos.confidence) : '') +
+        '<span class="vote-cell-label">Voted</span>' +
+        votedHtml +
+      '</div>'
+    );
+  }
+
+  function renderVoteRecordCompact(dataset, issue, record, parties) {
+    var tagsHtml = votingRecordTagsHtml(record);
+    var cellsHtml = parties.map(function (party) {
+      return renderVotePartyCell(dataset, issue, party, record);
+    }).join('');
+    return (
+      '<div class="vote-record-compact">' +
+        '<p class="vote-proposition-compact">On the proposition: <em>“' + esc(record.description) + '”</em></p>' +
+        (tagsHtml ? '<div class="voting-tags">' + tagsHtml + '</div>' : '') +
+        votingRecordPolarityNoteHtml(record) +
+        '<div class="vote-party-grid">' + cellsHtml + '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderVoteIssueCard(dataset, issue, parties) {
+    var recordsHtml = issue.voting.records.map(function (record) {
+      return renderVoteRecordCompact(dataset, issue, record, parties);
+    }).join('');
+    return (
+      '<article class="vote-issue-card">' +
+        renderVoteIssueHeaderHtml(issue) +
+        recordsHtml +
+      '</article>'
+    );
+  }
+
+  function wireVoteIssueHeaders(container, dataset) {
+    Array.prototype.forEach.call(container.querySelectorAll('.vote-issue-header'), function (btn) {
+      btn.addEventListener('click', function () {
+        openDrawer(dataset, btn.getAttribute('data-issue'), btn);
+      });
+    });
+  }
+
+  function renderVotesIntro(votingCount, totalShown) {
+    return (
+      '<div class="votes-intro">' +
+        '<p>' + votingCount + ' of the ' + totalShown + ' issues shown have voting records.</p>' +
+        '<p>“Say” is the party’s stated position on the issue question; “Voted” is how its current ' +
+          'members’ parliamentary votes score against the proposition shown. F voted for · A voted ' +
+          'against · M mixed · counts are current members who voted.</p>' +
+      '</div>'
+    );
+  }
+
+  function renderVotes(dataset) {
+    var el = document.getElementById('viewVotes');
+    if (!dataset) {
+      setHtml(el, '<div class="no-data-note"><p><strong>No data.</strong> Run the ingestion pipeline to generate <code>data/dataset.json</code>, then rebuild with <code>node scripts/build.mjs</code>.</p></div>');
+      return;
+    }
+    var parties = orderedParties(dataset);
+    var totalShown = state.filteredIssuesFlat.length;
+    var filteredIds = state.filteredIssueIds;
+    var votingIssueCount = state.filteredIssuesFlat.filter(function (i) { return !!i.voting; }).length;
+    var introHtml = renderVotesIntro(votingIssueCount, totalShown);
+
+    if (votingIssueCount === 0) {
+      setHtml(el, introHtml + renderEmptyState());
+      wireEmptyStateReset(el);
+      return;
+    }
+
+    var topicsHtml = dataset.topics.map(function (topic) {
+      var issues = topic.issues.filter(function (issue) { return filteredIds.has(issue.id) && issue.voting; });
+      if (issues.length === 0) return '';
+      var cards = issues.map(function (issue) { return renderVoteIssueCard(dataset, issue, parties); }).join('');
+      return (
+        '<section class="topic-section">' +
+          '<h2 class="topic-heading">' + esc(topic.label) +
+            '<span class="topic-count tnum">' + issues.length + ' issue' + (issues.length === 1 ? '' : 's') + '</span>' +
+          '</h2>' +
+          '<div class="votes-card-list">' + cards + '</div>' +
+        '</section>'
+      );
+    }).join('');
+
+    var votingAsOf = state.flatIssues.filter(function (i) { return !!i.voting; }).map(function (i) { return i.voting.as_of; })[0];
+    setHtml(el, introHtml + topicsHtml + votingAttributionHtml(votingAsOf));
+    wireVoteIssueHeaders(el, dataset);
+  }
+
+  /* ------------------------------------------------------------------------
+     13. Top-level render orchestration + init
      ------------------------------------------------------------------------ */
 
   function renderActiveView() {
     if (state.view === 'matrix') renderMatrix(state.dataset);
-    else renderOverlap(state.dataset);
+    else if (state.view === 'overlap') renderOverlap(state.dataset);
+    else renderVotes(state.dataset);
   }
 
   function renderAll() {

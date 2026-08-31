@@ -1,45 +1,177 @@
 {
   "meta": {
     "title": "Common Ground",
-    "subtitle": "Australian federal party policies, side by side — every claim sourced",
+    "subtitle": "Australian federal party policies, side by side \u2014 every claim sourced",
     "as_of": "2026-08-16",
-    "jurisdiction": "Australia — federal",
+    "jurisdiction": "Australia \u2014 federal",
     "disclaimer": "Independent, non-partisan summary. Positions are paraphrased from the cited public sources and may change; always check the linked source. Not affiliated with any political party.",
     "methodology": "Positions were researched from official party platforms, government/minister media releases, legislation and reputable news outlets, then independently verified: every cited source was fetched and checked to confirm it supports the stated position. Positions that could not be verified against a working source are shown as 'No clear position'."
   },
   "parties": [
-    { "id": "labor", "name": "Australian Labor Party", "short": "Labor", "abbr": "ALP", "leader": "Anthony Albanese", "role": "Government", "color_light": "#C8102E", "color_dark": "#E85550" },
-    { "id": "coalition", "name": "Liberal–National Coalition", "short": "Coalition", "abbr": "LNP", "leader": "Sussan Ley", "role": "Opposition", "color_light": "#1F5BAA", "color_dark": "#5E93EE" },
-    { "id": "greens", "name": "Australian Greens", "short": "Greens", "abbr": "GRN", "leader": "Larissa Waters", "role": "Crossbench", "color_light": "#00693C", "color_dark": "#1E8552" },
-    { "id": "one_nation", "name": "Pauline Hanson's One Nation", "short": "One Nation", "abbr": "PHON", "leader": "Pauline Hanson", "role": "Crossbench", "color_light": "#F68B33", "color_dark": "#D9761C" }
+    {
+      "id": "labor",
+      "name": "Australian Labor Party",
+      "short": "Labor",
+      "abbr": "ALP",
+      "leader": "Anthony Albanese",
+      "role": "Government",
+      "color_light": "#C8102E",
+      "color_dark": "#E85550"
+    },
+    {
+      "id": "coalition",
+      "name": "Liberal\u2013National Coalition",
+      "short": "Coalition",
+      "abbr": "LNP",
+      "leader": "Sussan Ley",
+      "role": "Opposition",
+      "color_light": "#1F5BAA",
+      "color_dark": "#5E93EE"
+    },
+    {
+      "id": "greens",
+      "name": "Australian Greens",
+      "short": "Greens",
+      "abbr": "GRN",
+      "leader": "Larissa Waters",
+      "role": "Crossbench",
+      "color_light": "#00693C",
+      "color_dark": "#1E8552"
+    },
+    {
+      "id": "one_nation",
+      "name": "Pauline Hanson's One Nation",
+      "short": "One Nation",
+      "abbr": "PHON",
+      "leader": "Pauline Hanson",
+      "role": "Crossbench",
+      "color_light": "#F68B33",
+      "color_dark": "#D9761C"
+    }
   ],
   "stances": [
-    { "id": "supports", "label": "For", "symbol": "✓" },
-    { "id": "opposes", "label": "Against", "symbol": "✕" },
-    { "id": "mixed", "label": "Mixed", "symbol": "±" },
-    { "id": "no_position", "label": "No clear position", "symbol": "—" }
+    {
+      "id": "supports",
+      "label": "For",
+      "symbol": "\u2713"
+    },
+    {
+      "id": "opposes",
+      "label": "Against",
+      "symbol": "\u2715"
+    },
+    {
+      "id": "mixed",
+      "label": "Mixed",
+      "symbol": "\u00b1"
+    },
+    {
+      "id": "no_position",
+      "label": "No clear position",
+      "symbol": "\u2014"
+    }
   ],
   "impact_tags": [
-    { "id": "renters", "label": "Renters", "emoji": "🔑" },
-    { "id": "first_home_buyers", "label": "First-home buyers", "emoji": "🏠" },
-    { "id": "homeowners", "label": "Home owners & mortgage holders", "emoji": "🏡" },
-    { "id": "families_children", "label": "Families with kids", "emoji": "🧸" },
-    { "id": "students", "label": "Students", "emoji": "🎓" },
-    { "id": "young_people", "label": "Young people", "emoji": "🌱" },
-    { "id": "seniors_retirees", "label": "Seniors & retirees", "emoji": "🧓" },
-    { "id": "workers", "label": "Workers", "emoji": "💼" },
-    { "id": "small_business", "label": "Small business", "emoji": "🛍️" },
-    { "id": "regional_rural", "label": "Regional & rural", "emoji": "🚜" },
-    { "id": "migrants_refugees", "label": "Migrants & refugees", "emoji": "🌏" },
-    { "id": "first_nations", "label": "First Nations people", "emoji": "🪃" },
-    { "id": "low_income_households", "label": "Low-income households", "emoji": "💸" },
-    { "id": "women", "label": "Women", "emoji": "👩" },
-    { "id": "lgbtqia", "label": "LGBTQIA+", "emoji": "🏳️‍🌈" },
-    { "id": "people_with_disability", "label": "People with disability", "emoji": "♿" },
-    { "id": "carers", "label": "Carers", "emoji": "🤝" },
-    { "id": "veterans", "label": "Veterans", "emoji": "🎖️" },
-    { "id": "patients", "label": "Patients & healthcare users", "emoji": "🩺" },
-    { "id": "everyone", "label": "Everyone", "emoji": "🇦🇺" }
+    {
+      "id": "renters",
+      "label": "Renters",
+      "emoji": "\ud83d\udd11"
+    },
+    {
+      "id": "first_home_buyers",
+      "label": "First-home buyers",
+      "emoji": "\ud83c\udfe0"
+    },
+    {
+      "id": "homeowners",
+      "label": "Home owners & mortgage holders",
+      "emoji": "\ud83c\udfe1"
+    },
+    {
+      "id": "families_children",
+      "label": "Families with kids",
+      "emoji": "\ud83e\uddf8"
+    },
+    {
+      "id": "students",
+      "label": "Students",
+      "emoji": "\ud83c\udf93"
+    },
+    {
+      "id": "young_people",
+      "label": "Young people",
+      "emoji": "\ud83c\udf31"
+    },
+    {
+      "id": "seniors_retirees",
+      "label": "Seniors & retirees",
+      "emoji": "\ud83e\uddd3"
+    },
+    {
+      "id": "workers",
+      "label": "Workers",
+      "emoji": "\ud83d\udcbc"
+    },
+    {
+      "id": "small_business",
+      "label": "Small business",
+      "emoji": "\ud83d\udecd\ufe0f"
+    },
+    {
+      "id": "regional_rural",
+      "label": "Regional & rural",
+      "emoji": "\ud83d\ude9c"
+    },
+    {
+      "id": "migrants_refugees",
+      "label": "Migrants & refugees",
+      "emoji": "\ud83c\udf0f"
+    },
+    {
+      "id": "first_nations",
+      "label": "First Nations people",
+      "emoji": "\ud83e\ude83"
+    },
+    {
+      "id": "low_income_households",
+      "label": "Low-income households",
+      "emoji": "\ud83d\udcb8"
+    },
+    {
+      "id": "women",
+      "label": "Women",
+      "emoji": "\ud83d\udc69"
+    },
+    {
+      "id": "lgbtqia",
+      "label": "LGBTQIA+",
+      "emoji": "\ud83c\udff3\ufe0f\u200d\ud83c\udf08"
+    },
+    {
+      "id": "people_with_disability",
+      "label": "People with disability",
+      "emoji": "\u267f"
+    },
+    {
+      "id": "carers",
+      "label": "Carers",
+      "emoji": "\ud83e\udd1d"
+    },
+    {
+      "id": "veterans",
+      "label": "Veterans",
+      "emoji": "\ud83c\udf96\ufe0f"
+    },
+    {
+      "id": "patients",
+      "label": "Patients & healthcare users",
+      "emoji": "\ud83e\ude7a"
+    },
+    {
+      "id": "everyone",
+      "label": "Everyone",
+      "emoji": "\ud83c\udde6\ud83c\uddfa"
+    }
   ],
   "topics": [
     {
@@ -55,49 +187,138 @@
               "party": "labor",
               "stance": "opposes",
               "summary": "Labor has ruled out changes to negative gearing and the CGT discount this term, keeping current investor tax settings.",
-              "impacts": ["renters", "first_home_buyers", "homeowners"],
+              "impacts": [
+                "renters",
+                "first_home_buyers",
+                "homeowners"
+              ],
               "impact_note": "Investor tax settings stay as they are; no change for landlords or buyers competing with investors.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
-                { "title": "PM rules out negative gearing changes", "url": "https://example.com/placeholder-1", "date": "2025-06-01", "publisher": "ABC News" }
+                {
+                  "title": "PM rules out negative gearing changes",
+                  "url": "https://example.com/placeholder-1",
+                  "date": "2025-06-01",
+                  "publisher": "ABC News"
+                }
               ]
             },
             {
               "party": "coalition",
               "stance": "opposes",
               "summary": "The Coalition opposes any restriction of negative gearing or the CGT discount, describing them as standard investment deductions.",
-              "impacts": ["homeowners", "renters"],
+              "impacts": [
+                "homeowners",
+                "renters"
+              ],
               "impact_note": "Property investors keep existing tax deductions; no change to rental market settings.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
-                { "title": "Coalition housing policy", "url": "https://example.com/placeholder-2", "date": "2025-04-10", "publisher": "Liberal Party" }
+                {
+                  "title": "Coalition housing policy",
+                  "url": "https://example.com/placeholder-2",
+                  "date": "2025-04-10",
+                  "publisher": "Liberal Party"
+                }
               ]
             },
             {
               "party": "greens",
               "stance": "supports",
               "summary": "The Greens want negative gearing and the CGT discount phased out for investors with more than one property, redirecting savings to public housing.",
-              "impacts": ["renters", "first_home_buyers", "low_income_households"],
+              "impacts": [
+                "renters",
+                "first_home_buyers",
+                "low_income_households"
+              ],
               "impact_note": "Fewer tax breaks for multi-property investors; intended to cool investor demand and fund public homes.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
-                { "title": "Greens housing platform", "url": "https://example.com/placeholder-3", "date": "2025-03-20", "publisher": "Australian Greens" }
+                {
+                  "title": "Greens housing platform",
+                  "url": "https://example.com/placeholder-3",
+                  "date": "2025-03-20",
+                  "publisher": "Australian Greens"
+                }
               ]
             },
             {
               "party": "one_nation",
               "stance": "no_position",
               "summary": "No clear verified position on negative gearing reform was found in recent statements or platform documents.",
-              "impacts": ["renters", "homeowners"],
+              "impacts": [
+                "renters",
+                "homeowners"
+              ],
               "impact_note": "Unclear what would change for renters or investors.",
               "confidence": "low",
               "verified": "unverified",
               "sources": []
             }
-          ]
+          ],
+          "voting": {
+            "as_of": "2026-08-31",
+            "records": [
+              {
+                "policy_id": 336,
+                "polarity": 1,
+                "strength": "related",
+                "note": "Negative gearing and the CGT discount are the main property-investor tax concessions this proposition covers; divisions run 2024-2026.",
+                "name": "reducing tax concessions for high socio-economic status",
+                "description": "the federal government should reduce tax concessions for high earners and those of high socio-economic status",
+                "url": "https://theyvoteforyou.org.au/policies/336",
+                "provisional": false,
+                "divisions_total": 7,
+                "houses": {
+                  "representatives": 5,
+                  "senate": 2
+                },
+                "first_division_date": "2024-05-16",
+                "last_division_date": "2026-03-10",
+                "parties": {
+                  "labor": {
+                    "members": 122,
+                    "voted": 113,
+                    "for": 113,
+                    "against": 0,
+                    "mixed": 0,
+                    "median_agreement": 80,
+                    "mean_agreement": 87.1
+                  },
+                  "coalition": {
+                    "members": 67,
+                    "voted": 57,
+                    "for": 0,
+                    "against": 56,
+                    "mixed": 1,
+                    "median_agreement": 20,
+                    "mean_agreement": 13.5
+                  },
+                  "greens": {
+                    "members": 11,
+                    "voted": 9,
+                    "for": 9,
+                    "against": 0,
+                    "mixed": 0,
+                    "median_agreement": 100,
+                    "mean_agreement": 95.6
+                  },
+                  "one_nation": {
+                    "members": 6,
+                    "voted": 5,
+                    "for": 0,
+                    "against": 5,
+                    "mixed": 0,
+                    "median_agreement": 0,
+                    "mean_agreement": 4
+                  }
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -114,48 +335,82 @@
               "party": "labor",
               "stance": "supports",
               "summary": "Labor is funding expanded bulk-billing incentives for all Medicare card holders, aiming for 9 in 10 GP visits to be free by 2030.",
-              "impacts": ["patients", "families_children", "low_income_households", "seniors_retirees"],
+              "impacts": [
+                "patients",
+                "families_children",
+                "low_income_households",
+                "seniors_retirees"
+              ],
               "impact_note": "More GP visits with no out-of-pocket fee, depending on whether your clinic takes up the incentive.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
-                { "title": "Bulk billing expansion announcement", "url": "https://example.com/placeholder-4", "date": "2025-11-01", "publisher": "Department of Health" }
+                {
+                  "title": "Bulk billing expansion announcement",
+                  "url": "https://example.com/placeholder-4",
+                  "date": "2025-11-01",
+                  "publisher": "Department of Health"
+                }
               ]
             },
             {
               "party": "coalition",
               "stance": "supports",
               "summary": "The Coalition matched Labor's bulk-billing incentive expansion during the 2025 campaign and has maintained support for the funding.",
-              "impacts": ["patients", "families_children"],
+              "impacts": [
+                "patients",
+                "families_children"
+              ],
               "impact_note": "Same practical effect: cheaper GP visits where clinics take up the incentive.",
               "confidence": "medium",
               "verified": "confirmed",
               "sources": [
-                { "title": "Coalition matches Medicare pledge", "url": "https://example.com/placeholder-5", "date": "2025-04-06", "publisher": "The Guardian" }
+                {
+                  "title": "Coalition matches Medicare pledge",
+                  "url": "https://example.com/placeholder-5",
+                  "date": "2025-04-06",
+                  "publisher": "The Guardian"
+                }
               ]
             },
             {
               "party": "greens",
               "stance": "supports",
               "summary": "The Greens support expanded bulk billing and want to go further, pushing to include dental and mental health in Medicare.",
-              "impacts": ["patients", "young_people", "low_income_households"],
+              "impacts": [
+                "patients",
+                "young_people",
+                "low_income_households"
+              ],
               "impact_note": "Free GP visits plus a push to make dentist and psychology visits Medicare-funded too.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
-                { "title": "Greens health policy", "url": "https://example.com/placeholder-6", "date": "2025-02-12", "publisher": "Australian Greens" }
+                {
+                  "title": "Greens health policy",
+                  "url": "https://example.com/placeholder-6",
+                  "date": "2025-02-12",
+                  "publisher": "Australian Greens"
+                }
               ]
             },
             {
               "party": "one_nation",
               "stance": "mixed",
               "summary": "One Nation supports Medicare in principle but has criticised the cost of the incentive package without opposing it outright.",
-              "impacts": ["patients"],
+              "impacts": [
+                "patients"
+              ],
               "impact_note": "Position unclear in practice; has not blocked the funding in the Senate.",
               "confidence": "low",
               "verified": "corrected",
               "sources": [
-                { "title": "Senate debate on Medicare package", "url": "https://example.com/placeholder-7", "date": "2025-11-20", "publisher": "Hansard" }
+                {
+                  "title": "Senate debate on Medicare package",
+                  "url": "https://example.com/placeholder-7",
+                  "date": "2025-11-20",
+                  "publisher": "Hansard"
+                }
               ]
             }
           ]

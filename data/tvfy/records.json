@@ -1,0 +1,2342 @@
+{
+  "meta": {
+    "source": "They Vote For You — theyvoteforyou.org.au (OpenAustralia Foundation)",
+    "api": "https://theyvoteforyou.org.au/api/v1",
+    "fetched_at": "2026-08-31T05:50:17.110Z",
+    "method": "Party figures aggregate TVFY per-member policy agreement scores across current federal members only; members with category 'not_enough' or no relevant votes are excluded from voted counts."
+  },
+  "policies": {
+    "8": {
+      "id": 8,
+      "name": "implementing refugee and protection conventions",
+      "description": "the federal government should implement the international conventions that relate to seeking refuge and protection from torture. These include the Convention relating to the Status of Refugees, the Protocol relating to the Status of Refugees and the non-refoulement provisions of the UN Convention Against Torture and the International Covenant on Civil and Political Rights",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/8",
+      "last_edited_at": "2024-09-29T14:49:56+10:00",
+      "divisions_total": 42,
+      "houses": {
+        "representatives": 9,
+        "senate": 33
+      },
+      "first_division_date": "2006-06-20",
+      "last_division_date": "2024-09-09",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 64,
+          "for": 44,
+          "against": 10,
+          "mixed": 10,
+          "median_agreement": 67,
+          "mean_agreement": 65
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 33,
+          "for": 0,
+          "against": 30,
+          "mixed": 3,
+          "median_agreement": 5.4,
+          "mean_agreement": 12.7
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.6
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 24,
+          "mean_agreement": 25.7
+        }
+      }
+    },
+    "16": {
+      "id": 16,
+      "name": "regional processing of asylum seekers",
+      "description": "asylum seekers who arrive in Australia without a visa, particularly those who arrive by boat, should have their asylum claims processed regionally in a country such as the Republic of Nauru or Papua New Guinea (See the policy \"For offshore processing of asylum seekers\" for more on processing asylum seeker claims in Australian territories like Christmas Island)",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/16",
+      "last_edited_at": "2023-02-10T11:04:16+11:00",
+      "divisions_total": 35,
+      "houses": {
+        "representatives": 10,
+        "senate": 25
+      },
+      "first_division_date": "2006-08-10",
+      "last_division_date": "2023-02-07",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 44,
+          "for": 25,
+          "against": 7,
+          "mixed": 12,
+          "median_agreement": 67,
+          "mean_agreement": 61.6
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 24,
+          "for": 19,
+          "against": 0,
+          "mixed": 5,
+          "median_agreement": 97.5,
+          "mean_agreement": 86.9
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 0,
+          "against": 6,
+          "mixed": 0,
+          "median_agreement": 0.1,
+          "mean_agreement": 0.9
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 2,
+          "against": 0,
+          "mixed": 1,
+          "median_agreement": 92,
+          "mean_agreement": 80.7
+        }
+      }
+    },
+    "20": {
+      "id": 20,
+      "name": "increasing investment in renewable energy",
+      "description": "the federal government should increase investment in renewable energy technologies",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/20",
+      "last_edited_at": "2025-05-24T18:21:08+10:00",
+      "divisions_total": 63,
+      "houses": {
+        "representatives": 16,
+        "senate": 47
+      },
+      "first_division_date": "2006-02-09",
+      "last_division_date": "2025-02-12",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 90,
+          "for": 84,
+          "against": 0,
+          "mixed": 6,
+          "median_agreement": 94,
+          "mean_agreement": 89.3
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 54,
+          "for": 0,
+          "against": 54,
+          "mixed": 0,
+          "median_agreement": 0.9,
+          "mean_agreement": 3.4
+        },
+        "greens": {
+          "members": 11,
+          "voted": 7,
+          "for": 7,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.3
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 9.5,
+          "mean_agreement": 10.9
+        }
+      }
+    },
+    "26": {
+      "id": 26,
+      "name": "decreasing the private health insurance rebate",
+      "description": "the federal government should decrease the private health insurance rebate that eligible taxpayers are entitled to",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/26",
+      "last_edited_at": "2014-10-20T12:48:46+11:00",
+      "divisions_total": 18,
+      "houses": {
+        "representatives": 9,
+        "senate": 9
+      },
+      "first_division_date": "2006-06-22",
+      "last_division_date": "2013-06-27",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 27,
+          "for": 25,
+          "against": 0,
+          "mixed": 2,
+          "median_agreement": 100,
+          "mean_agreement": 92.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 11,
+          "for": 0,
+          "against": 11,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "greens": {
+          "members": 11,
+          "voted": 3,
+          "for": 3,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 98.3
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 38,
+          "mean_agreement": 38
+        }
+      }
+    },
+    "27": {
+      "id": 27,
+      "name": "increasing the price of subsidised medicine",
+      "description": "the federal government should increase the amount that patients pay for medicine under the Pharmaceutical Benefits Scheme (PBS) and the Repatriation Pharmaceutical Benefits Scheme (known as the 'co-payment')",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/27",
+      "last_edited_at": "2016-08-04T10:30:01+10:00",
+      "divisions_total": 3,
+      "houses": {
+        "representatives": 3,
+        "senate": 0
+      },
+      "first_division_date": "2014-07-16",
+      "last_division_date": "2014-07-16",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 27,
+          "for": 0,
+          "against": 27,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.9
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 12,
+          "for": 12,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "greens": {
+          "members": 11,
+          "voted": 0,
+          "for": 0,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": null,
+          "mean_agreement": null
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        }
+      }
+    },
+    "30": {
+      "id": 30,
+      "name": "increasing protection of Aboriginal heritage sites",
+      "description": "the federal government should increase the protection of Aboriginal and Torres Strait Islander cultural heritage sites",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/30",
+      "last_edited_at": "2025-03-30T12:38:17+11:00",
+      "divisions_total": 11,
+      "houses": {
+        "representatives": 0,
+        "senate": 11
+      },
+      "first_division_date": "2006-03-28",
+      "last_division_date": "2024-08-20",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 17,
+          "for": 4,
+          "against": 5,
+          "mixed": 8,
+          "median_agreement": 50,
+          "mean_agreement": 45.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 17,
+          "for": 0,
+          "against": 17,
+          "mixed": 0,
+          "median_agreement": 3.1,
+          "mean_agreement": 3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 6,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 98.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "34": {
+      "id": 34,
+      "name": "decreasing availability of welfare payments",
+      "description": "the federal government should limit the availability of government social security payments",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/34",
+      "last_edited_at": "2023-09-15T08:16:57+10:00",
+      "divisions_total": 46,
+      "houses": {
+        "representatives": 29,
+        "senate": 17
+      },
+      "first_division_date": "2013-02-05",
+      "last_division_date": "2023-08-02",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 72,
+          "for": 4,
+          "against": 59,
+          "mixed": 9,
+          "median_agreement": 15,
+          "mean_agreement": 21.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 45,
+          "for": 45,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 98,
+          "mean_agreement": 94.7
+        },
+        "greens": {
+          "members": 11,
+          "voted": 8,
+          "for": 0,
+          "against": 8,
+          "mixed": 0,
+          "median_agreement": 0.1,
+          "mean_agreement": 0.3
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 3,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 86,
+          "mean_agreement": 84.3
+        }
+      }
+    },
+    "39": {
+      "id": 39,
+      "name": "increasing restrictions on gambling",
+      "description": "the federal government should increase restrictions on the gambling industry in order to address the issue of problem gambling",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/39",
+      "last_edited_at": "2025-08-01T11:52:15+10:00",
+      "divisions_total": 16,
+      "houses": {
+        "representatives": 3,
+        "senate": 13
+      },
+      "first_division_date": "2012-02-09",
+      "last_division_date": "2024-10-08",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 43,
+          "for": 20,
+          "against": 22,
+          "mixed": 1,
+          "median_agreement": 30,
+          "mean_agreement": 51.2
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 22,
+          "for": 0,
+          "against": 22,
+          "mixed": 0,
+          "median_agreement": 8.3,
+          "mean_agreement": 10.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 9,
+          "for": 9,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 10.7,
+          "mean_agreement": 10.7
+        }
+      }
+    },
+    "90": {
+      "id": 90,
+      "name": "protecting whistleblowers",
+      "description": "the federal government should introduce legislation to protect people who disclose information for the benefit of the public interest and protect the journalists who report it",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/90",
+      "last_edited_at": "2026-05-15T13:50:19+10:00",
+      "divisions_total": 19,
+      "houses": {
+        "representatives": 3,
+        "senate": 16
+      },
+      "first_division_date": "2007-02-08",
+      "last_division_date": "2026-05-14",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 89,
+          "for": 1,
+          "against": 84,
+          "mixed": 4,
+          "median_agreement": 0,
+          "mean_agreement": 8.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 20,
+          "for": 0,
+          "against": 20,
+          "mixed": 0,
+          "median_agreement": 22,
+          "mean_agreement": 19.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 0,
+          "mixed": 2,
+          "median_agreement": 55.5,
+          "mean_agreement": 55.5
+        }
+      }
+    },
+    "99": {
+      "id": 99,
+      "name": "increasing the foreign aid budget to 0.7% of Gross National Income",
+      "description": "the federal government should allocate 0.7% of Gross National Income (GNI) to foreign aid in line with the United Nations' target",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/99",
+      "last_edited_at": "2022-01-07T10:56:38+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 0,
+        "senate": 6
+      },
+      "first_division_date": "2008-10-14",
+      "last_division_date": "2019-12-04",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 10,
+          "for": 0,
+          "against": 8,
+          "mixed": 2,
+          "median_agreement": 30,
+          "mean_agreement": 31.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 10,
+          "for": 0,
+          "against": 10,
+          "mixed": 0,
+          "median_agreement": 3.8,
+          "mean_agreement": 3.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 5,
+          "for": 5,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 2.3,
+          "mean_agreement": 2.3
+        }
+      }
+    },
+    "116": {
+      "id": 116,
+      "name": "federal action on public housing",
+      "description": "even though public housing is controlled by our state governments, the federal government should also take action to increase the availability of affordable public housing around Australia",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/116",
+      "last_edited_at": "2023-12-01T11:10:48+11:00",
+      "divisions_total": 12,
+      "houses": {
+        "representatives": 3,
+        "senate": 9
+      },
+      "first_division_date": "2014-07-15",
+      "last_division_date": "2023-09-14",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 90,
+          "for": 90,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 95.7
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 52,
+          "for": 0,
+          "against": 52,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 4.8
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 98.1
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 23,
+          "mean_agreement": 23.3
+        }
+      }
+    },
+    "141": {
+      "id": 141,
+      "name": "increasing investment in the coal industry",
+      "description": "the federal government should maintain or increase its investment in and support for the Australian coal industry",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/141",
+      "last_edited_at": "2026-03-14T14:41:55+11:00",
+      "divisions_total": 42,
+      "houses": {
+        "representatives": 2,
+        "senate": 40
+      },
+      "first_division_date": "2007-02-08",
+      "last_division_date": "2026-03-11",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 62,
+          "for": 9,
+          "against": 3,
+          "mixed": 50,
+          "median_agreement": 50,
+          "mean_agreement": 52.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 20,
+          "for": 20,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 94,
+          "mean_agreement": 93.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 7,
+          "for": 0,
+          "against": 7,
+          "mixed": 0,
+          "median_agreement": 0.3,
+          "mean_agreement": 0.5
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 2,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 97,
+          "mean_agreement": 97
+        }
+      }
+    },
+    "142": {
+      "id": 142,
+      "name": "a Free Trade Agreement with China",
+      "description": "the federal government should enter into a Free Trade Agreement (FTA) with China to create more favourable trading conditions between China and Australia",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/142",
+      "last_edited_at": "2019-12-06T15:20:40+11:00",
+      "divisions_total": 4,
+      "houses": {
+        "representatives": 0,
+        "senate": 4
+      },
+      "first_division_date": "2015-08-20",
+      "last_division_date": "2019-12-05",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 8,
+          "for": 8,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 89,
+          "mean_agreement": 88.5
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 7,
+          "for": 5,
+          "against": 0,
+          "mixed": 2,
+          "median_agreement": 99,
+          "mean_agreement": 84.6
+        },
+        "greens": {
+          "members": 11,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 0,
+          "for": 0,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": null,
+          "mean_agreement": null
+        }
+      }
+    },
+    "148": {
+      "id": 148,
+      "name": "getting rid of Sunday and public holiday penalty rates",
+      "description": "there should be no penalty rates when employees work on Sundays or public holidays",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/148",
+      "last_edited_at": "2017-12-17T16:42:08+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 2,
+        "senate": 4
+      },
+      "first_division_date": "2014-09-04",
+      "last_division_date": "2017-12-04",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 48,
+          "for": 0,
+          "against": 48,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.5
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 28,
+          "for": 28,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.2
+        },
+        "greens": {
+          "members": 11,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 1,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 32,
+          "mean_agreement": 49.7
+        }
+      }
+    },
+    "161": {
+      "id": 161,
+      "name": "maintaining or increasing defence spending",
+      "description": "the federal government should keep up or increase the amount of money it spends on defence",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/161",
+      "last_edited_at": "2025-10-04T15:07:29+10:00",
+      "divisions_total": 4,
+      "houses": {
+        "representatives": 1,
+        "senate": 3
+      },
+      "first_division_date": "2017-03-22",
+      "last_division_date": "2025-08-25",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 11,
+          "for": 6,
+          "against": 0,
+          "mixed": 5,
+          "median_agreement": 67,
+          "mean_agreement": 64.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 8,
+          "for": 8,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 97.5,
+          "mean_agreement": 97.5
+        },
+        "greens": {
+          "members": 11,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.1
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 2,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 97.5,
+          "mean_agreement": 97.5
+        }
+      }
+    },
+    "174": {
+      "id": 174,
+      "name": "turning back asylum boats when possible",
+      "description": "the federal government should issue instructions for border protection forces to turn back boats carrying asylum seekers to Australia where it is safe to do so",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/174",
+      "last_edited_at": "2018-03-23T17:40:33+11:00",
+      "divisions_total": 9,
+      "houses": {
+        "representatives": 3,
+        "senate": 6
+      },
+      "first_division_date": "2010-10-28",
+      "last_division_date": "2017-03-29",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 34,
+          "for": 0,
+          "against": 33,
+          "mixed": 1,
+          "median_agreement": 0,
+          "mean_agreement": 4.5
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 20,
+          "for": 20,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.9
+        },
+        "greens": {
+          "members": 11,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0.2
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 98,
+          "mean_agreement": 98
+        }
+      }
+    },
+    "178": {
+      "id": 178,
+      "name": "expanding public funded dental care",
+      "description": "the federal government should expand public funded dental care",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/178",
+      "last_edited_at": "2025-11-02T15:48:56+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 1,
+        "senate": 5
+      },
+      "first_division_date": "2017-08-10",
+      "last_division_date": "2025-09-01",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 26,
+          "for": 9,
+          "against": 15,
+          "mixed": 2,
+          "median_agreement": 0,
+          "mean_agreement": 30.3
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 11,
+          "for": 0,
+          "against": 11,
+          "mixed": 0,
+          "median_agreement": 5.9,
+          "mean_agreement": 5.6
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 0,
+          "mixed": 2,
+          "median_agreement": 50,
+          "mean_agreement": 50
+        }
+      }
+    },
+    "179": {
+      "id": 179,
+      "name": "increasing the Newstart Allowance rate",
+      "description": "the federal government should increase the Newstart Allowance rate to ensure that it covers basic living costs",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/179",
+      "last_edited_at": "2019-09-13T16:53:38+10:00",
+      "divisions_total": 18,
+      "houses": {
+        "representatives": 0,
+        "senate": 18
+      },
+      "first_division_date": "2012-09-20",
+      "last_division_date": "2019-09-11",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 20,
+          "for": 4,
+          "against": 13,
+          "mixed": 3,
+          "median_agreement": 30,
+          "mean_agreement": 31.3
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 16,
+          "for": 0,
+          "against": 16,
+          "mixed": 0,
+          "median_agreement": 0.8,
+          "mean_agreement": 4.6
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 6,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 24.5,
+          "mean_agreement": 24.5
+        }
+      }
+    },
+    "183": {
+      "id": 183,
+      "name": "the Paris Climate Agreement",
+      "description": "the federal government should amend its laws and policies to meet the objectives of the Paris Climate Agreement",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/183",
+      "last_edited_at": "2024-08-07T10:25:54+10:00",
+      "divisions_total": 17,
+      "houses": {
+        "representatives": 8,
+        "senate": 9
+      },
+      "first_division_date": "2018-08-14",
+      "last_division_date": "2024-06-04",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 89,
+          "for": 89,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 89,
+          "mean_agreement": 92
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 52,
+          "for": 0,
+          "against": 52,
+          "mixed": 0,
+          "median_agreement": 1.4,
+          "mean_agreement": 4.6
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 1.4,
+          "mean_agreement": 2.8
+        }
+      }
+    },
+    "184": {
+      "id": 184,
+      "name": "increasing eligibility requirements for Australian citizenship",
+      "description": "the federal government should take a restrictive approach to granting Australian citizenship by introducing more eligibility requirements, such as applicants needing greater English language proficiency and needing to spend more time living in Australia before they can submit their applications",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/184",
+      "last_edited_at": "2020-11-20T11:19:30+11:00",
+      "divisions_total": 4,
+      "houses": {
+        "representatives": 3,
+        "senate": 1
+      },
+      "first_division_date": "2014-11-24",
+      "last_division_date": "2020-11-12",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 40,
+          "for": 0,
+          "against": 40,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.7
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 19,
+          "for": 19,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 0,
+          "for": 0,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": null,
+          "mean_agreement": null
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        }
+      }
+    },
+    "196": {
+      "id": 196,
+      "name": "nuclear energy",
+      "description": "the federal government should support nuclear energy generation in Australia",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/196",
+      "last_edited_at": "2025-05-09T09:52:34+10:00",
+      "divisions_total": 8,
+      "houses": {
+        "representatives": 1,
+        "senate": 7
+      },
+      "first_division_date": "2015-03-18",
+      "last_division_date": "2025-02-10",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 23,
+          "for": 0,
+          "against": 22,
+          "mixed": 1,
+          "median_agreement": 1.6,
+          "mean_agreement": 4.6
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 22,
+          "for": 22,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 98,
+          "mean_agreement": 93.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 0,
+          "against": 10,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.7
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 2,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 97.5,
+          "mean_agreement": 97.5
+        }
+      }
+    },
+    "241": {
+      "id": 241,
+      "name": "increasing funding for public schools",
+      "description": "the federal government should increase funding for public schools and prioritise their funding over non-government (private) schools",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/241",
+      "last_edited_at": "2023-02-17T14:43:00+11:00",
+      "divisions_total": 4,
+      "houses": {
+        "representatives": 0,
+        "senate": 4
+      },
+      "first_division_date": "2017-02-13",
+      "last_division_date": "2019-12-03",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 17,
+          "for": 8,
+          "against": 4,
+          "mixed": 5,
+          "median_agreement": 50,
+          "mean_agreement": 65.8
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 15,
+          "for": 0,
+          "against": 15,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 6,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 98.7
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 4.2,
+          "mean_agreement": 4.2
+        }
+      }
+    },
+    "251": {
+      "id": 251,
+      "name": "increasing workplace protections",
+      "description": "the federal government should increase protections for workers by, for example, ensuring there are adequate dispute resolution processes available",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/251",
+      "last_edited_at": "2024-09-22T12:51:25+10:00",
+      "divisions_total": 9,
+      "houses": {
+        "representatives": 2,
+        "senate": 7
+      },
+      "first_division_date": "2020-11-10",
+      "last_division_date": "2024-09-19",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 89,
+          "for": 89,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.2
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 52,
+          "for": 0,
+          "against": 52,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.4
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 27.5,
+          "mean_agreement": 27.5
+        }
+      }
+    },
+    "285": {
+      "id": 285,
+      "name": "net zero emissions by 2050",
+      "description": "the federal government should commit to achieving net zero emissions by 2050 as part of Australia's efforts to address climate change",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/285",
+      "last_edited_at": "2026-06-13T09:21:31+10:00",
+      "divisions_total": 19,
+      "houses": {
+        "representatives": 9,
+        "senate": 10
+      },
+      "first_division_date": "2014-03-17",
+      "last_division_date": "2026-03-30",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 121,
+          "for": 94,
+          "against": 24,
+          "mixed": 3,
+          "median_agreement": 73,
+          "mean_agreement": 65.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 53,
+          "for": 0,
+          "against": 53,
+          "mixed": 0,
+          "median_agreement": 14,
+          "mean_agreement": 12.7
+        },
+        "greens": {
+          "members": 11,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 3.4,
+          "mean_agreement": 7.2
+        }
+      }
+    },
+    "292": {
+      "id": 292,
+      "name": "capping gas prices",
+      "description": "the federal government should have the power to put a limit on gas prices in order to address rising electricity costs",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/292",
+      "last_edited_at": "2022-12-16T14:48:52+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 3,
+        "senate": 3
+      },
+      "first_division_date": "2022-12-15",
+      "last_division_date": "2022-12-15",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 80,
+          "for": 80,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 38,
+          "for": 0,
+          "against": 38,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.5
+        },
+        "greens": {
+          "members": 11,
+          "voted": 7,
+          "for": 7,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 97.6
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "295": {
+      "id": 295,
+      "name": "a character test for Australian visas",
+      "description": "the federal government should impose a character test on all non-citizens holding or applying for an Australian visa which would give the minister the power to cancel or refuse a visa under certain character-related circumstances as set out in the relevant legislation",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/295",
+      "last_edited_at": "2026-01-27T16:43:39+11:00",
+      "divisions_total": 7,
+      "houses": {
+        "representatives": 3,
+        "senate": 4
+      },
+      "first_division_date": "2011-07-04",
+      "last_division_date": "2026-01-20",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 81,
+          "for": 36,
+          "against": 44,
+          "mixed": 1,
+          "median_agreement": 33,
+          "mean_agreement": 56.6
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 38,
+          "for": 38,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 83,
+          "mean_agreement": 90.4
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 0,
+          "against": 10,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 90,
+          "mean_agreement": 90
+        }
+      }
+    },
+    "301": {
+      "id": 301,
+      "name": "reducing taxes for middle-income earners",
+      "description": "the federal government should reduce income tax for middle-income earners (those who earn more than $80,000 per year)",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/301",
+      "last_edited_at": "2023-06-30T10:23:11+10:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 0,
+        "senate": 6
+      },
+      "first_division_date": "2016-10-11",
+      "last_division_date": "2019-07-04",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 19,
+          "for": 19,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 94.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 16,
+          "for": 16,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 83,
+          "mean_agreement": 87.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 0,
+          "against": 6,
+          "mixed": 0,
+          "median_agreement": 11,
+          "mean_agreement": 10.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 2,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 76,
+          "mean_agreement": 76
+        }
+      }
+    },
+    "308": {
+      "id": 308,
+      "name": "having a referendum on whether to create an Indigenous Voice to Parliament",
+      "description": "there should be a public referendum on the question of whether the Constitution should be amended to include a requirement for an Aboriginal and Torres Strait Islander Voice to federal parliament, such as that envisaged by the Uluru Statement from the Heart",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/308",
+      "last_edited_at": "2025-01-31T09:13:31+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 3,
+        "senate": 3
+      },
+      "first_division_date": "2023-05-31",
+      "last_division_date": "2023-06-19",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 90,
+          "for": 90,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 96.9
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 53,
+          "for": 23,
+          "against": 29,
+          "mixed": 1,
+          "median_agreement": 0,
+          "mean_agreement": 42.8
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 96.7
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 33,
+          "mean_agreement": 22
+        }
+      }
+    },
+    "309": {
+      "id": 309,
+      "name": "implementing the Uluru Statement from the Heart in full",
+      "description": "the federal government should implement the Uluru Statement from the Heart in full, including an Aboriginal and Torres Strait Islander Voice and a Makarrata Commission for agreement-making and truth-telling",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/309",
+      "last_edited_at": "2023-08-25T08:16:05+10:00",
+      "divisions_total": 3,
+      "houses": {
+        "representatives": 0,
+        "senate": 3
+      },
+      "first_division_date": "2018-08-22",
+      "last_division_date": "2023-06-19",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 14,
+          "for": 14,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.3
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 14,
+          "for": 0,
+          "against": 14,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 1.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 6,
+          "for": 6,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "318": {
+      "id": 318,
+      "name": "the federal government calling for a ceasefire in Gaza (2023-26)",
+      "description": "the Australian Government should call for an immediate and permanent ceasefire to end the humanitarian disaster in Gaza that began in October 2023, which is now the subject of an ongoing case in the International Court of Justice (ICJ), in which South Africa is accusing Israel of genocide",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/318",
+      "last_edited_at": "2026-02-13T12:10:42+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 1,
+        "senate": 5
+      },
+      "first_division_date": "2023-10-16",
+      "last_division_date": "2025-03-26",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 20,
+          "for": 1,
+          "against": 18,
+          "mixed": 1,
+          "median_agreement": 20,
+          "mean_agreement": 20.7
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 20,
+          "for": 0,
+          "against": 20,
+          "mixed": 0,
+          "median_agreement": 5.9,
+          "mean_agreement": 6.9
+        },
+        "greens": {
+          "members": 11,
+          "voted": 9,
+          "for": 9,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 5.9,
+          "mean_agreement": 5.9
+        }
+      }
+    },
+    "320": {
+      "id": 320,
+      "name": "revoking citizenship of dual nationals involved with terrorism offences by the courts",
+      "description": "the federal government should give the Minister for Home Affairs the power to apply to the courts to revoke the citizenship of people who have dual nationality (that is, are also citizens of another country) if they take part in certain terrorism-related offences [NOTE: this policy is related to an older policy titled \"Revoking citizenship of dual nationals involved with terrorism offences by the minister\"]",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/320",
+      "last_edited_at": "2024-02-23T09:29:47+11:00",
+      "divisions_total": 1,
+      "houses": {
+        "representatives": 0,
+        "senate": 1
+      },
+      "first_division_date": "2023-12-06",
+      "last_division_date": "2023-12-06",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 18,
+          "for": 18,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "greens": {
+          "members": 11,
+          "voted": 7,
+          "for": 0,
+          "against": 7,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 2,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        }
+      }
+    },
+    "322": {
+      "id": 322,
+      "name": "up to 12 months of paid parental leave by 2030",
+      "description": "the federal government should amend the law to extend paid parental leave to up to 12 months by 2030",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/322",
+      "last_edited_at": "2025-01-31T10:50:39+11:00",
+      "divisions_total": 1,
+      "houses": {
+        "representatives": 0,
+        "senate": 1
+      },
+      "first_division_date": "2024-03-18",
+      "last_division_date": "2024-03-18",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 17,
+          "for": 1,
+          "against": 16,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 5.9
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "greens": {
+          "members": 11,
+          "voted": 8,
+          "for": 8,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "329": {
+      "id": 329,
+      "name": "vehicle efficiency standards",
+      "description": "the federal government should introduce a vehicle efficiency standard (also known as a fuel efficiency or a vehicle carbon emissions standard)",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/329",
+      "last_edited_at": "2024-11-05T13:39:44+11:00",
+      "divisions_total": 6,
+      "houses": {
+        "representatives": 3,
+        "senate": 3
+      },
+      "first_division_date": "2010-06-22",
+      "last_division_date": "2024-05-16",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 89,
+          "for": 89,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.4
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 52,
+          "for": 0,
+          "against": 52,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0.5
+        },
+        "greens": {
+          "members": 11,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 0.3,
+          "mean_agreement": 0.3
+        }
+      }
+    },
+    "330": {
+      "id": 330,
+      "name": "banning politicial deepfakes",
+      "description": "the federal government should introduce laws to ban the use of deepfakes in political advertising in the lead up to elections",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/330",
+      "last_edited_at": "2025-01-31T10:48:28+11:00",
+      "divisions_total": 2,
+      "houses": {
+        "representatives": 0,
+        "senate": 2
+      },
+      "first_division_date": "2024-08-21",
+      "last_division_date": "2024-08-21",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 19,
+          "for": 2,
+          "against": 17,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 10.5
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 4,
+          "for": 0,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "greens": {
+          "members": 11,
+          "voted": 9,
+          "for": 9,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 0,
+          "for": 0,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": null,
+          "mean_agreement": null
+        }
+      }
+    },
+    "332": {
+      "id": 332,
+      "name": "capping international student numbers at universities",
+      "description": "the minister should have the power to place a cap on the number of international students admitted to Australian universities",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/332",
+      "last_edited_at": "2024-09-07T20:33:16+10:00",
+      "divisions_total": 3,
+      "houses": {
+        "representatives": 3,
+        "senate": 0
+      },
+      "first_division_date": "2024-08-13",
+      "last_division_date": "2024-08-13",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 68,
+          "for": 68,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 89.7
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 3,
+          "for": 3,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 75,
+          "mean_agreement": 83.3
+        },
+        "greens": {
+          "members": 11,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 0,
+          "for": 0,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": null,
+          "mean_agreement": null
+        }
+      }
+    },
+    "334": {
+      "id": 334,
+      "name": "making price gouging illegal",
+      "description": "the federal government should introduce laws to prohibit corporations from engaging in conduct that is likely to result in excessive prices for goods and services for consumers",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/334",
+      "last_edited_at": "2026-02-07T12:28:06+11:00",
+      "divisions_total": 2,
+      "houses": {
+        "representatives": 0,
+        "senate": 2
+      },
+      "first_division_date": "2024-10-09",
+      "last_division_date": "2026-02-05",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 27,
+          "for": 2,
+          "against": 25,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 10.2
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 11,
+          "for": 0,
+          "against": 11,
+          "mixed": 0,
+          "median_agreement": 25,
+          "mean_agreement": 18.2
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 95
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 1,
+          "mixed": 1,
+          "median_agreement": 25,
+          "mean_agreement": 25
+        }
+      }
+    },
+    "336": {
+      "id": 336,
+      "name": "reducing tax concessions for high socio-economic status",
+      "description": "the federal government should reduce tax concessions for high earners and those of high socio-economic status",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/336",
+      "last_edited_at": "2026-03-22T12:01:24+11:00",
+      "divisions_total": 7,
+      "houses": {
+        "representatives": 5,
+        "senate": 2
+      },
+      "first_division_date": "2024-05-16",
+      "last_division_date": "2026-03-10",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 113,
+          "for": 113,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 80,
+          "mean_agreement": 87.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 57,
+          "for": 0,
+          "against": 56,
+          "mixed": 1,
+          "median_agreement": 20,
+          "mean_agreement": 13.5
+        },
+        "greens": {
+          "members": 11,
+          "voted": 9,
+          "for": 9,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 95.6
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 5,
+          "for": 0,
+          "against": 5,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 4
+        }
+      }
+    },
+    "343": {
+      "id": 343,
+      "name": "making TAFE education fee-free",
+      "description": "the federal government should create fee-free places at TAFE for Australians (note: there is a separate fee-free university policy)",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/343",
+      "last_edited_at": "2025-09-20T15:02:54+10:00",
+      "divisions_total": 8,
+      "houses": {
+        "representatives": 2,
+        "senate": 6
+      },
+      "first_division_date": "2023-06-19",
+      "last_division_date": "2025-07-30",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 90,
+          "for": 69,
+          "against": 21,
+          "mixed": 0,
+          "median_agreement": 83,
+          "mean_agreement": 68.1
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 39,
+          "for": 0,
+          "against": 39,
+          "mixed": 0,
+          "median_agreement": 1.9,
+          "mean_agreement": 3.7
+        },
+        "greens": {
+          "members": 11,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.1
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 2,
+          "for": 0,
+          "against": 2,
+          "mixed": 0,
+          "median_agreement": 11.2,
+          "mean_agreement": 11.2
+        }
+      }
+    },
+    "345": {
+      "id": 345,
+      "name": "Improving pay and conditions for gig workers",
+      "description": "the pay, conditions, and rights of gig economy workers (AKA “employee-like workers”) should be strengthened.",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/345",
+      "last_edited_at": "2025-05-23T19:56:19+10:00",
+      "divisions_total": 7,
+      "houses": {
+        "representatives": 2,
+        "senate": 5
+      },
+      "first_division_date": "2023-11-16",
+      "last_division_date": "2024-02-12",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 89,
+          "for": 88,
+          "against": 0,
+          "mixed": 1,
+          "median_agreement": 100,
+          "mean_agreement": 97.2
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 52,
+          "for": 0,
+          "against": 52,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 4.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 92.7
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "348": {
+      "id": 348,
+      "name": "reducing tax on lowest income bracket",
+      "description": "the federal government should reduce the tax rate on the lowest taxable income bracket (i.e., the tax on income between $18,201 – $45,000)",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/348",
+      "last_edited_at": "2025-04-06T12:34:08+10:00",
+      "divisions_total": 1,
+      "houses": {
+        "representatives": 1,
+        "senate": 0
+      },
+      "first_division_date": "2025-03-26",
+      "last_division_date": "2025-03-26",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 68,
+          "for": 68,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 32,
+          "for": 0,
+          "against": 32,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "greens": {
+          "members": 11,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "349": {
+      "id": 349,
+      "name": "increasing access to subsidised childcare",
+      "description": "the federal government should introduce legislation to make more subsidised childcare hours available to families",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/349",
+      "last_edited_at": "2025-04-06T14:14:36+10:00",
+      "divisions_total": 3,
+      "houses": {
+        "representatives": 1,
+        "senate": 2
+      },
+      "first_division_date": "2025-02-13",
+      "last_division_date": "2025-02-13",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 85,
+          "for": 85,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 50,
+          "for": 0,
+          "against": 50,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "greens": {
+          "members": 11,
+          "voted": 11,
+          "for": 11,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        }
+      }
+    },
+    "354": {
+      "id": 354,
+      "name": "banning social media accounts for minors (under 16 years of age)",
+      "description": "the federal government should introduce laws and policies that would prevent young people under the age of 16-years-old from creating user accounts on social media platforms",
+      "provisional": true,
+      "url": "https://theyvoteforyou.org.au/policies/354",
+      "last_edited_at": "2025-05-29T10:50:42+10:00",
+      "divisions_total": 1,
+      "houses": {
+        "representatives": 1,
+        "senate": 0
+      },
+      "first_division_date": "2024-11-27",
+      "last_division_date": "2024-11-27",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 49,
+          "for": 49,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 25,
+          "for": 25,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "greens": {
+          "members": 11,
+          "voted": 1,
+          "for": 0,
+          "against": 1,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 0
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 1,
+          "for": 1,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        }
+      }
+    },
+    "361": {
+      "id": 361,
+      "name": "wiping all student debt (university and vocational)",
+      "description": "the federal government should wipe all student debt for Australians who have undertaken vocational or tertiary education in Australia",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/361",
+      "last_edited_at": "2025-09-20T15:03:37+10:00",
+      "divisions_total": 7,
+      "houses": {
+        "representatives": 1,
+        "senate": 6
+      },
+      "first_division_date": "2023-06-19",
+      "last_division_date": "2025-07-30",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 28,
+          "for": 0,
+          "against": 27,
+          "mixed": 1,
+          "median_agreement": 0,
+          "mean_agreement": 4.8
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 9,
+          "for": 0,
+          "against": 9,
+          "mixed": 0,
+          "median_agreement": 37,
+          "mean_agreement": 26.1
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 99.8
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 2.4,
+          "mean_agreement": 13.1
+        }
+      }
+    },
+    "363": {
+      "id": 363,
+      "name": "reducing university student debt",
+      "description": "the federal government should introduce legislation that makes a one-time reduction in the level of Higher Education Loan Programme (HELP) debts - also known as HECS-HELP debts - for Australian university students",
+      "provisional": false,
+      "url": "https://theyvoteforyou.org.au/policies/363",
+      "last_edited_at": "2025-10-04T13:57:39+10:00",
+      "divisions_total": 3,
+      "houses": {
+        "representatives": 0,
+        "senate": 3
+      },
+      "first_division_date": "2024-11-26",
+      "last_division_date": "2025-07-31",
+      "parties": {
+        "labor": {
+          "members": 122,
+          "voted": 27,
+          "for": 23,
+          "against": 4,
+          "mixed": 0,
+          "median_agreement": 67,
+          "mean_agreement": 69.3
+        },
+        "coalition": {
+          "members": 67,
+          "voted": 6,
+          "for": 0,
+          "against": 6,
+          "mixed": 0,
+          "median_agreement": 33,
+          "mean_agreement": 33
+        },
+        "greens": {
+          "members": 11,
+          "voted": 10,
+          "for": 10,
+          "against": 0,
+          "mixed": 0,
+          "median_agreement": 100,
+          "mean_agreement": 100
+        },
+        "one_nation": {
+          "members": 6,
+          "voted": 3,
+          "for": 0,
+          "against": 3,
+          "mixed": 0,
+          "median_agreement": 0,
+          "mean_agreement": 11
+        }
+      }
+    }
+  }
+}

@@ -19,6 +19,8 @@ const CONFIDENCE_IDS = ['high', 'medium', 'low'];
 const VERIFIED_IDS = ['confirmed', 'corrected', 'unverified'];
 const HEX_COLOR_RE = /^#[0-9A-Fa-f]{6}$/;
 const MAX_SUMMARY_CHARS = 350;
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const TVFY_POLICY_URL_RE = /^https:\/\/theyvoteforyou\.org\.au\/policies\/(\d+)$/;
 
 function resolveInputPath(argPath) {
   if (argPath) {
@@ -254,10 +256,93 @@ function runChecks(data) {
     checks.push({ name: 'hex colors valid', issues });
   }
 
-  return { checks, allIssues, topics, parties, impactTags };
+  // --- optional voting (They Vote For You) block, well-formed where present -
+  let votingIssueCount = 0;
+  let votingRecordCount = 0;
+  {
+    const issues = [];
+    for (const { topic, issue } of allIssues) {
+      if (issue.voting === undefined) continue;
+      votingIssueCount += 1;
+      const label = `${topic.id}/${issue.id}`;
+      const voting = issue.voting;
+
+      if (!ISO_DATE_RE.test(voting?.as_of ?? '')) {
+        issues.push(`${label}: voting.as_of is not an ISO date ("${voting?.as_of}")`);
+      }
+
+      const records = Array.isArray(voting?.records) ? voting.records : null;
+      if (!records || records.length === 0) {
+        issues.push(`${label}: voting.records is missing or empty`);
+        continue;
+      }
+      votingRecordCount += records.length;
+
+      records.forEach((record, i) => {
+        const rlabel = `${label}: voting.records[${i}]`;
+
+        if (!Number.isInteger(record?.policy_id)) {
+          issues.push(`${rlabel}: policy_id is not an integer ("${record?.policy_id}")`);
+        }
+        if (record?.polarity !== 1 && record?.polarity !== -1) {
+          issues.push(`${rlabel}: polarity "${record?.polarity}" not in [1, -1]`);
+        }
+        if (record?.strength !== 'direct' && record?.strength !== 'related') {
+          issues.push(`${rlabel}: strength "${record?.strength}" not in [direct, related]`);
+        }
+        if (typeof record?.description !== 'string' || record.description.trim() === '') {
+          issues.push(`${rlabel}: description is empty`);
+        }
+
+        const urlMatch = typeof record?.url === 'string' ? record.url.match(TVFY_POLICY_URL_RE) : null;
+        if (!urlMatch) {
+          issues.push(`${rlabel}: url "${record?.url}" does not match the expected TVFY policy URL pattern`);
+        } else if (Number.isInteger(record?.policy_id) && Number(urlMatch[1]) !== record.policy_id) {
+          issues.push(`${rlabel}: url "${record.url}" does not end with policy_id ${record.policy_id}`);
+        }
+
+        const partyKeys = record?.parties && typeof record.parties === 'object' ? Object.keys(record.parties) : [];
+        const hasExactPartyIds =
+          partyKeys.length === PARTY_IDS.length &&
+          PARTY_IDS.every((id) => Object.prototype.hasOwnProperty.call(record?.parties ?? {}, id));
+        if (!hasExactPartyIds) {
+          issues.push(`${rlabel}: parties keys [${partyKeys.join(', ')}] are not exactly [${PARTY_IDS.join(', ')}]`);
+          return;
+        }
+
+        for (const partyId of PARTY_IDS) {
+          const p = record.parties[partyId];
+          const plabel = `${rlabel} (${partyId})`;
+
+          const membersOk = Number.isInteger(p?.members) && p.members >= 0;
+          const votedOk = Number.isInteger(p?.voted) && p.voted >= 0;
+          if (!membersOk) issues.push(`${plabel}: members is not a non-negative integer ("${p?.members}")`);
+          if (!votedOk) issues.push(`${plabel}: voted is not a non-negative integer ("${p?.voted}")`);
+          if (membersOk && votedOk && p.voted > p.members) {
+            issues.push(`${plabel}: voted (${p.voted}) exceeds members (${p.members})`);
+          }
+
+          const parts = [p?.for, p?.against, p?.mixed];
+          if (!parts.every(Number.isInteger)) {
+            issues.push(`${plabel}: for/against/mixed must all be integers`);
+          } else if (votedOk && parts[0] + parts[1] + parts[2] !== p.voted) {
+            issues.push(`${plabel}: for(${parts[0]}) + against(${parts[1]}) + mixed(${parts[2]}) !== voted(${p.voted})`);
+          }
+
+          const ma = p?.median_agreement;
+          if (ma !== null && !(typeof ma === 'number' && ma >= 0 && ma <= 100)) {
+            issues.push(`${plabel}: median_agreement "${ma}" is not null or a number 0–100`);
+          }
+        }
+      });
+    }
+    checks.push({ name: 'voting (optional) is well-formed where present', issues });
+  }
+
+  return { checks, allIssues, topics, parties, impactTags, votingIssueCount, votingRecordCount };
 }
 
-function printReport({ checks, allIssues, topics, impactTags }, path) {
+function printReport({ checks, allIssues, topics, impactTags, votingIssueCount, votingRecordCount }, path) {
   console.log(`Validating ${path}\n`);
 
   let failed = false;
@@ -292,7 +377,8 @@ function printReport({ checks, allIssues, topics, impactTags }, path) {
 
   console.log(
     `PASS — ${topics.length} topics, ${allIssues.length} issues, ${positionCount} positions, ` +
-      `${sourceCount} sources, ${pctVerified}% verified (confirmed or corrected), ${impactTags.length} impact tags`
+      `${sourceCount} sources, ${pctVerified}% verified (confirmed or corrected), ${impactTags.length} impact tags, ` +
+      `voting: ${votingIssueCount}/${allIssues.length} issues, ${votingRecordCount} records`
   );
 }
 

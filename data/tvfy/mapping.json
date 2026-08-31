@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "description": "Hand-verified mapping from Common Ground issues to They Vote For You (TVFY) policy propositions. Each entry links an issue to TVFY policies whose parliamentary division votes genuinely inform that issue's question.",
+    "method": "Candidate mappings proposed by three research agents over all 368 TVFY policies, then every match individually verified against the issue question text, the TVFY proposition text, division recency and per-party vote data. Rejected: policies with no divisions or no current-member data, generic proxies that could contradict a party's stated stance on the specific question, and redundant or stale matches. polarity 1 = agreeing with the TVFY proposition is answering YES to the issue question; -1 = answering NO. strength 'direct' = essentially the same proposition; 'related' = clearly relevant adjacent proposition.",
+    "verified_by": "Claude (Fable) — per-mapping manual verification pass",
+    "verified_at": "2026-08-31",
+    "source": "https://theyvoteforyou.org.au (OpenAustralia Foundation), data under Open Data Commons Open Database License"
+  },
+  "issues": {
+    "negative-gearing-cgt": [
+      {"policy_id": 336, "polarity": 1, "strength": "related", "note": "Negative gearing and the CGT discount are the main property-investor tax concessions this proposition covers; divisions run 2024-2026."}
+    ],
+    "social-public-housing": [
+      {"policy_id": 116, "polarity": 1, "strength": "direct", "note": "Federal action to increase affordable public housing is essentially this question."}
+    ],
+    "income-tax-cuts": [
+      {"policy_id": 348, "polarity": 1, "strength": "direct", "note": "The 2025 vote on cutting the lowest income-tax bracket rate — the most recent income-tax-cut division."},
+      {"policy_id": 301, "polarity": 1, "strength": "related", "note": "Middle-income tax cut votes 2016-2019, when both major parties supported the packages."}
+    ],
+    "energy-bill-relief": [
+      {"policy_id": 292, "polarity": 1, "strength": "related", "note": "The December 2022 Energy Price Relief Plan divisions bundled the gas price cap with household bill relief."}
+    ],
+    "supermarket-divestiture": [
+      {"policy_id": 334, "polarity": 1, "strength": "related", "note": "Outlawing price gouging is the adjacent legislative crackdown on supermarket market power; divestiture itself has not been put to a division."}
+    ],
+    "pbs-medicine-prices": [
+      {"policy_id": 27, "polarity": -1, "strength": "direct", "note": "Agreeing with raising the PBS co-payment is the reverse of capping prescription prices; divisions are from the 2014 co-payment fight."}
+    ],
+    "dental-into-medicare": [
+      {"policy_id": 178, "polarity": 1, "strength": "direct", "note": "Expanding publicly funded dental care is the substance of putting dental into Medicare."}
+    ],
+    "private-health-rebate-over-65s": [
+      {"policy_id": 26, "polarity": 1, "strength": "related", "note": "Votes on decreasing the private health insurance rebate generally (2006-2013), not the over-65s tier specifically."}
+    ],
+    "net-zero-and-2035-target": [
+      {"policy_id": 285, "polarity": 1, "strength": "direct", "note": "Net zero by 2050 is the first half of the question; divisions run to 2026."},
+      {"policy_id": 183, "polarity": 1, "strength": "related", "note": "The 2035 target is Australia's Paris Agreement commitment; these are votes on aligning law with Paris objectives."}
+    ],
+    "nuclear-power-ban": [
+      {"policy_id": 196, "polarity": 1, "strength": "direct", "note": "Supporting nuclear energy generation in Australia requires lifting the legal ban; agreeing means lifting it."}
+    ],
+    "renewables-rollout-and-coal": [
+      {"policy_id": 20, "polarity": 1, "strength": "direct", "note": "63 divisions on increasing federal investment in renewable energy, 2006-2025."},
+      {"policy_id": 141, "polarity": -1, "strength": "related", "note": "Agreeing with maintaining or increasing coal industry support is the reverse of replacing coal-fired power."}
+    ],
+    "electric-vehicle-support": [
+      {"policy_id": 329, "polarity": 1, "strength": "direct", "note": "The vehicle efficiency standard is the standards half of this question, including the 2024 NVES votes."}
+    ],
+    "home-solar-and-battery-rebates": [
+      {"policy_id": 20, "polarity": 1, "strength": "related", "note": "Home solar and battery subsidies are federal investment in renewable energy technologies, which this proposition covers broadly."}
+    ],
+    "student-debt-relief": [
+      {"policy_id": 363, "polarity": 1, "strength": "direct", "note": "The one-time HELP debt reduction votes of 2024-25 are exactly the first limb of this question."},
+      {"policy_id": 361, "polarity": 1, "strength": "related", "note": "Wiping all student debt is the maximalist version of debt relief; votes show who wants to go further."}
+    ],
+    "universal-childcare-subsidy": [
+      {"policy_id": 349, "polarity": 1, "strength": "direct", "note": "The February 2025 Three Day Guarantee divisions — more subsidised childcare hours regardless of the activity test."}
+    ],
+    "free-tafe": [
+      {"policy_id": 343, "polarity": 1, "strength": "direct", "note": "The Free TAFE Bill divisions of 2023-2025 are exactly this question."}
+    ],
+    "public-school-funding": [
+      {"policy_id": 241, "polarity": 1, "strength": "direct", "note": "Increasing Commonwealth funding for public schools is the substance of reaching 100% of the Schooling Resource Standard; divisions 2017-2019."}
+    ],
+    "penalty-rates-protection": [
+      {"policy_id": 148, "polarity": -1, "strength": "direct", "note": "Agreeing with abolishing Sunday and public-holiday penalty rates is the reverse of locking them into law; divisions from the 2014-2017 penalty rates fight."}
+    ],
+    "right-to-disconnect": [
+      {"policy_id": 251, "polarity": 1, "strength": "related", "note": "The workplace-protections divisions of 2020-2024 include the Closing Loopholes votes that created the right to disconnect."}
+    ],
+    "casual-and-gig-worker-rights": [
+      {"policy_id": 345, "polarity": 1, "strength": "direct", "note": "The Closing Loopholes gig-worker divisions of 2023-24 are exactly the minimum standards this question asks about."}
+    ],
+    "jobseeker-rate": [
+      {"policy_id": 179, "polarity": 1, "strength": "direct", "note": "Newstart Allowance was JobSeeker's former name; these are votes on raising the base unemployment payment to cover living costs."}
+    ],
+    "welfare-citizens-only": [
+      {"policy_id": 34, "polarity": 1, "strength": "related", "note": "Votes on limiting the availability of social security payments generally — citizens-only restriction has not itself been put to a division."}
+    ],
+    "paid-parental-leave": [
+      {"policy_id": 322, "polarity": 1, "strength": "related", "note": "The 2024 vote on extending paid parental leave to 12 months was an amendment to the 26-week expansion bill; shows who wanted to go further."}
+    ],
+    "international-student-caps": [
+      {"policy_id": 332, "polarity": 1, "strength": "direct", "note": "The August 2024 divisions on ministerial power to cap international student numbers."}
+    ],
+    "humanitarian-intake": [
+      {"policy_id": 8, "polarity": 1, "strength": "related", "note": "Votes on implementing refugee and protection conventions track each party's protection posture, not the intake number itself."}
+    ],
+    "boat-turnbacks-offshore-processing": [
+      {"policy_id": 174, "polarity": 1, "strength": "direct", "note": "Turning back asylum boats is the first limb of this question; divisions 2010-2017 predate Labor's shift to supporting turnbacks."},
+      {"policy_id": 16, "polarity": 1, "strength": "direct", "note": "Regional processing in Nauru or PNG is the offshore-processing limb of this question."}
+    ],
+    "deportation-removal-powers": [
+      {"policy_id": 295, "polarity": 1, "strength": "related", "note": "The visa character test is the main legal basis for cancelling visas and removing non-citizens; divisions run to 2026."},
+      {"policy_id": 320, "polarity": 1, "strength": "related", "note": "Court-ordered citizenship revocation for dual-national terrorism offenders creates removable non-citizens; 2023 division."}
+    ],
+    "visa-values-test": [
+      {"policy_id": 184, "polarity": 1, "strength": "related", "note": "The 2017-2020 votes on stricter citizenship eligibility (English tests, longer residence) are the closest divisions to a binding values test."}
+    ],
+    "national-truth-telling-commission": [
+      {"policy_id": 309, "polarity": 1, "strength": "direct", "note": "Implementing the Uluru Statement in full explicitly includes a Makarrata Commission for truth-telling."},
+      {"policy_id": 308, "polarity": 1, "strength": "related", "note": "The Voice referendum votes are the adjacent element of the same Uluru Statement agenda."}
+    ],
+    "cultural-heritage-protection-law": [
+      {"policy_id": 30, "polarity": 1, "strength": "direct", "note": "Increasing protection of Aboriginal cultural heritage sites is what replacing the 1984 Act is meant to achieve; divisions 2006-2024."}
+    ],
+    "defence-spending-gdp": [
+      {"policy_id": 161, "polarity": 1, "strength": "direct", "note": "Keeping up or increasing defence spending is this question's dimension; divisions 2017-2025."}
+    ],
+    "palestine-recognition": [
+      {"policy_id": 318, "polarity": 1, "strength": "related", "note": "The 2023-25 Gaza ceasefire motions are the adjacent divisions on Australia's Israel-Palestine posture; recognition itself has too few voted divisions to score."}
+    ],
+    "overseas-aid-budget": [
+      {"policy_id": 99, "polarity": 1, "strength": "related", "note": "Votes on the specific 0.7% of GNI aid target, a stronger version of increasing the aid budget; divisions 2008-2019."}
+    ],
+    "china-trade-relations": [
+      {"policy_id": 142, "polarity": 1, "strength": "direct", "note": "The China Free Trade Agreement votes of 2015-2019 are the concrete divisions on expanding trade with China."}
+    ],
+    "under-16-social-media-ban": [
+      {"policy_id": 354, "polarity": 1, "strength": "direct", "note": "The November 2024 division on the under-16 social media ban bill — the exact proposition. TVFY lists this policy as provisional."}
+    ],
+    "online-age-verification": [
+      {"policy_id": 354, "polarity": 1, "strength": "related", "note": "The under-16 social media ban vote signals each party's appetite for mandatory online age-gating. TVFY lists this policy as provisional."}
+    ],
+    "gambling-ad-ban": [
+      {"policy_id": 39, "polarity": 1, "strength": "related", "note": "Votes on increasing gambling industry restrictions generally; a full advertising ban has not itself passed a division."}
+    ],
+    "ai-regulation": [
+      {"policy_id": 330, "polarity": 1, "strength": "related", "note": "The 2024 political-deepfake ban votes are the closest divisions to mandatory rules for high-risk AI."}
+    ],
+    "whistleblower-protection": [
+      {"policy_id": 90, "polarity": 1, "strength": "related", "note": "Votes on whistleblower-protection legislation generally, 2007-2026; the standalone authority itself has not been put to a division."}
+    ]
+  }
+}

@@ -2,7 +2,7 @@
    Common Ground — civic broadsheet stylesheet
    Section map: 1 reset  2 tokens/theme  3 type  4 layout shell  5 masthead
    6 filter row  7 tabs  8 matrix  9 drawer  10 overlap  11 empty states
-   12 footer  13 motion  14 responsive
+   12 footer  13 motion  14 responsive  15 voting (drawer section + Votes view)
    ========================================================================== */
 
 /* 1. Reset ---------------------------------------------------------------- */
@@ -35,6 +35,10 @@ h1, h2, h3, p, dl, dd, dt { margin: 0; }
   --wash-support: rgba(12, 163, 12, 0.14);
   --wash-oppose: rgba(208, 59, 59, 0.14);
   --wash-mixed: rgba(250, 178, 25, 0.16);
+
+  --vote-wash-for: rgba(12, 163, 12, 0.55);
+  --vote-wash-against: rgba(208, 59, 59, 0.55);
+  --vote-wash-mixed: rgba(250, 178, 25, 0.55);
 
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -428,6 +432,14 @@ body {
   margin-top: 0.4rem;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
+}
+.voting-indicator {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  cursor: help;
+  vertical-align: middle;
 }
 
 .stance-cell { padding: 0; vertical-align: middle; }
@@ -882,4 +894,231 @@ body {
   .app { padding: 1.5rem 1rem 3rem; }
   .filter-second-row { flex-direction: column; align-items: stretch; }
   .search-field { max-width: none; }
+}
+
+/* 15. Voting (drawer "In Parliament" section + Votes view) ------------------------------------ */
+
+/* Shared bar + tag + row primitives, used by both the drawer's full
+   treatment and the Votes view's compact treatment. */
+.voting-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+.voting-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--ink-secondary);
+  cursor: help;
+}
+.voting-polarity-note {
+  font-size: 0.82rem;
+  color: var(--ink-secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.voting-bar {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 5rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--page);
+}
+.voting-bar-seg { height: 100%; }
+.voting-bar-for { background: var(--vote-wash-for); }
+.voting-bar-against { background: var(--vote-wash-against); }
+.voting-bar-mixed { background: var(--vote-wash-mixed); }
+.voting-no-data {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.voting-party-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex: 0 0 5.5rem;
+}
+.voting-party-accent {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--party-color, var(--hairline));
+  flex: none;
+}
+.voting-footer {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+/* Drawer "In Parliament" section */
+.voting-section {
+  margin-top: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+.voting-heading {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.voting-record {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.85rem;
+  background: var(--surface);
+}
+.voting-record:last-of-type { margin-bottom: 0.75rem; }
+.voting-proposition {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+.voting-proposition em { font-style: italic; }
+.voting-record-note {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.7rem;
+}
+.voting-party-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.voting-party-row + .voting-party-row {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.voting-party-row-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.voting-party-counts {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  margin-top: 0.2rem;
+}
+.voting-record-meta {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+.voting-record-meta a {
+  color: var(--ink-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.voting-record-meta a:hover { color: var(--ink); }
+
+/* Votes view */
+.votes-intro { margin-bottom: 1.75rem; max-width: 44rem; }
+.votes-intro p {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+.votes-intro p:last-child {
+  margin-bottom: 0;
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+}
+
+.votes-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.vote-issue-card {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.vote-issue-header {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.vote-issue-header:hover { background: var(--page); }
+.vote-issue-label { display: block; font-weight: 700; font-size: 0.95rem; }
+.vote-issue-question {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.vote-record-compact {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.vote-record-compact:last-child { border-bottom: 0; }
+.vote-proposition-compact {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+.vote-proposition-compact em { font-style: italic; }
+
+.vote-party-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem 1rem;
+  margin-top: 0.6rem;
+}
+.vote-party-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.vote-party-cell .voting-party-name { flex: none; }
+.vote-party-cell .voting-bar { width: 100%; min-width: 0; flex: none; }
+.vote-cell-label {
+  font-size: 0.64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  margin-top: 0.2rem;
+}
+.vote-party-counts {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-secondary);
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 640px) {
+  .vote-party-grid { grid-template-columns: repeat(2, 1fr); }
 }
