@@ -40,6 +40,13 @@ position is fine — `no_position` exists exactly for this — but a wrong or un
   was needed because an earlier one was wrong or out of date.
 - **Sources carry dates and publishers.** A source without a fetchable date is weaker evidence —
   note it, don't fabricate one.
+- **Outlet balance is part of neutrality.** A contested characterisation needs a primary source
+  or two secondary outlets from different outlet families — one outlet's framing must never carry
+  a claim alone. No Wikipedia or other tertiary references. The paywalled mastheads (AFR, The
+  Australian, Nine papers) usually can't be cited because the pipeline must fetch-verify every
+  URL — compensate with the fetchable outlets across the spectrum listed in `ingest/sources.md`,
+  and check the mix periodically with `node scripts/source-balance.mjs` (`--strict` fails on
+  tertiary references; suitable for CI).
 - **`data/dataset.json` is the only pipeline output.** Nothing else in the repo is written by the
   pipeline; `dist/` is a build artifact, regenerated, never hand-edited.
 

@@ -68,7 +68,20 @@ undated primary source is weaker evidence than a dated secondary one reporting t
 |---|---|---|---|
 | ABC News | https://www.abc.net.au/news | Secondary | Public broadcaster; during election campaigns ABC typically runs a standalone policy-comparison feature. These features don't have a stable permanent URL across cycles — search ABC News for the current one rather than assuming a fixed path. |
 | Guardian Australia | https://www.theguardian.com/australia-news | Secondary | Same caveat as ABC — campaign-period policy trackers are one-off feature pages, not a fixed evergreen URL. Search from this section root. |
+| SBS News | https://www.sbs.com.au/news | Secondary | Public broadcaster; strong on migration, multicultural-community and welfare policy detail. |
+| news.com.au | https://www.news.com.au/national | Secondary | News Corp's free mastheads' national politics coverage — the fetchable counterweight to the public broadcasters. Straight-news pieces only; skip opinion. |
+| The Nightly | https://thenightly.com.au | Secondary | Seven West's free national masthead, centre-right leaning; useful second family for contested claims. |
+| Sky News Australia | https://www.skynews.com.au/australia-news | Secondary | Free articles and interview transcripts; a minister or shadow's own words in a transcript count as their words — cite the transcript, not the panel commentary around it. |
+| AAP | https://www.aap.com.au | Secondary (wire) | Wire copy — the most framing-neutral secondary option when a wire story exists. AAP FactCheck is also useful for contested numeric claims. |
 
 Use secondary sources to (a) corroborate a primary source, (b) catch a stance change or backflip
 not yet reflected on the party's own site, or (c) as the sole source only when no primary source
 exists — in that case prefer `confidence: medium` or `low` and be honest in `verified`.
+
+**Balance rule:** a contested characterisation must rest on a primary source or on two secondary
+outlets from *different families* (public broadcaster / News Corp / Seven West / Nine / wire /
+independent) — never one outlet family alone. The hard-paywalled mastheads (AFR, The Australian,
+SMH/Age) generally can't be cited because every URL must be fetch-verified; when their reporting
+matters, find the same fact in a fetchable outlet or the underlying primary document. No
+Wikipedia or other tertiary references, ever. Audit the current mix any time with
+`node scripts/source-balance.mjs`.

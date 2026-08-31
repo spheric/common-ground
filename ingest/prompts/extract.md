@@ -77,6 +77,12 @@ always better to produce nothing, or `no_position`, than to guess or overstate.
    the source was published/updated — see `ingest/sources.md` for date-stamping guidance).
    `sources` may be **empty only when `stance` is `no_position`** — every other stance requires at
    least one verified `http`/`https` source.
+   **Balance:** any contested characterisation (a stance, a backflip, a criticism of another
+   party) needs either a primary source (the party's own words, a government/parliamentary
+   record) or two independent secondary outlets from different outlet families — never a single
+   secondary outlet carrying the claim alone. Wikipedia and similar tertiary references are
+   never acceptable as sources. `node scripts/source-balance.mjs` reports the dataset's current
+   outlet mix and flags violations.
 10. **One position per party per issue.** If this source updates an issue that already has a
     position for this party in the dataset, this extraction should *replace* that position
     (the merge step in the skill handles this) — don't produce a second position object for the

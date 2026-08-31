@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Common Ground",
-    "subtitle": "Australian federal party policies, side by side — every claim sourced",
+    "subtitle": "Australian federal party policies, side by side \u2014 every claim sourced",
     "as_of": "2026-08-16",
-    "jurisdiction": "Australia — federal",
+    "jurisdiction": "Australia \u2014 federal",
     "disclaimer": "Independent, non-partisan summary. Positions are paraphrased from the cited public sources and may change; always check the linked source. Not affiliated with any political party.",
     "methodology": "Positions were researched from official party platforms, government/minister media releases, legislation and reputable news outlets, then independently verified: every cited source was fetched and checked to confirm it supports the stated position. Positions that could not be verified against a working source are shown as 'No clear position'."
   },
@@ -20,7 +20,7 @@
     },
     {
       "id": "coalition",
-      "name": "Liberal–National Coalition",
+      "name": "Liberal\u2013National Coalition",
       "short": "Coalition",
       "abbr": "LNP",
       "leader": "Angus Taylor",
@@ -53,124 +53,124 @@
     {
       "id": "supports",
       "label": "For",
-      "symbol": "✓"
+      "symbol": "\u2713"
     },
     {
       "id": "opposes",
       "label": "Against",
-      "symbol": "✕"
+      "symbol": "\u2715"
     },
     {
       "id": "mixed",
       "label": "Mixed",
-      "symbol": "±"
+      "symbol": "\u00b1"
     },
     {
       "id": "no_position",
       "label": "No clear position",
-      "symbol": "—"
+      "symbol": "\u2014"
     }
   ],
   "impact_tags": [
     {
       "id": "renters",
       "label": "Renters",
-      "emoji": "🔑"
+      "emoji": "\ud83d\udd11"
     },
     {
       "id": "first_home_buyers",
       "label": "First-home buyers",
-      "emoji": "🏠"
+      "emoji": "\ud83c\udfe0"
     },
     {
       "id": "homeowners",
       "label": "Home owners & mortgage holders",
-      "emoji": "🏡"
+      "emoji": "\ud83c\udfe1"
     },
     {
       "id": "families_children",
       "label": "Families with kids",
-      "emoji": "🧸"
+      "emoji": "\ud83e\uddf8"
     },
     {
       "id": "students",
       "label": "Students",
-      "emoji": "🎓"
+      "emoji": "\ud83c\udf93"
     },
     {
       "id": "young_people",
       "label": "Young people",
-      "emoji": "🌱"
+      "emoji": "\ud83c\udf31"
     },
     {
       "id": "seniors_retirees",
       "label": "Seniors & retirees",
-      "emoji": "🧓"
+      "emoji": "\ud83e\uddd3"
     },
     {
       "id": "workers",
       "label": "Workers",
-      "emoji": "💼"
+      "emoji": "\ud83d\udcbc"
     },
     {
       "id": "small_business",
       "label": "Small business",
-      "emoji": "🛍️"
+      "emoji": "\ud83d\udecd\ufe0f"
     },
     {
       "id": "regional_rural",
       "label": "Regional & rural",
-      "emoji": "🚜"
+      "emoji": "\ud83d\ude9c"
     },
     {
       "id": "migrants_refugees",
       "label": "Migrants & refugees",
-      "emoji": "🌏"
+      "emoji": "\ud83c\udf0f"
     },
     {
       "id": "first_nations",
       "label": "First Nations people",
-      "emoji": "🪃"
+      "emoji": "\ud83e\ude83"
     },
     {
       "id": "low_income_households",
       "label": "Low-income households",
-      "emoji": "💸"
+      "emoji": "\ud83d\udcb8"
     },
     {
       "id": "women",
       "label": "Women",
-      "emoji": "👩"
+      "emoji": "\ud83d\udc69"
     },
     {
       "id": "lgbtqia",
       "label": "LGBTQIA+",
-      "emoji": "🏳️‍🌈"
+      "emoji": "\ud83c\udff3\ufe0f\u200d\ud83c\udf08"
     },
     {
       "id": "people_with_disability",
       "label": "People with disability",
-      "emoji": "♿"
+      "emoji": "\u267f"
     },
     {
       "id": "carers",
       "label": "Carers",
-      "emoji": "🤝"
+      "emoji": "\ud83e\udd1d"
     },
     {
       "id": "veterans",
       "label": "Veterans",
-      "emoji": "🎖️"
+      "emoji": "\ud83c\udf96\ufe0f"
     },
     {
       "id": "patients",
       "label": "Patients & healthcare users",
-      "emoji": "🩺"
+      "emoji": "\ud83e\ude7a"
     },
     {
       "id": "everyone",
       "label": "Everyone",
-      "emoji": "🇦🇺"
+      "emoji": "\ud83c\udde6\ud83c\uddfa"
     }
   ],
   "topics": [
@@ -181,7 +181,7 @@
         {
           "id": "negative-gearing-cgt",
           "label": "Negative gearing and capital gains tax breaks",
-          "question": "Should tax breaks for property investors — negative gearing and the capital gains tax discount — be wound back?",
+          "question": "Should tax breaks for property investors \u2014 negative gearing and the capital gains tax discount \u2014 be wound back?",
           "positions": [
             {
               "party": "labor",
@@ -254,7 +254,7 @@
                 "first_home_buyers",
                 "young_people"
               ],
-              "impact_note": "Would strip tax breaks from existing, not just future, investment properties beyond the first — a bigger change for landlords than Labor's plan.",
+              "impact_note": "Would strip tax breaks from existing, not just future, investment properties beyond the first \u2014 a bigger change for landlords than Labor's plan.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -678,7 +678,7 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "Says tenancy law is for the states. Works through National Cabinet's 'A Better Deal for Renters' — one rent rise a year, reasonable grounds for eviction, minimum standards — and has lifted Rent Assistance instead.",
+              "summary": "Says tenancy law is for the states. Works through National Cabinet's 'A Better Deal for Renters' \u2014 one rent rise a year, reasonable grounds for eviction, minimum standards \u2014 and has lifted Rent Assistance instead.",
               "impacts": [
                 "renters",
                 "low_income_households",
@@ -804,7 +804,7 @@
                 "people_with_disability",
                 "families_children"
               ],
-              "impact_note": "More subsidised rentals, crisis housing for women and children escaping violence, and youth housing — though the housing council says supply still falls short of need.",
+              "impact_note": "More subsidised rentals, crisis housing for women and children escaping violence, and youth housing \u2014 though the housing council says supply still falls short of need.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -1310,7 +1310,7 @@
             {
               "party": "labor",
               "stance": "mixed",
-              "summary": "Backs faster approvals — a 2026 Budget single-touch process combining federal and state sign-offs and a $105.9 million AI tool for environmental assessments — plus a $2 billion Local Infrastructure Fund, rather than cutting building standards.",
+              "summary": "Backs faster approvals \u2014 the 2026 Budget funds bilateral deals letting states assess and approve on the Commonwealth\u2019s behalf, $105.9 million for AI-assisted environmental assessment systems, and a $2 billion Local Infrastructure Fund \u2014 rather than cutting building standards.",
               "impacts": [
                 "first_home_buyers",
                 "homeowners",
@@ -1322,10 +1322,10 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "2026 Australian federal budget",
-                  "url": "https://en.wikipedia.org/wiki/2026_Australian_federal_budget",
-                  "date": "2026",
-                  "publisher": "Wikipedia"
+                  "title": "Budget Paper No. 2 \u2014 Payment Measures: Boosting Productivity \u2013 Accelerating Approvals",
+                  "url": "https://budget.gov.au/content/bp2/download/bp2_02_receipt_payment.pdf",
+                  "publisher": "Australian Government, Budget 2026-27",
+                  "date": "2026-05-12"
                 },
                 {
                   "title": "Federal measures to tackle Australia's housing challenges explained",
@@ -1455,17 +1455,17 @@
                   "publisher": "AHURI"
                 },
                 {
-                  "title": "2026 Australian federal budget",
-                  "url": "https://en.wikipedia.org/wiki/2026_Australian_federal_budget",
-                  "date": "2026",
-                  "publisher": "Wikipedia"
+                  "title": "Cost of living \u2014 Budget 2026-27",
+                  "url": "https://budget.gov.au/content/02-cost-of-living.htm",
+                  "publisher": "Australian Government, Budget 2026-27",
+                  "date": "2026-05-12"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "no_position",
-              "summary": "No verified current position on the foreign purchase ban. The Coalition's 2026 platform targets non-citizens' access differently — restricting the 5% deposit scheme to citizens and capping net migration at the number of homes built.",
+              "summary": "No verified current position on the foreign purchase ban. The Coalition's 2026 platform targets non-citizens' access differently \u2014 restricting the 5% deposit scheme to citizens and capping net migration at the number of homes built.",
               "impacts": [
                 "first_home_buyers",
                 "migrants_refugees"
@@ -1545,7 +1545,7 @@
             {
               "party": "labor",
               "stance": "supports",
-              "summary": "Labor has legislated cuts to the 16% rate — 15% from July 2026, 14% from July 2027 — and its 2026 budget added a $250 Working Australians Tax Offset from 2027-28 plus a $1,000 instant work-expense deduction.",
+              "summary": "Labor has legislated cuts to the 16% rate \u2014 15% from July 2026, 14% from July 2027 \u2014 and its 2026 budget added a $250 Working Australians Tax Offset from 2027-28 plus a $1,000 instant work-expense deduction.",
               "impacts": [
                 "workers",
                 "low_income_households",
@@ -1557,13 +1557,13 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Tax reform | Budget 2026–27",
+                  "title": "Tax reform | Budget 2026\u201327",
                   "url": "https://budget.gov.au/content/04-tax-reform.htm",
                   "date": "2026-05-12",
                   "publisher": "Australian Government Budget"
                 },
                 {
-                  "title": "Cost of living | Budget 2026–27",
+                  "title": "Cost of living | Budget 2026\u201327",
                   "url": "https://budget.gov.au/content/02-cost-of-living.htm",
                   "date": "2026-05-12",
                   "publisher": "Australian Government Budget"
@@ -1579,7 +1579,7 @@
                 "young_people",
                 "families_children"
               ],
-              "impact_note": "Would stop inflation quietly pushing you into higher tax brackets — about $250 in the first year, over $1,000 a year by year four.",
+              "impact_note": "Would stop inflation quietly pushing you into higher tax brackets \u2014 about $250 in the first year, over $1,000 a year by year four.",
               "confidence": "high",
               "verified": "confirmed",
               "sources": [
@@ -1648,9 +1648,9 @@
                 "policy_id": 348,
                 "polarity": 1,
                 "strength": "direct",
-                "note": "The 2025 vote on cutting the lowest income-tax bracket rate — the most recent income-tax-cut division.",
+                "note": "The 2025 vote on cutting the lowest income-tax bracket rate \u2014 the most recent income-tax-cut division.",
                 "name": "reducing tax on lowest income bracket",
-                "description": "the federal government should reduce the tax rate on the lowest taxable income bracket (i.e., the tax on income between $18,201 – $45,000)",
+                "description": "the federal government should reduce the tax rate on the lowest taxable income bracket (i.e., the tax on income between $18,201 \u2013 $45,000)",
                 "url": "https://theyvoteforyou.org.au/policies/348",
                 "provisional": false,
                 "divisions_total": 1,
@@ -1980,7 +1980,7 @@
                 "families_children",
                 "small_business"
               ],
-              "impact_note": "Petrol went back up about 16 cents a litre from 3 August — roughly $10 more to fill a 65-litre tank.",
+              "impact_note": "Petrol went back up about 16 cents a litre from 3 August \u2014 roughly $10 more to fill a 65-litre tank.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -2019,7 +2019,7 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "The fuel excise cut has been extended. Here's how much by — and why there's a catch",
+                  "title": "The fuel excise cut has been extended. Here's how much by \u2014 and why there's a catch",
                   "url": "https://www.sbs.com.au/news/article/federal-fuel-tax-discount-extended-but-not-in-full/satz5y48p",
                   "date": "2026-06-21",
                   "publisher": "SBS News"
@@ -2682,22 +2682,23 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Tax reform | Budget 2026–27",
+                  "title": "Tax reform | Budget 2026\u201327",
                   "url": "https://budget.gov.au/content/04-tax-reform.htm",
                   "date": "2026-05-12",
                   "publisher": "Australian Government Budget"
                 },
                 {
-                  "title": "2026 Australian federal budget",
-                  "url": "https://en.wikipedia.org/wiki/2026_Australian_federal_budget",
-                  "publisher": "Wikipedia"
+                  "title": "Budget Paper No. 1 \u2014 Statement 1: Overview",
+                  "url": "https://budget.gov.au/content/bp1/download/bp1_bs-1.pdf",
+                  "publisher": "Australian Government, Budget 2026-27",
+                  "date": "2026-05-12"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Angus Taylor's budget reply prioritised budget repair through spending restraint — removing non-citizens' access to 17 welfare payments and the NDIS, and cutting immigration — to fund tax bracket indexation.",
+              "summary": "Angus Taylor's budget reply prioritised budget repair through spending restraint \u2014 removing non-citizens' access to 17 welfare payments and the NDIS, and cutting immigration \u2014 to fund tax bracket indexation.",
               "impacts": [
                 "migrants_refugees",
                 "people_with_disability",
@@ -2753,7 +2754,7 @@
             {
               "party": "one_nation",
               "stance": "supports",
-              "summary": "One Nation proposes a budget savings plan it values at up to $90 billion a year — cutting departments it calls unnecessary, reforming the NDIS, withdrawing from costly international agreements and reducing duplication — with savings directed to infrastructure, debt reduction and taxpayer relief.",
+              "summary": "One Nation proposes a budget savings plan it values at up to $90 billion a year \u2014 cutting departments it calls unnecessary, reforming the NDIS, withdrawing from costly international agreements and reducing duplication \u2014 with savings directed to infrastructure, debt reduction and taxpayer relief.",
               "impacts": [
                 "people_with_disability",
                 "everyone"
@@ -3172,7 +3173,7 @@
                   {
                     "date": "2014-07-16",
                     "house": "representatives",
-                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 — Second Reading — Read a second time",
+                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 \u2014 Second Reading \u2014 Read a second time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -3200,7 +3201,7 @@
                   {
                     "date": "2014-07-16",
                     "house": "representatives",
-                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 — Consideration in Detail — Agree to the bill",
+                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 \u2014 Consideration in Detail \u2014 Agree to the bill",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -3228,7 +3229,7 @@
                   {
                     "date": "2014-07-16",
                     "house": "representatives",
-                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 — Third Reading — Read a third time",
+                    "name": "National Health Amendment (Pharmaceutical Benefits) Bill 2014 \u2014 Third Reading \u2014 Read a third time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -4430,7 +4431,7 @@
                   "publisher": "Prime Minister of Australia"
                 },
                 {
-                  "title": "Albanese unveils 2035 emissions reduction target — and billions in new funding",
+                  "title": "Albanese unveils 2035 emissions reduction target \u2014 and billions in new funding",
                   "url": "https://www.sbs.com.au/news/article/australia-2035-emissions-reduction-climate-albanese-government/941q08lrn",
                   "date": "2025-09-18",
                   "publisher": "SBS News"
@@ -5672,7 +5673,7 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "Keeps the federal ban on nuclear power. A Labor-chaired parliamentary inquiry found nuclear too expensive and too slow for Australia, with even one reactor taking 15-25 years to build.",
+              "summary": "Keeps the federal ban on nuclear power. A Labor-chaired House inquiry\u2019s interim report judged nuclear too slow and costly for Australia: at least 15 years to deploy, with no sector likely before the mid-2040s at the earliest.",
               "impacts": [
                 "everyone",
                 "regional_rural",
@@ -5683,14 +5684,21 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Select Committee on Nuclear Energy",
-                  "url": "https://en.wikipedia.org/wiki/Select_Committee_on_Nuclear_Energy",
-                  "publisher": "Wikipedia"
+                  "title": "Interim report, inquiry into nuclear power generation \u2014 Chapter 2: Timeframes",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/House/Former_Committees/Select_Committee_on_Nuclear_Energy/Nuclearpower/Interim_report_for_the_inquiry_into_nuclear_power_generation_in_Australia/Chapter_2_-_Timeframes_for_nuclear_power_generation_in_Australia",
+                  "publisher": "House Select Committee on Nuclear Energy, Parliament of Australia",
+                  "date": "2025-02"
                 },
                 {
                   "title": "The Coalition's nuclear plan: does it add up?",
                   "url": "https://science.anu.edu.au/news-events/news/coalitions-nuclear-plan-does-it-add",
                   "publisher": "Australian National University"
+                },
+                {
+                  "title": "Interim report, inquiry into nuclear power generation \u2014 Chapter 3: Cost",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/House/Former_Committees/Select_Committee_on_Nuclear_Energy/Nuclearpower/Interim_report_for_the_inquiry_into_nuclear_power_generation_in_Australia/Chapter_3_-_Cost_of_nuclear_power_generation_in_Australia",
+                  "publisher": "House Select Committee on Nuclear Energy, Parliament of Australia",
+                  "date": "2025-02"
                 }
               ]
             },
@@ -5720,9 +5728,10 @@
                   "publisher": "The Conversation"
                 },
                 {
-                  "title": "Select Committee on Nuclear Energy",
-                  "url": "https://en.wikipedia.org/wiki/Select_Committee_on_Nuclear_Energy",
-                  "publisher": "Wikipedia"
+                  "title": "Coalition Members\u2019 Dissenting Report \u2014 interim report, inquiry into nuclear power generation",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/House/Former_Committees/Select_Committee_on_Nuclear_Energy/Nuclearpower/Interim_report_for_the_inquiry_into_nuclear_power_generation_in_Australia/Coalition_Members_Dissenting_Report",
+                  "publisher": "House Select Committee on Nuclear Energy, Parliament of Australia",
+                  "date": "2025-02"
                 }
               ]
             },
@@ -6788,7 +6797,7 @@
                   {
                     "date": "2013-12-10",
                     "house": "senate",
-                    "name": "Clean Energy Finance Corporation (Abolition) Bill 2013 — Second Reading — Read a second time",
+                    "name": "Clean Energy Finance Corporation (Abolition) Bill 2013 \u2014 Second Reading \u2014 Read a second time",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
@@ -6900,7 +6909,7 @@
                   {
                     "date": "2014-07-14",
                     "house": "representatives",
-                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 — Consideration in Detail — Restore funding to ARENA",
+                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 \u2014 Consideration in Detail \u2014 Restore funding to ARENA",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -6928,7 +6937,7 @@
                   {
                     "date": "2014-07-17",
                     "house": "senate",
-                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 — In Committee — Funding to ARENA",
+                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 \u2014 In Committee \u2014 Funding to ARENA",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
@@ -6956,7 +6965,7 @@
                   {
                     "date": "2014-09-01",
                     "house": "representatives",
-                    "name": "Australian Renewable Energy Agency (Repeal) Bill 2014 — Second Reading — Criticise abolition of ARENA",
+                    "name": "Australian Renewable Energy Agency (Repeal) Bill 2014 \u2014 Second Reading \u2014 Criticise abolition of ARENA",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -8221,7 +8230,7 @@
                   {
                     "date": "2015-03-03",
                     "house": "senate",
-                    "name": "Motions — Liverpool Plains",
+                    "name": "Motions \u2014 Liverpool Plains",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
@@ -9404,8 +9413,8 @@
                 },
                 {
                   "title": "New Vehicle Efficiency Standard",
-                  "url": "https://en.wikipedia.org/wiki/New_Vehicle_Efficiency_Standard",
-                  "publisher": "Wikipedia"
+                  "url": "https://www.infrastructure.gov.au/infrastructure-transport-vehicles/vehicles/new-vehicle-efficiency-standard",
+                  "publisher": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts"
                 }
               ]
             },
@@ -10436,7 +10445,7 @@
                   {
                     "date": "2013-12-10",
                     "house": "senate",
-                    "name": "Clean Energy Finance Corporation (Abolition) Bill 2013 — Second Reading — Read a second time",
+                    "name": "Clean Energy Finance Corporation (Abolition) Bill 2013 \u2014 Second Reading \u2014 Read a second time",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
@@ -10548,7 +10557,7 @@
                   {
                     "date": "2014-07-14",
                     "house": "representatives",
-                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 — Consideration in Detail — Restore funding to ARENA",
+                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 \u2014 Consideration in Detail \u2014 Restore funding to ARENA",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -10576,7 +10585,7 @@
                   {
                     "date": "2014-07-17",
                     "house": "senate",
-                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 — In Committee — Funding to ARENA",
+                    "name": "Clean Energy Legislation (Carbon Tax Repeal) Bill 2014 \u2014 In Committee \u2014 Funding to ARENA",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
@@ -10604,7 +10613,7 @@
                   {
                     "date": "2014-09-01",
                     "house": "representatives",
-                    "name": "Australian Renewable Energy Agency (Repeal) Bill 2014 — Second Reading — Criticise abolition of ARENA",
+                    "name": "Australian Renewable Energy Agency (Repeal) Bill 2014 \u2014 Second Reading \u2014 Criticise abolition of ARENA",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -12325,7 +12334,7 @@
                 "policy_id": 349,
                 "polarity": 1,
                 "strength": "direct",
-                "note": "The February 2025 Three Day Guarantee divisions — more subsidised childcare hours regardless of the activity test.",
+                "note": "The February 2025 Three Day Guarantee divisions \u2014 more subsidised childcare hours regardless of the activity test.",
                 "name": "increasing access to subsidised childcare",
                 "description": "the federal government should introduce legislation to make more subsidised childcare hours available to families",
                 "url": "https://theyvoteforyou.org.au/policies/349",
@@ -14287,7 +14296,7 @@
                 "strength": "direct",
                 "note": "The Closing Loopholes gig-worker divisions of 2023-24 are exactly the minimum standards this question asks about.",
                 "name": "Improving pay and conditions for gig workers",
-                "description": "the pay, conditions, and rights of gig economy workers (AKA “employee-like workers”) should be strengthened.",
+                "description": "the pay, conditions, and rights of gig economy workers (AKA \u201cemployee-like workers\u201d) should be strengthened.",
                 "url": "https://theyvoteforyou.org.au/policies/345",
                 "provisional": false,
                 "divisions_total": 7,
@@ -14852,7 +14861,7 @@
                   "publisher": "Australian Greens"
                 },
                 {
-                  "title": "The Greens' liveable income guarantee is a serious idea the major parties won't touch – yet",
+                  "title": "The Greens' liveable income guarantee is a serious idea the major parties won't touch \u2013 yet",
                   "url": "https://theconversation.com/the-greens-liveable-income-guarantee-is-a-serious-idea-the-major-parties-wont-touch-yet-179573",
                   "date": "2022-03-21",
                   "publisher": "The Conversation"
@@ -15474,7 +15483,7 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Australia's major employment services shake-up: Here's what's changing — and what's not",
+                  "title": "Australia's major employment services shake-up: Here's what's changing \u2014 and what's not",
                   "url": "https://www.sbs.com.au/news/article/workforce-australia-jobseeker-changes-explained/2a5briukk",
                   "date": "2026-05-27",
                   "publisher": "SBS News"
@@ -15527,7 +15536,7 @@
                   "publisher": "Australian Greens"
                 },
                 {
-                  "title": "The Greens' liveable income guarantee is a serious idea the major parties won't touch – yet",
+                  "title": "The Greens' liveable income guarantee is a serious idea the major parties won't touch \u2013 yet",
                   "url": "https://theconversation.com/the-greens-liveable-income-guarantee-is-a-serious-idea-the-major-parties-wont-touch-yet-179573",
                   "date": "2022-03-21",
                   "publisher": "The Conversation"
@@ -15752,7 +15761,7 @@
               "verified": "confirmed",
               "sources": [
                 {
-                  "title": "One Nation for Older Australians – Policy Discussion Town Hall",
+                  "title": "One Nation for Older Australians \u2013 Policy Discussion Town Hall",
                   "url": "https://www.onenation.org.au/policy-discussion-town-hall",
                   "publisher": "Pauline Hanson's One Nation"
                 }
@@ -15795,7 +15804,7 @@
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Angus Taylor's May 2026 Budget reply promised to limit 17 payments — including JobSeeker, Family Tax Benefit, Age Pension and the NDIS — to citizens, grandfathering current recipients.",
+              "summary": "Angus Taylor's May 2026 Budget reply promised to limit 17 payments \u2014 including JobSeeker, Family Tax Benefit, Age Pension and the NDIS \u2014 to citizens, grandfathering current recipients.",
               "impacts": [
                 "migrants_refugees",
                 "families_children",
@@ -15874,7 +15883,7 @@
                 "policy_id": 34,
                 "polarity": 1,
                 "strength": "related",
-                "note": "Votes on limiting the availability of social security payments generally — citizens-only restriction has not itself been put to a division.",
+                "note": "Votes on limiting the availability of social security payments generally \u2014 citizens-only restriction has not itself been put to a division.",
                 "name": "decreasing availability of welfare payments",
                 "description": "the federal government should limit the availability of government social security payments",
                 "url": "https://theyvoteforyou.org.au/policies/34",
@@ -16184,7 +16193,7 @@
                   {
                     "date": "2014-09-01",
                     "house": "representatives",
-                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 — Second Reading — Read a second time",
+                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 \u2014 Second Reading \u2014 Read a second time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -16212,7 +16221,7 @@
                   {
                     "date": "2014-09-01",
                     "house": "representatives",
-                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 — Consideration in Detail — Agree to the bill",
+                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 \u2014 Consideration in Detail \u2014 Agree to the bill",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -16240,7 +16249,7 @@
                   {
                     "date": "2014-09-01",
                     "house": "representatives",
-                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 — Third Reading — Read a third time",
+                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 \u2014 Third Reading \u2014 Read a third time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -16296,7 +16305,7 @@
                   {
                     "date": "2014-09-02",
                     "house": "senate",
-                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 — Reference to Committee — Adjustments to the changes made by the bill",
+                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 \u2014 Reference to Committee \u2014 Adjustments to the changes made by the bill",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -16324,7 +16333,7 @@
                   {
                     "date": "2014-09-02",
                     "house": "senate",
-                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 — Third Reading — Read a third time",
+                    "name": "Minerals Resource Rent Tax Repeal and Other Measures Bill 2014 \u2014 Third Reading \u2014 Read a third time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -18341,7 +18350,7 @@
                   {
                     "date": "2014-07-14",
                     "house": "senate",
-                    "name": "Motions — Asylum Seekers — Against 'on water' screening and transfer practices",
+                    "name": "Motions \u2014 Asylum Seekers \u2014 Against 'on water' screening and transfer practices",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -18369,7 +18378,7 @@
                   {
                     "date": "2014-07-17",
                     "house": "senate",
-                    "name": "Motions — Asylum Seekers — Against 'on water' screening and transfer practices",
+                    "name": "Motions \u2014 Asylum Seekers \u2014 Against 'on water' screening and transfer practices",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -19365,7 +19374,7 @@
                   {
                     "date": "2010-10-28",
                     "house": "representatives",
-                    "name": "Private Members’ Business - Asylum Seekers - Re-introduce Coalition policies",
+                    "name": "Private Members\u2019 Business - Asylum Seekers - Re-introduce Coalition policies",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -19449,7 +19458,7 @@
                   {
                     "date": "2012-09-12",
                     "house": "senate",
-                    "name": "Motions — Republic of Nauru - Coalition policies",
+                    "name": "Motions \u2014 Republic of Nauru - Coalition policies",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -22497,7 +22506,7 @@
                   {
                     "date": "2006-03-28",
                     "house": "senate",
-                    "name": "Motions — Tarkine Aboriginal Rock Art — Prevent vandalism",
+                    "name": "Motions \u2014 Tarkine Aboriginal Rock Art \u2014 Prevent vandalism",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -24431,7 +24440,7 @@
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Backs the ban and claims credit for pioneering online child safety policy, but says the rollout is defective and not working. Joined the Greens in sending Labor’s enforcement bill to a Senate inquiry, with the Coalition seeking tougher measures.",
+              "summary": "Backs the ban and claims credit for pioneering online child safety policy, but says the rollout is defective and not working. Joined the Greens in sending Labor\u2019s enforcement bill to a Senate inquiry, with the Coalition seeking tougher measures.",
               "impacts": [
                 "families_children",
                 "young_people"
@@ -24499,7 +24508,7 @@
               "verified": "confirmed",
               "sources": [
                 {
-                  "title": "Online Safety Amendment (Social Media Minimum Age) Bill 2024 — In Committee (Senator Malcolm Roberts)",
+                  "title": "Online Safety Amendment (Social Media Minimum Age) Bill 2024 \u2014 In Committee (Senator Malcolm Roberts)",
                   "url": "https://www.openaustralia.org.au/senate/?id=2024-11-28.329.1",
                   "date": "2024-11-28",
                   "publisher": "OpenAustralia (Hansard)"
@@ -24519,7 +24528,7 @@
                 "policy_id": 354,
                 "polarity": 1,
                 "strength": "direct",
-                "note": "The November 2024 division on the under-16 social media ban bill — the exact proposition. TVFY lists this policy as provisional.",
+                "note": "The November 2024 division on the under-16 social media ban bill \u2014 the exact proposition. TVFY lists this policy as provisional.",
                 "name": "banning social media accounts for minors (under 16 years of age)",
                 "description": "the federal government should introduce laws and policies that would prevent young people under the age of 16-years-old from creating user accounts on social media platforms",
                 "url": "https://theyvoteforyou.org.au/policies/354",
@@ -24707,7 +24716,7 @@
                   "publisher": "Senator Malcolm Roberts (One Nation)"
                 },
                 {
-                  "title": "Online Safety Amendment (Social Media Minimum Age) Bill 2024 — In Committee (Senator Malcolm Roberts)",
+                  "title": "Online Safety Amendment (Social Media Minimum Age) Bill 2024 \u2014 In Committee (Senator Malcolm Roberts)",
                   "url": "https://www.openaustralia.org.au/senate/?id=2024-11-28.329.1",
                   "date": "2024-11-28",
                   "publisher": "OpenAustralia (Hansard)"
@@ -24834,7 +24843,7 @@
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 — Second Reading (Minister Anika Wells)",
+                  "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 \u2014 Second Reading (Minister Anika Wells)",
                   "url": "https://www.openaustralia.org.au/debates/?id=2026-07-02.16.2",
                   "date": "2026-07-02",
                   "publisher": "OpenAustralia (Hansard)"
@@ -24990,7 +24999,7 @@
                   {
                     "date": "2012-02-09",
                     "house": "senate",
-                    "name": "Documents — Gambling; Order for the Production of Documents",
+                    "name": "Documents \u2014 Gambling; Order for the Production of Documents",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -25018,7 +25027,7 @@
                   {
                     "date": "2012-11-29",
                     "house": "representatives",
-                    "name": "National Gambling Reform Bill 2012 — Second Reading — Read a second time",
+                    "name": "National Gambling Reform Bill 2012 \u2014 Second Reading \u2014 Read a second time",
                     "policy_vote": "aye",
                     "parties": {
                       "labor": {
@@ -25074,7 +25083,7 @@
                   {
                     "date": "2014-03-05",
                     "house": "senate",
-                    "name": "Social Services and Other Legislation Amendment Bill 2013 — In Committee — Keep schedule 1 (on gambling) unchanged",
+                    "name": "Social Services and Other Legislation Amendment Bill 2013 \u2014 In Committee \u2014 Keep schedule 1 (on gambling) unchanged",
                     "policy_vote": "no",
                     "parties": {
                       "labor": {
