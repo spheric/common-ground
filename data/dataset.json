@@ -2,7 +2,7 @@
   "meta": {
     "title": "Common Ground",
     "subtitle": "Australian federal party policies, side by side \u2014 every claim sourced",
-    "as_of": "2026-08-16",
+    "as_of": "2026-08-31",
     "jurisdiction": "Australia \u2014 federal",
     "disclaimer": "Independent, non-partisan summary. Positions are paraphrased from the cited public sources and may change; always check the linked source. Not affiliated with any political party.",
     "methodology": "Positions were researched from official party platforms, government/minister media releases, legislation and reputable news outlets, then independently verified: every cited source was fetched and checked to confirm it supports the stated position. Positions that could not be verified against a working source are shown as 'No clear position'."
@@ -186,14 +186,15 @@
             {
               "party": "labor",
               "stance": "supports",
-              "summary": "The May 2026 Budget limits negative gearing to newly built homes and replaces the 50% CGT discount with inflation indexation plus a 30% minimum tax on gains, starting 1 July 2027.",
+              "summary": "Labor's June 2026 laws limit negative gearing to new builds and replace the 50% CGT discount with indexation plus a 30% minimum tax from July 2027; an August 2026 amendment preserves existing treatment for inherited or relationship-breakdown transfers.",
               "impacts": [
                 "renters",
                 "first_home_buyers",
                 "homeowners",
-                "young_people"
+                "young_people",
+                "seniors_retirees"
               ],
-              "impact_note": "Existing investment properties keep today's rules. New investors get smaller deductions; the government expects around 75,000 extra homeowners over a decade.",
+              "impact_note": "Existing investments keep today's rules, and inheriting a spouse's property or getting it in a settlement no longer triggers the new tax treatment. New investors get smaller deductions.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -204,44 +205,50 @@
                   "publisher": "Treasury Ministers (Clare O'Neil)"
                 },
                 {
-                  "title": "CGT, negative gearing reforms to pass after Labor-Greens deal",
-                  "url": "https://www.smartcompany.com.au/federal-budget-2026/cgt-negative-gearing-reforms-pass-labor-secures-greens-support/",
-                  "date": "2026-06-23",
-                  "publisher": "SmartCompany"
+                  "title": "Next tranche of tax reforms pass the Parliament",
+                  "url": "https://ministers.treasury.gov.au/ministers/jim-chalmers-2022/media-releases/next-tranche-tax-reforms-pass-parliament",
+                  "date": "2026-08-19",
+                  "publisher": "Treasury Ministers (Jim Chalmers)"
                 },
                 {
-                  "title": "Federal measures to tackle Australia's housing challenges explained",
-                  "url": "https://www.ahuri.edu.au/analysis/brief/federal-measures-tackle-australias-housing-challenges-explained",
-                  "date": "2026-05-15",
-                  "publisher": "AHURI"
+                  "title": "'Widow tax' bill passes Parliament",
+                  "url": "https://www.brokerdaily.au/regulation/21916-widow-tax-bill-passes-parliament",
+                  "date": "2026-08-21",
+                  "publisher": "Broker Daily"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "opposes",
-              "summary": "Opposition Leader Angus Taylor pledged in his 14 May 2026 budget reply to repeal Labor's negative gearing and capital gains tax changes, branding the budget 'intergenerational fraud' and promising to dismantle Labor's 'housing bureaucracy'.",
+              "summary": "Angus Taylor's May 2026 budget reply promised to fight Labor's capital gains tax changes and repeal them if passed. In August 2026 it traded NDIS support to win, then backed, a carve-out keeping negative gearing for inherited and relationship-breakdown property.",
               "impacts": [
                 "homeowners",
                 "renters",
                 "first_home_buyers",
-                "small_business"
+                "seniors_retirees"
               ],
-              "impact_note": "Repeal would restore full negative gearing and the 50% CGT discount for investors, including for properties bought after Labor's rules start.",
+              "impact_note": "Repeal would restore the 50% CGT discount for investors. The carve-out it won means inheriting a spouse's property, or keeping one after separation, doesn't lose negative gearing.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
-                {
-                  "title": "Coalition vows to scrap housing tax reforms and limit migration to supply",
-                  "url": "https://www.theadviser.com.au/borrower/48439-coalition-vows-to-scrap-housing-tax-reforms-and-limit-migration-to-supply",
-                  "date": "2026-05-15",
-                  "publisher": "The Adviser"
-                },
                 {
                   "title": "Coalition Budget in Reply",
                   "url": "https://angustaylor.com.au/our-budget",
                   "date": "2026-05-14",
                   "publisher": "Angus Taylor MP"
+                },
+                {
+                  "title": "Next tranche of tax reforms pass the Parliament",
+                  "url": "https://ministers.treasury.gov.au/ministers/jim-chalmers-2022/media-releases/next-tranche-tax-reforms-pass-parliament",
+                  "date": "2026-08-19",
+                  "publisher": "Treasury Ministers (Jim Chalmers)"
+                },
+                {
+                  "title": "'Widow tax' bill passes Parliament",
+                  "url": "https://www.brokerdaily.au/regulation/21916-widow-tax-bill-passes-parliament",
+                  "date": "2026-08-21",
+                  "publisher": "Broker Daily"
                 }
               ]
             },
@@ -831,13 +838,14 @@
             {
               "party": "coalition",
               "stance": "opposes",
-              "summary": "Angus Taylor's May 2026 budget reply would abolish the $10 billion Housing Australia Future Fund and build-to-rent tax breaks, redirecting money to a $5 billion fund for roads, water, power and sewerage.",
+              "summary": "Angus Taylor's May 2026 budget reply would wind back the $10 billion Housing Australia Future Fund, replacing it with a $5 billion Housing Infrastructure Fund. In August 2026 the Coalition guaranteed 30% ($1.5 billion) for regional, rural and remote Australia.",
               "impacts": [
                 "low_income_households",
                 "renters",
-                "first_home_buyers"
+                "first_home_buyers",
+                "regional_rural"
               ],
-              "impact_note": "Fewer federally funded social and affordable rentals; money instead goes to infrastructure the Coalition says would unlock up to 400,000 privately built homes.",
+              "impact_note": "Fewer federally funded social rentals; money goes instead to roads, water, power and sewerage, with a guaranteed regional share the Coalition claims could unlock up to 400,000 homes.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -852,6 +860,12 @@
                   "url": "https://angustaylor.com.au/our-budget",
                   "date": "2026-05-14",
                   "publisher": "Angus Taylor MP"
+                },
+                {
+                  "title": "Coalition guarantees $1.5 billion to unlock regional homes",
+                  "url": "https://www.liberal.org.au/2026/08/27/coalition-guarantees-1-5-billion-to-unlock-regional-homes",
+                  "date": "2026-08-27",
+                  "publisher": "Liberal Party of Australia"
                 }
               ]
             },
@@ -1310,62 +1324,63 @@
             {
               "party": "labor",
               "stance": "mixed",
-              "summary": "Backs faster approvals \u2014 the 2026 Budget funds bilateral deals letting states assess and approve on the Commonwealth\u2019s behalf, $105.9 million for AI-assisted environmental assessment systems, and a $2 billion Local Infrastructure Fund \u2014 rather than cutting building standards.",
+              "summary": "Backs faster approvals, not cuts to building standards. On 23 August 2026 Chalmers offered WA $29.8 million under National Competition Policy, payable on delivery, to consolidate 269 zones and centralise approvals near train stations \u2014 WA's first such deal.",
               "impacts": [
                 "first_home_buyers",
                 "homeowners",
-                "workers",
-                "regional_rural"
+                "renters",
+                "workers"
               ],
-              "impact_note": "Approvals for new estates and apartments should get quicker, while mandated building standards stay unchanged.",
+              "impact_note": "More apartments could be approved faster near WA train stations, with simpler zoning; the standards your home must meet stay the same.",
               "confidence": "medium",
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Budget Paper No. 2 \u2014 Payment Measures: Boosting Productivity \u2013 Accelerating Approvals",
-                  "url": "https://budget.gov.au/content/bp2/download/bp2_02_receipt_payment.pdf",
-                  "publisher": "Australian Government, Budget 2026-27",
-                  "date": "2026-05-12"
-                },
-                {
-                  "title": "Federal measures to tackle Australia's housing challenges explained",
-                  "url": "https://www.ahuri.edu.au/analysis/brief/federal-measures-tackle-australias-housing-challenges-explained",
-                  "date": "2026-05-15",
-                  "publisher": "AHURI"
+                  "title": "Productivity package to boost housing supply and construction in Western Australia",
+                  "url": "https://ministers.treasury.gov.au/ministers/jim-chalmers-2022/media-releases/productivity-package-boost-housing-supply-and",
+                  "publisher": "Treasury Ministers (Jim Chalmers)",
+                  "date": "2026-08-23"
                 },
                 {
                   "title": "More homes and a fair go for first home buyers",
                   "url": "https://ministers.treasury.gov.au/ministers/clare-oneil-2025/media-releases/more-homes-and-fair-go-first-home-buyers",
-                  "date": "2026-05-12",
-                  "publisher": "Treasury Ministers (Clare O'Neil)"
+                  "publisher": "Treasury Ministers (Clare O'Neil)",
+                  "date": "2026-05-12"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Would cut the National Construction Code from over 2,000 pages to about 200, rewrite the EPBC Act and spend $5 billion on enabling infrastructure, claiming the package saves up to $70,000 on a new home.",
+              "summary": "Andrew Bragg's August 2026 plan replaces the 2,000-plus-page National Construction Code with a mandatory 80\u201390 page \"Basic Australian Standard\", accessibility and extended energy-efficiency rules optional, alongside an EPBC rewrite and $5 billion for enabling infrastructure.",
               "impacts": [
                 "first_home_buyers",
                 "homeowners",
                 "small_business",
-                "people_with_disability"
+                "people_with_disability",
+                "low_income_households"
               ],
-              "impact_note": "New homes could be cheaper and quicker to approve and build, with far fewer pages of mandated construction rules.",
+              "impact_note": "Cheaper, faster builds, but wheelchair-friendly features and stronger energy-efficiency rules would become optional extras rather than requirements in new homes.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
                 {
                   "title": "Coalition Budget in Reply",
                   "url": "https://angustaylor.com.au/our-budget",
-                  "date": "2026-05-14",
-                  "publisher": "Angus Taylor MP"
+                  "publisher": "Angus Taylor MP",
+                  "date": "2026-05-14"
                 },
                 {
-                  "title": "Taylor promises 'generational tax reform' and historic immigration cuts in budget reply",
-                  "url": "https://www.sbs.com.au/news/article/angus-taylor-budget-reply-speech/1csfofiq5",
-                  "date": "2026-05-14",
-                  "publisher": "SBS News"
+                  "title": "Should Australia copy New Zealand's 83-page building code?",
+                  "url": "https://www.abc.net.au/news/2026-08-15/andrew-bragg-building-code-modern-methods-of-construction/107028282",
+                  "publisher": "ABC News",
+                  "date": "2026-08-15"
+                },
+                {
+                  "title": "Coalition would set Net Overseas Migration under 180,000 \u2013 Bragg",
+                  "url": "https://theconversation.com/coalition-would-set-net-overseas-migration-under-180-000-bragg-289487",
+                  "publisher": "The Conversation",
+                  "date": "2026-08-12"
                 }
               ]
             },
@@ -2670,14 +2685,14 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "Labor's 2026-27 budget ran a $31.5 billion deficit, funding tax cuts by curbing capital gains, negative gearing and trust concessions, plus slowing NDIS growth, rather than broad spending cuts.",
+              "summary": "Labor's 2026-27 budget funds tax cuts by curbing negative gearing, capital gains and trust concessions rather than broad spending cuts. Its $37.8 billion NDIS savings package passed Parliament in August 2026 with Coalition support and Greens opposition.",
               "impacts": [
                 "everyone",
                 "workers",
                 "patients",
                 "people_with_disability"
               ],
-              "impact_note": "Medicare, PBS and hospital funding keep growing, paid for by higher taxes on property investors and trusts rather than cuts to programs.",
+              "impact_note": "Medicare, PBS and hospital funding keep growing, paid for by higher taxes on property investors and trusts; but $37.8 billion of NDIS savings over four years is now law.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -2688,26 +2703,32 @@
                   "publisher": "Australian Government Budget"
                 },
                 {
-                  "title": "Budget Paper No. 1 \u2014 Statement 1: Overview",
-                  "url": "https://budget.gov.au/content/bp1/download/bp1_bs-1.pdf",
-                  "publisher": "Australian Government, Budget 2026-27",
-                  "date": "2026-05-12"
+                  "title": "Federal government to pass NDIS overhaul for 'strong, safe and sustainable' scheme",
+                  "url": "https://www.abc.net.au/news/2026-08-18/ndis-changes-pass-after-labor-strikes-deal-with-coalition/107051964",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Labor and Coalition strike deal to pass controversial bill",
+                  "url": "https://cathnews.com/2026/08/19/labor-and-coalition-strike-deal-to-pass-controversial-bill/",
+                  "date": "2026-08-19",
+                  "publisher": "CathNews"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Angus Taylor's budget reply prioritised budget repair through spending restraint \u2014 removing non-citizens' access to 17 welfare payments and the NDIS, and cutting immigration \u2014 to fund tax bracket indexation.",
+              "summary": "Angus Taylor's budget reply prioritised spending restraint \u2014 barring non-citizens from 17 payments and the NDIS, and cutting immigration \u2014 to fund tax indexation. In August 2026 the Coalition voted through Labor's $37.8 billion NDIS savings.",
               "impacts": [
                 "migrants_refugees",
                 "people_with_disability",
                 "workers",
                 "everyone"
               ],
-              "impact_note": "Lower taxes over time, but tighter welfare and NDIS eligibility for non-citizens and slower growth in government programs.",
+              "impact_note": "Lower taxes over time, tighter welfare and NDIS access for non-citizens, and now, in law, slower growth in NDIS spending that the Coalition helped pass.",
               "confidence": "high",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
                   "title": "Angus Taylor promises to index income tax to inflation in big tax gamble",
@@ -2716,26 +2737,32 @@
                   "publisher": "The Conversation"
                 },
                 {
-                  "title": "Grattan on Friday: Taylor's bold budget reply is a mix of sound and dubious policy commitments",
-                  "url": "https://theconversation.com/grattan-on-friday-taylors-bold-budget-reply-is-a-mix-of-sound-and-dubious-policy-commitments-282264",
-                  "date": "2026-05-14",
-                  "publisher": "The Conversation"
+                  "title": "Federal government to pass NDIS overhaul for 'strong, safe and sustainable' scheme",
+                  "url": "https://www.abc.net.au/news/2026-08-18/ndis-changes-pass-after-labor-strikes-deal-with-coalition/107051964",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Labor and Coalition strike deal to pass controversial bill",
+                  "url": "https://cathnews.com/2026/08/19/labor-and-coalition-strike-deal-to-pass-controversial-bill/",
+                  "date": "2026-08-19",
+                  "publisher": "CathNews"
                 }
               ]
             },
             {
               "party": "greens",
               "stance": "opposes",
-              "summary": "The Greens oppose spending cuts, criticising $37.8 billion of NDIS savings and defence spending, and want revenue raised instead through a tax on gas exports and higher taxes on large corporations.",
+              "summary": "The Greens opposed the NDIS savings bill that passed with Labor and Coalition votes in August 2026, saying $37.8 billion of cuts would strip supports from at least 160,000 people; they want revenue from gas exports instead.",
               "impacts": [
                 "people_with_disability",
                 "low_income_households",
                 "carers",
                 "everyone"
               ],
-              "impact_note": "Would protect NDIS supports and lift Jobseeker, Youth Allowance and pensions, paid for by taxing gas exporters and big companies.",
+              "impact_note": "Would protect NDIS supports and lift income support payments, paid for by taxing gas exporters and big companies rather than trimming disability plans.",
               "confidence": "high",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
                   "title": "Labor's budget backs corporate profits & the 1% over people",
@@ -2744,10 +2771,16 @@
                   "publisher": "Australian Greens"
                 },
                 {
-                  "title": "Labor's fuel crisis budget will pick a side: ordinary people or corporate profits",
-                  "url": "https://greens.org.au/news/media-release/labors-fuel-crisis-budget-will-pick-side-ordinary-people-or-corporate-profits",
-                  "date": "2026-05-07",
-                  "publisher": "Australian Greens"
+                  "title": "Federal government to pass NDIS overhaul for 'strong, safe and sustainable' scheme",
+                  "url": "https://www.abc.net.au/news/2026-08-18/ndis-changes-pass-after-labor-strikes-deal-with-coalition/107051964",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Labor and Coalition strike deal to pass controversial bill",
+                  "url": "https://cathnews.com/2026/08/19/labor-and-coalition-strike-deal-to-pass-controversial-bill/",
+                  "date": "2026-08-19",
+                  "publisher": "CathNews"
                 }
               ]
             },
@@ -2769,6 +2802,91 @@
                   "publisher": "Pauline Hanson's One Nation"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "id": "gst-wa-floor",
+          "label": "The WA GST floor and how GST is carved up",
+          "question": "Should the 2018 GST distribution deal, including Western Australia's 75 per cent GST floor, be changed?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "opposes",
+              "summary": "In Perth on 24 August 2026 Anthony Albanese ruled out change, saying WA's GST arrangements will not change while he is prime minister and the 75 per cent floor will stay, despite the Productivity Commission's interim report urging its scrapping.",
+              "impacts": [
+                "everyone",
+                "patients",
+                "students"
+              ],
+              "impact_note": "Keeping the floor means WA retains a larger GST share, while other states' budgets \u2014 which fund their hospitals and schools \u2014 are topped up from federal revenue.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Press conference - Henderson, WA",
+                  "url": "https://www.pm.gov.au/media/press-conference-henderson-wa",
+                  "date": "2026-08-24",
+                  "publisher": "Prime Minister of Australia"
+                },
+                {
+                  "title": "Anthony Albanese declares WA's GST deal will not change while he is prime minister",
+                  "url": "https://www.abc.net.au/news/2026-08-24/anthony-albanese-pledges-no-change-to-wa-gst-deal/107071388",
+                  "date": "2026-08-24",
+                  "publisher": "ABC News"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "opposes",
+              "summary": "Shadow Treasurer Tim Wilson answered the interim report on 14 August 2026 by defending the 2018 arrangement and demanding Albanese recommit to his 2024 no-change pledge; Senator Dean Smith called the deal fair and urged rejecting anti-WA recommendations.",
+              "impacts": [
+                "everyone",
+                "patients",
+                "students"
+              ],
+              "impact_note": "With both major parties committed to the floor, the GST carve-up is unlikely to change whoever wins, locking in current state funding shares.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Productivity Commission's GST distribution Interim Report",
+                  "url": "https://www.liberal.org.au/2026/08/14/productivity-commissions-gst-distribution-interim-report",
+                  "date": "2026-08-14",
+                  "publisher": "Liberal Party of Australia"
+                },
+                {
+                  "title": "Questions without Notice: Take Note of Answers \u2014 Senate debate, 13 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-13.230.2",
+                  "date": "2026-08-13",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "no_position",
+              "summary": "No clear position found. No Greens statement on the Productivity Commission's August 2026 interim report or the WA GST floor was located in party material or Hansard.",
+              "impacts": [
+                "everyone"
+              ],
+              "impact_note": "Without a stated position, it is unclear whether the Greens would keep or change the GST carve-up that funds state services.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
+            },
+            {
+              "party": "one_nation",
+              "stance": "no_position",
+              "summary": "No clear position found. No One Nation statement on the 2026 Productivity Commission interim report or the WA GST floor was located in party material or Hansard.",
+              "impacts": [
+                "everyone"
+              ],
+              "impact_note": "Without a stated position, One Nation's approach to how GST is divided between the states is unknown.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
             }
           ]
         }
@@ -4399,6 +4517,228 @@
               }
             ]
           }
+        },
+        {
+          "id": "tobacco-excise-cut",
+          "label": "Tobacco excise cut",
+          "question": "Should Australia sharply cut the tobacco excise in response to the illicit tobacco market?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "opposes",
+              "summary": "Rejects cutting the excise. On 19 August 2026 Mark Butler said governments are not in the habit of price competition with organised crime and dismissed One Nation's plan; ministers pointed to enforcement and the Illicit Tobacco Taskforce.",
+              "impacts": [
+                "low_income_households",
+                "young_people",
+                "small_business"
+              ],
+              "impact_note": "Cigarette prices and the annual excise rise stay in place; the government's answer to black-market tobacco is law-and-order crackdowns, not cheaper packs.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "TV interview with Minister Butler, ABC News Breakfast \u2013 19 August 2026",
+                  "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/tv-interview-with-minister-butler-abc-news-breakfast-19-august-2026",
+                  "date": "2026-08-19",
+                  "publisher": "Department of Health, Disability and Ageing"
+                },
+                {
+                  "title": "TV interview with Minister Rae, Today Show \u2013 19 August 2026",
+                  "url": "https://www.health.gov.au/ministers/the-hon-sam-rae-mp/media/tv-interview-with-minister-rae-today-show-19-august-2026",
+                  "date": "2026-08-19",
+                  "publisher": "Department of Health, Disability and Ageing"
+                },
+                {
+                  "title": "Albanese Government resists push to ease 'sin' taxes on ciggies & alcohol",
+                  "url": "https://thenightly.com.au/politics/albanese-government-resists-push-to-ease-sin-taxes-on-ciggies-alcohol-c-22745656",
+                  "date": "2026-08-19",
+                  "publisher": "The Nightly"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "mixed",
+              "summary": "Split on how far to go. A Coalition taskforce urged an 80 per cent excise cut and licensed vape sales (26 August 2026) and Nationals leader Matt Canavan backs slashing it, but a Coalition-led inquiry recommended only a freeze.",
+              "impacts": [
+                "low_income_households",
+                "small_business",
+                "young_people"
+              ],
+              "impact_note": "If adopted, legal packs could drop toward $18 and vapes become legally saleable in licensed shops, but the Coalition has not settled a formal policy.",
+              "confidence": "medium",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Federal politics: Coalition report calls for 80pc cut to tobacco excise, legalised vapes \u2014 as it happened",
+                  "url": "https://www.abc.net.au/news/2026-08-26/federal-politics-live-blog-luke-gosling-angus-taylor-aug-26/107078366",
+                  "date": "2026-08-26",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Australia made cigarettes expensive to stop people smoking. Did it go too far?",
+                  "url": "https://www.abc.net.au/news/2026-08-29/expensive-cigarettes-excise-black-market-tobacco/107076242",
+                  "date": "2026-08-29",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "TV interview with Minister Rae, Today Show \u2013 19 August 2026",
+                  "url": "https://www.health.gov.au/ministers/the-hon-sam-rae-mp/media/tv-interview-with-minister-rae-today-show-19-august-2026",
+                  "date": "2026-08-19",
+                  "publisher": "Department of Health, Disability and Ageing"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "opposes",
+              "summary": "Greens leader Larissa Waters attacked One Nation's excise cut on 18 August 2026, saying it does what big tobacco lobbied for and would lift tobacco company profits. Party health policy backs banning nicotine advertising.",
+              "impacts": [
+                "young_people",
+                "low_income_households"
+              ],
+              "impact_note": "No cheaper legal cigarettes under the Greens' approach; they treat an excise cut as a win for tobacco companies rather than a fix for the black market.",
+              "confidence": "medium",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "One Nation has plans to stub out the illicit tobacco trade",
+                  "url": "https://psnews.com.au/one-nation-has-plans-to-stub-out-the-illicit-tobacco-trade/183826/",
+                  "date": "2026-08-18",
+                  "publisher": "PS News"
+                },
+                {
+                  "title": "Health | Australian Greens",
+                  "url": "https://greens.org.au/policies/health",
+                  "publisher": "Australian Greens"
+                }
+              ]
+            },
+            {
+              "party": "one_nation",
+              "stance": "supports",
+              "summary": "On 18 August 2026 Pauline Hanson announced One Nation's plan to cut tobacco excise by 75 per cent and freeze indexation for three years, arguing high taxes handed a multi-billion-dollar market to organised crime.",
+              "impacts": [
+                "low_income_households",
+                "small_business",
+                "young_people"
+              ],
+              "impact_note": "Legal cigarettes would fall by roughly $30 a pack; cheaper tobacco eases pressure on smokers and retailers but makes it easier for young people to start.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Pauline Hanson vows to slash cigarette prices by nearly $30 a pack",
+                  "url": "https://www.abc.net.au/news/2026-08-18/hanson-one-nation-cut-tobacco-cigarette-tax/107048678",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "One Nation has plans to stub out the illicit tobacco trade",
+                  "url": "https://psnews.com.au/one-nation-has-plans-to-stub-out-the-illicit-tobacco-trade/183826/",
+                  "date": "2026-08-18",
+                  "publisher": "PS News"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "veterans-allied-health-cap",
+          "label": "$5,000 annual cap on DVA-funded allied health for veterans",
+          "question": "Should the planned $5,000 annual cap on DVA-funded allied health services for veterans be scrapped?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "opposes",
+              "summary": "Assistant Minister Rebecca White defended the measure on 31 August 2026, saying the $5,000 limit simplifies referrals rather than restricting care by replacing 12-visit GP re-referral cycles, and that it is out for consultation with no changes yet made.",
+              "impacts": [
+                "veterans",
+                "patients",
+                "people_with_disability"
+              ],
+              "impact_note": "Veteran Card holders would face a yearly spending limit on physiotherapy, psychology and podiatry from mid-2027, with Labor saying fewer GP referrals will be needed.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Radio interview with Assistant Minister White, ABC Radio Sydney Mornings \u2013 31 August 2026",
+                  "url": "https://www.health.gov.au/ministers/the-hon-rebecca-white-mp/media/radio-interview-with-assistant-minister-white-abc-radio-sydney-mornings-31-august-2026",
+                  "date": "2026-08-31",
+                  "publisher": "Department of Health, Disability and Ageing"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "supports",
+              "summary": "The Coalition formally called on 22 August 2026 for the cap to be abandoned before it starts on 1 July 2027, with Angus Taylor saying Labor found $748 million for its budget by capping veterans' care.",
+              "impacts": [
+                "veterans",
+                "patients",
+                "people_with_disability"
+              ],
+              "impact_note": "Scrapping the cap would leave veterans' allied health funded without an annual dollar limit, but the $748 million budget saving would be lost.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Coalition calls on Prime Minister to scrap veterans' allied health cap",
+                  "url": "https://www.liberal.org.au/2026/08/22/coalition-calls-on-prime-minister-to-scrap-veterans-allied-health-cap",
+                  "date": "2026-08-22",
+                  "publisher": "Liberal Party of Australia"
+                },
+                {
+                  "title": "Matters of Urgency: Veterans \u2014 Senate debate, 19 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.140.2",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "supports",
+              "summary": "Greens senator Jordon Steele-John told the Senate on 19 August 2026 that the government must immediately abandon the proposed $5,000 cap, calling it a smokescreen for cuts that punishes veterans over a few bad actors.",
+              "impacts": [
+                "veterans",
+                "patients",
+                "people_with_disability"
+              ],
+              "impact_note": "The Greens would remove the limit entirely, so veterans' psychology, physiotherapy and occupational therapy would stay uncapped.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Matters of Urgency: Veterans \u2014 Senate debate, 19 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.140.2",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            },
+            {
+              "party": "one_nation",
+              "stance": "supports",
+              "summary": "One Nation senator Tyron Whitten told the Senate on 19 August 2026 the cap is deeply concerning, saying $5,000 disappears quickly for veterans needing physiotherapy and psychological care and hits regional veterans hardest; he stated no repeal commitment.",
+              "impacts": [
+                "veterans",
+                "patients",
+                "regional_rural"
+              ],
+              "impact_note": "One Nation's criticism points to backing uncapped allied health for veterans, though the party has not committed to removing the cap.",
+              "confidence": "medium",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Matters of Urgency: Veterans \u2014 Senate debate, 19 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.140.2",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -4441,33 +4781,27 @@
             {
               "party": "coalition",
               "stance": "opposes",
-              "summary": "The Liberals and Nationals each dumped net zero by 2050 in late 2025 and would repeal the legislated 2030 and 2050 targets. Leader Angus Taylor's May 2026 budget reply said \"net zero must go\".",
+              "summary": "Dumped net zero by 2050 in late 2025 and would repeal the legislated 2030 and 2050 targets. In August 2026 promised bills abolishing \"net zero and carbon taxes\" and barring CEFC finance for carbon-offset farmland purchases.",
               "impacts": [
                 "everyone",
                 "workers",
                 "regional_rural"
               ],
-              "impact_note": "Removing targets would end many clean-energy subsidies and mandates; effects on power bills and jobs are disputed by both sides.",
+              "impact_note": "Repeal would end clean-energy mandates and subsidies; the CEFC ban would stop taxpayer-backed funds helping investors buy farmland for carbon plantations.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
                 {
                   "title": "Sussan Ley buries Liberal commitment to net zero, but offers a fig leaf to moderates",
                   "url": "https://theconversation.com/sussan-ley-buries-liberal-commitment-to-net-zero-but-offers-a-fig-leaf-to-moderates-269392",
-                  "date": "2025-11-13",
-                  "publisher": "The Conversation"
+                  "publisher": "The Conversation",
+                  "date": "2025-11-13"
                 },
                 {
-                  "title": "Angus Taylor's energy policy is now a carbon copy of Hanson and Trump",
-                  "url": "https://reneweconomy.com.au/angus-taylors-energy-policy-is-now-a-carbon-copy-of-hanson-and-trump/",
-                  "date": "2026-05-15",
-                  "publisher": "RenewEconomy"
-                },
-                {
-                  "title": "Why the Coalition's lurch to the right is bad for the climate",
-                  "url": "https://theconversation.com/why-the-coalitions-lurch-to-the-right-is-bad-for-the-climate-280915",
-                  "date": "2026-04-27",
-                  "publisher": "The Conversation"
+                  "title": "Coalition to stop taxpayer backed carbon land grab and scrap Labor's net zero bill",
+                  "url": "https://www.liberal.org.au/2026/08/26/coalition-to-stop-taxpayer-backed-carbon-land-grab-and-scrap-labors-net-zero-bill",
+                  "publisher": "Liberal Party of Australia",
+                  "date": "2026-08-26"
                 }
               ]
             },
@@ -9305,7 +9639,7 @@
             {
               "party": "coalition",
               "stance": "opposes",
-              "summary": "Angus Taylor dismissed the reservation scheme as a \"thought bubble\". The Coalition instead wants supply increased by fast-tracking new gas and oil projects. No detailed alternative reservation policy announced.",
+              "summary": "Angus Taylor dismissed Labor's reservation scheme as a pre-budget thought bubble. The Coalition's August 2026 energy package is supply-side: State Energy Deals rewarding states that unlock gas, plus bills reversing Labor's gas restrictions. It does not address the 2027 reservation.",
               "impacts": [
                 "homeowners",
                 "renters",
@@ -9313,21 +9647,21 @@
                 "workers",
                 "regional_rural"
               ],
-              "impact_note": "Relies on new gas fields rather than mandates to lift supply; effect on household gas bills would depend on new projects proceeding.",
+              "impact_note": "Relies on new gas fields and state deals rather than mandates; any bill savings depend on projects actually proceeding.",
               "confidence": "medium",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
                   "title": "Government to force gas exporters to reserve 20 per cent of exports for domestic market",
                   "url": "https://region.com.au/government-to-force-gas-exporters-to-reserve-20-per-cent-of-exports-for-domestic-market/964204/",
-                  "date": "2026-05-08",
-                  "publisher": "Region Canberra"
+                  "publisher": "Region Canberra",
+                  "date": "2026-05-08"
                 },
                 {
-                  "title": "Opposition Leader Angus Taylor's budget-in-reply speech",
-                  "url": "https://www.canberratimes.com.au/story/9246991/opposition-leader-angus-taylors-budget-in-reply-speech/",
-                  "date": "2026-05-15",
-                  "publisher": "The Canberra Times"
+                  "title": "More Australian gas to put downward pressure on power bills",
+                  "url": "https://www.liberal.org.au/2026/08/24/more-australian-gas-to-put-downward-pressure-on-power-bills",
+                  "publisher": "Liberal Party of Australia",
+                  "date": "2026-08-24"
                 }
               ]
             },
@@ -11678,6 +12012,170 @@
               }
             ]
           }
+        },
+        {
+          "id": "epbc-national-standards",
+          "label": "National Environmental Standards under the reformed EPBC Act",
+          "question": "Should national environment approvals be governed by the binding National Environmental Standards made under the reformed EPBC Act?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "supports",
+              "summary": "Environment Minister Murray Watt made Australia's first four National Environmental Standards on 20 August 2026 \u2014 significance, offsets, community engagement and data \u2014 applying to new state bilateral agreements from the following week and to project decisions by 1 December 2026.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Sets the rules the new national environment regulator must follow when approving housing, energy and mining projects, and what vegetation clearing farmers can do.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "First National Environmental Standards set amid ongoing EPBC reform",
+                  "url": "https://minister.dcceew.gov.au/watt/media-releases/first-national-environmental-standards-set-amid-ongoing-epbc-reform",
+                  "date": "2026-08-20",
+                  "publisher": "Minister for the Environment and Water (DCCEEW)"
+                },
+                {
+                  "title": "New environmental standards, guide, leave farmers with more questions than answers",
+                  "url": "https://www.netimes.com.au/2026/08/21/new-environmental-standards-guide-leave-farmers-with-more-questions-than-answers/",
+                  "date": "2026-08-21",
+                  "publisher": "New England Times"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "no_position",
+              "summary": "No clear position found. The Coalition issued no statement on the four standards made on 20 August 2026, and no parliamentary debate on them was found in the August 2026 sittings.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Without a stated position, it is unclear whether a Coalition government would keep, weaken or replace the new standards.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
+            },
+            {
+              "party": "greens",
+              "stance": "no_position",
+              "summary": "No clear position found. The Greens published no media release on the four standards made on 20 August 2026, and no parliamentary statement on them was found in that sitting fortnight.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Without a stated position, it is unclear whether the Greens would accept the standards or push to strengthen them.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
+            },
+            {
+              "party": "one_nation",
+              "stance": "no_position",
+              "summary": "No clear position found. No One Nation statement on the National Environmental Standards made on 20 August 2026 was located in party material or parliamentary records.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Without a stated position, One Nation's approach to the new environmental approval rules is unknown.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
+            }
+          ]
+        },
+        {
+          "id": "ai-data-centre-standards",
+          "label": "Mandatory national standards for large AI data centres",
+          "question": "Should large AI data centres face mandatory national standards covering their energy, water and land use, including how they source their energy?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "supports",
+              "summary": "At National Cabinet on 26 August 2026 the Commonwealth agreed to develop mandatory standards for data centre energy, water and land use and to legislate AI standards in early 2027, dropping a renewables requirement after Queensland and Northern Territory objections.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Would set federal rules on the power and water new AI data centres use \u2014 a factor in future electricity prices and local water supply.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Meeting of National Cabinet",
+                  "url": "https://www.pm.gov.au/media/meeting-national-cabinet-26-august-26",
+                  "date": "2026-08-26",
+                  "publisher": "Prime Minister of Australia"
+                },
+                {
+                  "title": "Queensland allowed to use coal, gas for data centres despite renewable push",
+                  "url": "https://www.abc.net.au/news/2026-08-26/gun-licences-restricted-to-citizens-data-centre-carve-out/107079926",
+                  "date": "2026-08-26",
+                  "publisher": "ABC News"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "opposes",
+              "summary": "Shadow energy minister Dan Tehan attacked the plan on 24 August 2026, asking what power the Commonwealth would use and calling measures to force Queensland and the Northern Territory into renewable-powered data centres probably unconstitutional and absurd.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "If federal rules were blocked, states would set their own data centre energy conditions, producing different power and water outcomes in each state.",
+              "confidence": "medium",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Albanese to settle AI data centre energy rules, overriding defiant Queensland",
+                  "url": "https://www.abc.net.au/news/2026-08-24/ai-data-centre-energy-rules-override-qld/107068536",
+                  "date": "2026-08-24",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Opposition calls Labor's AI data centres renewable energy rules 'unrealistic'",
+                  "url": "https://www.startupdaily.net/topic/politics-news-analysis/opposition-calls-labors-ai-data-centres-renewable-energy-rules-unrealistic/",
+                  "date": "2026-08-06",
+                  "publisher": "Startup Daily"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "supports",
+              "summary": "On 27 August 2026 Sarah Hanson-Young called the National Cabinet outcome a capitulation, demanding enforceable rules making data centre operators use only renewable energy plus environmental and community protections, and a moratorium on approving hyperscale data centres until standards exist.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Would bar new AI data centres from running on coal or gas and pause big projects, aiming to protect power bills, water and neighbourhoods.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "PM's data centre backflip is a climate and energy disaster",
+                  "url": "https://greens.org.au/news/media-release/pms-data-centre-backflip-climate-and-energy-disaster",
+                  "date": "2026-08-27",
+                  "publisher": "Australian Greens"
+                }
+              ]
+            },
+            {
+              "party": "one_nation",
+              "stance": "no_position",
+              "summary": "No clear position found. No One Nation statement on mandatory national standards for large AI data centres was located in party material or the August 2026 parliamentary record.",
+              "impacts": [
+                "everyone",
+                "regional_rural"
+              ],
+              "impact_note": "Without a stated position, One Nation's approach to data centre energy and water rules is unknown.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
+            }
+          ]
         }
       ]
     },
@@ -12486,58 +12984,58 @@
             {
               "party": "labor",
               "stance": "supports",
-              "summary": "Legislated in 2025 to strip Child Care Subsidy funding from centres failing quality and safety standards, mandated child safety training and a phone ban, increased spot checks, and funded a national educator register and CCTV trials.",
+              "summary": "Its 2026 bill, debated in the House on 20 August, lets wage-subsidy grants be cut or suspended from July 2027 if services fail the National Quality Standard on children's health and safety, adding to 2025 subsidy powers.",
               "impacts": [
                 "families_children",
-                "women",
-                "workers"
+                "workers",
+                "women"
               ],
-              "impact_note": "Centres face extra spot checks and can lose funding. By mid-2026 one had been defunded and 115 warned; staff must complete safety training.",
+              "impact_note": "Centres that fail health-and-safety standards risk losing the wage top-up that funds educator pay rises, on top of existing Child Care Subsidy penalties.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
+                {
+                  "title": "Wage Justice for Early Childhood Education and Care Workers (Special Account) (Extending Support and Strengthening Safety) Bill 2026 \u2014 second reading debate",
+                  "url": "https://www.openaustralia.org.au/debates/?id=2026-08-20.45.1",
+                  "date": "2026-08-20",
+                  "publisher": "OpenAustralia (House of Representatives Hansard)"
+                },
+                {
+                  "title": "Wage Justice for Early Childhood Education and Care Workers (Special Account) (Extending Support and Strengthening Safety) Bill 2026 \u2014 Senate Education and Employment Legislation Committee",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Education_and_Employment/WageJustice2026",
+                  "date": "2026-08-13",
+                  "publisher": "Parliament of Australia"
+                },
                 {
                   "title": "Australia's childcare safety changes are turning one. Are they working?",
                   "url": "https://theconversation.com/australias-childcare-safety-changes-are-turning-one-are-they-working-288530",
                   "date": "2026-07-31",
                   "publisher": "The Conversation"
-                },
-                {
-                  "title": "CCTV trials, a national register: the safety reforms coming to childcare centres",
-                  "url": "https://www.sbs.com.au/news/article/cctv-trials-a-national-register-the-safety-reforms-coming-to-childcare-centres/70gfoq903",
-                  "date": "2025-08-22",
-                  "publisher": "SBS News"
                 }
               ]
             },
             {
               "party": "coalition",
-              "stance": "mixed",
-              "summary": "Backed the cross-parliament Senate inquiry into childcare quality and safety but has not set out its own regulatory policy since the February 2026 leadership change, focusing instead on parental choice and flexibility.",
+              "stance": "supports",
+              "summary": "Angie Bell told the House on 20 August 2026 the Coalition would back Labor's bill tying childcare wage-subsidy funding to meeting health and safety quality standards, while noting the conditions are discretionary and not a full child safety reform.",
               "impacts": [
                 "families_children"
               ],
-              "impact_note": "No signalled rollback of current safety rules, but no commitment to further measures such as an independent regulator either.",
-              "confidence": "low",
-              "verified": "confirmed",
+              "impact_note": "Under a Coalition government, centres would still risk losing Commonwealth wage funding for safety breaches, though the Coalition calls the measure discretionary and incomplete.",
+              "confidence": "medium",
+              "verified": "corrected",
               "sources": [
                 {
-                  "title": "Greens secure Senate Inquiry into childcare quality and safety",
-                  "url": "https://cdn.greens.org.au/news/media-release/greens-secure-senate-inquiry-childcare-quality-and-safety-funding-model-firmly",
-                  "date": "2025-08-25",
-                  "publisher": "Australian Greens"
+                  "title": "Wage Justice for Early Childhood Education and Care Workers (Special Account) (Extending Support and Strengthening Safety) Bill 2026 \u2014 second reading debate",
+                  "url": "https://www.openaustralia.org.au/debates/?id=2026-08-20.45.1",
+                  "date": "2026-08-20",
+                  "publisher": "OpenAustralia (House of Representatives Hansard)"
                 },
                 {
-                  "title": "Shadow Ministerial Arrangements",
-                  "url": "https://www.liberal.org.au/2026/02/17/shadow-ministerial-arrangements",
-                  "date": "2026-02-17",
-                  "publisher": "Liberal Party of Australia"
-                },
-                {
-                  "title": "Cheaper Childcare Just Another Broken Promise",
-                  "url": "https://senatormattosullivan.com.au/7284-2/",
-                  "date": "2026-06-25",
-                  "publisher": "Senator Matt O'Sullivan"
+                  "title": "Wage Justice for Early Childhood Education and Care Workers (Special Account) (Extending Support and Strengthening Safety) Bill 2026 \u2014 Senate Education and Employment Legislation Committee",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Education_and_Employment/WageJustice2026",
+                  "date": "2026-08-13",
+                  "publisher": "Parliament of Australia"
                 }
               ]
             },
@@ -14558,27 +15056,34 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "Labor voted down Greens amendments in August 2025 that would have created a national right to work from home. It prefers the existing flexible-work request system and a Fair Work Commission award clause being developed.",
+              "summary": "Rejected Greens amendments in August 2025 that would have legislated a right to work from home up to two days a week. On 27 August 2026 the Fair Work Commission added a request-only clause to the Clerks Award.",
               "impacts": [
                 "workers",
                 "women",
                 "carers",
                 "people_with_disability"
               ],
-              "impact_note": "Working from home stays a request your employer can refuse on reasonable business grounds, rather than an enforceable entitlement.",
+              "impact_note": "Office and admin staff get a formal way to ask to work from home, but employers can still refuse; there's no enforceable entitlement.",
               "confidence": "medium",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
                   "title": "Federal Labor rejects the right for Australians to work from home",
                   "url": "https://greens.org.au/news/media-release/federal-labor-rejects-right-australians-work-home",
-                  "date": "2025-08-27",
-                  "publisher": "Australian Greens"
+                  "publisher": "Australian Greens",
+                  "date": "2025-08-27"
                 },
                 {
-                  "title": "Working from home major case started",
-                  "url": "https://www.fwc.gov.au/about-us/news-and-media/news/working-home-major-case-started",
-                  "publisher": "Fair Work Commission"
+                  "title": "Fair Work Commission adds work-from-home clause to Clerks Award",
+                  "url": "https://www.hcamag.com/au/specialisation/benefits/fair-work-commission-adds-work-from-home-clause-to-clerks-award/587792",
+                  "publisher": "Human Resources Director Australia",
+                  "date": "2026-08-28"
+                },
+                {
+                  "title": "FWC backs model WFH term in office-workers' award",
+                  "url": "https://www.smartcompany.com.au/industrial-relations/fair-work-wfh-clause-clerks-award-term/",
+                  "publisher": "SmartCompany",
+                  "date": "2026-08-28"
                 }
               ]
             },
@@ -14763,6 +15268,104 @@
                   "publisher": "Pauline Hanson's One Nation"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "id": "super-under-18",
+          "label": "Compulsory super for workers under 18",
+          "question": "Should compulsory superannuation be extended to workers under 18 regardless of how many hours they work?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "mixed",
+              "summary": "Labor's national platform now commits to extending super to all under-18s, but Senator Lisa Darmanin told the Senate on 20 August 2026 that embedding payday super comes first and the change needs further consultation, so the exemption stays.",
+              "impacts": [
+                "young_people",
+                "students",
+                "workers"
+              ],
+              "impact_note": "Under-18s working under 30 hours a week keep missing out on super for now, with Labor promising the change only after payday super beds down.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Superannuation Legislation Amendment (Fair Super for Young Workers) Bill 2026; Second Reading \u2014 Senate debate, 20 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-20.3.2",
+                  "date": "2026-08-20",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                },
+                {
+                  "title": "Super Members Council modelling finds under-18s losing millions due to 'outdated' law",
+                  "url": "https://www.abc.net.au/news/2026-08-31/under-18s-losing-millions-super-members-council-says/107096710",
+                  "date": "2026-08-31",
+                  "publisher": "ABC News"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "mixed",
+              "summary": "Shadow minister Jane Hume told the Senate on 20 August 2026 the bill's intention is good and young people should be paid their entitlements, but warned the extra cost could cost teenagers job opportunities and urged committee scrutiny first.",
+              "impacts": [
+                "young_people",
+                "students",
+                "small_business",
+                "workers"
+              ],
+              "impact_note": "The Coalition has not committed either way, so under-18 super would hinge on the inquiry's findings about effects on small businesses hiring teenagers.",
+              "confidence": "medium",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Superannuation Legislation Amendment (Fair Super for Young Workers) Bill 2026; Second Reading \u2014 Senate debate, 20 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-20.3.2",
+                  "date": "2026-08-20",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "supports",
+              "summary": "Barbara Pocock's Fair Super for Young Workers Bill would repeal the under-18 exemption; on 20 August 2026 the Greens secured a Senate inquiry reporting 17 November, arguing 530,000 teenagers lose $411 million a year to age discrimination.",
+              "impacts": [
+                "young_people",
+                "students",
+                "workers",
+                "small_business"
+              ],
+              "impact_note": "Under-18s working part-time would get 12 per cent super on their pay, adding thousands to retirement balances; small employers would face extra payroll costs.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Greens secure Senate inquiry into super for young workers",
+                  "url": "https://greens.org.au/news/media-release/greens-secure-senate-inquiry-super-young-workers",
+                  "date": "2026-08-20",
+                  "publisher": "Australian Greens"
+                },
+                {
+                  "title": "Superannuation Legislation Amendment (Fair Super for Young Workers) Bill 2026; Second Reading \u2014 Senate debate, 20 August 2026",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-20.3.2",
+                  "date": "2026-08-20",
+                  "publisher": "OpenAustralia (Senate Hansard)"
+                }
+              ]
+            },
+            {
+              "party": "one_nation",
+              "stance": "no_position",
+              "summary": "No clear position found. No One Nation senator spoke on the Greens' Fair Super for Young Workers Bill on 20 August 2026, and no party statement on the under-18 exemption was located.",
+              "impacts": [
+                "young_people",
+                "students",
+                "workers"
+              ],
+              "impact_note": "Without a stated position, One Nation's vote on extending super to teenage workers cannot be predicted.",
+              "confidence": "low",
+              "verified": "unverified",
+              "sources": []
             }
           ]
         }
@@ -15572,21 +16175,27 @@
             {
               "party": "labor",
               "stance": "supports",
-              "summary": "Its bill before parliament tightens eligibility, projected to save $37.8 billion over four years and move about 160,000 people off the scheme, with Thriving Kids starting October 2026 for young children with milder needs.",
+              "summary": "Its bill became law on 20 August 2026 as Act 66, tightening eligibility for a projected $37.8 billion in savings. Access rules hold until 1 January 2028, when Thriving Kids takes over for new entrants under nine.",
               "impacts": [
                 "people_with_disability",
                 "families_children",
                 "carers"
               ],
-              "impact_note": "Families of young children with mild autism or developmental delay would get help through schools and community health instead of individual NDIS funding.",
+              "impact_note": "Children already enrolled by the end of 2027 stay on the NDIS; new applicants under nine with milder needs go to state-run Thriving Kids instead.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "'Too far, too fast': alarm as NDIS revamp moves closer",
-                  "url": "https://www.canberratimes.com.au/story/9330113/too-far-too-fast-alarm-as-ndis-revamp-moves-closer/",
-                  "date": "2026-08-14",
-                  "publisher": "The Canberra Times"
+                  "title": "National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+                  "date": "2026-08-20",
+                  "publisher": "Parliament of Australia"
+                },
+                {
+                  "title": "Radio interview with Minister Butler, ABC Perth \u2013 25 August 2026",
+                  "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/radio-interview-with-minister-butler-abc-perth-25-august-2026",
+                  "date": "2026-08-25",
+                  "publisher": "Department of Health, Disability and Ageing"
                 },
                 {
                   "title": "Labor confident of an NDIS deal despite reform backlash",
@@ -15599,26 +16208,32 @@
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Broadly supports reining in NDIS growth and did not lodge a dissenting Senate inquiry report, though health spokeswoman Anne Ruston says the bill falls short on integrity and fraud measures.",
+              "summary": "Voted with Labor in the Senate on 18 August 2026 to pass the eligibility tightening, which became law on 20 August, while Anne Ruston maintained the bill fell short on scheme integrity and fraud measures.",
               "impacts": [
                 "people_with_disability",
                 "families_children",
                 "carers"
               ],
-              "impact_note": "Similar tightening under a Coalition government, with more emphasis on fraud crackdowns and provider integrity checks.",
-              "confidence": "medium",
-              "verified": "confirmed",
+              "impact_note": "Bipartisan backing means the tighter eligibility rules are now law; the Coalition wants tougher fraud and provider integrity enforcement added on top.",
+              "confidence": "high",
+              "verified": "corrected",
               "sources": [
+                {
+                  "title": "Federal government to pass NDIS overhaul for 'strong, safe and sustainable' scheme",
+                  "url": "https://www.abc.net.au/news/2026-08-18/ndis-changes-pass-after-labor-strikes-deal-with-coalition/107051964",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+                  "date": "2026-08-20",
+                  "publisher": "Parliament of Australia"
+                },
                 {
                   "title": "'Too far, too fast': alarm as NDIS revamp moves closer",
                   "url": "https://www.canberratimes.com.au/story/9330113/too-far-too-fast-alarm-as-ndis-revamp-moves-closer/",
                   "date": "2026-08-14",
-                  "publisher": "The Canberra Times"
-                },
-                {
-                  "title": "Labor confident of an NDIS deal despite reform backlash",
-                  "url": "https://www.canberratimes.com.au/story/9331083/labor-confident-of-an-ndis-deal-despite-reform-backlash/",
-                  "date": "2026-08-16",
                   "publisher": "The Canberra Times"
                 }
               ]
@@ -15626,21 +16241,33 @@
             {
               "party": "greens",
               "stance": "opposes",
-              "summary": "Opposes the bill, with disability spokesperson Jordon Steele-John saying it \"goes too far, too fast and should not pass\", warning it would remove disabled people from community participation before alternatives exist.",
+              "summary": "Opposed the bill and moved unsuccessful amendments; it passed the Senate on 18 August 2026 with Coalition support and became law on 20 August. Jordon Steele-John said Labor and the Liberals had \"decided to strip us of our rights\".",
               "impacts": [
                 "people_with_disability",
                 "families_children",
                 "carers"
               ],
-              "impact_note": "Existing NDIS eligibility would be kept, so children and adults with lower support needs stay on individually funded plans.",
+              "impact_note": "The Greens would keep current eligibility, so people with lower support needs stay on individually funded NDIS plans rather than moving to state programs.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
+                {
+                  "title": "Federal government to pass NDIS overhaul for 'strong, safe and sustainable' scheme",
+                  "url": "https://www.abc.net.au/news/2026-08-18/ndis-changes-pass-after-labor-strikes-deal-with-coalition/107051964",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
+                },
                 {
                   "title": "'Too far, too fast': alarm as NDIS revamp moves closer",
                   "url": "https://www.canberratimes.com.au/story/9330113/too-far-too-fast-alarm-as-ndis-revamp-moves-closer/",
                   "date": "2026-08-14",
                   "publisher": "The Canberra Times"
+                },
+                {
+                  "title": "National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7487",
+                  "date": "2026-08-20",
+                  "publisher": "Parliament of Australia"
                 }
               ]
             },
@@ -17414,6 +18041,119 @@
               }
             ]
           }
+        },
+        {
+          "id": "chsp-standalone-program",
+          "label": "Future of the Commonwealth Home Support Program",
+          "question": "Should the Commonwealth Home Support Program be kept as a standalone, block-funded program instead of being merged into Support at Home?",
+          "positions": [
+            {
+              "party": "labor",
+              "stance": "supports",
+              "summary": "Reversed course on 20 August 2026, saying the Commonwealth Home Support Program should stay standalone rather than fold into Support at Home, and extending its contracts for 830,000 users and 1,300 providers to 30 June 2029.",
+              "impacts": [
+                "seniors_retirees",
+                "carers",
+                "regional_rural"
+              ],
+              "impact_note": "Meals, cleaning, transport and social support keep running under current arrangements until mid-2029, with no forced move onto individual Support at Home budgets.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Certainty for older Australians and aged care providers on CHSP",
+                  "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/certainty-for-older-australians-and-aged-care-providers-on-chsp",
+                  "date": "2026-08-20",
+                  "publisher": "Department of Health, Disability and Ageing"
+                },
+                {
+                  "title": "Liberals accuse government of 'backdown' after extending home support for older Australians",
+                  "url": "https://www.abc.net.au/news/2026-08-20/government-extends-home-support-program-for-older-australians/107058406",
+                  "date": "2026-08-20",
+                  "publisher": "ABC News"
+                }
+              ]
+            },
+            {
+              "party": "coalition",
+              "stance": "supports",
+              "summary": "Coalition senators did not dissent from the June 2026 Senate report recommending CHSP be retained as a separate block-funded program; Anne Ruston called Labor's August 2026 decision to keep it an embarrassing, overdue backdown.",
+              "impacts": [
+                "seniors_retirees",
+                "carers",
+                "regional_rural"
+              ],
+              "impact_note": "The Coalition would also keep block-funded entry-level home support, citing evidence some services cost 40-50 per cent more under Support at Home, especially in regional areas.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "The transition of the Commonwealth Home Support Program to the Support at Home Program \u2014 Report",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/CHSPTransition/Report",
+                  "date": "2026-06-23",
+                  "publisher": "Senate Community Affairs References Committee"
+                },
+                {
+                  "title": "The transition of the Commonwealth Home Support Program to the Support at Home Program \u2014 Additional Comments: Coalition Senators",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/CHSPTransition/Report/Additional_Comments_-_Coalition_Senators",
+                  "date": "2026-06-23",
+                  "publisher": "Senate Community Affairs References Committee"
+                },
+                {
+                  "title": "Liberals accuse government of 'backdown' after extending home support for older Australians",
+                  "url": "https://www.abc.net.au/news/2026-08-20/government-extends-home-support-program-for-older-australians/107058406",
+                  "date": "2026-08-20",
+                  "publisher": "ABC News"
+                }
+              ]
+            },
+            {
+              "party": "greens",
+              "stance": "supports",
+              "summary": "Greens senator Penny Allman-Payne chaired the Senate inquiry that recommended CHSP stay a separate block-funded program; leader Larissa Waters called Labor's 20 August 2026 reversal a \"massive win\", and Allman-Payne wants extra funding and co-design.",
+              "impacts": [
+                "seniors_retirees",
+                "carers",
+                "regional_rural"
+              ],
+              "impact_note": "The Greens want CHSP kept and better funded, so community meals, transport and social support services stay block-funded rather than depending on individual budgets.",
+              "confidence": "high",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "Big win for older people: Labor backflips on plan to scrap aged care support program",
+                  "url": "https://greens.org.au/news/media-release/big-win-older-people-labor-backflips-plan-scrap-aged-care-support-program",
+                  "date": "2026-08-20",
+                  "publisher": "Australian Greens"
+                },
+                {
+                  "title": "The transition of the Commonwealth Home Support Program to the Support at Home Program \u2014 Report",
+                  "url": "https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Community_Affairs/CHSPTransition/Report",
+                  "date": "2026-06-23",
+                  "publisher": "Senate Community Affairs References Committee"
+                }
+              ]
+            },
+            {
+              "party": "one_nation",
+              "stance": "no_position",
+              "summary": "No stated position on the Commonwealth Home Support Program or its merger into Support at Home; its material for older Australians promises fairer aged care funding without naming programs.",
+              "impacts": [
+                "seniors_retirees",
+                "carers"
+              ],
+              "impact_note": "No commitment either way on whether entry-level home support services would continue as a separate block-funded program.",
+              "confidence": "low",
+              "verified": "confirmed",
+              "sources": [
+                {
+                  "title": "One Nation for Older Australians \u2013 Policy Discussion Town Hall",
+                  "url": "https://www.onenation.org.au/policy-discussion-town-hall",
+                  "publisher": "Pauline Hanson's One Nation"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -17429,48 +18169,50 @@
             {
               "party": "labor",
               "stance": "mixed",
-              "summary": "Kept the permanent program at 185,000 places in the 2026-27 Budget and rejects headline cuts, but is tightening temporary visas to bring net overseas migration to about 245,000 in 2026-27 and 225,000 by 2027-28.",
+              "summary": "Keeps the permanent program at 185,000 places and rejects headline cuts, but is squeezing temporary visas: from mid-August 2026 Home Affairs paused work and holiday (subclass 462) applications from 24 countries, targeting net overseas migration near 225,000.",
               "impacts": [
                 "renters",
                 "first_home_buyers",
                 "workers",
-                "migrants_refugees"
+                "migrants_refugees",
+                "regional_rural"
               ],
-              "impact_note": "Migration stays near current levels while temporary visas tighten; rental and job-market pressure eases only gradually, and some visa applicants face longer waits or refusals.",
+              "impact_note": "Backpacker visas from 24 countries are on hold, so farms and regional employers lose casual staff, while overall migration stays near current levels.",
               "confidence": "high",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
-                  "title": "How One Nation, Labor, the Coalition, and the Greens compare on migration policy",
+                  "title": "Which parties want to cut migration, and how far would they go?",
                   "url": "https://www.sbs.com.au/news/article/migration-policy-labor-coalition-greens-one-nation/7dsd8r7y9",
                   "date": "2026-06-19",
                   "publisher": "SBS News"
                 },
                 {
-                  "title": "Labor stands firm on 225,000 migration target as Coalition and One Nation call for lower intake",
-                  "url": "https://www.theaustraliatoday.com.au/labor-stands-firm-on-225000-migration-target-as-coalition-and-one-nation-call-for-lower-intake/",
-                  "date": "2026-08-09",
-                  "publisher": "The Australia Today"
+                  "title": "What you need to know about the working holiday visa pause",
+                  "url": "https://www.abc.net.au/news/2026-08-18/australia-working-holiday-maker-visa-program-pause/107046986",
+                  "date": "2026-08-18",
+                  "publisher": "ABC News"
                 },
                 {
-                  "title": "Tony Burke's immigration package must deliver the PM's net migration commitments and more",
-                  "url": "https://independentaustralia.net/politics/politics-display/tony-burkes-immigration-package-must-deliver-the-pms-net-migration-commitments-and-more,21413",
-                  "date": "2026-08-12",
-                  "publisher": "Independent Australia"
+                  "title": "Visa slowdown for backpackers amid migration backlash",
+                  "url": "https://www.newcastleherald.com.au/story/9331178/visa-slowdown-for-backpackers-amid-migration-backlash/",
+                  "date": "2026-08-16",
+                  "publisher": "Newcastle Herald"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Under leader Angus Taylor, would cap net overseas migration at the number of homes completed the previous year, and has indicated intake would sit below 200,000 and well under Labor's forecasts initially.",
+              "summary": "Would cap net overseas migration at the previous year's home completions, substantially below 200,000, but in August 2026 said it does not expect to cut Pacific PALM workers or backpackers, deferring its number until closer to the 2028 election.",
               "impacts": [
                 "renters",
                 "first_home_buyers",
                 "workers",
-                "migrants_refugees"
+                "migrants_refugees",
+                "regional_rural"
               ],
-              "impact_note": "Fewer new arrivals each year, with the ceiling set by home building; migrants and employers face tighter and less predictable visa availability.",
+              "impact_note": "Fewer arrivals overall under a housing-linked ceiling, but farm and Pacific labour schemes would be spared; the actual cut stays unknown until the next election.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -17481,16 +18223,16 @@
                   "publisher": "The Conversation"
                 },
                 {
-                  "title": "Migration crackdown central to Coalition's Budget reply",
-                  "url": "https://thekoalanews.com/migration-crackdown-central-to-coalitions-budget-reply/",
-                  "date": "2026-05-15",
-                  "publisher": "The Koala News"
+                  "title": "Pacific worker reprieve in coalition migration target",
+                  "url": "https://pina.com.fj/2026/08/25/pacific-worker-reprieve-in-coalition-migration-target/",
+                  "date": "2026-08-25",
+                  "publisher": "Pacific Islands News Association"
                 },
                 {
-                  "title": "Angus Taylor unveils plan linking migration cap to housing supply",
-                  "url": "https://www.canberratimes.com.au/story/9246136/angus-taylor-unveils-plan-linking-migration-cap-to-housing-supply/",
-                  "date": "2026-05-13",
-                  "publisher": "The Canberra Times"
+                  "title": "Coalition dragged into migration debate mess",
+                  "url": "https://www.abc.net.au/news/2026-08-28/coalition-joins-migration-debate-confusion/107084294",
+                  "date": "2026-08-28",
+                  "publisher": "ABC News"
                 }
               ]
             },
@@ -17593,33 +18335,33 @@
             {
               "party": "coalition",
               "stance": "supports",
-              "summary": "Would cut international student numbers as part of its housing-linked migration cap, with Taylor calling students an obvious area to reduce, but set no 2026 target; the 2025 pledge to cut 80,000 places has not been restated.",
+              "summary": "Backs reducing international student numbers under its housing-linked migration cap, with Bragg proposing modest reductions and no target before the next election, while the Nationals in August 2026 adopted capping students at 25 per cent of the current intake.",
               "impacts": [
                 "students",
                 "young_people",
                 "renters"
               ],
-              "impact_note": "Likely fewer student visas and tighter conditions, but with no published number prospective students face uncertainty about places, fees and rules.",
+              "impact_note": "Student places would be cut, but by how much is unresolved: the Nationals' 25 per cent cap would slash offers, while the Liberals float only modest reductions.",
               "confidence": "medium",
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Migration crackdown central to Coalition's Budget reply",
-                  "url": "https://thekoalanews.com/migration-crackdown-central-to-coalitions-budget-reply/",
-                  "date": "2026-05-15",
-                  "publisher": "The Koala News"
+                  "title": "Visa slowdown for backpackers amid migration backlash",
+                  "url": "https://www.newcastleherald.com.au/story/9331178/visa-slowdown-for-backpackers-amid-migration-backlash/",
+                  "date": "2026-08-16",
+                  "publisher": "Newcastle Herald"
                 },
                 {
-                  "title": "How One Nation, Labor, the Coalition, and the Greens compare on migration policy",
-                  "url": "https://www.sbs.com.au/news/article/migration-policy-labor-coalition-greens-one-nation/7dsd8r7y9",
-                  "date": "2026-06-19",
+                  "title": "'Not where the problems are': Working holiday visa slowdown divides parties",
+                  "url": "https://www.sbs.com.au/news/article/not-where-the-problems-are-working-holiday-visa-slowdown-divides-parties/552jez5t4",
+                  "date": "2026-08-16",
                   "publisher": "SBS News"
                 },
                 {
-                  "title": "Coalition to cut international student numbers by 80,000, raise visa application fees",
-                  "url": "https://www.sbs.com.au/news/article/coalition-to-cut-international-student-numbers-by-80-000-raise-visa-application-fees/nofupp8l5",
-                  "date": "2025-04-06",
-                  "publisher": "SBS News"
+                  "title": "Coalition dragged into migration debate mess",
+                  "url": "https://www.abc.net.au/news/2026-08-28/coalition-joins-migration-debate-confusion/107084294",
+                  "date": "2026-08-28",
+                  "publisher": "ABC News"
                 }
               ]
             },
@@ -17843,12 +18585,12 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "The 2026-27 Budget kept the Refugee and Humanitarian Program at 20,000 places, unchanged since 2023-24, despite Labor's own national platform aspiration to lift it progressively to 27,000.",
+              "summary": "Has kept the Refugee and Humanitarian Program at 20,000 places since 2023-24. On 27 August 2026 Tony Burke's office confirmed a cut to 13,750 from 2027-28, then Albanese guaranteed 20,000 would continue.",
               "impacts": [
                 "migrants_refugees",
                 "families_children"
               ],
-              "impact_note": "Refugee places stay flat at 20,000 despite record global displacement, so families waiting overseas face very long delays.",
+              "impact_note": "Refugee places stay at 20,000 rather than rising, and the brief move to cut them to 13,750 leaves families waiting overseas facing long delays.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
@@ -17859,50 +18601,62 @@
                   "publisher": "Refugee Council of Australia"
                 },
                 {
-                  "title": "Federal Budget 2026-27 Explainer - What the budget means for refugees and people seeking asylum",
-                  "url": "https://asrc.org.au/2026/05/13/federal-budget-2026-27-explainer/",
-                  "date": "2026-05-13",
-                  "publisher": "Asylum Seeker Resource Centre"
+                  "title": "Prime Minister dramatically intervenes, confirms no change to Labor's refugee intake",
+                  "url": "https://www.abc.net.au/news/2026-08-27/federal-government-australian-refugee-intake-confusion-anger/107083476",
+                  "date": "2026-08-27",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "'Not a strong argument' to lower refugee intake numbers",
+                  "url": "https://www.dailyadvertiser.com.au/story/9339035/pm-call-to-keep-refugee-numbers-not-a-backflip/",
+                  "date": "2026-08-28",
+                  "publisher": "The Daily Advertiser"
                 }
               ]
             },
             {
               "party": "coalition",
-              "stance": "no_position",
-              "summary": "Has not announced a humanitarian intake number since the 2025 election. Its April 2026 policy instead focuses on restricting onshore protection claims via a safe-country list and restoring temporary protection visas.",
+              "stance": "opposes",
+              "summary": "Angus Taylor declined in late August 2026 to rule out cutting the humanitarian intake, saying Australians come first and visa numbers will follow housing completions; Andrew Bragg said refugees would not be targeted. No figure has been set.",
               "impacts": [
                 "migrants_refugees",
                 "families_children"
               ],
-              "impact_note": "No clarity on refugee place numbers; people seeking asylum onshore would face faster refusals and temporary rather than permanent visas.",
-              "confidence": "low",
-              "verified": "confirmed",
+              "impact_note": "Refugee places could be cut or held under a Coalition government, but with no announced number before the next election, applicants cannot plan.",
+              "confidence": "medium",
+              "verified": "corrected",
               "sources": [
+                {
+                  "title": "Coalition dragged into migration debate mess",
+                  "url": "https://www.abc.net.au/news/2026-08-28/coalition-joins-migration-debate-confusion/107084294",
+                  "date": "2026-08-28",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "'Not a strong argument' to lower refugee intake numbers",
+                  "url": "https://www.dailyadvertiser.com.au/story/9339035/pm-call-to-keep-refugee-numbers-not-a-backflip/",
+                  "date": "2026-08-28",
+                  "publisher": "The Daily Advertiser"
+                },
                 {
                   "title": "Coalition launches first wave of Australian values migration plan",
                   "url": "https://www.liberal.org.au/2026/04/14/coalition-launches-first-wave-of-australian-values-migration-plan",
                   "date": "2026-04-14",
                   "publisher": "Liberal Party of Australia"
-                },
-                {
-                  "title": "The Coalition's Immigration Policy fails its own \"values test\"",
-                  "url": "https://www.refugeecouncil.org.au/coalitions-immigration-policy-fails-its-own-values-test/",
-                  "date": "2026-04-15",
-                  "publisher": "Refugee Council of Australia"
                 }
               ]
             },
             {
               "party": "greens",
               "stance": "supports",
-              "summary": "Would lift the humanitarian intake to 50,000 places a year, add an uncapped private sponsorship program, create an urgent humanitarian response visa, and speed up family reunion.",
+              "summary": "Wants the humanitarian intake lifted to 50,000 places, with uncapped private sponsorship and faster family reunion. On 27 August 2026 David Shoebridge attacked Labor's proposed cut to 13,750, saying little separates Labor and One Nation on immigration.",
               "impacts": [
                 "migrants_refugees",
                 "families_children"
               ],
               "impact_note": "Many more refugee places and faster family reunion; community groups could privately sponsor extra people to resettle in Australia.",
               "confidence": "high",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
                 {
                   "title": "Immigration | Policy Portfolio",
@@ -17910,8 +18664,9 @@
                   "publisher": "Australian Greens"
                 },
                 {
-                  "title": "End Offshore Detention",
-                  "url": "https://greens.org.au/campaigns/end-offshore-detention",
+                  "title": "Labor siding with One Nation against refugees, again",
+                  "url": "https://greens.org.au/news/media-release/labor-siding-one-nation-against-refugees-again",
+                  "date": "2026-08-27",
                   "publisher": "Australian Greens"
                 }
               ]
@@ -24832,58 +25587,64 @@
             {
               "party": "labor",
               "stance": "opposes",
-              "summary": "Rejects a total ban. Its Interactive Gambling Amendment (Gambling Reform) Bill 2026 caps broadcast ads at three an hour, bans ads during live sport, on uniforms and at venues, and ends celebrity endorsements.",
+              "summary": "Still rejects a total ban. Its gambling reform bill passed Parliament on 19 August 2026, capping TV wagering ads at three an hour to 8.30pm, blacking out live sport windows and creating an opt-out register.",
               "impacts": [
                 "everyone",
                 "families_children",
                 "young_people"
               ],
-              "impact_note": "Far fewer betting ads on TV, radio, jerseys and at stadiums, but capped advertising continues in some timeslots and online.",
+              "impact_note": "Fewer betting ads on TV and radio, uniform and venue advertising phased out as existing deals expire, and a register to opt out of wagering ads.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
+                {
+                  "title": "Strongest ever gambling reforms passed",
+                  "url": "https://alp.org.au/news/strongest-ever-gambling-reforms-passed/",
+                  "date": "2026-08-19",
+                  "publisher": "Australian Labor Party"
+                },
+                {
+                  "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 \u2014 Second Reading (Senate)",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.14.1&m=100961",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Hansard)"
+                },
                 {
                   "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 \u2014 Second Reading (Minister Anika Wells)",
                   "url": "https://www.openaustralia.org.au/debates/?id=2026-07-02.16.2",
                   "date": "2026-07-02",
                   "publisher": "OpenAustralia (Hansard)"
-                },
-                {
-                  "title": "Gambling ad reforms at risk as Labor draws line on major changes",
-                  "url": "https://www.abc.net.au/news/2026-08-06/labor-could-pull-gambling-ad-crackdown-amid-senate-demands/107001662",
-                  "date": "2026-08-06",
-                  "publisher": "ABC News"
                 }
               ]
             },
             {
               "party": "coalition",
               "stance": "opposes",
-              "summary": "Does not back a total ban. Calls Labor's bill defective for allowing up to three ads an hour during children's television and ignoring predatory inducements, and is negotiating amendments including limits on VIP perks.",
+              "summary": "Still rejects a total ban. After calling Labor's bill defective, it negotiated amendments \u2014 an ACMA-run advertising opt-out register, inducement cooling-off periods and an end to spend-based VIP manager commissions \u2014 then backed passage on 19 August 2026.",
               "impacts": [
                 "everyone",
                 "families_children"
               ],
-              "impact_note": "Would add curbs on bonus bets, VIP perks and ads around children's programs, plus cooling-off after self-exclusion, while most advertising stays legal.",
+              "impact_note": "Adds an opt-out register, cooling-off before bonus-bet offers and an end to spend-based VIP commissions, while capped advertising continues in most timeslots.",
               "confidence": "high",
-              "verified": "confirmed",
+              "verified": "corrected",
               "sources": [
+                {
+                  "title": "Government agrees to ad opt-out register in deal with Coalition to pass gambling reforms",
+                  "url": "https://www.abc.net.au/news/2026-08-17/labor-gets-coalition-support-for-gambling-laws-after-amendments/107047766",
+                  "date": "2026-08-17",
+                  "publisher": "ABC News"
+                },
+                {
+                  "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 \u2014 Second Reading (Senate)",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.14.1&m=100961",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Hansard)"
+                },
                 {
                   "title": "Coalition to drive crucial amendments to Labor's defective gambling bill",
                   "url": "https://sarahhenderson.com.au/coalition-to-drive-crucial-amendments-to-labors-defective-gambling-bill/",
                   "date": "2026-08-05",
-                  "publisher": "Senator Sarah Henderson"
-                },
-                {
-                  "title": "VIP gambling perks targeted as Labor, Coalition edge toward deal",
-                  "url": "https://www.abc.net.au/news/2026-08-12/labor-coalition-talks-on-proposed-gambling-restriction-laws/107026046",
-                  "date": "2026-08-12",
-                  "publisher": "ABC News"
-                },
-                {
-                  "title": "First Edition, News24, 14 August 2026",
-                  "url": "https://sarahhenderson.com.au/first-edition-news24-14-august-2026/",
-                  "date": "2026-08-14",
                   "publisher": "Senator Sarah Henderson"
                 }
               ]
@@ -24891,26 +25652,32 @@
             {
               "party": "greens",
               "stance": "supports",
-              "summary": "Push for a full, phased-out ban on gambling advertising as recommended by the Murphy parliamentary inquiry, and say Labor's bill does the bare minimum to protect vulnerable people.",
+              "summary": "Back a full ban on gambling advertising. The Greens filed a dissenting report and opposed the reform bill that passed on 19 August 2026, with Hanson-Young saying it shields the gambling industry instead of reforming it.",
               "impacts": [
                 "everyone",
                 "families_children",
                 "young_people"
               ],
-              "impact_note": "Gambling ads would disappear from TV, radio, online and sport over a set phase-out, removing betting promotion from everyday viewing.",
+              "impact_note": "Gambling ads would disappear from TV, radio, online and sport over a set phase-out, plus a national regulator and an immediate end to inducements.",
               "confidence": "high",
               "verified": "corrected",
               "sources": [
                 {
-                  "title": "Growing number of Labor MPs call for tougher gambling reforms",
-                  "url": "https://www.abc.net.au/news/2026-08-07/labor-mps-pushing-for-tougher-gambling-reforms/107006740",
-                  "date": "2026-08-07",
+                  "title": "Interactive Gambling Amendment (Gambling Reform) Bill 2026 \u2014 Second Reading (Senate)",
+                  "url": "https://www.openaustralia.org.au/senate/?id=2026-08-19.14.1&m=100961",
+                  "date": "2026-08-19",
+                  "publisher": "OpenAustralia (Hansard)"
+                },
+                {
+                  "title": "Government agrees to ad opt-out register in deal with Coalition to pass gambling reforms",
+                  "url": "https://www.abc.net.au/news/2026-08-17/labor-gets-coalition-support-for-gambling-laws-after-amendments/107047766",
+                  "date": "2026-08-17",
                   "publisher": "ABC News"
                 },
                 {
-                  "title": "VIP gambling perks targeted as Labor, Coalition edge toward deal",
-                  "url": "https://www.abc.net.au/news/2026-08-12/labor-coalition-talks-on-proposed-gambling-restriction-laws/107026046",
-                  "date": "2026-08-12",
+                  "title": "Labor faces growing internal pressure to strengthen gambling reforms",
+                  "url": "https://www.abc.net.au/news/2026-08-07/labor-mps-pushing-for-tougher-gambling-reforms/107006740",
+                  "date": "2026-08-07",
                   "publisher": "ABC News"
                 }
               ]
@@ -25456,17 +26223,24 @@
           "positions": [
             {
               "party": "labor",
-              "stance": "opposes",
-              "summary": "Dropped mandatory AI guardrails in its December 2025 National AI Plan, saying existing laws largely suffice. It funded an AI Safety Institute, created an Office of AI and lists a digital duty of care among priorities.",
+              "stance": "mixed",
+              "summary": "Shifted from the December 2025 plan's voluntary approach: the Prime Minister announced national AI laws on 15 July 2026 and National Cabinet agreed mandatory data centre standards on 26 August, with legislation due early 2027. High-risk AI scope unsettled.",
               "impacts": [
-                "workers",
                 "everyone",
-                "small_business"
+                "workers",
+                "small_business",
+                "regional_rural"
               ],
-              "impact_note": "AI used in hiring, insurance, pricing and government decisions stays covered by existing consumer, privacy and discrimination law rather than AI-specific rules.",
-              "confidence": "high",
-              "verified": "confirmed",
+              "impact_note": "Dedicated federal AI rules are coming in 2027, with binding standards on the energy, water and land use of large data centres near communities.",
+              "confidence": "medium",
+              "verified": "corrected",
               "sources": [
+                {
+                  "title": "Meeting of National Cabinet",
+                  "url": "https://www.pm.gov.au/media/meeting-national-cabinet-26-august-26",
+                  "date": "2026-08-26",
+                  "publisher": "Prime Minister of Australia"
+                },
                 {
                   "title": "Australia's national AI plan has just been released. Who exactly will benefit?",
                   "url": "https://theconversation.com/australias-national-ai-plan-has-just-been-released-who-exactly-will-benefit-270981",
@@ -25484,15 +26258,21 @@
             {
               "party": "coalition",
               "stance": "no_position",
-              "summary": "No settled Coalition AI policy has been published. Its current policy platform does not cover artificial intelligence, technology or online regulation, with policies still under post-election review.",
+              "summary": "Still proposes no specific AI rules. On 20 August 2026 shadow ministers Hastie, Duniam and Violi claimed credit for a new Joint Select Committee on Artificial Intelligence to examine whether existing laws are adequate.",
               "impacts": [
                 "workers",
                 "everyone"
               ],
-              "impact_note": "Nothing announced, so no signalled change to how AI is regulated in workplaces, services or government decision-making.",
-              "confidence": "low",
-              "verified": "confirmed",
+              "impact_note": "A parliamentary committee will report on whether current laws cover AI, but no Coalition rules are proposed yet for AI in workplaces or services.",
+              "confidence": "medium",
+              "verified": "corrected",
               "sources": [
+                {
+                  "title": "Establishment of a Joint Select Committee on Artificial Intelligence",
+                  "url": "https://www.liberal.org.au/2026/08/20/establishment-of-a-joint-select-committee-on-artificial-intelligence",
+                  "date": "2026-08-20",
+                  "publisher": "Liberal Party of Australia"
+                },
                 {
                   "title": "Our Plan",
                   "url": "https://www.liberal.org.au/our-plan",
