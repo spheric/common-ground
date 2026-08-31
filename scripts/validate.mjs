@@ -14,6 +14,7 @@ const DEFAULT_PATH = 'data/dataset.json';
 const FALLBACK_PATH = 'data/dataset.sample.json';
 
 const PARTY_IDS = ['labor', 'coalition', 'greens', 'one_nation'];
+const HOUSE_IDS = ['representatives', 'senate'];
 const STANCE_IDS = ['supports', 'opposes', 'mixed', 'no_position'];
 const CONFIDENCE_IDS = ['high', 'medium', 'low'];
 const VERIFIED_IDS = ['confirmed', 'corrected', 'unverified'];
@@ -259,6 +260,7 @@ function runChecks(data) {
   // --- optional voting (They Vote For You) block, well-formed where present -
   let votingIssueCount = 0;
   let votingRecordCount = 0;
+  let seriesEntryCount = 0;
   {
     const issues = [];
     for (const { topic, issue } of allIssues) {
@@ -333,16 +335,88 @@ function runChecks(data) {
           if (ma !== null && !(typeof ma === 'number' && ma >= 0 && ma <= 100)) {
             issues.push(`${plabel}: median_agreement "${ma}" is not null or a number 0–100`);
           }
+
+          if (!Number.isInteger(p?.excluded_switchers) || p.excluded_switchers < 0) {
+            issues.push(`${plabel}: excluded_switchers is not a non-negative integer ("${p?.excluded_switchers}")`);
+          }
         }
+
+        const series = Array.isArray(record?.series) ? record.series : null;
+        if (!series || series.length === 0) {
+          issues.push(`${rlabel}: series is missing or empty`);
+          return;
+        }
+        if (Number.isInteger(record?.divisions_total) && series.length !== record.divisions_total) {
+          issues.push(
+            `${rlabel}: series has ${series.length} entries but divisions_total is ${record.divisions_total}`
+          );
+        }
+        seriesEntryCount += series.length;
+
+        let prevDate = null;
+        series.forEach((entry, j) => {
+          const elabel = `${rlabel}.series[${j}]`;
+
+          const dateOk = ISO_DATE_RE.test(entry?.date ?? '');
+          if (!dateOk) {
+            issues.push(`${elabel}: date is not an ISO date ("${entry?.date}")`);
+          } else {
+            if (prevDate !== null && entry.date < prevDate) {
+              issues.push(`${elabel}: date "${entry.date}" is out of chronological order (previous "${prevDate}")`);
+            }
+            prevDate = entry.date;
+          }
+
+          if (!HOUSE_IDS.includes(entry?.house)) {
+            issues.push(`${elabel}: house "${entry?.house}" not in [${HOUSE_IDS.join(', ')}]`);
+          }
+          if (typeof entry?.name !== 'string' || entry.name.trim() === '') {
+            issues.push(`${elabel}: name is empty`);
+          }
+          if (entry?.policy_vote !== 'aye' && entry?.policy_vote !== 'no') {
+            issues.push(`${elabel}: policy_vote "${entry?.policy_vote}" not in [aye, no]`);
+          }
+
+          const entryPartyKeys =
+            entry?.parties && typeof entry.parties === 'object' ? Object.keys(entry.parties) : [];
+          const entryHasExactPartyIds =
+            entryPartyKeys.length === PARTY_IDS.length &&
+            PARTY_IDS.every((id) => Object.prototype.hasOwnProperty.call(entry?.parties ?? {}, id));
+          if (!entryHasExactPartyIds) {
+            issues.push(
+              `${elabel}: parties keys [${entryPartyKeys.join(', ')}] are not exactly [${PARTY_IDS.join(', ')}]`
+            );
+          } else {
+            for (const partyId of PARTY_IDS) {
+              const stat = entry.parties[partyId];
+              if (!Number.isInteger(stat?.for) || stat.for < 0) {
+                issues.push(`${elabel} (${partyId}): for is not a non-negative integer ("${stat?.for}")`);
+              }
+              if (!Number.isInteger(stat?.against) || stat.against < 0) {
+                issues.push(`${elabel} (${partyId}): against is not a non-negative integer ("${stat?.against}")`);
+              }
+            }
+          }
+
+          if (!Number.isInteger(entry?.other?.for) || entry.other.for < 0) {
+            issues.push(`${elabel} (other): for is not a non-negative integer ("${entry?.other?.for}")`);
+          }
+          if (!Number.isInteger(entry?.other?.against) || entry.other.against < 0) {
+            issues.push(`${elabel} (other): against is not a non-negative integer ("${entry?.other?.against}")`);
+          }
+        });
       });
     }
     checks.push({ name: 'voting (optional) is well-formed where present', issues });
   }
 
-  return { checks, allIssues, topics, parties, impactTags, votingIssueCount, votingRecordCount };
+  return { checks, allIssues, topics, parties, impactTags, votingIssueCount, votingRecordCount, seriesEntryCount };
 }
 
-function printReport({ checks, allIssues, topics, impactTags, votingIssueCount, votingRecordCount }, path) {
+function printReport(
+  { checks, allIssues, topics, impactTags, votingIssueCount, votingRecordCount, seriesEntryCount },
+  path
+) {
   console.log(`Validating ${path}\n`);
 
   let failed = false;
@@ -378,7 +452,7 @@ function printReport({ checks, allIssues, topics, impactTags, votingIssueCount, 
   console.log(
     `PASS — ${topics.length} topics, ${allIssues.length} issues, ${positionCount} positions, ` +
       `${sourceCount} sources, ${pctVerified}% verified (confirmed or corrected), ${impactTags.length} impact tags, ` +
-      `voting: ${votingIssueCount}/${allIssues.length} issues, ${votingRecordCount} records`
+      `voting: ${votingIssueCount}/${allIssues.length} issues, ${votingRecordCount} records, ${seriesEntryCount} series entries`
   );
 }
 

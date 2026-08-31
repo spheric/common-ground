@@ -3,6 +3,7 @@
    Section map: 1 reset  2 tokens/theme  3 type  4 layout shell  5 masthead
    6 filter row  7 tabs  8 matrix  9 drawer  10 overlap  11 empty states
    12 footer  13 motion  14 responsive  15 voting (drawer section + Votes view)
+   16 vote trail (shared: drawer + Votes)  17 Over time view
    ========================================================================== */
 
 /* 1. Reset ---------------------------------------------------------------- */
@@ -39,6 +40,14 @@ h1, h2, h3, p, dl, dd, dt { margin: 0; }
   --vote-wash-for: rgba(12, 163, 12, 0.55);
   --vote-wash-against: rgba(208, 59, 59, 0.55);
   --vote-wash-mixed: rgba(250, 178, 25, 0.55);
+
+  /* Full-opacity versions of the same three hues, for marks too small for
+     a translucent wash to read clearly (vote trail, pair-agreement chart).
+     Saturated enough to stay legible on both light and dark surfaces, so
+     unlike the party/surface tokens these are not re-declared per theme. */
+  --vote-mark-for: #0ca30c;
+  --vote-mark-against: #d03b3b;
+  --vote-mark-split: #fab219;
 
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -671,6 +680,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.45rem 0.8rem;
+  min-height: 44px;
   border: 1px solid var(--hairline);
   border-radius: 999px;
   font-size: 0.85rem;
@@ -933,6 +943,7 @@ body {
   overflow: hidden;
   border: 1px solid var(--hairline);
   background: var(--page);
+  gap: 2px; /* dataviz spacer rule: a surface gap between bar segments */
 }
 .voting-bar-seg { height: 100%; }
 .voting-bar-for { background: var(--vote-wash-for); }
@@ -1122,3 +1133,213 @@ body {
 @media (max-width: 640px) {
   .vote-party-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* 16. Vote trail (shared: drawer "In Parliament" cards + Votes view) --------------------------- */
+
+/* Fixed pixel width, not viewBox-scaled — keeps the 10-11px labels legible
+   on narrow screens by scrolling instead of shrinking (page body itself
+   never scrolls horizontally; this container does). */
+.vote-trail-scroll {
+  overflow-x: auto;
+  margin: 0.7rem 0 0.3rem;
+}
+.vote-trail-wrap { display: inline-block; }
+.vote-trail-svg {
+  display: block;
+  /* Deliberately NOT responsive — overrides the global img/svg max-width:100%
+     reset so text stays legible; .vote-trail-scroll handles narrow containers. */
+  max-width: none;
+}
+
+.vote-trail-party-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  fill: var(--ink);
+  dominant-baseline: middle;
+}
+.vote-trail-svg-compact .vote-trail-party-label { font-size: 9px; }
+
+.vote-trail-midline { stroke: var(--hairline); stroke-width: 1; }
+.vote-trail-axis-line { stroke: var(--hairline); stroke-width: 1; }
+.vote-trail-axis-tick { stroke: var(--hairline); stroke-width: 1; }
+.vote-trail-axis-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--ink-muted);
+}
+
+.vote-trail-mark-for { fill: var(--vote-mark-for); }
+.vote-trail-mark-against { fill: var(--vote-mark-against); }
+.vote-trail-mark-split { fill: var(--vote-mark-split); }
+.vote-trail-mark-nodata { fill: var(--ink-muted); opacity: 0.6; }
+
+.vote-trail-caption {
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+/* Accessible/touch twin, shared by the vote trail's division list and the
+   Over time view's year-by-year table. */
+.voting-divisions {
+  margin-bottom: 0.5rem;
+}
+.voting-divisions summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+}
+.voting-divisions summary:hover { color: var(--ink); }
+.voting-divisions[open] summary { margin-bottom: 0.4rem; }
+.divisions-table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.78rem;
+}
+.divisions-table th, .divisions-table td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+.divisions-table th:nth-child(3), .divisions-table td:nth-child(3) { white-space: normal; min-width: 16rem; }
+.divisions-table thead th {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-muted);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+}
+.divisions-table tbody tr:last-child td { border-bottom: 0; }
+
+/* 17. Over time view -------------------------------------------------------------------------- */
+
+.pair-agreement-section, .shifts-section {
+  margin-bottom: 2.5rem;
+}
+
+.pair-chart-scroll { overflow-x: auto; }
+.pair-chart-wrap {
+  position: relative;
+  max-width: 44rem;
+}
+.pair-chart-svg { width: 100%; height: auto; display: block; }
+
+.pair-chart-gridline { stroke: var(--hairline); stroke-width: 1; }
+.pair-chart-axis-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--ink-muted);
+}
+.pair-chart-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.pair-chart-point { fill: var(--ink); }
+.pair-chart-point-hollow { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.pair-chart-point-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  fill: var(--ink);
+}
+.pair-chart-hit { fill: transparent; }
+
+.pair-chart-tooltip {
+  position: fixed;
+  z-index: 150;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--page);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  max-width: 18rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.pair-chart-empty-note, .shifts-empty-note {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 0.75rem 0;
+}
+.pair-chart-fine-print, .shifts-fine-print {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  max-width: 44rem;
+  margin-top: 0.6rem;
+}
+
+.shift-party-group { margin-bottom: 1.5rem; }
+.shift-party-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.shift-party-heading::before {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--party-color);
+  flex: none;
+}
+.shift-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.shift-card {
+  border-left: 3px solid var(--party-color, var(--hairline));
+  background: var(--surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 0.75rem 0.9rem;
+}
+.shift-sentence {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.shift-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+}
+.shift-issue-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+.shift-issue-btn:hover { border-color: var(--ink-muted); color: var(--ink); }

@@ -11,10 +11,11 @@
      7  Filter row rendering
      8  View tabs
      9  Matrix view rendering
-     10 Detail drawer
+     10 Detail drawer (+ shared vote trail renderer, used by drawer & Votes)
      11 Overlap view rendering (party picker, venn, region list, heatmap)
      12 Votes view rendering (parliamentary voting records)
-     13 Top-level render orchestration + init
+     13 Over time view rendering (pair agreement over time, position shifts)
+     14 Top-level render orchestration + init
    No globals beyond window.DATASET — everything else lives inside the IIFE.
    All dynamic dataset strings are passed through esc() before insertion —
    sources/titles/publishers ultimately come from the web, so they are
@@ -231,6 +232,121 @@
     return stats['for'] + 'F · ' + stats.against + 'A · ' + stats.mixed + 'M of ' + stats.voted + ' voted';
   }
 
+  // Vote-series helpers (Over time view + vote trail). A `series` entry is
+  // one parliamentary division: { date, house, name, policy_vote,
+  // parties:{partyId:{for,against}}, other }. `for`/`against` are already
+  // oriented to the record's own proposition. Fewer than 2 of a party's
+  // members voting is noise, so it counts as "no_data" everywhere.
+  function seriesEntryPartyDirection(entry, partyId) {
+    var stats = entry.parties && entry.parties[partyId];
+    var f = stats ? (stats['for'] || 0) : 0;
+    var a = stats ? (stats.against || 0) : 0;
+    if (f + a < 2) return 'no_data';
+    if (f === a) return 'split';
+    return f > a ? 'for' : 'against';
+  }
+
+  // Gathers every voting-record `series` entry across the given (already
+  // filtered) issues, deduplicated by date+house+division name — the same
+  // physical division is often linked from more than one policy/issue.
+  // Equality-of-direction between two parties is invariant to which
+  // duplicate copy is kept (a shared orientation flip moves both parties'
+  // direction together), so picking the first-seen copy is safe.
+  function collectDedupedSeriesEntries(issues) {
+    var seen = new Map();
+    issues.forEach(function (issue) {
+      if (!issue.voting) return;
+      issue.voting.records.forEach(function (record) {
+        (record.series || []).forEach(function (entry) {
+          var key = entry.date + '|' + entry.house + '|' + entry.name;
+          if (!seen.has(key)) seen.set(key, entry);
+        });
+      });
+    });
+    return Array.from(seen.values());
+  }
+
+  // Per-calendar-year agreement between two parties over a set of
+  // (deduplicated) series entries. A division "qualifies" for a year when
+  // both parties have a definite direction (for/against, not split, not
+  // no_data); agreement means identical direction. Years with zero
+  // qualifying divisions are simply absent from the result.
+  function pairAgreementByYear(entries, partyA, partyB) {
+    var byYear = new Map();
+    entries.forEach(function (entry) {
+      var dirA = seriesEntryPartyDirection(entry, partyA);
+      var dirB = seriesEntryPartyDirection(entry, partyB);
+      if (dirA === 'no_data' || dirB === 'no_data' || dirA === 'split' || dirB === 'split') return;
+      var year = entry.date.slice(0, 4);
+      if (!byYear.has(year)) byYear.set(year, { agree: 0, n: 0 });
+      var rec = byYear.get(year);
+      rec.n++;
+      if (dirA === dirB) rec.agree++;
+    });
+    var years = Array.from(byYear.keys()).sort();
+    return years.map(function (year) {
+      var rec = byYear.get(year);
+      var pct = rec.n > 0 ? Math.round((rec.agree / rec.n) * 100) : null;
+      // "qualifies" = eligible to be drawn as a chart point (>=3 divisions);
+      // "hollow" = drawn but thin evidence (<6 divisions) — only meaningful
+      // when qualifies is true.
+      return { year: year, agree: rec.agree, n: rec.n, pct: pct, qualifies: rec.n >= 3, hollow: rec.n < 6 };
+    });
+  }
+
+  // Mechanical position-shift detection, per (record, party): take the
+  // record's series entries where the party has a definite for/against
+  // direction (>=2 voters, not split), in the series' own chronological
+  // order. Require >=6 such entries. The "first-sustained" direction is the
+  // direction of the first pair of consecutive same-direction entries
+  // (scanning from the start); "last-sustained" is the same scanning from
+  // the end. A shift is flagged when both exist and differ. Results are
+  // deduplicated by (policy_id, party) across issues — the same TVFY policy
+  // can be linked from more than one issue — remembering every linked issue.
+  function detectPositionShifts(issues) {
+    var byKey = new Map();
+    issues.forEach(function (issue) {
+      if (!issue.voting) return;
+      issue.voting.records.forEach(function (record) {
+        if (!record.series || !record.series.length) return;
+        PARTY_ORDER.forEach(function (partyId) {
+          var seq = [];
+          record.series.forEach(function (entry) {
+            var dir = seriesEntryPartyDirection(entry, partyId);
+            if (dir === 'for' || dir === 'against') seq.push({ dir: dir, date: entry.date });
+          });
+          if (seq.length < 6) return;
+          var firstSustained = null;
+          for (var i = 0; i < seq.length - 1; i++) {
+            if (seq[i].dir === seq[i + 1].dir) { firstSustained = seq[i].dir; break; }
+          }
+          var lastSustained = null;
+          for (var j = seq.length - 1; j > 0; j--) {
+            if (seq[j].dir === seq[j - 1].dir) { lastSustained = seq[j].dir; break; }
+          }
+          if (!firstSustained || !lastSustained || firstSustained === lastSustained) return;
+          var key = record.policy_id + '|' + partyId;
+          if (!byKey.has(key)) {
+            byKey.set(key, {
+              policyId: record.policy_id,
+              party: partyId,
+              policyName: record.name,
+              n: seq.length,
+              firstYear: seq[0].date.slice(0, 4),
+              lastYear: seq[seq.length - 1].date.slice(0, 4),
+              firstDir: firstSustained,
+              lastDir: lastSustained,
+              issueIds: []
+            });
+          }
+          var shift = byKey.get(key);
+          if (shift.issueIds.indexOf(issue.id) === -1) shift.issueIds.push(issue.id);
+        });
+      });
+    });
+    return Array.from(byKey.values());
+  }
+
   /* ------------------------------------------------------------------------
      2. PURE DATA FUNCTIONS (copy-paste block end)
      ------------------------------------------------------------------------ */
@@ -302,6 +418,8 @@
     vennParties: [],
     vennRegionKey: null,
     vennHint: '',
+    overTimeParties: [],
+    overTimeHint: '',
     theme: 'auto',
     drawer: { open: false, issueId: null, triggerEl: null }
   };
@@ -530,9 +648,9 @@
      8. View tabs
      ------------------------------------------------------------------------ */
 
-  var VIEW_IDS = ['matrix', 'overlap', 'votes'];
-  var VIEW_TAB_IDS = ['tabMatrix', 'tabOverlap', 'tabVotes'];
-  var VIEW_PANEL_IDS = ['viewMatrix', 'viewOverlap', 'viewVotes'];
+  var VIEW_IDS = ['matrix', 'overlap', 'votes', 'time'];
+  var VIEW_TAB_IDS = ['tabMatrix', 'tabOverlap', 'tabVotes', 'tabTime'];
+  var VIEW_PANEL_IDS = ['viewMatrix', 'viewOverlap', 'viewVotes', 'viewTime'];
 
   function initTabs() {
     var tabs = VIEW_TAB_IDS.map(function (id) { return document.getElementById(id); });
@@ -799,6 +917,166 @@
       : '';
   }
 
+  // -- Vote trail: shared inline SVG timeline of a record's parliamentary
+  // divisions, used by both the drawer's full "In Parliament" cards and the
+  // Votes view's compact record cards. --
+
+  function houseShortLabel(house) {
+    return house === 'senate' ? 'Senate' : 'Reps';
+  }
+
+  // Sparse tick years for a [minYear, maxYear] span: always both endpoints,
+  // plus round years between them at an interval that grows with the span
+  // (kept sparse regardless of how many years the data covers). Shared by
+  // the vote trail's date axis and the Over time pair-agreement chart.
+  function computeSparseYearTicks(minYear, maxYear) {
+    var ticks = [minYear];
+    if (maxYear > minYear) {
+      var span = maxYear - minYear;
+      var interval = span <= 6 ? 2 : (span <= 30 ? 5 : 10);
+      for (var y = Math.ceil((minYear + 1) / interval) * interval; y < maxYear; y += interval) {
+        if (y > minYear && y < maxYear) ticks.push(y);
+      }
+      ticks.push(maxYear);
+    }
+    return ticks;
+  }
+
+  // One mark for one party's direction on one division. Position (not just
+  // colour) carries the meaning — the app's green/red pair fails a
+  // deuteranopia check on its own: "for" sits above the lane's midline,
+  // "against" below it, "split" is a diamond centred on the line, "no data"
+  // a faint dot on the line.
+  function voteTrailMarkSvg(direction, x, centerY, compact, titleText) {
+    var mh = compact ? 6 : 8, mw = compact ? 4 : 5, gap = 1;
+    var titleEl = '<title>' + titleText + '</title>';
+    if (direction === 'for') {
+      var yFor = centerY - gap - mh;
+      return '<rect x="' + (x - mw / 2).toFixed(1) + '" y="' + yFor.toFixed(1) + '" width="' + mw + '" height="' + mh +
+        '" rx="1.2" class="vote-trail-mark vote-trail-mark-for">' + titleEl + '</rect>';
+    }
+    if (direction === 'against') {
+      var yAgainst = centerY + gap;
+      return '<rect x="' + (x - mw / 2).toFixed(1) + '" y="' + yAgainst.toFixed(1) + '" width="' + mw + '" height="' + mh +
+        '" rx="1.2" class="vote-trail-mark vote-trail-mark-against">' + titleEl + '</rect>';
+    }
+    if (direction === 'split') {
+      var half = (compact ? 5 : 7) / 2;
+      var points = [[x, centerY - half], [x + half, centerY], [x, centerY + half], [x - half, centerY]]
+        .map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+      return '<polygon points="' + points + '" class="vote-trail-mark vote-trail-mark-split">' + titleEl + '</polygon>';
+    }
+    return '<circle cx="' + x.toFixed(1) + '" cy="' + centerY.toFixed(1) + '" r="1.4" class="vote-trail-mark vote-trail-mark-nodata">' + titleEl + '</circle>';
+  }
+
+  // `opts.compact` shrinks lane height for the Votes view and switches off
+  // the caption line — the <title> tooltips and the details/table twin
+  // remain either way. The SVG is a fixed pixel size (not viewBox-scaled)
+  // so its text stays legible; it lives in its own overflow-x:auto wrapper
+  // so the page body never scrolls horizontally.
+  function renderVoteTrail(dataset, record, opts) {
+    var compact = !!(opts && opts.compact);
+    var series = record.series || [];
+    if (!series.length) return '';
+    var parties = orderedParties(dataset);
+
+    var W = compact ? 520 : 560;
+    var leftMargin = compact ? 58 : 66;
+    var rightMargin = 10;
+    var laneHeight = compact ? 15 : 22;
+    var topPad = 2;
+    var axisHeight = compact ? 15 : 18;
+    var H = topPad + laneHeight * parties.length + axisHeight;
+    var plotLeft = leftMargin, plotRight = W - rightMargin;
+    var plotWidth = plotRight - plotLeft;
+
+    var minTime = Date.parse(series[0].date), maxTime = minTime;
+    series.forEach(function (e) {
+      var t = Date.parse(e.date);
+      if (t < minTime) minTime = t;
+      if (t > maxTime) maxTime = t;
+    });
+    var span = maxTime - minTime;
+    function xForTime(t) {
+      if (span <= 0) return plotLeft + plotWidth / 2;
+      return plotLeft + ((t - minTime) / span) * plotWidth;
+    }
+
+    // Same-date divisions overlap at this scale — nudge x by up to +-2px.
+    var dateGroups = {};
+    series.forEach(function (e, idx) { (dateGroups[e.date] = dateGroups[e.date] || []).push(idx); });
+    var jitterByIdx = {};
+    Object.keys(dateGroups).forEach(function (date) {
+      var idxs = dateGroups[date];
+      idxs.forEach(function (idx, i) {
+        jitterByIdx[idx] = idxs.length <= 1 ? 0 : (-2 + (4 * i) / (idxs.length - 1));
+      });
+    });
+    var xByIdx = series.map(function (e, idx) { return xForTime(Date.parse(e.date)) + jitterByIdx[idx]; });
+
+    var lanesSvg = '';
+    parties.forEach(function (party, pIdx) {
+      var centerY = topPad + pIdx * laneHeight + laneHeight / 2;
+      lanesSvg += '<text x="2" y="' + centerY.toFixed(1) + '" class="vote-trail-party-label">' + esc(party.short) + '</text>';
+      lanesSvg += '<line x1="' + plotLeft + '" y1="' + centerY + '" x2="' + plotRight + '" y2="' + centerY + '" class="vote-trail-midline"></line>';
+      series.forEach(function (entry, idx) {
+        var direction = seriesEntryPartyDirection(entry, party.id);
+        var stats = entry.parties && entry.parties[party.id];
+        var f = stats ? (stats['for'] || 0) : 0;
+        var a = stats ? (stats.against || 0) : 0;
+        var titleText = esc(entry.date) + ' · ' + esc(houseShortLabel(entry.house)) + ' · ' + esc(entry.name) +
+          ' · ' + esc(party.short) + ': ' + f + ' for / ' + a + ' against';
+        lanesSvg += voteTrailMarkSvg(direction, xByIdx[idx], centerY, compact, titleText);
+      });
+    });
+
+    var minYear = new Date(minTime).getUTCFullYear();
+    var maxYear = new Date(maxTime).getUTCFullYear();
+    var axisY = topPad + laneHeight * parties.length + 3;
+    var axisSvg = '<line x1="' + plotLeft + '" y1="' + axisY + '" x2="' + plotRight + '" y2="' + axisY + '" class="vote-trail-axis-line"></line>';
+    computeSparseYearTicks(minYear, maxYear).forEach(function (year) {
+      var x = xForTime(Date.UTC(year, 0, 1));
+      var anchor = x <= plotLeft + 4 ? 'start' : (x >= plotRight - 4 ? 'end' : 'middle');
+      axisSvg += '<line x1="' + x.toFixed(1) + '" y1="' + axisY + '" x2="' + x.toFixed(1) + '" y2="' + (axisY + 3) + '" class="vote-trail-axis-tick"></line>';
+      axisSvg += '<text x="' + x.toFixed(1) + '" y="' + (axisY + 12) + '" text-anchor="' + anchor + '" class="vote-trail-axis-label">' + year + '</text>';
+    });
+
+    var svgHtml = '<svg class="vote-trail-svg' + (compact ? ' vote-trail-svg-compact' : '') + '" width="' + W + '" height="' + H +
+      '" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true" focusable="false">' + lanesSvg + axisSvg + '</svg>';
+
+    var captionHtml = compact ? '' :
+      '<p class="vote-trail-caption">Marks above the line: the party’s members mostly voted for the proposition; below: mostly against. Hover a mark for the division.</p>';
+
+    var rowsHtml = series.map(function (entry) {
+      var cells = parties.map(function (party) {
+        var direction = seriesEntryPartyDirection(entry, party.id);
+        var stats = entry.parties && entry.parties[party.id];
+        var f = stats ? (stats['for'] || 0) : 0;
+        var a = stats ? (stats.against || 0) : 0;
+        return '<td class="tnum">' + (direction === 'no_data' ? '—' : (f + '–' + a)) + '</td>';
+      }).join('');
+      return '<tr><td class="tnum">' + esc(entry.date) + '</td><td>' + esc(houseShortLabel(entry.house)) + '</td><td>' +
+        esc(entry.name) + '</td>' + cells + '</tr>';
+    }).join('');
+
+    var tableHtml =
+      '<details class="voting-divisions">' +
+        '<summary>All ' + series.length + ' division' + (series.length === 1 ? '' : 's') + '</summary>' +
+        '<div class="table-scroll"><table class="divisions-table">' +
+          '<thead><tr><th scope="col">Date</th><th scope="col">House</th><th scope="col">Division</th>' +
+            parties.map(function (p) { return '<th scope="col">' + esc(p.short) + '</th>'; }).join('') +
+          '</tr></thead>' +
+          '<tbody>' + rowsHtml + '</tbody>' +
+        '</table></div>' +
+      '</details>';
+
+    return (
+      '<div class="vote-trail-scroll"><div class="vote-trail-wrap">' + svgHtml + '</div></div>' +
+      captionHtml +
+      tableHtml
+    );
+  }
+
   // Decorative bar — all numbers are printed as text alongside it, so it is
   // aria-hidden. Never called for voted:0; callers print "not enough voting
   // data" / "not enough data" instead of an empty bar.
@@ -856,6 +1134,7 @@
         votingRecordPolarityNoteHtml(record) +
         (record.note ? '<p class="voting-record-note">' + esc(record.note) + '</p>' : '') +
         '<div class="voting-party-rows">' + rowsHtml + '</div>' +
+        renderVoteTrail(dataset, record, { compact: false }) +
         '<p class="voting-record-meta tnum">' + metaBits.join(' · ') +
           ' · <a href="' + esc(record.url) + '" target="_blank" rel="noopener">They Vote For You →</a></p>' +
       '</div>'
@@ -866,7 +1145,10 @@
     return (
       '<p class="voting-footer">Party figures aggregate They Vote For You per-member policy agreement for ' +
         'current MPs and senators only; members without enough relevant votes are excluded. Data: They Vote ' +
-        'For You (OpenAustralia Foundation), Open Data Commons ODbL. As of ' + esc(asOf) + '.</p>'
+        'For You (OpenAustralia Foundation), Open Data Commons ODbL. As of ' + esc(asOf) + '. ' +
+        'Timeline marks use the party each member sat with at the time of each division; the member counts ' +
+        'and TVFY agreement medians follow current members, excluding members whose votes on a policy were ' +
+        'cast while sitting with a different party.</p>'
     );
   }
 
@@ -1263,6 +1545,7 @@
         (tagsHtml ? '<div class="voting-tags">' + tagsHtml + '</div>' : '') +
         votingRecordPolarityNoteHtml(record) +
         '<div class="vote-party-grid">' + cellsHtml + '</div>' +
+        renderVoteTrail(dataset, record, { compact: true }) +
       '</div>'
     );
   }
@@ -1336,13 +1619,329 @@
   }
 
   /* ------------------------------------------------------------------------
-     13. Top-level render orchestration + init
+     13. Over time view rendering
+     Scope note: like every view, computations run across the parliamentary
+     divisions linked to the issues currently shown by the filter row —
+     state.filteredIssuesFlat, not the full dataset.
+     ------------------------------------------------------------------------ */
+
+  function defaultOverTimeParties(dataset) {
+    var ids = dataset.parties.map(function (p) { return p.id; });
+    var preferred = ['labor', 'coalition'].filter(function (id) { return ids.indexOf(id) !== -1; });
+    if (preferred.length === 2) return preferred;
+    return PARTY_ORDER.filter(function (id) { return ids.indexOf(id) !== -1; }).slice(0, 2);
+  }
+
+  // Exactly two parties are always selected: clicking a selected chip does
+  // nothing (there is no "deselect down to one"); clicking a third swaps
+  // out the older of the two current picks, mirroring the venn picker.
+  function toggleOverTimePartyPick(partyId, dataset) {
+    var arr = state.overTimeParties;
+    if (arr.indexOf(partyId) !== -1) {
+      state.overTimeHint = 'Keep two parties selected to compare — pick a different party to swap one out.';
+      return;
+    }
+    var removed = arr.shift();
+    arr.push(partyId);
+    state.overTimeHint = 'Picking a new party swapped in ' + shortNameForParty(dataset, partyId) +
+      ' for ' + shortNameForParty(dataset, removed) + '.';
+  }
+
+  function renderOverTimePartyPicker(dataset, parties) {
+    var pickerHtml = parties.map(function (p) {
+      var pressed = state.overTimeParties.indexOf(p.id) !== -1;
+      return (
+        '<button type="button" class="party-pick-chip" data-party="' + esc(p.id) + '" aria-pressed="' + pressed +
+          '" style="--party-color:var(--party-' + esc(p.id) + ')">' +
+          '<span class="party-dot" aria-hidden="true"></span>' + esc(p.short) +
+        '</button>'
+      );
+    }).join('');
+    return (
+      '<div class="party-picker" id="overTimePicker">' + pickerHtml + '</div>' +
+      '<p class="party-pick-hint" id="overTimeHint" aria-live="polite">' + esc(state.overTimeHint) + '</p>'
+    );
+  }
+
+  function wireOverTimePicker(container, dataset) {
+    Array.prototype.forEach.call(container.querySelectorAll('#overTimePicker .party-pick-chip'), function (btn) {
+      btn.addEventListener('click', function () {
+        var partyId = btn.getAttribute('data-party');
+        toggleOverTimePartyPick(partyId, dataset);
+        renderOverTime(dataset);
+        var refocus = document.querySelector('#overTimePicker .party-pick-chip[data-party="' + partyId + '"]');
+        if (refocus) refocus.focus();
+      });
+    });
+  }
+
+  // 2a. Pair agreement over time — one line chart, ink-coloured (never a
+  // party colour — it represents a pair, not either party on its own).
+  function renderPairAgreementChart(dataset, issues, partyA, partyB) {
+    var partyById = {};
+    dataset.parties.forEach(function (p) { partyById[p.id] = p; });
+    var pa = partyById[partyA], pb = partyById[partyB];
+    var heading = '<h2 class="topic-heading">How often did ' + esc(pa.short) + ' and ' + esc(pb.short) + ' vote the same way?</h2>';
+
+    var entries = collectDedupedSeriesEntries(issues);
+    var byYear = pairAgreementByYear(entries, partyA, partyB);
+    if (byYear.length === 0) {
+      return heading + '<p class="pair-chart-empty-note">No parliamentary divisions link both parties on the issues currently shown.</p>';
+    }
+
+    var minYear = parseInt(byYear[0].year, 10);
+    var maxYear = parseInt(byYear[byYear.length - 1].year, 10);
+    var byYearMap = {};
+    byYear.forEach(function (y) { byYearMap[y.year] = y; });
+
+    var W = 640, H = 220;
+    var plotTop = 26, plotBottom = H - 28, plotLeft = 34, plotRight = W - 14;
+    var plotWidth = plotRight - plotLeft, plotHeight = plotBottom - plotTop;
+
+    function xForYear(year) {
+      return maxYear === minYear ? plotLeft + plotWidth / 2 : plotLeft + ((year - minYear) / (maxYear - minYear)) * plotWidth;
+    }
+    function yForPct(pct) { return plotBottom - (pct / 100) * plotHeight; }
+
+    var gridSvg = [0, 25, 50, 75, 100].map(function (g) {
+      var y = yForPct(g);
+      return '<line x1="' + plotLeft + '" y1="' + y.toFixed(1) + '" x2="' + plotRight + '" y2="' + y.toFixed(1) + '" class="pair-chart-gridline"></line>' +
+        '<text x="' + (plotLeft - 6) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" class="pair-chart-axis-label tnum">' + g + '%</text>';
+    }).join('');
+
+    var axisSvg = computeSparseYearTicks(minYear, maxYear).map(function (year) {
+      return '<text x="' + xForYear(year).toFixed(1) + '" y="' + (plotBottom + 16) + '" text-anchor="middle" class="pair-chart-axis-label tnum">' + year + '</text>';
+    }).join('');
+
+    var numYears = maxYear - minYear + 1;
+    var colWidth = plotWidth / numYears;
+    var hitSvg = '';
+    for (var year = minYear; year <= maxYear; year++) {
+      var colX = plotLeft + (year - minYear) * colWidth;
+      var yInfo = byYearMap[String(year)];
+      var tip = yInfo
+        ? (year + ' · agreed in ' + yInfo.agree + ' of ' + yInfo.n + ' division' + (yInfo.n === 1 ? '' : 's') + ' (' + yInfo.pct + '%)')
+        : (year + ' · no qualifying divisions');
+      hitSvg += '<rect x="' + colX.toFixed(1) + '" y="' + plotTop + '" width="' + Math.max(colWidth, 1).toFixed(1) + '" height="' + plotHeight +
+        '" class="pair-chart-hit" data-tooltip="' + esc(tip) + '"></rect>';
+    }
+
+    var drawn = byYear.filter(function (y) { return y.qualifies; });
+    var pointsByYear = {};
+    drawn.forEach(function (y) {
+      pointsByYear[y.year] = { x: xForYear(parseInt(y.year, 10)), y: yForPct(y.pct), pct: y.pct, n: y.n, agree: y.agree, hollow: y.hollow, year: y.year };
+    });
+
+    function pathForSegment(seg) {
+      return '<path d="' + seg.map(function (p, i) { return (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1); }).join(' ') +
+        '" class="pair-chart-line"></path>';
+    }
+    var lineSvg = '';
+    var segment = [];
+    drawn.forEach(function (y) {
+      var yearNum = parseInt(y.year, 10);
+      if (segment.length && yearNum - parseInt(segment[segment.length - 1].year, 10) !== 1) {
+        if (segment.length > 1) lineSvg += pathForSegment(segment);
+        segment = [];
+      }
+      segment.push(pointsByYear[y.year]);
+    });
+    if (segment.length > 1) lineSvg += pathForSegment(segment);
+
+    var pointsSvg = drawn.map(function (y) {
+      var p = pointsByYear[y.year];
+      var cls = 'pair-chart-point' + (y.hollow ? ' pair-chart-point-hollow' : '');
+      var titleText = y.year + ' · agreed in ' + y.agree + ' of ' + y.n + ' division' + (y.n === 1 ? '' : 's') + ' (' + y.pct + '%)';
+      return '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="4" class="' + cls + '"><title>' + esc(titleText) + '</title></circle>';
+    }).join('');
+
+    // Direct-label only first, last, min and max drawn points (deduped —
+    // a point can hold more than one of those roles).
+    var labelYears = {};
+    if (drawn.length) {
+      labelYears[drawn[0].year] = true;
+      labelYears[drawn[drawn.length - 1].year] = true;
+      var minY = drawn[0], maxY = drawn[0];
+      drawn.forEach(function (y) { if (y.pct < minY.pct) minY = y; if (y.pct > maxY.pct) maxY = y; });
+      labelYears[minY.year] = true;
+      labelYears[maxY.year] = true;
+    }
+    var labelsSvg = Object.keys(labelYears).map(function (year) {
+      var p = pointsByYear[year];
+      var above = (p.y - 12) >= plotTop + 8;
+      var ly = above ? p.y - 10 : p.y + 16;
+      return '<text x="' + p.x.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" class="pair-chart-point-label tnum">' + p.pct + '%</text>';
+    }).join('');
+
+    var svgHtml =
+      '<svg class="pair-chart-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">' +
+        gridSvg + axisSvg + lineSvg + pointsSvg + labelsSvg + hitSvg +
+      '</svg>';
+    var tooltipHtml = '<div class="pair-chart-tooltip" id="pairChartTooltip" hidden></div>';
+
+    var finePrint =
+      '<p class="pair-chart-fine-print">Yearly share of divisions (linked to the issues shown) where both parties’ ' +
+      'members voted the same way. Years with fewer than 3 such divisions are left blank; hollow points have fewer than 6.</p>';
+
+    var tableRows = [];
+    for (var yy = minYear; yy <= maxYear; yy++) {
+      var info = byYearMap[String(yy)];
+      tableRows.push(
+        '<tr><td class="tnum">' + yy + '</td><td class="tnum">' + (info ? info.agree : '—') + '</td><td class="tnum">' +
+          (info ? info.n : 0) + '</td><td class="tnum">' + (info && info.pct !== null ? info.pct + '%' : '—') + '</td></tr>'
+      );
+    }
+    var tableHtml =
+      '<details class="voting-divisions">' +
+        '<summary>Year-by-year figures</summary>' +
+        '<div class="table-scroll"><table class="divisions-table">' +
+          '<thead><tr><th scope="col">Year</th><th scope="col">Agreed</th><th scope="col">Divisions</th><th scope="col">%</th></tr></thead>' +
+          '<tbody>' + tableRows.join('') + '</tbody>' +
+        '</table></div>' +
+      '</details>';
+
+    return (
+      heading +
+      '<div class="pair-chart-scroll"><div class="pair-chart-wrap">' + svgHtml + tooltipHtml + '</div></div>' +
+      finePrint +
+      tableHtml
+    );
+  }
+
+  // Tooltip is a fixed-position div clamped to the viewport, distinct from
+  // the <title> fallback on each point (which covers keyboard/touch via the
+  // details table twin instead — the chart itself is decorative/aria-hidden).
+  function wirePairChartHover(container) {
+    var tooltip = container.querySelector('#pairChartTooltip');
+    if (!tooltip) return;
+    Array.prototype.forEach.call(container.querySelectorAll('.pair-chart-hit'), function (rect) {
+      function show(evt) {
+        tooltip.textContent = rect.getAttribute('data-tooltip');
+        tooltip.hidden = false;
+        var tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+        var x = evt.clientX + 14;
+        var y = evt.clientY - th - 10;
+        if (x + tw > window.innerWidth - 8) x = window.innerWidth - tw - 8;
+        if (x < 8) x = 8;
+        if (y < 8) y = evt.clientY + 14;
+        if (y + th > window.innerHeight - 8) y = window.innerHeight - th - 8;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      }
+      function hide() { tooltip.hidden = true; }
+      rect.addEventListener('mouseenter', show);
+      rect.addEventListener('mousemove', show);
+      rect.addEventListener('mouseleave', hide);
+    });
+  }
+
+  // 2b. Mechanically detected position shifts, grouped by party. Strictly
+  // neutral wording — the sentence template is fixed, no commentary.
+  function renderPositionShifts(dataset, issues) {
+    var heading = '<h2 class="topic-heading">Where a party’s votes shifted over time</h2>';
+    var shifts = detectPositionShifts(issues);
+    if (shifts.length === 0) {
+      return heading + '<p class="shifts-empty-note">No mechanical shifts detected among the issues currently shown.</p>';
+    }
+
+    var issueById = {};
+    issues.forEach(function (i) { issueById[i.id] = i; });
+    var partyById = {};
+    dataset.parties.forEach(function (p) { partyById[p.id] = p; });
+
+    var byParty = {};
+    PARTY_ORDER.forEach(function (id) { byParty[id] = []; });
+    shifts.forEach(function (s) { if (byParty[s.party]) byParty[s.party].push(s); });
+
+    var groupsHtml = PARTY_ORDER.map(function (partyId) {
+      var list = byParty[partyId];
+      if (!list.length) return '';
+      var party = partyById[partyId];
+      var itemsHtml = list.map(function (s) {
+        var linkButtons = s.issueIds.map(function (issueId) {
+          var issue = issueById[issueId];
+          if (!issue) return '';
+          return '<button type="button" class="shift-issue-btn" data-issue="' + esc(issueId) + '">View issue: ' + esc(issue.label) + ' →</button>';
+        }).join('');
+        var sentence = esc(party.short) + ' on “' + esc(s.policyName) + '”: mostly ' + s.firstDir +
+          ' the proposition in early divisions (' + esc(s.firstYear) + ') → mostly ' + s.lastDir +
+          ' in recent ones (' + esc(s.lastYear) + '), across ' + s.n + ' qualifying divisions.';
+        return (
+          '<li class="shift-card" style="--party-color:var(--party-' + esc(partyId) + ')">' +
+            '<p class="shift-sentence">' + sentence + '</p>' +
+            (linkButtons ? '<div class="shift-links">' + linkButtons + '</div>' : '') +
+          '</li>'
+        );
+      }).join('');
+      return (
+        '<div class="shift-party-group">' +
+          '<h3 class="shift-party-heading" style="--party-color:var(--party-' + esc(partyId) + ')">' + esc(party.short) + '</h3>' +
+          '<ul class="shift-card-list">' + itemsHtml + '</ul>' +
+        '</div>'
+      );
+    }).join('');
+
+    var finePrint =
+      '<p class="shifts-fine-print">A shift is flagged when a party’s members voted mostly one way in the earliest ' +
+      'divisions of a policy and mostly the other way in the most recent ones (at least six divisions where at ' +
+      'least two of the party’s members voted, with two consecutive same-direction divisions at each end). This ' +
+      'is a mechanical rule, not a judgement — open the issue to see the full trail.</p>';
+
+    return heading + '<div class="shifts-list">' + groupsHtml + '</div>' + finePrint;
+  }
+
+  function wireShiftIssueButtons(container, dataset) {
+    Array.prototype.forEach.call(container.querySelectorAll('.shift-issue-btn'), function (btn) {
+      btn.addEventListener('click', function () {
+        openDrawer(dataset, btn.getAttribute('data-issue'), btn);
+      });
+    });
+  }
+
+  function renderOverTime(dataset) {
+    var el = document.getElementById('viewTime');
+    if (!dataset) {
+      setHtml(el, '<div class="no-data-note"><p><strong>No data.</strong> Run the ingestion pipeline to generate <code>data/dataset.json</code>, then rebuild with <code>node scripts/build.mjs</code>.</p></div>');
+      return;
+    }
+    var parties = orderedParties(dataset);
+    var issues = state.filteredIssuesFlat;
+    var votingIssueCount = issues.filter(function (i) { return !!i.voting; }).length;
+    var pickerHtml = renderOverTimePartyPicker(dataset, parties);
+
+    if (votingIssueCount === 0) {
+      setHtml(el, pickerHtml + renderEmptyState());
+      wireOverTimePicker(el, dataset);
+      wireEmptyStateReset(el);
+      return;
+    }
+
+    var partyA = state.overTimeParties[0], partyB = state.overTimeParties[1];
+    var chartHtml = renderPairAgreementChart(dataset, issues, partyA, partyB);
+    var shiftsHtml = renderPositionShifts(dataset, issues);
+    var votingAsOf = state.flatIssues.filter(function (i) { return !!i.voting; }).map(function (i) { return i.voting.as_of; })[0];
+
+    setHtml(el,
+      pickerHtml +
+      '<section class="pair-agreement-section">' + chartHtml + '</section>' +
+      '<section class="shifts-section">' + shiftsHtml + '</section>' +
+      votingAttributionHtml(votingAsOf)
+    );
+
+    wireOverTimePicker(el, dataset);
+    wirePairChartHover(el);
+    wireShiftIssueButtons(el, dataset);
+  }
+
+  /* ------------------------------------------------------------------------
+     14. Top-level render orchestration + init
      ------------------------------------------------------------------------ */
 
   function renderActiveView() {
     if (state.view === 'matrix') renderMatrix(state.dataset);
     else if (state.view === 'overlap') renderOverlap(state.dataset);
-    else renderVotes(state.dataset);
+    else if (state.view === 'votes') renderVotes(state.dataset);
+    else renderOverTime(state.dataset);
   }
 
   function renderAll() {
@@ -1363,6 +1962,8 @@
     state.vennParties = dataset ? defaultVennParties(dataset) : [];
     state.vennRegionKey = null;
     state.vennHint = '';
+    state.overTimeParties = dataset ? defaultOverTimeParties(dataset) : [];
+    state.overTimeHint = '';
     state.drawer = { open: false, issueId: null, triggerEl: null };
     recomputeFilteredIssues();
 

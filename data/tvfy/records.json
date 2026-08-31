@@ -2,8 +2,8 @@
   "meta": {
     "source": "They Vote For You — theyvoteforyou.org.au (OpenAustralia Foundation)",
     "api": "https://theyvoteforyou.org.au/api/v1",
-    "fetched_at": "2026-08-31T05:50:17.110Z",
-    "method": "Party figures aggregate TVFY per-member policy agreement scores across current federal members only; members with category 'not_enough' or no relevant votes are excluded from voted counts."
+    "fetched_at": "2026-08-31T06:55:39.545Z",
+    "method": "Party figures aggregate TVFY per-member policy agreement scores across current federal members only; members with category 'not_enough' or no relevant votes are excluded from voted counts. A member is further excluded from a policy's party-aggregate figures (and counted in excluded_switchers instead) if any of their votes on that policy's divisions were cast under a party that classifies to a different bucket than their current one — see data/tvfy/README.md."
   },
   "policies": {
     "8": {
@@ -23,12 +23,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 64,
-          "for": 44,
-          "against": 10,
+          "voted": 62,
+          "for": 43,
+          "against": 9,
           "mixed": 10,
           "median_agreement": 67,
-          "mean_agreement": 65
+          "mean_agreement": 65.2,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -37,7 +38,8 @@
           "against": 30,
           "mixed": 3,
           "median_agreement": 5.4,
-          "mean_agreement": 12.7
+          "mean_agreement": 12.7,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -46,18 +48,190 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.6
+          "mean_agreement": 99.6,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
-          "median_agreement": 24,
-          "mean_agreement": 25.7
+          "median_agreement": 26.5,
+          "mean_agreement": 26.5,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2802,
+          "vote": "aye"
+        },
+        {
+          "id": 1844,
+          "vote": "aye"
+        },
+        {
+          "id": 2091,
+          "vote": "aye"
+        },
+        {
+          "id": 2633,
+          "vote": "aye"
+        },
+        {
+          "id": 2358,
+          "vote": "aye"
+        },
+        {
+          "id": 2377,
+          "vote": "aye"
+        },
+        {
+          "id": 194,
+          "vote": "aye"
+        },
+        {
+          "id": 3332,
+          "vote": "aye"
+        },
+        {
+          "id": 3364,
+          "vote": "aye"
+        },
+        {
+          "id": 3422,
+          "vote": "no"
+        },
+        {
+          "id": 3423,
+          "vote": "aye"
+        },
+        {
+          "id": 3424,
+          "vote": "no"
+        },
+        {
+          "id": 3549,
+          "vote": "no"
+        },
+        {
+          "id": 3611,
+          "vote": "aye"
+        },
+        {
+          "id": 3659,
+          "vote": "no"
+        },
+        {
+          "id": 3653,
+          "vote": "aye"
+        },
+        {
+          "id": 3654,
+          "vote": "no"
+        },
+        {
+          "id": 3655,
+          "vote": "no"
+        },
+        {
+          "id": 3656,
+          "vote": "no"
+        },
+        {
+          "id": 3664,
+          "vote": "no"
+        },
+        {
+          "id": 3663,
+          "vote": "no"
+        },
+        {
+          "id": 3665,
+          "vote": "no"
+        },
+        {
+          "id": 4391,
+          "vote": "no"
+        },
+        {
+          "id": 4390,
+          "vote": "no"
+        },
+        {
+          "id": 4737,
+          "vote": "no"
+        },
+        {
+          "id": 4559,
+          "vote": "aye"
+        },
+        {
+          "id": 1856,
+          "vote": "aye"
+        },
+        {
+          "id": 1792,
+          "vote": "aye"
+        },
+        {
+          "id": 1272,
+          "vote": "aye"
+        },
+        {
+          "id": 1733,
+          "vote": "aye"
+        },
+        {
+          "id": 47,
+          "vote": "aye"
+        },
+        {
+          "id": 3539,
+          "vote": "aye"
+        },
+        {
+          "id": 3727,
+          "vote": "no"
+        },
+        {
+          "id": 5318,
+          "vote": "no"
+        },
+        {
+          "id": 5526,
+          "vote": "aye"
+        },
+        {
+          "id": 5515,
+          "vote": "aye"
+        },
+        {
+          "id": 6439,
+          "vote": "aye"
+        },
+        {
+          "id": 7949,
+          "vote": "no"
+        },
+        {
+          "id": 7975,
+          "vote": "aye"
+        },
+        {
+          "id": 8577,
+          "vote": "no"
+        },
+        {
+          "id": 8932,
+          "vote": "aye"
+        },
+        {
+          "id": 9112,
+          "vote": "aye"
+        }
+      ]
     },
     "16": {
       "id": 16,
@@ -81,7 +255,8 @@
           "against": 7,
           "mixed": 12,
           "median_agreement": 67,
-          "mean_agreement": 61.6
+          "mean_agreement": 61.6,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -90,7 +265,8 @@
           "against": 0,
           "mixed": 5,
           "median_agreement": 97.5,
-          "mean_agreement": 86.9
+          "mean_agreement": 86.9,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -99,18 +275,162 @@
           "against": 6,
           "mixed": 0,
           "median_agreement": 0.1,
-          "mean_agreement": 0.9
+          "mean_agreement": 0.9,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 2,
           "against": 0,
-          "mixed": 1,
-          "median_agreement": 92,
-          "mean_agreement": 80.7
+          "mixed": 0,
+          "median_agreement": 94,
+          "mean_agreement": 94,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2534,
+          "vote": "aye"
+        },
+        {
+          "id": 2536,
+          "vote": "aye"
+        },
+        {
+          "id": 2057,
+          "vote": "no"
+        },
+        {
+          "id": 2615,
+          "vote": "aye"
+        },
+        {
+          "id": 2635,
+          "vote": "no"
+        },
+        {
+          "id": 2636,
+          "vote": "aye"
+        },
+        {
+          "id": 2637,
+          "vote": "aye"
+        },
+        {
+          "id": 2359,
+          "vote": "aye"
+        },
+        {
+          "id": 2375,
+          "vote": "aye"
+        },
+        {
+          "id": 2376,
+          "vote": "no"
+        },
+        {
+          "id": 3089,
+          "vote": "no"
+        },
+        {
+          "id": 3090,
+          "vote": "aye"
+        },
+        {
+          "id": 241,
+          "vote": "aye"
+        },
+        {
+          "id": 119,
+          "vote": "aye"
+        },
+        {
+          "id": 2703,
+          "vote": "aye"
+        },
+        {
+          "id": 2918,
+          "vote": "aye"
+        },
+        {
+          "id": 2921,
+          "vote": "no"
+        },
+        {
+          "id": 2922,
+          "vote": "aye"
+        },
+        {
+          "id": 3549,
+          "vote": "aye"
+        },
+        {
+          "id": 3654,
+          "vote": "aye"
+        },
+        {
+          "id": 3664,
+          "vote": "aye"
+        },
+        {
+          "id": 3665,
+          "vote": "aye"
+        },
+        {
+          "id": 3659,
+          "vote": "aye"
+        },
+        {
+          "id": 4061,
+          "vote": "no"
+        },
+        {
+          "id": 3868,
+          "vote": "aye"
+        },
+        {
+          "id": 3858,
+          "vote": "aye"
+        },
+        {
+          "id": 3864,
+          "vote": "no"
+        },
+        {
+          "id": 4283,
+          "vote": "no"
+        },
+        {
+          "id": 4657,
+          "vote": "no"
+        },
+        {
+          "id": 4736,
+          "vote": "no"
+        },
+        {
+          "id": 4774,
+          "vote": "no"
+        },
+        {
+          "id": 5143,
+          "vote": "no"
+        },
+        {
+          "id": 6498,
+          "vote": "no"
+        },
+        {
+          "id": 7941,
+          "vote": "aye"
+        },
+        {
+          "id": 7936,
+          "vote": "aye"
+        }
+      ]
     },
     "20": {
       "id": 20,
@@ -129,12 +449,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 90,
-          "for": 84,
+          "voted": 89,
+          "for": 83,
           "against": 0,
           "mixed": 6,
           "median_agreement": 94,
-          "mean_agreement": 89.3
+          "mean_agreement": 89.2,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -143,7 +464,8 @@
           "against": 54,
           "mixed": 0,
           "median_agreement": 0.9,
-          "mean_agreement": 3.4
+          "mean_agreement": 3.4,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -152,18 +474,274 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.3
+          "mean_agreement": 99.3,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
-          "median_agreement": 9.5,
-          "mean_agreement": 10.9
+          "median_agreement": 7.8,
+          "mean_agreement": 7.8,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2511,
+          "vote": "aye"
+        },
+        {
+          "id": 2821,
+          "vote": "aye"
+        },
+        {
+          "id": 1189,
+          "vote": "aye"
+        },
+        {
+          "id": 1255,
+          "vote": "aye"
+        },
+        {
+          "id": 1281,
+          "vote": "aye"
+        },
+        {
+          "id": 1365,
+          "vote": "aye"
+        },
+        {
+          "id": 1445,
+          "vote": "aye"
+        },
+        {
+          "id": 653,
+          "vote": "no"
+        },
+        {
+          "id": 1711,
+          "vote": "aye"
+        },
+        {
+          "id": 1863,
+          "vote": "aye"
+        },
+        {
+          "id": 2212,
+          "vote": "aye"
+        },
+        {
+          "id": 2606,
+          "vote": "aye"
+        },
+        {
+          "id": 2341,
+          "vote": "aye"
+        },
+        {
+          "id": 2342,
+          "vote": "aye"
+        },
+        {
+          "id": 265,
+          "vote": "no"
+        },
+        {
+          "id": 60,
+          "vote": "no"
+        },
+        {
+          "id": 3081,
+          "vote": "no"
+        },
+        {
+          "id": 3194,
+          "vote": "no"
+        },
+        {
+          "id": 3239,
+          "vote": "no"
+        },
+        {
+          "id": 3314,
+          "vote": "no"
+        },
+        {
+          "id": 3325,
+          "vote": "aye"
+        },
+        {
+          "id": 3358,
+          "vote": "no"
+        },
+        {
+          "id": 3402,
+          "vote": "aye"
+        },
+        {
+          "id": 3403,
+          "vote": "no"
+        },
+        {
+          "id": 4150,
+          "vote": "aye"
+        },
+        {
+          "id": 3838,
+          "vote": "no"
+        },
+        {
+          "id": 3899,
+          "vote": "no"
+        },
+        {
+          "id": 4243,
+          "vote": "aye"
+        },
+        {
+          "id": 2721,
+          "vote": "aye"
+        },
+        {
+          "id": 4304,
+          "vote": "aye"
+        },
+        {
+          "id": 4323,
+          "vote": "no"
+        },
+        {
+          "id": 4319,
+          "vote": "no"
+        },
+        {
+          "id": 4316,
+          "vote": "aye"
+        },
+        {
+          "id": 4320,
+          "vote": "no"
+        },
+        {
+          "id": 2250,
+          "vote": "aye"
+        },
+        {
+          "id": 4908,
+          "vote": "no"
+        },
+        {
+          "id": 5109,
+          "vote": "aye"
+        },
+        {
+          "id": 5110,
+          "vote": "aye"
+        },
+        {
+          "id": 5408,
+          "vote": "aye"
+        },
+        {
+          "id": 5528,
+          "vote": "aye"
+        },
+        {
+          "id": 3909,
+          "vote": "aye"
+        },
+        {
+          "id": 5735,
+          "vote": "aye"
+        },
+        {
+          "id": 5837,
+          "vote": "aye"
+        },
+        {
+          "id": 5847,
+          "vote": "aye"
+        },
+        {
+          "id": 5928,
+          "vote": "aye"
+        },
+        {
+          "id": 5939,
+          "vote": "aye"
+        },
+        {
+          "id": 6267,
+          "vote": "aye"
+        },
+        {
+          "id": 6413,
+          "vote": "aye"
+        },
+        {
+          "id": 7283,
+          "vote": "aye"
+        },
+        {
+          "id": 7211,
+          "vote": "no"
+        },
+        {
+          "id": 7441,
+          "vote": "aye"
+        },
+        {
+          "id": 7210,
+          "vote": "no"
+        },
+        {
+          "id": 7362,
+          "vote": "aye"
+        },
+        {
+          "id": 7445,
+          "vote": "no"
+        },
+        {
+          "id": 6777,
+          "vote": "aye"
+        },
+        {
+          "id": 7746,
+          "vote": "aye"
+        },
+        {
+          "id": 5824,
+          "vote": "aye"
+        },
+        {
+          "id": 1181,
+          "vote": "aye"
+        },
+        {
+          "id": 9318,
+          "vote": "aye"
+        },
+        {
+          "id": 9441,
+          "vote": "aye"
+        },
+        {
+          "id": 9439,
+          "vote": "aye"
+        },
+        {
+          "id": 9438,
+          "vote": "aye"
+        },
+        {
+          "id": 9436,
+          "vote": "aye"
+        }
+      ]
     },
     "26": {
       "id": 26,
@@ -187,7 +765,8 @@
           "against": 0,
           "mixed": 2,
           "median_agreement": 100,
-          "mean_agreement": 92.4
+          "mean_agreement": 92.4,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -196,7 +775,8 @@
           "against": 11,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -205,18 +785,94 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 98.3
+          "mean_agreement": 98.3,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
+          "voted": 0,
           "for": 0,
-          "against": 1,
+          "against": 0,
           "mixed": 0,
-          "median_agreement": 38,
-          "mean_agreement": 38
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2815,
+          "vote": "aye"
+        },
+        {
+          "id": 1215,
+          "vote": "aye"
+        },
+        {
+          "id": 627,
+          "vote": "aye"
+        },
+        {
+          "id": 628,
+          "vote": "aye"
+        },
+        {
+          "id": 629,
+          "vote": "aye"
+        },
+        {
+          "id": 1709,
+          "vote": "aye"
+        },
+        {
+          "id": 1816,
+          "vote": "aye"
+        },
+        {
+          "id": 962,
+          "vote": "no"
+        },
+        {
+          "id": 963,
+          "vote": "aye"
+        },
+        {
+          "id": 964,
+          "vote": "aye"
+        },
+        {
+          "id": 965,
+          "vote": "aye"
+        },
+        {
+          "id": 2238,
+          "vote": "no"
+        },
+        {
+          "id": 2251,
+          "vote": "aye"
+        },
+        {
+          "id": 2253,
+          "vote": "aye"
+        },
+        {
+          "id": 1104,
+          "vote": "aye"
+        },
+        {
+          "id": 1105,
+          "vote": "no"
+        },
+        {
+          "id": 2986,
+          "vote": "aye"
+        },
+        {
+          "id": 2987,
+          "vote": "aye"
+        }
+      ]
     },
     "27": {
       "id": 27,
@@ -240,7 +896,8 @@
           "against": 27,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.9
+          "mean_agreement": 1.9,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -249,7 +906,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -258,18 +916,34 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": null,
-          "mean_agreement": null
+          "mean_agreement": null,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
-          "for": 1,
+          "voted": 0,
+          "for": 0,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 100,
-          "mean_agreement": 100
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 3346,
+          "vote": "aye"
+        },
+        {
+          "id": 3348,
+          "vote": "aye"
+        },
+        {
+          "id": 3352,
+          "vote": "aye"
+        }
+      ]
     },
     "30": {
       "id": 30,
@@ -293,7 +967,8 @@
           "against": 5,
           "mixed": 8,
           "median_agreement": 50,
-          "mean_agreement": 45.1
+          "mean_agreement": 45.1,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -302,7 +977,8 @@
           "against": 17,
           "mixed": 0,
           "median_agreement": 3.1,
-          "mean_agreement": 3
+          "mean_agreement": 3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -311,7 +987,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 98.8
+          "mean_agreement": 98.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -320,9 +997,56 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2753,
+          "vote": "aye"
+        },
+        {
+          "id": 2754,
+          "vote": "aye"
+        },
+        {
+          "id": 2843,
+          "vote": "aye"
+        },
+        {
+          "id": 20,
+          "vote": "aye"
+        },
+        {
+          "id": 4242,
+          "vote": "aye"
+        },
+        {
+          "id": 4907,
+          "vote": "aye"
+        },
+        {
+          "id": 5139,
+          "vote": "aye"
+        },
+        {
+          "id": 6236,
+          "vote": "aye"
+        },
+        {
+          "id": 6367,
+          "vote": "aye"
+        },
+        {
+          "id": 6639,
+          "vote": "aye"
+        },
+        {
+          "id": 9344,
+          "vote": "no"
+        }
+      ]
     },
     "34": {
       "id": 34,
@@ -341,12 +1065,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 72,
+          "voted": 70,
           "for": 4,
-          "against": 59,
-          "mixed": 9,
+          "against": 58,
+          "mixed": 8,
           "median_agreement": 15,
-          "mean_agreement": 21.4
+          "mean_agreement": 21.2,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -355,7 +1080,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 98,
-          "mean_agreement": 94.7
+          "mean_agreement": 94.7,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -364,18 +1090,206 @@
           "against": 8,
           "mixed": 0,
           "median_agreement": 0.1,
-          "mean_agreement": 0.3
+          "mean_agreement": 0.3,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
-          "for": 3,
+          "voted": 2,
+          "for": 2,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 86,
-          "mean_agreement": 84.3
+          "median_agreement": 80,
+          "mean_agreement": 80,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2895,
+          "vote": "no"
+        },
+        {
+          "id": 3160,
+          "vote": "aye"
+        },
+        {
+          "id": 3237,
+          "vote": "no"
+        },
+        {
+          "id": 3238,
+          "vote": "aye"
+        },
+        {
+          "id": 3242,
+          "vote": "aye"
+        },
+        {
+          "id": 3258,
+          "vote": "aye"
+        },
+        {
+          "id": 3259,
+          "vote": "no"
+        },
+        {
+          "id": 3260,
+          "vote": "aye"
+        },
+        {
+          "id": 3261,
+          "vote": "aye"
+        },
+        {
+          "id": 3415,
+          "vote": "aye"
+        },
+        {
+          "id": 3401,
+          "vote": "aye"
+        },
+        {
+          "id": 3399,
+          "vote": "aye"
+        },
+        {
+          "id": 3395,
+          "vote": "aye"
+        },
+        {
+          "id": 3418,
+          "vote": "aye"
+        },
+        {
+          "id": 3410,
+          "vote": "aye"
+        },
+        {
+          "id": 3582,
+          "vote": "aye"
+        },
+        {
+          "id": 3554,
+          "vote": "aye"
+        },
+        {
+          "id": 4069,
+          "vote": "aye"
+        },
+        {
+          "id": 4063,
+          "vote": "aye"
+        },
+        {
+          "id": 4590,
+          "vote": "aye"
+        },
+        {
+          "id": 4587,
+          "vote": "aye"
+        },
+        {
+          "id": 4586,
+          "vote": "no"
+        },
+        {
+          "id": 4613,
+          "vote": "aye"
+        },
+        {
+          "id": 4615,
+          "vote": "aye"
+        },
+        {
+          "id": 4612,
+          "vote": "no"
+        },
+        {
+          "id": 4642,
+          "vote": "aye"
+        },
+        {
+          "id": 4752,
+          "vote": "no"
+        },
+        {
+          "id": 4957,
+          "vote": "aye"
+        },
+        {
+          "id": 5583,
+          "vote": "aye"
+        },
+        {
+          "id": 5552,
+          "vote": "aye"
+        },
+        {
+          "id": 5582,
+          "vote": "aye"
+        },
+        {
+          "id": 5504,
+          "vote": "no"
+        },
+        {
+          "id": 4499,
+          "vote": "no"
+        },
+        {
+          "id": 6086,
+          "vote": "aye"
+        },
+        {
+          "id": 6085,
+          "vote": "no"
+        },
+        {
+          "id": 6291,
+          "vote": "no"
+        },
+        {
+          "id": 6232,
+          "vote": "no"
+        },
+        {
+          "id": 6568,
+          "vote": "no"
+        },
+        {
+          "id": 6684,
+          "vote": "aye"
+        },
+        {
+          "id": 6742,
+          "vote": "aye"
+        },
+        {
+          "id": 6741,
+          "vote": "aye"
+        },
+        {
+          "id": 6739,
+          "vote": "aye"
+        },
+        {
+          "id": 7068,
+          "vote": "no"
+        },
+        {
+          "id": 6878,
+          "vote": "no"
+        },
+        {
+          "id": 8214,
+          "vote": "no"
+        },
+        {
+          "id": 8216,
+          "vote": "no"
+        }
+      ]
     },
     "39": {
       "id": 39,
@@ -394,12 +1308,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 43,
-          "for": 20,
-          "against": 22,
+          "voted": 41,
+          "for": 19,
+          "against": 21,
           "mixed": 1,
           "median_agreement": 30,
-          "mean_agreement": 51.2
+          "mean_agreement": 51.2,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -408,7 +1323,8 @@
           "against": 22,
           "mixed": 0,
           "median_agreement": 8.3,
-          "mean_agreement": 10.1
+          "mean_agreement": 10.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -417,7 +1333,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.8
+          "mean_agreement": 99.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -426,9 +1343,76 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 10.7,
-          "mean_agreement": 10.7
+          "mean_agreement": 10.7,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2710,
+          "vote": "aye"
+        },
+        {
+          "id": 2712,
+          "vote": "aye"
+        },
+        {
+          "id": 3159,
+          "vote": "no"
+        },
+        {
+          "id": 3428,
+          "vote": "no"
+        },
+        {
+          "id": 2220,
+          "vote": "aye"
+        },
+        {
+          "id": 4285,
+          "vote": "aye"
+        },
+        {
+          "id": 4519,
+          "vote": "aye"
+        },
+        {
+          "id": 4660,
+          "vote": "aye"
+        },
+        {
+          "id": 5138,
+          "vote": "aye"
+        },
+        {
+          "id": 5177,
+          "vote": "aye"
+        },
+        {
+          "id": 5180,
+          "vote": "aye"
+        },
+        {
+          "id": 5674,
+          "vote": "aye"
+        },
+        {
+          "id": 5809,
+          "vote": "aye"
+        },
+        {
+          "id": 9050,
+          "vote": "aye"
+        },
+        {
+          "id": 9163,
+          "vote": "aye"
+        },
+        {
+          "id": 9480,
+          "vote": "aye"
+        }
+      ]
     },
     "90": {
       "id": 90,
@@ -447,12 +1431,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 89,
-          "for": 1,
+          "voted": 87,
+          "for": 0,
           "against": 84,
-          "mixed": 4,
+          "mixed": 3,
           "median_agreement": 0,
-          "mean_agreement": 8.4
+          "mean_agreement": 6.8,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -461,7 +1446,8 @@
           "against": 20,
           "mixed": 0,
           "median_agreement": 22,
-          "mean_agreement": 19.1
+          "mean_agreement": 19.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -470,7 +1456,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.8
+          "mean_agreement": 99.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -479,9 +1466,88 @@
           "against": 0,
           "mixed": 2,
           "median_agreement": 55.5,
-          "mean_agreement": 55.5
+          "mean_agreement": 55.5,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 19,
+          "vote": "aye"
+        },
+        {
+          "id": 3446,
+          "vote": "aye"
+        },
+        {
+          "id": 3447,
+          "vote": "no"
+        },
+        {
+          "id": 3445,
+          "vote": "aye"
+        },
+        {
+          "id": 3782,
+          "vote": "aye"
+        },
+        {
+          "id": 3783,
+          "vote": "no"
+        },
+        {
+          "id": 1264,
+          "vote": "aye"
+        },
+        {
+          "id": 5733,
+          "vote": "aye"
+        },
+        {
+          "id": 5758,
+          "vote": "aye"
+        },
+        {
+          "id": 5767,
+          "vote": "aye"
+        },
+        {
+          "id": 6702,
+          "vote": "aye"
+        },
+        {
+          "id": 7869,
+          "vote": "no"
+        },
+        {
+          "id": 8087,
+          "vote": "aye"
+        },
+        {
+          "id": 8149,
+          "vote": "aye"
+        },
+        {
+          "id": 8152,
+          "vote": "aye"
+        },
+        {
+          "id": 8934,
+          "vote": "aye"
+        },
+        {
+          "id": 9237,
+          "vote": "aye"
+        },
+        {
+          "id": 10213,
+          "vote": "aye"
+        },
+        {
+          "id": 10215,
+          "vote": "aye"
+        }
+      ]
     },
     "99": {
       "id": 99,
@@ -505,7 +1571,8 @@
           "against": 8,
           "mixed": 2,
           "median_agreement": 30,
-          "mean_agreement": 31.1
+          "mean_agreement": 31.1,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -514,7 +1581,8 @@
           "against": 10,
           "mixed": 0,
           "median_agreement": 3.8,
-          "mean_agreement": 3.3
+          "mean_agreement": 3.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -523,7 +1591,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -532,9 +1601,36 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 2.3,
-          "mean_agreement": 2.3
+          "mean_agreement": 2.3,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 10,
+          "vote": "aye"
+        },
+        {
+          "id": 1532,
+          "vote": "aye"
+        },
+        {
+          "id": 4670,
+          "vote": "aye"
+        },
+        {
+          "id": 2340,
+          "vote": "aye"
+        },
+        {
+          "id": 5532,
+          "vote": "aye"
+        },
+        {
+          "id": 6138,
+          "vote": "aye"
+        }
+      ]
     },
     "116": {
       "id": 116,
@@ -553,12 +1649,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 90,
-          "for": 90,
+          "voted": 88,
+          "for": 88,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 95.7
+          "mean_agreement": 95.6,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -567,7 +1664,8 @@
           "against": 52,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 4.8
+          "mean_agreement": 4.8,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -576,18 +1674,70 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 98.1
+          "mean_agreement": 98.1,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
-          "median_agreement": 23,
-          "mean_agreement": 23.3
+          "median_agreement": 26.5,
+          "mean_agreement": 26.5,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 3339,
+          "vote": "aye"
+        },
+        {
+          "id": 3897,
+          "vote": "aye"
+        },
+        {
+          "id": 5032,
+          "vote": "aye"
+        },
+        {
+          "id": 4913,
+          "vote": "aye"
+        },
+        {
+          "id": 5231,
+          "vote": "aye"
+        },
+        {
+          "id": 5447,
+          "vote": "aye"
+        },
+        {
+          "id": 6463,
+          "vote": "aye"
+        },
+        {
+          "id": 7952,
+          "vote": "aye"
+        },
+        {
+          "id": 8363,
+          "vote": "aye"
+        },
+        {
+          "id": 8368,
+          "vote": "aye"
+        },
+        {
+          "id": 8372,
+          "vote": "aye"
+        },
+        {
+          "id": 8373,
+          "vote": "aye"
+        }
+      ]
     },
     "141": {
       "id": 141,
@@ -606,12 +1756,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 62,
+          "voted": 61,
           "for": 9,
-          "against": 3,
+          "against": 2,
           "mixed": 50,
           "median_agreement": 50,
-          "mean_agreement": 52.1
+          "mean_agreement": 53,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -620,7 +1771,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 94,
-          "mean_agreement": 93.3
+          "mean_agreement": 93.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -629,7 +1781,8 @@
           "against": 7,
           "mixed": 0,
           "median_agreement": 0.3,
-          "mean_agreement": 0.5
+          "mean_agreement": 0.5,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -638,9 +1791,180 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 97,
-          "mean_agreement": 97
+          "mean_agreement": 97,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2250,
+          "vote": "no"
+        },
+        {
+          "id": 4501,
+          "vote": "aye"
+        },
+        {
+          "id": 1268,
+          "vote": "no"
+        },
+        {
+          "id": 3561,
+          "vote": "aye"
+        },
+        {
+          "id": 1710,
+          "vote": "no"
+        },
+        {
+          "id": 3704,
+          "vote": "no"
+        },
+        {
+          "id": 3608,
+          "vote": "no"
+        },
+        {
+          "id": 3972,
+          "vote": "no"
+        },
+        {
+          "id": 3748,
+          "vote": "no"
+        },
+        {
+          "id": 4150,
+          "vote": "no"
+        },
+        {
+          "id": 4636,
+          "vote": "no"
+        },
+        {
+          "id": 4793,
+          "vote": "no"
+        },
+        {
+          "id": 4914,
+          "vote": "no"
+        },
+        {
+          "id": 4899,
+          "vote": "no"
+        },
+        {
+          "id": 5299,
+          "vote": "aye"
+        },
+        {
+          "id": 5600,
+          "vote": "no"
+        },
+        {
+          "id": 5593,
+          "vote": "aye"
+        },
+        {
+          "id": 5547,
+          "vote": "no"
+        },
+        {
+          "id": 5534,
+          "vote": "aye"
+        },
+        {
+          "id": 3909,
+          "vote": "no"
+        },
+        {
+          "id": 5786,
+          "vote": "no"
+        },
+        {
+          "id": 5824,
+          "vote": "no"
+        },
+        {
+          "id": 5847,
+          "vote": "no"
+        },
+        {
+          "id": 5877,
+          "vote": "no"
+        },
+        {
+          "id": 5920,
+          "vote": "no"
+        },
+        {
+          "id": 5948,
+          "vote": "no"
+        },
+        {
+          "id": 5960,
+          "vote": "no"
+        },
+        {
+          "id": 6092,
+          "vote": "no"
+        },
+        {
+          "id": 6207,
+          "vote": "aye"
+        },
+        {
+          "id": 6698,
+          "vote": "aye"
+        },
+        {
+          "id": 6890,
+          "vote": "aye"
+        },
+        {
+          "id": 7074,
+          "vote": "aye"
+        },
+        {
+          "id": 7122,
+          "vote": "no"
+        },
+        {
+          "id": 7230,
+          "vote": "no"
+        },
+        {
+          "id": 7325,
+          "vote": "aye"
+        },
+        {
+          "id": 7523,
+          "vote": "no"
+        },
+        {
+          "id": 7442,
+          "vote": "no"
+        },
+        {
+          "id": 6961,
+          "vote": "no"
+        },
+        {
+          "id": 7983,
+          "vote": "no"
+        },
+        {
+          "id": 5152,
+          "vote": "no"
+        },
+        {
+          "id": 8974,
+          "vote": "no"
+        },
+        {
+          "id": 10047,
+          "vote": "no"
+        }
+      ]
     },
     "142": {
       "id": 142,
@@ -664,7 +1988,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 89,
-          "mean_agreement": 88.5
+          "mean_agreement": 88.5,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -673,7 +1998,8 @@
           "against": 0,
           "mixed": 2,
           "median_agreement": 99,
-          "mean_agreement": 84.6
+          "mean_agreement": 84.6,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -682,7 +2008,8 @@
           "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -691,9 +2018,28 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": null,
-          "mean_agreement": null
+          "mean_agreement": null,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 3968,
+          "vote": "aye"
+        },
+        {
+          "id": 3964,
+          "vote": "aye"
+        },
+        {
+          "id": 3889,
+          "vote": "no"
+        },
+        {
+          "id": 6160,
+          "vote": "aye"
+        }
+      ]
     },
     "148": {
       "id": 148,
@@ -717,7 +2063,8 @@
           "against": 48,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.5
+          "mean_agreement": 1.5,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -726,7 +2073,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.2
+          "mean_agreement": 99.2,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -735,18 +2083,46 @@
           "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
-          "for": 1,
+          "voted": 2,
+          "for": 0,
           "against": 2,
           "mixed": 0,
-          "median_agreement": 32,
-          "mean_agreement": 49.7
+          "median_agreement": 24.5,
+          "mean_agreement": 24.5,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 4664,
+          "vote": "no"
+        },
+        {
+          "id": 4625,
+          "vote": "no"
+        },
+        {
+          "id": 3545,
+          "vote": "no"
+        },
+        {
+          "id": 4683,
+          "vote": "no"
+        },
+        {
+          "id": 4972,
+          "vote": "no"
+        },
+        {
+          "id": 5026,
+          "vote": "no"
+        }
+      ]
     },
     "161": {
       "id": 161,
@@ -770,7 +2146,8 @@
           "against": 0,
           "mixed": 5,
           "median_agreement": 67,
-          "mean_agreement": 64.4
+          "mean_agreement": 64.4,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -779,7 +2156,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 97.5,
-          "mean_agreement": 97.5
+          "mean_agreement": 97.5,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -788,7 +2166,8 @@
           "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.1
+          "mean_agreement": 1.1,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -797,9 +2176,28 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 97.5,
-          "mean_agreement": 97.5
+          "mean_agreement": 97.5,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 4637,
+          "vote": "no"
+        },
+        {
+          "id": 4670,
+          "vote": "no"
+        },
+        {
+          "id": 9683,
+          "vote": "aye"
+        },
+        {
+          "id": 9654,
+          "vote": "aye"
+        }
+      ]
     },
     "174": {
       "id": 174,
@@ -823,7 +2221,8 @@
           "against": 33,
           "mixed": 1,
           "median_agreement": 0,
-          "mean_agreement": 4.5
+          "mean_agreement": 4.5,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -832,7 +2231,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.9
+          "mean_agreement": 99.9,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -841,18 +2241,58 @@
           "against": 3,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0.2
+          "mean_agreement": 0.2,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
-          "for": 1,
+          "voted": 0,
+          "for": 0,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 98,
-          "mean_agreement": 98
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 2374,
+          "vote": "aye"
+        },
+        {
+          "id": 775,
+          "vote": "aye"
+        },
+        {
+          "id": 2640,
+          "vote": "aye"
+        },
+        {
+          "id": 239,
+          "vote": "aye"
+        },
+        {
+          "id": 3549,
+          "vote": "aye"
+        },
+        {
+          "id": 3665,
+          "vote": "aye"
+        },
+        {
+          "id": 3664,
+          "vote": "aye"
+        },
+        {
+          "id": 3654,
+          "vote": "aye"
+        },
+        {
+          "id": 4657,
+          "vote": "no"
+        }
+      ]
     },
     "178": {
       "id": 178,
@@ -871,12 +2311,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 26,
-          "for": 9,
+          "voted": 25,
+          "for": 8,
           "against": 15,
           "mixed": 2,
           "median_agreement": 0,
-          "mean_agreement": 30.3
+          "mean_agreement": 27.5,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -885,7 +2326,8 @@
           "against": 11,
           "mixed": 0,
           "median_agreement": 5.9,
-          "mean_agreement": 5.6
+          "mean_agreement": 5.6,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -894,7 +2336,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -903,9 +2346,36 @@
           "against": 0,
           "mixed": 2,
           "median_agreement": 50,
-          "mean_agreement": 50
+          "mean_agreement": 50,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5128,
+          "vote": "aye"
+        },
+        {
+          "id": 5164,
+          "vote": "aye"
+        },
+        {
+          "id": 4772,
+          "vote": "aye"
+        },
+        {
+          "id": 9295,
+          "vote": "aye"
+        },
+        {
+          "id": 9639,
+          "vote": "aye"
+        },
+        {
+          "id": 9731,
+          "vote": "aye"
+        }
+      ]
     },
     "179": {
       "id": 179,
@@ -929,7 +2399,8 @@
           "against": 13,
           "mixed": 3,
           "median_agreement": 30,
-          "mean_agreement": 31.3
+          "mean_agreement": 31.3,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -938,7 +2409,8 @@
           "against": 16,
           "mixed": 0,
           "median_agreement": 0.8,
-          "mean_agreement": 4.6
+          "mean_agreement": 4.6,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -947,7 +2419,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.8
+          "mean_agreement": 99.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -956,9 +2429,84 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 24.5,
-          "mean_agreement": 24.5
+          "mean_agreement": 24.5,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5144,
+          "vote": "aye"
+        },
+        {
+          "id": 2434,
+          "vote": "aye"
+        },
+        {
+          "id": 267,
+          "vote": "aye"
+        },
+        {
+          "id": 144,
+          "vote": "aye"
+        },
+        {
+          "id": 4858,
+          "vote": "aye"
+        },
+        {
+          "id": 3957,
+          "vote": "aye"
+        },
+        {
+          "id": 5207,
+          "vote": "aye"
+        },
+        {
+          "id": 5321,
+          "vote": "aye"
+        },
+        {
+          "id": 5429,
+          "vote": "aye"
+        },
+        {
+          "id": 5463,
+          "vote": "aye"
+        },
+        {
+          "id": 5589,
+          "vote": "aye"
+        },
+        {
+          "id": 5505,
+          "vote": "aye"
+        },
+        {
+          "id": 5237,
+          "vote": "aye"
+        },
+        {
+          "id": 5732,
+          "vote": "aye"
+        },
+        {
+          "id": 5739,
+          "vote": "aye"
+        },
+        {
+          "id": 5787,
+          "vote": "aye"
+        },
+        {
+          "id": 5876,
+          "vote": "aye"
+        },
+        {
+          "id": 5878,
+          "vote": "aye"
+        }
+      ]
     },
     "183": {
       "id": 183,
@@ -977,12 +2525,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 89,
-          "for": 89,
+          "voted": 87,
+          "for": 87,
           "against": 0,
           "mixed": 0,
           "median_agreement": 89,
-          "mean_agreement": 92
+          "mean_agreement": 91.9,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -991,7 +2540,8 @@
           "against": 52,
           "mixed": 0,
           "median_agreement": 1.4,
-          "mean_agreement": 4.6
+          "mean_agreement": 4.6,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1000,18 +2550,90 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
-          "median_agreement": 1.4,
-          "mean_agreement": 2.8
+          "median_agreement": 3.5,
+          "mean_agreement": 3.5,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5335,
+          "vote": "no"
+        },
+        {
+          "id": 5599,
+          "vote": "no"
+        },
+        {
+          "id": 5936,
+          "vote": "aye"
+        },
+        {
+          "id": 5939,
+          "vote": "aye"
+        },
+        {
+          "id": 6780,
+          "vote": "aye"
+        },
+        {
+          "id": 7696,
+          "vote": "aye"
+        },
+        {
+          "id": 7706,
+          "vote": "aye"
+        },
+        {
+          "id": 7704,
+          "vote": "aye"
+        },
+        {
+          "id": 7705,
+          "vote": "aye"
+        },
+        {
+          "id": 7751,
+          "vote": "aye"
+        },
+        {
+          "id": 7738,
+          "vote": "aye"
+        },
+        {
+          "id": 7737,
+          "vote": "aye"
+        },
+        {
+          "id": 7743,
+          "vote": "aye"
+        },
+        {
+          "id": 5940,
+          "vote": "aye"
+        },
+        {
+          "id": 7967,
+          "vote": "aye"
+        },
+        {
+          "id": 7983,
+          "vote": "aye"
+        },
+        {
+          "id": 8949,
+          "vote": "aye"
+        }
+      ]
     },
     "184": {
       "id": 184,
@@ -1035,7 +2657,8 @@
           "against": 40,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.7
+          "mean_agreement": 1.7,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -1044,7 +2667,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.1
+          "mean_agreement": 99.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1053,18 +2677,38 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": null,
-          "mean_agreement": null
+          "mean_agreement": null,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
-          "for": 1,
+          "voted": 0,
+          "for": 0,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 100,
-          "mean_agreement": 100
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 4857,
+          "vote": "aye"
+        },
+        {
+          "id": 4855,
+          "vote": "aye"
+        },
+        {
+          "id": 3599,
+          "vote": "aye"
+        },
+        {
+          "id": 6723,
+          "vote": "aye"
+        }
+      ]
     },
     "196": {
       "id": 196,
@@ -1083,12 +2727,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 23,
+          "voted": 22,
           "for": 0,
-          "against": 22,
+          "against": 21,
           "mixed": 1,
           "median_agreement": 1.6,
-          "mean_agreement": 4.6
+          "mean_agreement": 4.8,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -1097,7 +2742,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 98,
-          "mean_agreement": 93.1
+          "mean_agreement": 93.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1106,7 +2752,8 @@
           "against": 10,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.7
+          "mean_agreement": 1.7,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1115,9 +2762,44 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 97.5,
-          "mean_agreement": 97.5
+          "mean_agreement": 97.5,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5473,
+          "vote": "aye"
+        },
+        {
+          "id": 3718,
+          "vote": "aye"
+        },
+        {
+          "id": 6208,
+          "vote": "no"
+        },
+        {
+          "id": 8370,
+          "vote": "aye"
+        },
+        {
+          "id": 9020,
+          "vote": "aye"
+        },
+        {
+          "id": 8990,
+          "vote": "aye"
+        },
+        {
+          "id": 9094,
+          "vote": "no"
+        },
+        {
+          "id": 9552,
+          "vote": "no"
+        }
+      ]
     },
     "241": {
       "id": 241,
@@ -1141,7 +2823,8 @@
           "against": 4,
           "mixed": 5,
           "median_agreement": 50,
-          "mean_agreement": 65.8
+          "mean_agreement": 65.8,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -1150,7 +2833,8 @@
           "against": 15,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1
+          "mean_agreement": 1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1159,7 +2843,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 98.7
+          "mean_agreement": 98.7,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1168,9 +2853,28 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 4.2,
-          "mean_agreement": 4.2
+          "mean_agreement": 4.2,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5826,
+          "vote": "aye"
+        },
+        {
+          "id": 5476,
+          "vote": "aye"
+        },
+        {
+          "id": 6101,
+          "vote": "aye"
+        },
+        {
+          "id": 4545,
+          "vote": "aye"
+        }
+      ]
     },
     "251": {
       "id": 251,
@@ -1189,12 +2893,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 89,
-          "for": 89,
+          "voted": 87,
+          "for": 87,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.2
+          "mean_agreement": 99.3,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1203,7 +2908,8 @@
           "against": 52,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.3
+          "mean_agreement": 1.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1212,7 +2918,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.4
+          "mean_agreement": 99.4,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1221,9 +2928,48 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 27.5,
-          "mean_agreement": 27.5
+          "mean_agreement": 27.5,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 6696,
+          "vote": "aye"
+        },
+        {
+          "id": 6882,
+          "vote": "aye"
+        },
+        {
+          "id": 6695,
+          "vote": "aye"
+        },
+        {
+          "id": 8475,
+          "vote": "aye"
+        },
+        {
+          "id": 8635,
+          "vote": "aye"
+        },
+        {
+          "id": 8641,
+          "vote": "aye"
+        },
+        {
+          "id": 8633,
+          "vote": "aye"
+        },
+        {
+          "id": 9158,
+          "vote": "aye"
+        },
+        {
+          "id": 9143,
+          "vote": "aye"
+        }
+      ]
     },
     "285": {
       "id": 285,
@@ -1242,12 +2988,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 121,
-          "for": 94,
+          "voted": 119,
+          "for": 92,
           "against": 24,
           "mixed": 3,
           "median_agreement": 73,
-          "mean_agreement": 65.1
+          "mean_agreement": 64.5,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1256,7 +3003,8 @@
           "against": 53,
           "mixed": 0,
           "median_agreement": 14,
-          "mean_agreement": 12.7
+          "mean_agreement": 12.7,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1265,18 +3013,98 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 4,
+          "voted": 3,
           "for": 0,
-          "against": 4,
+          "against": 3,
           "mixed": 0,
-          "median_agreement": 3.4,
-          "mean_agreement": 7.2
+          "median_agreement": 0,
+          "mean_agreement": 7.3,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 7696,
+          "vote": "aye"
+        },
+        {
+          "id": 7706,
+          "vote": "aye"
+        },
+        {
+          "id": 7751,
+          "vote": "aye"
+        },
+        {
+          "id": 7738,
+          "vote": "aye"
+        },
+        {
+          "id": 7737,
+          "vote": "aye"
+        },
+        {
+          "id": 7743,
+          "vote": "aye"
+        },
+        {
+          "id": 7141,
+          "vote": "aye"
+        },
+        {
+          "id": 3343,
+          "vote": "aye"
+        },
+        {
+          "id": 3169,
+          "vote": "aye"
+        },
+        {
+          "id": 8026,
+          "vote": "aye"
+        },
+        {
+          "id": 8028,
+          "vote": "aye"
+        },
+        {
+          "id": 8066,
+          "vote": "aye"
+        },
+        {
+          "id": 8085,
+          "vote": "aye"
+        },
+        {
+          "id": 8074,
+          "vote": "aye"
+        },
+        {
+          "id": 9091,
+          "vote": "aye"
+        },
+        {
+          "id": 9645,
+          "vote": "no"
+        },
+        {
+          "id": 9651,
+          "vote": "no"
+        },
+        {
+          "id": 10048,
+          "vote": "aye"
+        },
+        {
+          "id": 10142,
+          "vote": "no"
+        }
+      ]
     },
     "292": {
       "id": 292,
@@ -1295,12 +3123,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 80,
-          "for": 80,
+          "voted": 78,
+          "for": 78,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1309,7 +3138,8 @@
           "against": 38,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.5
+          "mean_agreement": 1.5,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1318,18 +3148,46 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 97.6
+          "mean_agreement": 97.6,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 2,
+          "voted": 1,
           "for": 0,
-          "against": 2,
+          "against": 1,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 7933,
+          "vote": "aye"
+        },
+        {
+          "id": 7928,
+          "vote": "aye"
+        },
+        {
+          "id": 7920,
+          "vote": "aye"
+        },
+        {
+          "id": 7921,
+          "vote": "aye"
+        },
+        {
+          "id": 7930,
+          "vote": "aye"
+        },
+        {
+          "id": 7919,
+          "vote": "aye"
+        }
+      ]
     },
     "295": {
       "id": 295,
@@ -1348,12 +3206,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 81,
-          "for": 36,
-          "against": 44,
+          "voted": 79,
+          "for": 35,
+          "against": 43,
           "mixed": 1,
           "median_agreement": 33,
-          "mean_agreement": 56.6
+          "mean_agreement": 56.8,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1362,7 +3221,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 83,
-          "mean_agreement": 90.4
+          "mean_agreement": 90.4,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1371,18 +3231,50 @@
           "against": 10,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
-          "for": 1,
+          "voted": 0,
+          "for": 0,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 90,
-          "mean_agreement": 90
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5888,
+          "vote": "no"
+        },
+        {
+          "id": 5889,
+          "vote": "aye"
+        },
+        {
+          "id": 2019,
+          "vote": "aye"
+        },
+        {
+          "id": 2018,
+          "vote": "aye"
+        },
+        {
+          "id": 7944,
+          "vote": "aye"
+        },
+        {
+          "id": 7950,
+          "vote": "aye"
+        },
+        {
+          "id": 9829,
+          "vote": "aye"
+        }
+      ]
     },
     "301": {
       "id": 301,
@@ -1406,7 +3298,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 94.4
+          "mean_agreement": 94.4,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -1415,7 +3308,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 83,
-          "mean_agreement": 87.3
+          "mean_agreement": 87.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1424,7 +3318,8 @@
           "against": 6,
           "mixed": 0,
           "median_agreement": 11,
-          "mean_agreement": 10.8
+          "mean_agreement": 10.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1433,9 +3328,36 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 76,
-          "mean_agreement": 76
+          "mean_agreement": 76,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 4334,
+          "vote": "aye"
+        },
+        {
+          "id": 5740,
+          "vote": "aye"
+        },
+        {
+          "id": 5744,
+          "vote": "aye"
+        },
+        {
+          "id": 5257,
+          "vote": "aye"
+        },
+        {
+          "id": 5255,
+          "vote": "aye"
+        },
+        {
+          "id": 5252,
+          "vote": "aye"
+        }
+      ]
     },
     "308": {
       "id": 308,
@@ -1454,12 +3376,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 90,
-          "for": 90,
+          "voted": 88,
+          "for": 88,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 96.9
+          "mean_agreement": 97.4,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1468,7 +3391,8 @@
           "against": 29,
           "mixed": 1,
           "median_agreement": 0,
-          "mean_agreement": 42.8
+          "mean_agreement": 42.8,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1477,18 +3401,46 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 96.7
+          "mean_agreement": 96.7,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
           "median_agreement": 33,
-          "mean_agreement": 22
+          "mean_agreement": 33,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8163,
+          "vote": "aye"
+        },
+        {
+          "id": 8161,
+          "vote": "aye"
+        },
+        {
+          "id": 8162,
+          "vote": "aye"
+        },
+        {
+          "id": 8130,
+          "vote": "aye"
+        },
+        {
+          "id": 8129,
+          "vote": "aye"
+        },
+        {
+          "id": 8128,
+          "vote": "aye"
+        }
+      ]
     },
     "309": {
       "id": 309,
@@ -1512,7 +3464,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.3
+          "mean_agreement": 99.3,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -1521,7 +3474,8 @@
           "against": 14,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 1.3
+          "mean_agreement": 1.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1530,7 +3484,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1539,9 +3494,24 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 5374,
+          "vote": "aye"
+        },
+        {
+          "id": 5875,
+          "vote": "aye"
+        },
+        {
+          "id": 8167,
+          "vote": "aye"
+        }
+      ]
     },
     "318": {
       "id": 318,
@@ -1560,12 +3530,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 20,
-          "for": 1,
+          "voted": 19,
+          "for": 0,
           "against": 18,
           "mixed": 1,
           "median_agreement": 20,
-          "mean_agreement": 20.7
+          "mean_agreement": 16.6,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -1574,7 +3545,8 @@
           "against": 20,
           "mixed": 0,
           "median_agreement": 5.9,
-          "mean_agreement": 6.9
+          "mean_agreement": 6.9,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1583,7 +3555,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.8
+          "mean_agreement": 99.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1592,9 +3565,36 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 5.9,
-          "mean_agreement": 5.9
+          "mean_agreement": 5.9,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8244,
+          "vote": "aye"
+        },
+        {
+          "id": 8379,
+          "vote": "aye"
+        },
+        {
+          "id": 8394,
+          "vote": "aye"
+        },
+        {
+          "id": 8570,
+          "vote": "aye"
+        },
+        {
+          "id": 8829,
+          "vote": "aye"
+        },
+        {
+          "id": 9335,
+          "vote": "aye"
+        }
+      ]
     },
     "320": {
       "id": 320,
@@ -1613,12 +3613,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 18,
-          "for": 18,
+          "voted": 17,
+          "for": 17,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -1627,7 +3628,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1636,7 +3638,8 @@
           "against": 7,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1645,9 +3648,16 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8602,
+          "vote": "aye"
+        }
+      ]
     },
     "322": {
       "id": 322,
@@ -1666,12 +3676,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 17,
-          "for": 1,
-          "against": 16,
+          "voted": 15,
+          "for": 0,
+          "against": 15,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 5.9
+          "mean_agreement": 0,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1680,7 +3691,8 @@
           "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1689,7 +3701,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1698,9 +3711,16 @@
           "against": 1,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8728,
+          "vote": "aye"
+        }
+      ]
     },
     "329": {
       "id": 329,
@@ -1719,12 +3739,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 89,
-          "for": 89,
+          "voted": 87,
+          "for": 87,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.4
+          "mean_agreement": 99.4,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1733,7 +3754,8 @@
           "against": 52,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0.5
+          "mean_agreement": 0.5,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1742,18 +3764,46 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 2,
+          "voted": 1,
           "for": 0,
-          "against": 2,
+          "against": 1,
           "mixed": 0,
-          "median_agreement": 0.3,
-          "mean_agreement": 0.3
+          "median_agreement": 0,
+          "mean_agreement": 0,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8924,
+          "vote": "aye"
+        },
+        {
+          "id": 8921,
+          "vote": "aye"
+        },
+        {
+          "id": 1864,
+          "vote": "aye"
+        },
+        {
+          "id": 8882,
+          "vote": "aye"
+        },
+        {
+          "id": 8888,
+          "vote": "aye"
+        },
+        {
+          "id": 8886,
+          "vote": "aye"
+        }
+      ]
     },
     "330": {
       "id": 330,
@@ -1772,12 +3822,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 19,
-          "for": 2,
+          "voted": 17,
+          "for": 0,
           "against": 17,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 10.5
+          "mean_agreement": 0,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1786,7 +3837,8 @@
           "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1795,7 +3847,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1804,9 +3857,20 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": null,
-          "mean_agreement": null
+          "mean_agreement": null,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9083,
+          "vote": "aye"
+        },
+        {
+          "id": 9082,
+          "vote": "aye"
+        }
+      ]
     },
     "332": {
       "id": 332,
@@ -1830,7 +3894,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 89.7
+          "mean_agreement": 89.7,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -1839,7 +3904,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 75,
-          "mean_agreement": 83.3
+          "mean_agreement": 83.3,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1848,7 +3914,8 @@
           "against": 1,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1857,9 +3924,24 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": null,
-          "mean_agreement": null
+          "mean_agreement": null,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9038,
+          "vote": "no"
+        },
+        {
+          "id": 9039,
+          "vote": "no"
+        },
+        {
+          "id": 9036,
+          "vote": "aye"
+        }
+      ]
     },
     "334": {
       "id": 334,
@@ -1878,12 +3960,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 27,
-          "for": 2,
+          "voted": 25,
+          "for": 0,
           "against": 25,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 10.2
+          "mean_agreement": 4,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1892,7 +3975,8 @@
           "against": 11,
           "mixed": 0,
           "median_agreement": 25,
-          "mean_agreement": 18.2
+          "mean_agreement": 18.2,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1901,7 +3985,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 95
+          "mean_agreement": 95,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -1910,9 +3995,20 @@
           "against": 1,
           "mixed": 1,
           "median_agreement": 25,
-          "mean_agreement": 25
+          "mean_agreement": 25,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9176,
+          "vote": "aye"
+        },
+        {
+          "id": 9890,
+          "vote": "aye"
+        }
+      ]
     },
     "336": {
       "id": 336,
@@ -1931,12 +4027,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 113,
-          "for": 113,
+          "voted": 112,
+          "for": 112,
           "against": 0,
           "mixed": 0,
           "median_agreement": 80,
-          "mean_agreement": 87.1
+          "mean_agreement": 87,
+          "excluded_switchers": 1
         },
         "coalition": {
           "members": 67,
@@ -1945,7 +4042,8 @@
           "against": 56,
           "mixed": 1,
           "median_agreement": 20,
-          "mean_agreement": 13.5
+          "mean_agreement": 13.5,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -1954,18 +4052,50 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 95.6
+          "mean_agreement": 95.6,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 5,
+          "voted": 4,
           "for": 0,
-          "against": 5,
+          "against": 4,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 4
+          "mean_agreement": 0,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9169,
+          "vote": "aye"
+        },
+        {
+          "id": 9168,
+          "vote": "aye"
+        },
+        {
+          "id": 9166,
+          "vote": "aye"
+        },
+        {
+          "id": 8893,
+          "vote": "aye"
+        },
+        {
+          "id": 10008,
+          "vote": "aye"
+        },
+        {
+          "id": 10042,
+          "vote": "aye"
+        },
+        {
+          "id": 10041,
+          "vote": "aye"
+        }
+      ]
     },
     "343": {
       "id": 343,
@@ -1984,12 +4114,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 90,
-          "for": 69,
-          "against": 21,
+          "voted": 88,
+          "for": 68,
+          "against": 20,
           "mixed": 0,
           "median_agreement": 83,
-          "mean_agreement": 68.1
+          "mean_agreement": 68.7,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -1998,7 +4129,8 @@
           "against": 39,
           "mixed": 0,
           "median_agreement": 1.9,
-          "mean_agreement": 3.7
+          "mean_agreement": 3.7,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2007,7 +4139,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.1
+          "mean_agreement": 99.1,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -2016,9 +4149,44 @@
           "against": 2,
           "mixed": 0,
           "median_agreement": 11.2,
-          "mean_agreement": 11.2
+          "mean_agreement": 11.2,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9294,
+          "vote": "aye"
+        },
+        {
+          "id": 9655,
+          "vote": "aye"
+        },
+        {
+          "id": 9243,
+          "vote": "aye"
+        },
+        {
+          "id": 9171,
+          "vote": "aye"
+        },
+        {
+          "id": 8418,
+          "vote": "aye"
+        },
+        {
+          "id": 8285,
+          "vote": "aye"
+        },
+        {
+          "id": 8274,
+          "vote": "aye"
+        },
+        {
+          "id": 8173,
+          "vote": "aye"
+        }
+      ]
     },
     "345": {
       "id": 345,
@@ -2037,12 +4205,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 89,
-          "for": 88,
+          "voted": 87,
+          "for": 87,
           "against": 0,
-          "mixed": 1,
+          "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 97.2
+          "mean_agreement": 98,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -2051,7 +4220,8 @@
           "against": 52,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 4.1
+          "mean_agreement": 4.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2060,7 +4230,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 92.7
+          "mean_agreement": 92.7,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -2069,9 +4240,40 @@
           "against": 1,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 8635,
+          "vote": "aye"
+        },
+        {
+          "id": 8475,
+          "vote": "aye"
+        },
+        {
+          "id": 8633,
+          "vote": "aye"
+        },
+        {
+          "id": 8666,
+          "vote": "aye"
+        },
+        {
+          "id": 8676,
+          "vote": "aye"
+        },
+        {
+          "id": 8669,
+          "vote": "aye"
+        },
+        {
+          "id": 8681,
+          "vote": "aye"
+        }
+      ]
     },
     "348": {
       "id": 348,
@@ -2095,7 +4297,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -2104,7 +4307,8 @@
           "against": 32,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2113,18 +4317,26 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
+          "voted": 0,
           "for": 0,
-          "against": 1,
+          "against": 0,
           "mixed": 0,
-          "median_agreement": 0,
-          "mean_agreement": 0
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9329,
+          "vote": "aye"
+        }
+      ]
     },
     "349": {
       "id": 349,
@@ -2143,12 +4355,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 85,
-          "for": 85,
+          "voted": 83,
+          "for": 83,
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -2157,7 +4370,8 @@
           "against": 50,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2166,18 +4380,34 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 3,
+          "voted": 2,
           "for": 0,
-          "against": 3,
+          "against": 2,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9627,
+          "vote": "aye"
+        },
+        {
+          "id": 9626,
+          "vote": "aye"
+        },
+        {
+          "id": 9604,
+          "vote": "aye"
+        }
+      ]
     },
     "354": {
       "id": 354,
@@ -2201,7 +4431,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "coalition": {
           "members": 67,
@@ -2210,7 +4441,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2219,18 +4451,26 @@
           "against": 1,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 0
+          "mean_agreement": 0,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
-          "voted": 1,
-          "for": 1,
+          "voted": 0,
+          "for": 0,
           "against": 0,
           "mixed": 0,
-          "median_agreement": 100,
-          "mean_agreement": 100
+          "median_agreement": null,
+          "mean_agreement": null,
+          "excluded_switchers": 1
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9434,
+          "vote": "aye"
+        }
+      ]
     },
     "361": {
       "id": 361,
@@ -2249,12 +4489,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 28,
+          "voted": 26,
           "for": 0,
-          "against": 27,
-          "mixed": 1,
+          "against": 26,
+          "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 4.8
+          "mean_agreement": 3.7,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -2263,7 +4504,8 @@
           "against": 9,
           "mixed": 0,
           "median_agreement": 37,
-          "mean_agreement": 26.1
+          "mean_agreement": 26.1,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2272,7 +4514,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 99.8
+          "mean_agreement": 99.8,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -2281,9 +4524,40 @@
           "against": 3,
           "mixed": 0,
           "median_agreement": 2.4,
-          "mean_agreement": 13.1
+          "mean_agreement": 13.1,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9656,
+          "vote": "aye"
+        },
+        {
+          "id": 9655,
+          "vote": "aye"
+        },
+        {
+          "id": 9243,
+          "vote": "aye"
+        },
+        {
+          "id": 9171,
+          "vote": "aye"
+        },
+        {
+          "id": 8418,
+          "vote": "aye"
+        },
+        {
+          "id": 8285,
+          "vote": "aye"
+        },
+        {
+          "id": 8173,
+          "vote": "aye"
+        }
+      ]
     },
     "363": {
       "id": 363,
@@ -2302,12 +4576,13 @@
       "parties": {
         "labor": {
           "members": 122,
-          "voted": 27,
-          "for": 23,
+          "voted": 25,
+          "for": 21,
           "against": 4,
           "mixed": 0,
           "median_agreement": 67,
-          "mean_agreement": 69.3
+          "mean_agreement": 68.2,
+          "excluded_switchers": 2
         },
         "coalition": {
           "members": 67,
@@ -2316,7 +4591,8 @@
           "against": 6,
           "mixed": 0,
           "median_agreement": 33,
-          "mean_agreement": 33
+          "mean_agreement": 33,
+          "excluded_switchers": 0
         },
         "greens": {
           "members": 11,
@@ -2325,7 +4601,8 @@
           "against": 0,
           "mixed": 0,
           "median_agreement": 100,
-          "mean_agreement": 100
+          "mean_agreement": 100,
+          "excluded_switchers": 0
         },
         "one_nation": {
           "members": 6,
@@ -2334,9 +4611,24 @@
           "against": 3,
           "mixed": 0,
           "median_agreement": 0,
-          "mean_agreement": 11
+          "mean_agreement": 11,
+          "excluded_switchers": 0
         }
-      }
+      },
+      "division_refs": [
+        {
+          "id": 9672,
+          "vote": "aye"
+        },
+        {
+          "id": 9265,
+          "vote": "aye"
+        },
+        {
+          "id": 9671,
+          "vote": "aye"
+        }
+      ]
     }
   }
 }

@@ -9,10 +9,11 @@
 //   --mapping     mapping.json path (default data/tvfy/mapping.json)
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { readJson } from './util.mjs';
+import { PARTY_IDS, readJson } from './util.mjs';
 
 const DEFAULT_MAPPING_PATH = 'data/tvfy/mapping.json';
 const RECORDS_PATH = 'data/tvfy/records.json';
+const DIVISIONS_PATH = 'data/tvfy/divisions.json';
 const DEFAULT_DATASET_PATH = 'data/dataset.json';
 
 function parseArgs(argv) {
@@ -37,9 +38,47 @@ function requireFile(path, label) {
   }
 }
 
+// Orients a division's raw {aye, no} tally to the policy's proposition:
+// an "aye" ballot on the division supported the proposition iff the
+// policy's own vote for that division is "aye".
+function orientToProposition(tally, policyVote) {
+  return policyVote === 'aye'
+    ? { for: tally.aye, against: tally.no }
+    : { for: tally.no, against: tally.aye };
+}
+
+// One chronological series entry per division_ref, joined against
+// data/tvfy/divisions.json. Fails loudly if a referenced division is
+// missing (caught by the pre-mutation validation pass below).
+function buildSeriesEntry(divisionRef, division) {
+  const parties = {};
+  for (const partyId of PARTY_IDS) {
+    parties[partyId] = orientToProposition(division.parties[partyId], divisionRef.vote);
+  }
+  return {
+    date: division.date,
+    house: division.house,
+    name: division.name,
+    policy_vote: divisionRef.vote,
+    parties,
+    other: orientToProposition(division.other, divisionRef.vote),
+  };
+}
+
+function buildSeries(policy, divisionsById) {
+  const refs = policy.division_refs ?? [];
+  return refs
+    .map((ref) => ({ id: ref.id, entry: buildSeriesEntry(ref, divisionsById.get(ref.id)) }))
+    .sort((a, b) => {
+      if (a.entry.date !== b.entry.date) return a.entry.date < b.entry.date ? -1 : 1;
+      return a.id - b.id;
+    })
+    .map((x) => x.entry);
+}
+
 // mapping entry {policy_id, polarity, strength, note} merged with the
 // matching records.json policy fields, mapping fields first.
-function buildVotingRecord(entry, policy) {
+function buildVotingRecord(entry, policy, divisionsById) {
   return {
     policy_id: entry.policy_id,
     polarity: entry.polarity,
@@ -54,6 +93,7 @@ function buildVotingRecord(entry, policy) {
     first_division_date: policy.first_division_date,
     last_division_date: policy.last_division_date,
     parties: policy.parties,
+    series: buildSeries(policy, divisionsById),
   };
 }
 
@@ -62,13 +102,18 @@ function main() {
 
   requireFile(mappingPath, 'mapping');
   requireFile(RECORDS_PATH, 'records');
+  requireFile(DIVISIONS_PATH, 'divisions');
   requireFile(datasetPath, 'dataset');
 
   const mapping = readJson(mappingPath);
   const records = readJson(RECORDS_PATH);
+  const divisionsJson = readJson(DIVISIONS_PATH);
   const dataset = JSON.parse(readFileSync(datasetPath, 'utf8'));
 
   const mappingIssues = mapping.issues ?? {};
+  const divisionsById = new Map(
+    Object.values(divisionsJson.divisions ?? {}).map((division) => [division.id, division])
+  );
 
   const allIssues = [];
   for (const topic of dataset.topics ?? []) {
@@ -84,8 +129,17 @@ function main() {
       continue;
     }
     for (const entry of entries) {
-      if (!records.policies?.[entry.policy_id]) {
+      const policy = records.policies?.[entry.policy_id];
+      if (!policy) {
         errors.push(`mapping issue "${issueId}": policy_id ${entry.policy_id} is missing from ${RECORDS_PATH}`);
+        continue;
+      }
+      for (const ref of policy.division_refs ?? []) {
+        if (!divisionsById.has(ref.id)) {
+          errors.push(
+            `mapping issue "${issueId}": policy ${entry.policy_id} references division ${ref.id} which is missing from ${DIVISIONS_PATH}`
+          );
+        }
       }
     }
   }
@@ -106,7 +160,9 @@ function main() {
     if (entries) {
       issue.voting = {
         as_of: asOf,
-        records: entries.map((entry) => buildVotingRecord(entry, records.policies[entry.policy_id])),
+        records: entries.map((entry) =>
+          buildVotingRecord(entry, records.policies[entry.policy_id], divisionsById)
+        ),
       };
       enriched += 1;
       recordsApplied += entries.length;

@@ -104,3 +104,18 @@ Mapping ground rules (same accuracy-first bar as positions):
 - Policies with no divisions, or where no current member has enough voting data, are never mapped.
 - TVFY "provisional" (draft) policies are mapped only when they are the exact proposition with
   real division data, and the UI badges them as draft.
+
+### Divisions over time
+
+`scripts/tvfy/fetch-divisions.mjs` additionally pulls the per-member roll of every division
+behind the mapped policies (474 divisions, 2006→today) into `data/tvfy/divisions.json`, and
+`apply.mjs` attaches a chronological `series` to every voting record — per-division party
+tallies using each member's party **at the time of the vote** (historical parties like the
+Palmer United Party count as "other"). This powers the vote-trail timelines, the pair-agreement
+chart and the mechanical position-shift detection in the app. Two source caveats, both stored
+transparently rather than papered over: TVFY's declared division totals can differ from the
+member roll by 1–2 votes (both figures kept), and TVFY's per-member policy scores follow a
+member's *current* party — so members whose votes on a policy were cast under a different party
+are excluded from that record's member aggregates (`excluded_switchers`), while the timeline
+uses at-the-time party and needs no exclusion. Run order: `fetch-divisions.mjs` before
+`fetch.mjs`.
