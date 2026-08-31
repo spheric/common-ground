@@ -135,8 +135,22 @@ function uniqueId(baseId, takenIds) {
   return `${baseId}-${n}`;
 }
 
+// A blocked feed host (e.g. parlinfo.aph.gov.au 403s CI runner IPs) must not
+// kill the whole refresh — same soft-fail rule as the ndis.gov.au fetchers.
+async function collectOrWarn(label, collect) {
+  try {
+    return await collect();
+  } catch (err) {
+    console.warn(`warning: ${label} feed unavailable, continuing without it — ${err.message}`);
+    return [];
+  }
+}
+
 async function main() {
-  const [parlinfo, healthGov] = await Promise.all([collectParlInfoCandidates(), collectHealthGovCandidates()]);
+  const [parlinfo, healthGov] = await Promise.all([
+    collectOrWarn('ParlInfo', collectParlInfoCandidates),
+    collectOrWarn('health.gov.au', collectHealthGovCandidates),
+  ]);
   const allCandidates = [...parlinfo, ...healthGov];
 
   const feed = readJson(FEED_PATH, { items: [] });
