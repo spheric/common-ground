@@ -34692,6 +34692,102 @@
   "feed": {
     "items": [
       {
+        "id": "2026-08-31-share-your-thoughts-on-proposed-changes-to-ndis-access-2",
+        "date": "2026-08-31",
+        "type": "announcement",
+        "title": "Share your thoughts on proposed changes to NDIS access",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/news/share-your-thoughts-on-proposed-changes-to-ndis-access?utm_source=health.gov.au&utm_medium=rss-item&utm_campaign=latest-news&utm_content=Share+your+thoughts+on+proposed+changes+to+NDIS+access+",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-31-share-your-thoughts-on-proposed-changes-to-ndis-access",
+        "date": "2026-08-31",
+        "type": "announcement",
+        "title": "Share your thoughts on proposed changes to NDIS access",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/news/share-your-thoughts-on-proposed-changes-to-ndis-access",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-31-securing-the-ndis-for-future-generations-timeline",
+        "date": "2026-08-31",
+        "type": "announcement",
+        "title": "Securing the NDIS for future generations timeline",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/resources/publications/securing-the-ndis-for-future-generations-timeline-0",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-31-press-conference-with-minister-butler-and-special-envoy-for",
+        "date": "2026-08-31",
+        "type": "announcement",
+        "title": "Press conference with Minister Butler and Special Envoy for Men's Health Dan Repacholi, Sydney – 31 August 2026",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/press-conference-with-minister-butler-and-special-envoy-for-mens-health-dan-repacholi-sydney-31-august-2026",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-31-consultation-opens-on-proposed-ndis-access-changes",
+        "date": "2026-08-31",
+        "type": "announcement",
+        "title": "Consultation opens on proposed NDIS access changes",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/consultation-opens-on-proposed-ndis-access-changes",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-30-press-conference-with-minister-butler-adelaide-30-august-202",
+        "date": "2026-08-30",
+        "type": "announcement",
+        "title": "Press conference with Minister Butler, Adelaide – 30 August 2026",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/press-conference-with-minister-butler-adelaide-30-august-2026",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-20-the-ndis-amendment-securing-the-ndis-for-future-generations",
+        "date": "2026-08-20",
+        "type": "announcement",
+        "title": "The NDIS Amendment (Securing the NDIS for Future Generations) Bill 2026 has passed Parliament",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/news/the-ndis-amendment-securing-the-ndis-for-future-generations-bill-2026-has-passed-parliament?utm_source=health.gov.au&utm_medium=rss-item&utm_campaign=latest-news&utm_content=The+NDIS+Amendment+%28Securing+the+NDIS+for+Future+Generations%29+Bill+2026+has+passed+Parliament",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-08-19-have-your-say-on-new-framework-planning-and-ndis-support-rul",
+        "date": "2026-08-19",
+        "type": "announcement",
+        "title": "Have your say on new framework planning and NDIS support rules",
+        "source": {
+          "title": "Department of Health, Disability and Ageing",
+          "url": "https://www.health.gov.au/news/have-your-say-on-new-framework-planning-and-ndis-support-rules?utm_source=health.gov.au&utm_medium=rss-item&utm_campaign=latest-news&utm_content=Have+your+say+on+new+framework+planning+and+NDIS+support+rules",
+          "publisher": "Australian Government Department of Health, Disability and Ageing"
+        },
+        "verified": "auto"
+      },
+      {
         "id": "2026-08-18-securing-ndis-bill-senate-third-reading",
         "date": "2026-08-18",
         "type": "bill",
@@ -34770,6 +34866,18 @@
         "verified": "confirmed"
       },
       {
+        "id": "2026-08-06-community-affairs-legislation-committee-06-08-2026-national",
+        "date": "2026-08-06",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 06/08/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29775%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
+      },
+      {
         "id": "2026-08-06-community-affairs-hearing-perth",
         "date": "2026-08-06",
         "type": "hearing",
@@ -34781,6 +34889,30 @@
           "publisher": "Parliament of Australia"
         },
         "verified": "confirmed"
+      },
+      {
+        "id": "2026-07-31-community-affairs-legislation-committee-31-07-2026-national",
+        "date": "2026-07-31",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 31/07/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29774%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-07-30-community-affairs-legislation-committee-30-07-2026-national",
+        "date": "2026-07-30",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 30/07/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29773%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
       },
       {
         "id": "2026-07-09-technical-advisory-group",
@@ -34885,6 +35017,42 @@
           "publisher": "National Disability Insurance Agency"
         },
         "verified": "confirmed"
+      },
+      {
+        "id": "2026-06-11-community-affairs-legislation-committee-11-06-2026-national",
+        "date": "2026-06-11",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 11/06/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29677%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-06-10-community-affairs-legislation-committee-10-06-2026-national",
+        "date": "2026-06-10",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 10/06/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29672%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
+      },
+      {
+        "id": "2026-06-09-community-affairs-legislation-committee-09-06-2026-national",
+        "date": "2026-06-09",
+        "type": "hearing",
+        "title": "Community Affairs Legislation Committee : 09/06/2026 : National Disability Insurance Scheme Amendment (Securing the NDIS for Future Generations) Bill 2026",
+        "source": {
+          "title": "ParlInfo committee Hansard",
+          "url": "https://parlinfo.aph.gov.au:443/parlInfo/search/display/display.w3p;query=Id%3A%22committees%2Fcommsen%2F29695%2F0000%22",
+          "publisher": "Parliament of Australia"
+        },
+        "verified": "auto"
       },
       {
         "id": "2026-06-02-budget-estimates-2026-27",
